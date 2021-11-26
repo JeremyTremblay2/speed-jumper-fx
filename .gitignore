@@ -1,0 +1,12 @@
+*.iws
+*.iml
+*.DS_STORE
+*.thumbs
+*.bak
+
+**/.idea
+**/target
+**/libraries
+**/out
+**/bin
+**/debug

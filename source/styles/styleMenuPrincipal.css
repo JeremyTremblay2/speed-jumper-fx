@@ -1,0 +1,11 @@
+.button {
+    -fx-background-color: #F0F8FF;
+    -fx-font-size: 40;
+}
+
+#titre {
+    -fx-font-size: 60;
+    -fx-font-family: "Comic Sans MS";
+    -fx-padding: 50, 0, 0, 0;
+    -fx-background-color: red;
+}
