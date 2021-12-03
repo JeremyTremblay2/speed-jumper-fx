@@ -8,14 +8,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 public class Fenetre extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         URL vueMenu = getClass().getResource("/menuPrincipal.fxml");
         if (vueMenu == null) {
-            throw new IOException("Le fichier de la vue du menu principal n'a pas été trouvé.");
+            throw new IOException("Le fichier de la vue du menu principal n a pas été trouvé.");
         }
+
         Parent parent = FXMLLoader.load(vueMenu);
         Scene scene = new Scene(parent);
         stage.setScene(scene);
