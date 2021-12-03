@@ -1,4 +1,4 @@
-package com.jeremyantoine;
+package com.jeremyantoine.speedjumper.Jeu;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
