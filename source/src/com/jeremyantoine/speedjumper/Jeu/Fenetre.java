@@ -18,11 +18,13 @@ public class Fenetre extends Application {
             throw new IOException("Le fichier de la vue du menu principal n a pas été trouvé.");
         }
 
+        System.out.println("fdsgdfg");
+
         Parent parent = FXMLLoader.load(vueMenu);
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.show();
-        Jeu jeu = new Jeu();
+        new Jeu();
     }
 
     public static void main(String[] args) {
