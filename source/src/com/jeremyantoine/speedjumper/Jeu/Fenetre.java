@@ -14,12 +14,14 @@ public class Fenetre extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         URL vueMenu = getClass().getResource("/menuPrincipal.fxml");
+        //URL vueMenu = getClass().getResource("/menuJouer.fxml");
         if (vueMenu == null) {
             throw new IOException("Le fichier de la vue du menu principal n a pas été trouvé.");
         }
 
         Parent parent = FXMLLoader.load(vueMenu);
         Scene scene = new Scene(parent);
+        scene.getStylesheets().getClass().getResource("../styles/styleMenuPrincipal.css");
         stage.setScene(scene);
         stage.show();
         Jeu jeu = new Jeu();

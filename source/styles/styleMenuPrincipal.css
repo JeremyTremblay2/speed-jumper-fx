@@ -1,11 +1,23 @@
-.button {
-    -fx-background-color: #F0F8FF;
+Button {
     -fx-font-size: 40;
+    -fx-border-width: 0;
+    -fx-background-color: transparent;
+
 }
 
-#titre {
-    -fx-font-size: 60;
-    -fx-font-family: "Comic Sans MS";
-    -fx-padding: 50, 0, 0, 0;
-    -fx-background-color: red;
+#background{
+    -fx-background-image: url("~/Images/bg.jpg");
+}
+
+Button:hover {
+    -fx-text-fill: #b3b6b6;
+}
+
+
+Label{
+    -fx-font-size: 80;
+}
+
+#option{
+
 }

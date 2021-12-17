@@ -1,32 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<VBox stylesheets="styleMenuPrincipal.css" minHeight="1080" minWidth="1920"
+      alignment="TOP_CENTER"
+      xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.jeremyantoine.speedjumper.Jeu.Fenetre" id="background">
 
-<StackPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            stylesheets="styleMenuPrincipal.css"
-            fx:controller="com.jeremyantoine.speedjumper.Jeu.MenuPrincipal"
-            prefHeight="400.0" prefWidth="600.0">
 
-
-
-    <VBox alignment="CENTER" spacing="30.0">
+    <Label alignment="TOP_CENTER" text="SpeedJumper" textAlignment="CENTER">
+        <font>
+            <Font size="38.0"/>
+        </font>
+        <VBox.margin>
+            <Insets top="200.0"/>
+        </VBox.margin>
+    </Label>
+    <HBox fillHeight="false" prefHeight="259.0" prefWidth="400.0" style="-fx-alignment: center;">
+        <VBox.margin>
+            <Insets top="140.0"/>
+        </VBox.margin>
+        <GridPane hgap="300">
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints />
+            </columnConstraints>
+            <Button text="Jouer"/>
+            <Button text="Quitter" GridPane.columnIndex="1" id="boutonFermeture"/>
+        </GridPane>
+    </HBox>
+    <Pane prefHeight="900"/>
+    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
         <children>
-            <Label text="Speed Jumper" fx:id="titre" />
-            <HBox alignment="CENTER">
-                <Button text="Jouer" prefHeight="50.0" prefWidth="300.0" GridPane.columnIndex="0" maxWidth="Infinity" />
-                <Button text="Quitter" prefHeight="50.0" prefWidth="300.0" GridPane.columnIndex="1"
-                        maxWidth="Infinity" onAction="#fermetureFenetre" fx:id="boutonFermeture" />
-            </HBox>
+            <Button mnemonicParsing="false" id="optionIcone" />
         </children>
-        <AnchorPane>
-            <children>
-                <Button text="Parametres" alignment="BOTTOM_LEFT" />
-            </children>
-        </AnchorPane>
-    </VBox>
-</StackPane>
+    </HBox>
+</VBox>
