@@ -1,16 +1,16 @@
 package com.jeremyantoine.speedjumper.entites;
 
-import com.jeremyantoine.speedjumper.coordonnees.Position;
+import com.jeremyantoine.speedjumper.coordonnees.Position2D;
+import com.jeremyantoine.speedjumper.coordonnees.Rectangle;
 
 import java.util.Objects;
 
 public class Piece extends Entite {
-
-    private int valeur;
     private static final int VALEUR_PAR_DEFAUT = 5;
+    private int valeur;
 
-    public Piece(Position position, int valeur) throws IllegalArgumentException {
-        super(position);
+    public Piece(Position2D position, Rectangle collision, int valeur) throws IllegalArgumentException {
+        super(position, collision);
 
         if (valeur <= 0) {
             this.valeur = VALEUR_PAR_DEFAUT;
@@ -18,6 +18,9 @@ public class Piece extends Entite {
         else {
             this.valeur = valeur;
         }
+    }
+    public Piece(Position2D position, Rectangle collision) throws IllegalArgumentException {
+        this(position, collision, VALEUR_PAR_DEFAUT);
     }
 
     public int getValeur() {

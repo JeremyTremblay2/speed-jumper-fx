@@ -7,6 +7,7 @@ public enum Touche {
     FLECHE_BAS,
     ECHAP,
     ESPACE,
-    ENTREE
+    ENTREE,
+    INCONNU
 }
  

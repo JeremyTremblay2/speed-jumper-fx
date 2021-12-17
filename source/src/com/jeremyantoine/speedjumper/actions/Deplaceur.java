@@ -1,13 +1,13 @@
 package com.jeremyantoine.speedjumper.actions;
 
-import com.jeremyantoine.speedjumper.coordonnees.Position;
+import com.jeremyantoine.speedjumper.coordonnees.Position2D;
 import com.jeremyantoine.speedjumper.entites.Entite;
 
 public class Deplaceur {
 
-    public void deplace(Entite entite, Position position) throws IllegalArgumentException {
-        if (entite == null || position == null) {
-            throw new IllegalArgumentException("Un argument fournit au paramètre du déplaceur est null.");
+    public void deplace(Entite entite, Position2D position) throws IllegalArgumentException {
+        if (entite == null) {
+            throw new IllegalArgumentException("L'entité fournie en paramètre du déplaceur est nulle.");
         }
         entite.setPosition(position);
     }

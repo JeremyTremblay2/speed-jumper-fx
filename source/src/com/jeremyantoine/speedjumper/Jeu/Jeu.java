@@ -1,8 +1,10 @@
 package com.jeremyantoine.speedjumper.Jeu;
 
-import com.jeremyantoine.speedjumper.coordonnees.Position;
+import com.jeremyantoine.speedjumper.coordonnees.Position2D;
+import com.jeremyantoine.speedjumper.coordonnees.Rectangle;
 import com.jeremyantoine.speedjumper.entites.Entite;
-import com.jeremyantoine.speedjumper.entites.Personnage;
+import com.jeremyantoine.speedjumper.entites.PersonnageJouable;
+import com.jeremyantoine.speedjumper.entites.Vivant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +17,12 @@ public class Jeu implements Observateur {
 
     private List<Entite> lesEntites;
     private AfficheurDeJeu afficheurDeJeu;
-    private GestionnaireDeTouches gestionnaireDeTouches;
+    private RecuperateurDeTouches recuperateurDeTouches;
 
     public Jeu() {
         lesEntites = initialisation();
         afficheurDeJeu = new AfficheurDeJeu(lesEntites);
-        gestionnaireDeTouches = new GestionnaireDeTouchesFX();
+        recuperateurDeTouches = new RecuperateurDeTouchesFX();
         joue = true;
 
         joue();
@@ -30,7 +32,9 @@ public class Jeu implements Observateur {
     private List<Entite> initialisation() {
         //charger ressources
         List<Entite> lesEntites = new ArrayList<Entite>();
-        lesEntites.add(new Personnage(new Position(0, 0), 10));
+        lesEntites.add(new PersonnageJouable(new Position2D(0, 0),
+                new Rectangle(10, 10, 20, 20),
+                15));
         return lesEntites;
     }
 
@@ -53,7 +57,7 @@ public class Jeu implements Observateur {
                 affiche();
                 tempsDerniereIteration = System.nanoTime();
             }
-            lesTouches = gestionnaireDeTouches.detectionEntrees();
+            lesTouches = recuperateurDeTouches.detecte();
             if (lesTouches != null) {
                 miseAJour();
             }

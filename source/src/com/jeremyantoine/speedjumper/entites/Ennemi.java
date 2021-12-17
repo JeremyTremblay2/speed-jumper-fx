@@ -1,35 +1,23 @@
 package com.jeremyantoine.speedjumper.entites;
 
-import com.jeremyantoine.speedjumper.coordonnees.Position;
+import com.jeremyantoine.speedjumper.coordonnees.Position2D;
+import com.jeremyantoine.speedjumper.coordonnees.Rectangle;
 
 import java.util.Objects;
 
-public class Ennemi extends Entite {
+public class Ennemi extends Vivant {
 
-    private static final int POINTS_DE_VIE_INITIAUX = 10;
-    private int pointsDeVie;
-
-    public Ennemi(Position position, int pointsDeVie) throws IllegalArgumentException {
-        super(position);
-        if (pointsDeVie <= 0) {
-            this.pointsDeVie = pointsDeVie;
-        }
-        else {
-            this.pointsDeVie = POINTS_DE_VIE_INITIAUX;
-        }
+    public Ennemi(Position2D position, Rectangle collision, int pointsDeVie) throws IllegalArgumentException {
+        super(position, collision, pointsDeVie);
     }
 
-    public int getPointsDeVie() {
-        return pointsDeVie;
-    }
-
-    private void setPointsDeVie(int pointsDeVie) {
-        this.pointsDeVie = pointsDeVie;
+    public Ennemi(Position2D position, Rectangle collision) throws IllegalArgumentException {
+        super(position, collision);
     }
 
     @Override
     public String toString() {
-        return super.toString() + " " + pointsDeVie + "\u2764";
+        return super.toString();
     }
 
     @Override
@@ -42,12 +30,11 @@ public class Ennemi extends Entite {
     }
 
     public boolean equals(Ennemi ennemi) {
-        return pointsDeVie == ennemi.getPointsDeVie()
-                && super.equals(ennemi);
+        return super.equals(ennemi);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), pointsDeVie);
+        return super.hashCode();
     }
 }

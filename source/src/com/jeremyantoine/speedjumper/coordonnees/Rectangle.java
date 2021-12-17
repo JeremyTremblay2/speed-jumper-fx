@@ -4,19 +4,19 @@ import java.util.Objects;
 
 public class Rectangle {
 
-    private Position position;
+    private Position2D position;
     private Dimension dimension;
 
     public Rectangle(double positionX, double positionY, double largeur, double hauteur) {
-        position = new Position(positionX, positionY);
+        position = new Position2D(positionX, positionY);
         dimension = new Dimension(largeur, hauteur);
     }
 
-    public Position getPosition() {
+    public Position2D getPosition() {
         return position;
     }
 
-    private void setPosition(Position position) {
+    private void setPosition(Position2D position) {
         this.position = position;
     }
 
