@@ -6,6 +6,9 @@ import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.entites.PersonnageJouable;
 import com.jeremyantoine.speedjumper.entites.Vivant;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +22,10 @@ public class Jeu implements Observateur {
     private AfficheurDeJeu afficheurDeJeu;
     private RecuperateurDeTouches recuperateurDeTouches;
 
-    public Jeu() {
+    public Jeu() throws MalformedURLException {
         lesEntites = initialisation();
         afficheurDeJeu = new AfficheurDeJeu(lesEntites);
-        recuperateurDeTouches = new RecuperateurDeTouchesFX();
+        recuperateurDeTouches = new RecuperateurDeTouchesFX(new URL("file:D:\\Cours\\2021-2022\\S1\\Conception et Prog Avancée\\speed-jumper\\source\\ressources\\touches.txt"));
         joue = true;
 
         joue();
@@ -80,6 +83,6 @@ public class Jeu implements Observateur {
 
     @Override
     public void miseAjour() {
-        System.out.println("tada");
+
     }
 }
