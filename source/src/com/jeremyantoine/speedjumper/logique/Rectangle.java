@@ -1,4 +1,4 @@
-package com.jeremyantoine.speedjumper.coordonnees;
+package com.jeremyantoine.speedjumper.logique;
 
 import java.util.Objects;
 
@@ -30,7 +30,10 @@ public class Rectangle {
 
     @Override
     public String toString() {
-        return position.toString() + " " + dimension.toString();
+        return "{" + position.toString() +
+                " " +
+                dimension.toString() +
+                "}";
     }
 
     @Override

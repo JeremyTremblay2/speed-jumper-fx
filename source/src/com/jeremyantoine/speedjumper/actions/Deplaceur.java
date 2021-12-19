@@ -1,6 +1,6 @@
 package com.jeremyantoine.speedjumper.actions;
 
-import com.jeremyantoine.speedjumper.coordonnees.Position2D;
+import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.entites.Entite;
 
 public class Deplaceur {

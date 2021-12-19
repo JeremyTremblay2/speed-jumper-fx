@@ -1,6 +1,6 @@
 package com.jeremyantoine.speedjumper.actions;
 
-import com.jeremyantoine.speedjumper.coordonnees.Rectangle;
+import com.jeremyantoine.speedjumper.logique.Rectangle;
 import jdk.jshell.spi.ExecutionControl;
 
 public class Collisionneur {

@@ -1,7 +1,7 @@
 package com.jeremyantoine.speedjumper.entites;
 
-import com.jeremyantoine.speedjumper.coordonnees.Position2D;
-import com.jeremyantoine.speedjumper.coordonnees.Rectangle;
+import com.jeremyantoine.speedjumper.logique.Position2D;
+import com.jeremyantoine.speedjumper.logique.Rectangle;
 
 import java.util.Objects;
 

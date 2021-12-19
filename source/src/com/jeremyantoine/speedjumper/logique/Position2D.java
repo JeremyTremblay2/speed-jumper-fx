@@ -1,4 +1,4 @@
-package com.jeremyantoine.speedjumper.coordonnees;
+package com.jeremyantoine.speedjumper.logique;
 
 import java.util.Objects;
 

@@ -1,6 +1,6 @@
-package com.jeremyantoine.speedjumper.Jeu;
+package com.jeremyantoine.speedjumper.entrees;
 
-import javafx.scene.input.KeyCode;
+import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
 
 import java.io.*;
 import java.net.URL;
@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.StringTokenizer;
-import java.util.regex.Pattern;
 
 public abstract class ChargeurDeTouches {
     private static final String CARACTERES_IGNORES ="#.*";

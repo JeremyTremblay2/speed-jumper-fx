@@ -1,12 +1,14 @@
 package com.jeremyantoine.speedjumper.Jeu;
 
-import com.jeremyantoine.speedjumper.coordonnees.Position2D;
-import com.jeremyantoine.speedjumper.coordonnees.Rectangle;
+import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
+import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouchesFX;
+import com.jeremyantoine.speedjumper.entrees.Touche;
+import com.jeremyantoine.speedjumper.logique.Attaque;
+import com.jeremyantoine.speedjumper.logique.Position2D;
+import com.jeremyantoine.speedjumper.logique.Rectangle;
 import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.entites.PersonnageJouable;
-import com.jeremyantoine.speedjumper.entites.Vivant;
 
-import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -19,13 +21,11 @@ public class Jeu implements Observateur {
     private boolean joue;
 
     private List<Entite> lesEntites;
-    private AfficheurDeJeu afficheurDeJeu;
     private RecuperateurDeTouches recuperateurDeTouches;
 
     public Jeu() throws MalformedURLException {
         lesEntites = initialisation();
-        afficheurDeJeu = new AfficheurDeJeu(lesEntites);
-        recuperateurDeTouches = new RecuperateurDeTouchesFX(new URL("file:D:\\Cours\\2021-2022\\S1\\Conception et Prog Avancée\\speed-jumper\\source\\ressources\\touches.txt"));
+        recuperateurDeTouches = new RecuperateurDeTouchesFX(new URL("file:D:\\Cours\\2021-2022\\S1\\Conception et Prog Avancée\\speed-jumper\\source\\ressources\\touches.txt"), null);
         joue = true;
 
         joue();
@@ -37,7 +37,7 @@ public class Jeu implements Observateur {
         List<Entite> lesEntites = new ArrayList<Entite>();
         lesEntites.add(new PersonnageJouable(new Position2D(0, 0),
                 new Rectangle(10, 10, 20, 20),
-                15));
+                new Attaque(null, 4, 0.3f)));
         return lesEntites;
     }
 

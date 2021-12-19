@@ -1,15 +1,16 @@
 package com.jeremyantoine.speedjumper.entites;
 
-import com.jeremyantoine.speedjumper.coordonnees.Position2D;
-import com.jeremyantoine.speedjumper.coordonnees.Rectangle;
+import com.jeremyantoine.speedjumper.logique.Attaque;
+import com.jeremyantoine.speedjumper.logique.Position2D;
+import com.jeremyantoine.speedjumper.logique.Rectangle;
 
 public class PersonnageJouable extends Vivant {
-    public PersonnageJouable(Position2D position, Rectangle collision, int pointsDeVie) throws IllegalArgumentException {
-        super(position, collision, pointsDeVie);
+    public PersonnageJouable(Position2D position, Rectangle collision, Attaque attaque, int pointsDeVie) throws IllegalArgumentException {
+        super(position, collision, attaque, pointsDeVie);
     }
 
-    public PersonnageJouable(Position2D position, Rectangle collision) throws IllegalArgumentException {
-        super(position, collision);
+    public PersonnageJouable(Position2D position, Rectangle collision, Attaque attaque) throws IllegalArgumentException {
+        super(position, collision, attaque);
     }
 
     @Override

@@ -1,8 +1,8 @@
-package com.jeremyantoine.speedjumper.Jeu;
+package com.jeremyantoine.speedjumper.utilitaire;
 
 import java.io.IOException;
 
-class InvalidFormatException extends IOException {
+public class InvalidFormatException extends IOException {
 
     public InvalidFormatException() {}
 

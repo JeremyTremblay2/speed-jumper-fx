@@ -1,4 +1,4 @@
-package com.jeremyantoine.speedjumper.Jeu;
+package com.jeremyantoine.speedjumper.entrees;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -15,7 +15,8 @@ public class RecuperateurDeTouchesFX extends RecuperateurDeTouches implements Ev
     private Scene sceneCourante;
     private ChargeurDeTouchesFX chargeur = new ChargeurDeTouchesFX();
 
-    public RecuperateurDeTouchesFX(URL fichier) {
+    public RecuperateurDeTouchesFX(URL fichier, Scene scene) {
+        sceneCourante = scene;
         dicoTouches = chargeur.recupereTouches(fichier);
     }
 
@@ -49,14 +50,14 @@ public class RecuperateurDeTouchesFX extends RecuperateurDeTouches implements Ev
         sceneCourante.addEventHandler(KeyEvent.KEY_PRESSED, (cle) -> {
             KeyCode touche = cle.getCode();
             if (dicoTouches.containsKey(touche)) {
-                super.ajouteTouche(dicoTouches.get(touche));
+                lesTouchesPressees.add(dicoTouches.get(touche));
             }
         });
 
         sceneCourante.addEventHandler(KeyEvent.KEY_RELEASED, (cle) -> {
             KeyCode touche = cle.getCode();
             if (dicoTouches.containsKey(touche)) {
-                super.retireTouche(dicoTouches.get(touche));
+                lesTouchesPressees.add(dicoTouches.get(touche));
             }
         });
     }

@@ -1,8 +1,9 @@
 package com.jeremyantoine.speedjumper.entites;
 
-import com.jeremyantoine.speedjumper.coordonnees.Direction;
-import com.jeremyantoine.speedjumper.coordonnees.Position2D;
-import com.jeremyantoine.speedjumper.coordonnees.Rectangle;
+import com.jeremyantoine.speedjumper.logique.Attaque;
+import com.jeremyantoine.speedjumper.logique.Direction;
+import com.jeremyantoine.speedjumper.logique.Position2D;
+import com.jeremyantoine.speedjumper.logique.Rectangle;
 
 import java.util.Objects;
 
@@ -10,8 +11,9 @@ public abstract class Vivant extends Entite {
     private static final int POINTS_DE_VIE_INITIAUX = 10;
     private int pointsDeVie;
     private Direction direction;
+    private Attaque attaque;
 
-    public Vivant(Position2D position, Rectangle collision, int pointsDeVie) throws IllegalArgumentException {
+    public Vivant(Position2D position, Rectangle collision, Attaque attaque, int pointsDeVie) throws IllegalArgumentException {
         super(position, collision);
         if (pointsDeVie <= 0) {
             this.pointsDeVie = POINTS_DE_VIE_INITIAUX;
@@ -22,8 +24,8 @@ public abstract class Vivant extends Entite {
         direction = Direction.DROITE;
     }
 
-    public Vivant(Position2D position, Rectangle collision) throws IllegalArgumentException {
-        this(position, collision, POINTS_DE_VIE_INITIAUX);
+    public Vivant(Position2D position, Rectangle collision, Attaque attaque) throws IllegalArgumentException {
+        this(position, collision, attaque, POINTS_DE_VIE_INITIAUX);
     }
 
     public int getPointsDeVie() {

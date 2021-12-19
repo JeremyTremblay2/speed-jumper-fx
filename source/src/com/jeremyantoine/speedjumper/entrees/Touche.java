@@ -1,4 +1,4 @@
-package com.jeremyantoine.speedjumper.Jeu;
+package com.jeremyantoine.speedjumper.entrees;
 
 public enum Touche {
     FLECHE_DROITE,
