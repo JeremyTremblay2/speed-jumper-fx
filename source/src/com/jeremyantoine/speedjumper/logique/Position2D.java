@@ -29,11 +29,6 @@ public class Position2D {
     }
 
     @Override
-    public String toString() {
-        return "{" + x + "; " + y + "}";
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -49,5 +44,10 @@ public class Position2D {
     @Override
     public int hashCode() {
         return 7 * Objects.hash(x, y);
+    }
+
+    @Override
+    public String toString() {
+        return "{" + x + "; " + y + "}";
     }
 }

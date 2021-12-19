@@ -1,20 +1,19 @@
 package com.jeremyantoine.speedjumper.monde;
 
-import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.logique.Dimension;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 
 public class Tuile {
     private static final Dimension DIMENSION_PAR_DEFAUT = new Dimension(32, 32);
     private static int nombreTuiles = 0;
+    private final int idTuile;
     private Dimension dimension;
     private Rectangle collision;
-    private int id;
 
     public Tuile(Rectangle collision, Dimension dimension) {
         this.collision = collision;
         this.dimension = dimension;
-        id = nombreTuiles;
+        idTuile = nombreTuiles;
         nombreTuiles++;
     }
 
@@ -30,8 +29,8 @@ public class Tuile {
         return collision;
     }
 
-    public int getId() {
-        return id;
+    public int getIdTuile() {
+        return idTuile;
     }
 
     @Override
@@ -43,16 +42,16 @@ public class Tuile {
     }
 
     public boolean equals(Tuile tuile) {
-        return id == tuile.getId();
+        return idTuile == tuile.getIdTuile();
     }
 
     @Override
     public int hashCode() {
-        return 7 * id;
+        return 7 * idTuile;
     }
 
     @Override
     public String toString() {
-        return "[" + id + "]" + collision + " " + dimension.toString();
+        return "[" + idTuile + "]" + collision + " " + dimension.toString();
     }
 }

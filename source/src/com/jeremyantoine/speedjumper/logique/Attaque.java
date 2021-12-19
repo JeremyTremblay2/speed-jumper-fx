@@ -22,24 +22,12 @@ public class Attaque {
         return collision;
     }
 
-    private void setCollision(Rectangle collision) {
-        this.collision = collision;
-    }
-
     public float getDuree() {
         return duree;
     }
 
-    private void setDuree(float duree) {
-        this.duree = duree;
-    }
-
     public int getDegats() {
         return degats;
-    }
-
-    private void setDegats(int degats) {
-        this.degats = degats;
     }
 
     @Override

@@ -36,8 +36,12 @@ public class Entite {
         return collision;
     }
 
-    private void setCollision(Rectangle collision) {
-        this.collision = collision;
+    public double getGravite() {
+        return gravite;
+    }
+
+    public double getVelocite() {
+        return velocite;
     }
 
     @Override
@@ -59,6 +63,8 @@ public class Entite {
 
     @Override
     public String toString() {
-        return "Entite : " + position.toString();
+        return this.getClass() + " : " + position.toString() + " "
+                + "\nZone collision : " + collision.toString()
+                + "\n" + gravite + "g " + velocite + "v";
     }
 }

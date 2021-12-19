@@ -9,6 +9,10 @@ public class Deplaceur {
         if (entite == null) {
             throw new IllegalArgumentException("L'entité fournie en paramètre du déplaceur est nulle.");
         }
+
+        if (position == null) {
+            throw new IllegalArgumentException("La position fournie en paramètre du déplaceur est nulle.");
+        }
         entite.setPosition(position);
     }
 }

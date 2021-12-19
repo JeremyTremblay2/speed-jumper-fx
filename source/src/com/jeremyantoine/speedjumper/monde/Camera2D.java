@@ -10,6 +10,7 @@ public abstract class Camera2D {
     private Position2D position;
     private Dimension zoneVisuelle;
     private Tuile[][] vision;
+    private Position2D milieuEcran;
 
     public Camera2D(Carte carte, Dimension zoneVisuelle) throws IllegalArgumentException {
        if (zoneVisuelle == null || zoneVisuelle.getLargeur() <= 0 || zoneVisuelle.getHauteur() <= 0) {
@@ -18,7 +19,24 @@ public abstract class Camera2D {
        }
        this.zoneVisuelle = zoneVisuelle;
        vision = new Tuile[(int) zoneVisuelle.getLargeur()][(int) zoneVisuelle.getHauteur()];
+       milieuEcran = new Position2D(zoneVisuelle.getLargeur() / 2, zoneVisuelle.getHauteur() / 2);
        changeCarte(carte);
+    }
+
+    public Carte getCarteCourante() {
+        return carteCourante;
+    }
+
+    public Position2D getPosition() {
+        return position;
+    }
+
+    public Dimension getZoneVisuelle() {
+        return zoneVisuelle;
+    }
+
+    public Tuile[][] getVision() {
+        return vision;
     }
 
     public void changeCarte(Carte carte) throws IllegalArgumentException {
@@ -35,6 +53,14 @@ public abstract class Camera2D {
     }
 
     public void centrerSurEntite(Entite entite) {
+        double largeurTuile = carteCourante.getDimension().getLargeur();
+        double hauteurTuile = carteCourante.getDimension().getHauteur();
+
+        double positionEntiteX = entite.getPosition().getX();
+        double positionEntiteY = entite.getPosition().getY();
+
+
+
 
     }
 

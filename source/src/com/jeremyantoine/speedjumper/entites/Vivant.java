@@ -21,6 +21,7 @@ public abstract class Vivant extends Entite {
         else {
             this.pointsDeVie = pointsDeVie;
         }
+        this.attaque = attaque;
         direction = Direction.DROITE;
     }
 
@@ -45,11 +46,6 @@ public abstract class Vivant extends Entite {
     }
 
     @Override
-    public String toString() {
-        return super.toString() + " " + pointsDeVie + "\u2764";
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -67,5 +63,10 @@ public abstract class Vivant extends Entite {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), pointsDeVie, direction);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " " + pointsDeVie + "\u2764 " + direction;
     }
 }
