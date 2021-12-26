@@ -1,88 +1,55 @@
 package com.jeremyantoine.speedjumper.Jeu;
 
-import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
-import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouchesFX;
-import com.jeremyantoine.speedjumper.entrees.Touche;
-import com.jeremyantoine.speedjumper.logique.Attaque;
-import com.jeremyantoine.speedjumper.logique.Position2D;
-import com.jeremyantoine.speedjumper.logique.Rectangle;
-import com.jeremyantoine.speedjumper.entites.Entite;
-import com.jeremyantoine.speedjumper.entites.PersonnageJouable;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
-public class Jeu implements Observateur {
-    public static final int FPS_CIBLE = 60;
+public abstract class Jeu implements Observateur {
+    private static final int FPS_CIBLE = 60;
+    private static final double TEMPS_MISE_A_JOUR = 10000000;
     private int compteurFrame = 0;
     private long tempsOrigine = System.nanoTime();
     private boolean joue;
+    private ManagerEtatDeJeu managerEtats;
 
-    private List<Entite> lesEntites;
-    private RecuperateurDeTouches recuperateurDeTouches;
-
-    public Jeu() throws MalformedURLException {
-        lesEntites = initialisation();
-        recuperateurDeTouches = new RecuperateurDeTouchesFX(new URL("file:D:\\Cours\\2021-2022\\S1\\Conception et Prog Avancée\\speed-jumper\\source\\ressources\\touches.txt"), null);
+    public Jeu() {
+        managerEtats = new ManagerEtatDeJeu();
         joue = true;
-
-        joue();
-        sauvegarde();
     }
 
-    private List<Entite> initialisation() {
-        //charger ressources
-        List<Entite> lesEntites = new ArrayList<Entite>();
-        lesEntites.add(new PersonnageJouable(new Position2D(0, 0),
-                new Rectangle(10, 10, 20, 20),
-                new Attaque(null, 4, 0.3f)));
-        return lesEntites;
-    }
+    public abstract void initialise();
 
-    private void joue() {
-        long tempsCourant;
-        long tempsDerniereIteration = System.nanoTime();
-        final long nanoseconde = 1000000000;
+    public void joue() {
+        double precedent = System.nanoTime();
+        double courant, ecoule;
+        double lag = 0, temps = 0;
+        final double seconde = 1000000000;
 
-        List<Touche> lesTouches;
-
-        BoucleDeJeu boucleDeJeu = new BoucleDeJeu(new ArrayList<>());
+        BoucleDeJeu boucleDeJeu = new BoucleDeJeu();
         boucleDeJeu.attacher(this);
         Thread boucle = new Thread(boucleDeJeu);
         boucle.setDaemon(true);
         boucle.start();
 
         while (joue) {
-            tempsCourant = System.nanoTime();
-            if (tempsCourant - tempsDerniereIteration >= nanoseconde) {
-                affiche();
-                tempsDerniereIteration = System.nanoTime();
+            courant = System.nanoTime();
+            ecoule = courant - precedent;
+            precedent = courant;
+            lag += ecoule;
+
+            managerEtats.entreeUtilisateur();
+
+            while (lag >= TEMPS_MISE_A_JOUR) {
+                managerEtats.miseAJour(ecoule);
+                lag -= TEMPS_MISE_A_JOUR;
             }
-            lesTouches = recuperateurDeTouches.detecte();
-            if (lesTouches != null) {
-                miseAJour();
-            }
-            miseAJour();
+            managerEtats.affichage();
+
+            temps += ecoule;
         }
         System.out.println("Jeu fini");
-    }
-
-    private void affiche() {
-        System.out.println("NOUVELLE SECONDE");
-    }
-
-    private void sauvegarde() {
-
-    }
-
-    public void miseAJour() {
-
     }
 
     @Override
     public void miseAjour() {
 
     }
+
+    public abstract void ferme();
 }

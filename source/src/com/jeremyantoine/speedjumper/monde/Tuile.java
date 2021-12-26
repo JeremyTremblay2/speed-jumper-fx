@@ -5,6 +5,7 @@ import com.jeremyantoine.speedjumper.logique.Rectangle;
 
 public class Tuile {
     private static final Dimension DIMENSION_PAR_DEFAUT = new Dimension(32, 32);
+    private static final Tuile TUILE_IGNOREE = new Tuile(null);
     private static int nombreTuiles = 0;
     private final int idTuile;
     private Dimension dimension;
@@ -31,6 +32,14 @@ public class Tuile {
 
     public int getIdTuile() {
         return idTuile;
+    }
+
+    public static Tuile getTuileIgnoree() {
+        return TUILE_IGNOREE;
+    }
+
+    public static int getNombreTuiles() {
+        return nombreTuiles;
     }
 
     @Override

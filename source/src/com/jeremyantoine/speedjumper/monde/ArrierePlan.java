@@ -45,7 +45,7 @@ public class ArrierePlan {
         return position;
     }
 
-    private void setPosition(Position2D position) {
+    public void setPosition(Position2D position) {
         this.position = position;
     }
 

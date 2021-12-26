@@ -1,5 +1,6 @@
 package com.jeremyantoine.speedjumper.entites;
 
+import com.jeremyantoine.speedjumper.logique.Dimension;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 
@@ -8,6 +9,7 @@ public class Entite {
     private static final double GRAVITE_PAR_DEFAUT = 2;
     private Position2D position;
     private Rectangle collision;
+    private Dimension dimension;
     private double gravite;
     private double velocite;
 
@@ -36,6 +38,10 @@ public class Entite {
         return collision;
     }
 
+    public Dimension getDimension() {
+        return dimension;
+    }
+
     public double getGravite() {
         return gravite;
     }
@@ -53,12 +59,16 @@ public class Entite {
     }
 
     public boolean equals(Entite entite) {
-        return position.equals(entite.getPosition());
+        return position.equals(entite.getPosition())
+                && dimension.equals(entite.getDimension())
+                && collision.equals(entite.getCollision());
     }
 
     @Override
     public int hashCode() {
-        return 7 * position.hashCode();
+        return 7 * position.hashCode()
+                + 7 * dimension.hashCode()
+                + 7 * collision.hashCode();
     }
 
     @Override
