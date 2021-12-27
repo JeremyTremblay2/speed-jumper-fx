@@ -1,4 +1,4 @@
-package com.jeremyantoine.speedjumper.Jeu;
+package com.jeremyantoine.speedjumper.jeu;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;

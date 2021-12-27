@@ -1,5 +1,7 @@
 package com.jeremyantoine.speedjumper.donnees;
 
+import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -10,7 +12,7 @@ import java.util.Scanner;
 
 public class ChargeurDeCalqueTiledCSV {
     public int[][] charge(URL cheminFichier, String separateur) throws FileNotFoundException,
-            NumberFormatException, ParseException {
+            NumberFormatException, ParseException, InvalidFormatException {
         List<Integer> donnees = new ArrayList<>();
         String ligne;
         String[] lesElements;
@@ -24,8 +26,8 @@ public class ChargeurDeCalqueTiledCSV {
                 nombreColonnes = lesElements.length;
             }
             if (lesElements.length != nombreColonnes) {
-                throw new ParseException("Le fichier comporte des données manquantes, toutes les lignes n'ont pas "
-                        + " le même nombre de colonnes.", nombreLignes);
+                throw new InvalidFormatException("Le fichier comporte des données manquantes, toutes les lignes n'ont pas "
+                        + " le même nombre de colonnes.");
             }
 
             for (String valeur : lesElements) {

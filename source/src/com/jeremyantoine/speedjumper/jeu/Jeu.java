@@ -1,4 +1,4 @@
-package com.jeremyantoine.speedjumper.Jeu;
+package com.jeremyantoine.speedjumper.jeu;
 
 public abstract class Jeu implements Observateur {
     private static final int FPS_CIBLE = 60;

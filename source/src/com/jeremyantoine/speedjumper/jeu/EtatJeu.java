@@ -1,4 +1,4 @@
-package com.jeremyantoine.speedjumper.Jeu;
+package com.jeremyantoine.speedjumper.jeu;
 
 public enum EtatJeu {
     ETAT_JEU_JOUE,

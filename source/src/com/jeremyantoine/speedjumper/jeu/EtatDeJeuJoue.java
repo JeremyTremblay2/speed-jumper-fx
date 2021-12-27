@@ -1,4 +1,4 @@
-package com.jeremyantoine.speedjumper.Jeu;
+package com.jeremyantoine.speedjumper.jeu;
 
 import com.jeremyantoine.speedjumper.actions.AdaptateurDeplaceur;
 import com.jeremyantoine.speedjumper.entites.Entite;

@@ -1,4 +1,4 @@
-package com.jeremyantoine.speedjumper.Jeu;
+package com.jeremyantoine.speedjumper.jeu;
 
 import com.jeremyantoine.speedjumper.donnees.ChargeurDeCalqueTiledCSV;
 import javafx.application.Application;
@@ -21,8 +21,6 @@ public class FenetrePrincipale extends Application {
         if (vueMenu == null) {
             throw new IOException("Le fichier de la vue du menu principal n a pas été trouvé.");
         }
-
-        System.out.println("fdsgdfg");
 
         Parent parent = FXMLLoader.load(vueMenu);
         Scene scene = new Scene(parent);

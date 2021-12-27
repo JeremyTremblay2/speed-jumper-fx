@@ -1,4 +1,4 @@
-package com.jeremyantoine.speedjumper.Jeu;
+package com.jeremyantoine.speedjumper.jeu;
 
 public class BoucleDeJeu extends Sujet implements Runnable {
     public static final long NOMBRE_MILLISECONDES_AVANT_NOTIFICATION = 5000000;
