@@ -1,16 +1,25 @@
 package com.jeremyantoine.speedjumper.entites;
 
+import com.jeremyantoine.speedjumper.comportement.Comportement;
 import com.jeremyantoine.speedjumper.logique.Attaque;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 
 public class PersonnageJouable extends Vivant {
-    public PersonnageJouable(Position2D position, Rectangle collision, Attaque attaque, int pointsDeVie) throws IllegalArgumentException {
-        super(position, collision, attaque, pointsDeVie);
+    private int score;
+
+    public PersonnageJouable(Position2D position, Rectangle collision, Comportement comportement, int degats,
+                             int pointsDeVie) throws IllegalArgumentException {
+        super(position, collision, comportement, degats, pointsDeVie);
     }
 
-    public PersonnageJouable(Position2D position, Rectangle collision, Attaque attaque) throws IllegalArgumentException {
-        super(position, collision, attaque);
+    public PersonnageJouable(Position2D position, Rectangle collision, Comportement comportement, int degats)
+            throws IllegalArgumentException {
+        super(position, collision, comportement, degats);
+    }
+
+    public int getScore() {
+        return score;
     }
 
     @Override
@@ -22,16 +31,18 @@ public class PersonnageJouable extends Vivant {
     }
 
     public boolean equals(PersonnageJouable personnageJouable) {
-        return super.equals(personnageJouable);
+        return super.equals(personnageJouable)
+                && score == personnageJouable.getScore();
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return super.hashCode() + score;
     }
 
     @Override
     public String toString() {
-        return super.toString();
+        return super.toString()
+                + ", Score : " + score + "points.";
     }
 }

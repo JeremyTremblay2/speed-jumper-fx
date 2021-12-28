@@ -1,5 +1,6 @@
 package com.jeremyantoine.speedjumper.entites;
 
+import com.jeremyantoine.speedjumper.comportement.Comportement;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 
@@ -9,8 +10,9 @@ public class Piece extends Entite {
     private static final int VALEUR_PAR_DEFAUT = 5;
     private int valeur;
 
-    public Piece(Position2D position, Rectangle collision, int valeur) throws IllegalArgumentException {
-        super(position, collision);
+    public Piece(Position2D position, Rectangle collision, Comportement comportement, int valeur)
+            throws IllegalArgumentException {
+        super(position, collision, comportement);
 
         if (valeur <= 0) {
             this.valeur = VALEUR_PAR_DEFAUT;
@@ -19,8 +21,8 @@ public class Piece extends Entite {
             this.valeur = valeur;
         }
     }
-    public Piece(Position2D position, Rectangle collision) throws IllegalArgumentException {
-        this(position, collision, VALEUR_PAR_DEFAUT);
+    public Piece(Position2D position, Rectangle collision, Comportement comportement) throws IllegalArgumentException {
+        this(position, collision, comportement, VALEUR_PAR_DEFAUT);
     }
 
     public int getValeur() {

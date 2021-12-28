@@ -1,6 +1,6 @@
 package com.jeremyantoine.speedjumper.donnees;
 
-import com.jeremyantoine.speedjumper.monde.Carte;
+import com.jeremyantoine.speedjumper.monde.Carte2D;
 import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
 
 import java.io.FileNotFoundException;
@@ -16,7 +16,8 @@ public class AdaptateurChargeurDeCarteTiledCSV implements ChargeurDeCarteTiled {
     }
 
     @Override
-    public Carte charge(URL cheminFichier) throws FileNotFoundException, ParseException, InvalidFormatException {
+    public Carte2D charge(URL cheminFichier) throws FileNotFoundException, ParseException, InvalidFormatException {
         chargeur.charge(cheminFichier, separateur);
+        return null;
     }
 }

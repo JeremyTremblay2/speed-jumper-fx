@@ -1,22 +1,24 @@
 package com.jeremyantoine.speedjumper.entites;
 
-import com.jeremyantoine.speedjumper.logique.Attaque;
+import com.jeremyantoine.speedjumper.comportement.Comportement;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ombre extends Ennemi {
+public class Fantome extends Ennemi {
     private static final int NOMBRE_MAXIMUM_POSITIONS = 5000;
     private List<Position2D> positions = new ArrayList<>();
 
-    public Ombre(Position2D position, Rectangle collision, Attaque attaque, int pointsDeVie) throws IllegalArgumentException {
-        super(position, collision, attaque, pointsDeVie);
+    public Fantome(Position2D position, Rectangle collision, Comportement comportement, int degats, int pointsDeVie)
+            throws IllegalArgumentException {
+        super(position, collision, comportement, degats, pointsDeVie);
     }
 
-    public Ombre(Position2D position, Rectangle collision, Attaque attaque) throws IllegalArgumentException {
-        super(position, collision, attaque);
+    public Fantome(Position2D position, Rectangle collision, Comportement comportement, int degats)
+            throws IllegalArgumentException {
+        super(position, collision, comportement, degats);
     }
 
     public List<Position2D> getPositions() {
@@ -44,12 +46,12 @@ public class Ombre extends Ennemi {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        Ombre ombre = (Ombre) o;
-        return equals(ombre);
+        Fantome fantome = (Fantome) o;
+        return equals(fantome);
     }
 
-    public boolean equals(Ombre ombre) {
-        return super.equals(ombre) && positions.equals(ombre.getPositions());
+    public boolean equals(Fantome fantome) {
+        return super.equals(fantome) && positions.equals(fantome.getPositions());
     }
 
     @Override

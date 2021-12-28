@@ -2,16 +2,22 @@ package com.jeremyantoine.speedjumper.monde;
 
 import com.jeremyantoine.speedjumper.logique.Dimension;
 
-public class Carte {
+public class Carte2D {
     private static int nombreCarte = 0;
     private final int idCarte;
+    private final Dimension dimensionTuiles;
     private Dimension dimension;
     private Tuile[][] lesTuiles;
 
-    public Carte(Tuile[][] tuiles) throws IllegalArgumentException {
+    public Carte2D(Tuile[][] tuiles, Dimension dimensionTuiles) throws IllegalArgumentException {
         if (tuiles == null || tuiles.length == 0) {
             throw new IllegalArgumentException("Une carte ne peut pas être vide, elle doit contenir au minimum une tuile.");
         }
+        if (dimensionTuiles == null || dimensionTuiles.getHauteur() <= 0 || dimensionTuiles.getLargeur() <= 0) {
+            throw new IllegalArgumentException("Les dimensions des tuiles ne peuvent pas être négatives ou nulles.");
+        }
+        this.dimensionTuiles = dimensionTuiles;
+        verificationDimensionsTuiles(tuiles);
         lesTuiles = tuiles;
         this.dimension = new Dimension(lesTuiles.length, lesTuiles[0].length);
         idCarte = nombreCarte;
@@ -34,15 +40,19 @@ public class Carte {
         return idCarte;
     }
 
+    public Dimension getDimensionTuiles() {
+        return dimensionTuiles;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Carte carte = (Carte) o;
+        Carte2D carte = (Carte2D) o;
         return equals(carte);
     }
 
-    public boolean equals(Carte carte) {
+    public boolean equals(Carte2D carte) {
         return idCarte == carte.getIdCarte();
     }
 
@@ -70,5 +80,16 @@ public class Carte {
             chaine.append("\n");
         }
         return chaine.toString();
+    }
+
+    private void verificationDimensionsTuiles(Tuile[][] lesTuiles) throws IllegalArgumentException {
+        for (Tuile[] lesTuile : lesTuiles) {
+            for (Tuile tuile : lesTuile) {
+                if (!tuile.getDimension().equals(dimensionTuiles)) {
+                    throw new IllegalArgumentException("Les tuiles doivent toutes avoir la même dimension dans la "
+                            + "carte. Tuile donnée : " + tuile);
+                }
+            }
+        }
     }
 }

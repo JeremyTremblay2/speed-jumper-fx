@@ -7,10 +7,10 @@ import com.jeremyantoine.speedjumper.logique.Position2D;
 import jdk.jshell.spi.ExecutionControl;
 
 public class CameraCarteTuiles extends Camera2D {
-    private Carte carteCourante;
+    private Carte2D carteCourante;
     private Tuile[][] vision;
 
-    public CameraCarteTuiles(Carte carte, Dimension zoneVisuelle) {
+    public CameraCarteTuiles(Carte2D carte, Dimension zoneVisuelle) {
         super(zoneVisuelle);
         vision = new Tuile[(int) zoneVisuelle.getLargeur()][(int) zoneVisuelle.getHauteur()];
         changeCarte(carte);
@@ -20,11 +20,11 @@ public class CameraCarteTuiles extends Camera2D {
         return vision;
     }
 
-    public Carte getCarteCourante() {
+    public Carte2D getCarteCourante() {
         return carteCourante;
     }
 
-    public void changeCarte(Carte carte) throws IllegalArgumentException {
+    public void changeCarte(Carte2D carte) throws IllegalArgumentException {
         if (carte == null || carte.getDimension().getLargeur() == 0) {
             throw new IllegalArgumentException("La carte passée en paramètre de la caméra ne peut pas être nulle ou vide.");
         }
@@ -36,8 +36,8 @@ public class CameraCarteTuiles extends Camera2D {
     public void centrerSurEntite(Entite entite) {
         double largeurCarte = carteCourante.getDimension().getLargeur();
         double hauteurCarte = carteCourante.getDimension().getHauteur();
-        double largeurTuile = carteCourante.getTuile(0, 0).getDimension().getLargeur();
-        double hauteurTuile = carteCourante.getTuile(0, 0).getDimension().getHauteur();
+        double largeurTuile = carteCourante.getDimensionTuiles().getLargeur();
+        double hauteurTuile = carteCourante.getDimensionTuiles().getHauteur();
 
         int positionEntiteX = (int) ((entite.getPosition().getX() + entite.getDimension().getLargeur() / 2) / largeurTuile);
         int positionEntiteY = (int) ((entite.getPosition().getY() + entite.getDimension().getHauteur() / 2) / hauteurTuile);
@@ -46,8 +46,6 @@ public class CameraCarteTuiles extends Camera2D {
         double milieuEcranY = milieuEcran.getHauteur();
         double nouvellePositionX;
         double nouvellePositionY;
-
-        Tuile[][] lesTuiles = carteCourante.getLesTuiles();
 
         if (positionEntiteX < milieuEcran.getLargeur()) {
             nouvellePositionX = 0;
@@ -62,7 +60,7 @@ public class CameraCarteTuiles extends Camera2D {
         if (positionEntiteY < milieuEcranY) {
             nouvellePositionY = 0;
         }
-        else if (positionEntiteY > (largeurCarte - milieuEcranY)) {
+        else if (positionEntiteY > (hauteurCarte - milieuEcranY)) {
             nouvellePositionY = hauteurCarte - zoneVisuelle.getHauteur();
         }
         else {

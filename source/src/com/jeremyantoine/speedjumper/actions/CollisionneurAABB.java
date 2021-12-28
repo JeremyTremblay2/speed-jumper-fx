@@ -3,9 +3,9 @@ package com.jeremyantoine.speedjumper.actions;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 
-public class Collisionneur {
+public class CollisionneurAABB {
 
-    public boolean collisionne(Rectangle collision1, Rectangle collision2) {
+    public static boolean collisionne(Rectangle collision1, Rectangle collision2) {
         double gauche, droite, haut, bas;
         if (collision1 == null || collision2 == null) {
             return false;

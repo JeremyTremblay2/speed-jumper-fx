@@ -1,6 +1,7 @@
 package com.jeremyantoine.speedjumper.jeu;
 
 import com.jeremyantoine.speedjumper.donnees.ChargeurDeCalqueTiledCSV;
+import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -39,7 +40,7 @@ public class FenetrePrincipale extends Application {
         try {
             chargeurDeCarteTiled.charge(new URL("file:D:\\Cours\\2021-2022\\S1\\Conception et Prog Avancée\\speed-jumper\\source\\ressources\\cartes\\carteTest.csv"),
                     ",");
-        } catch (ParseException | MalformedURLException | FileNotFoundException e) {
+        } catch (ParseException | MalformedURLException | FileNotFoundException | InvalidFormatException e) {
             e.printStackTrace();
         }
     }
