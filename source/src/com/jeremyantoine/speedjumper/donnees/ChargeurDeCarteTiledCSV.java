@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ChargeurDeCalqueTiledCSV {
+public class ChargeurDeCarteTiledCSV {
     public int[][] charge(URL cheminFichier, String separateur) throws FileNotFoundException,
             NumberFormatException, ParseException, InvalidFormatException {
         List<Integer> donnees = new ArrayList<>();

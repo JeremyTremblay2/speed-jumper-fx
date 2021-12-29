@@ -8,7 +8,7 @@ import java.net.URL;
 import java.text.ParseException;
 
 public class AdaptateurChargeurDeCarteTiledCSV implements ChargeurDeCarteTiled {
-    private static final ChargeurDeCalqueTiledCSV chargeur = new ChargeurDeCalqueTiledCSV();
+    private static final ChargeurDeCarteTiledCSV chargeur = new ChargeurDeCarteTiledCSV();
     private String separateur;
 
     public AdaptateurChargeurDeCarteTiledCSV(String separateur) {

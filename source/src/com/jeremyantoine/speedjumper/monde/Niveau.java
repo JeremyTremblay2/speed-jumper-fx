@@ -23,15 +23,21 @@ public class Niveau {
             throw new IllegalArgumentException("La carte est requise lors de la création d'un niveau "
                     + "et ne peut être nulle.");
         }
+        if (pointsDepart == null) {
+            throw new IllegalArgumentException("La position de départ est requise lors de la création d'un niveau "
+                    + "et ne peut être nulle.");
+        }
+
         this.carte = carte;
         lesArrieresPlans = arrierePlans;
         this.lesEntites = lesEntites;
+        this.pointsDepart = pointsDepart;
+        numeroNiveau = nombreNiveaux;
+        nombreNiveaux++;
         fantome = new Fantome(pointsDepart,
                 new Rectangle(pointsDepart.getX(), pointsDepart.getY(), 30, 60),
                 new ComportementNull(),
                 1000);
-        numeroNiveau = nombreNiveaux;
-        nombreNiveaux++;
     }
 
     public static int getNombreNiveaux() {

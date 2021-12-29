@@ -1,13 +1,15 @@
 package com.jeremyantoine.speedjumper.jeu;
 
-public class JeuFX extends Jeu {
-    @Override
-    public void initialise() {
+import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
 
+public class JeuFX extends Jeu {
+
+    public JeuFX(RecuperateurDeTouches recuperateur) {
+        super(recuperateur);
     }
 
     @Override
-    public void miseAjour() {
+    public void initialise() {
 
     }
 

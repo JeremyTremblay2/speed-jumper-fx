@@ -1,24 +1,27 @@
 package com.jeremyantoine.speedjumper.jeu;
 
-import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.List;
+import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
+
+import java.util.*;
 
 public class ManagerEtatDeJeu {
-    private List<EtatDeJeu> lesEtats;
+    private Map<EtatJeu, EtatDeJeu> lesEtats;
     private EtatDeJeu etatCourant;
 
-    public ManagerEtatDeJeu() {
-        try {
-            lesEtats = new ArrayList<>();
-            lesEtats.add(new EtatDeJeuJoue());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        etatCourant = lesEtats.get(0);
+    public ManagerEtatDeJeu(RecuperateurDeTouches recuperateur) {
+        lesEtats = new HashMap<>();
+        chargementEtats(recuperateur);
+        etatCourant = lesEtats.get(EtatJeu.ETAT_JEU_JOUE);
     }
 
-    public void miseAJour(double temps) {
+    public void entreeUtilisateur(float temps) {
+        EtatJeu etat = etatCourant.entreeUtilisateur(temps);
+        if (etat != null && !lesEtats.get(etat).equals(etatCourant)) {
+            etatCourant = lesEtats.get(etat);
+        }
+    }
+
+    public void miseAJour(float temps) {
         etatCourant.miseAJour(temps);
     }
 
@@ -26,7 +29,18 @@ public class ManagerEtatDeJeu {
         etatCourant.affichage();
     }
 
-    public void entreeUtilisateur() {
-        etatCourant.entreeUtilisateur();
+    public void ajouterEtat(EtatJeu etat, EtatDeJeu etatConcret) throws IllegalArgumentException {
+        if (etatConcret == null) {
+            throw new IllegalArgumentException("L'état à ajouter donné en paramètre ne peut pas être null.");
+        }
+        lesEtats.put(etat, etatConcret);
+    }
+
+    public void supprimerEtat(EtatJeu etat) {
+        lesEtats.remove(etat);
+    }
+
+    private void chargementEtats(RecuperateurDeTouches recuperateur) {
+        lesEtats.put(EtatJeu.ETAT_JEU_JOUE, new EtatDeJeuJoue(recuperateur));
     }
 }

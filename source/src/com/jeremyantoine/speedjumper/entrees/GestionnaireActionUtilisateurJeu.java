@@ -1,16 +1,23 @@
 package com.jeremyantoine.speedjumper.entrees;
 
 import com.jeremyantoine.speedjumper.logique.Direction;
+import com.jeremyantoine.speedjumper.monde.Niveau;
 
-public class GestionnaireActionUtilisateurBasique extends GestionnaireActionUtilisateur {
-    private Commande flecheGauche = new CommandeDeplacement(Direction.GAUCHE);
-    private Commande flecheDroite = new CommandeDeplacement(Direction.DROITE);
+public class GestionnaireActionUtilisateurJeu extends GestionnaireActionUtilisateur {
+    private Commande flecheGauche;
+    private Commande flecheDroite;
     private Commande espace;
     private Commande echap;
-    private Commande aucuneAction = new CommandeNulle();
+    private Commande aucuneAction;
+    private Niveau niveauCourant;
 
-    public GestionnaireActionUtilisateurBasique(RecuperateurDeTouches recuperateur) {
+    public GestionnaireActionUtilisateurJeu(RecuperateurDeTouches recuperateur, Niveau niveau) {
         super(recuperateur);
+        niveauCourant = niveau;
+        flecheGauche = new CommandeDeplacement(Direction.GAUCHE, niveau);
+        flecheDroite = new CommandeDeplacement(Direction.DROITE, niveau);
+        espace = new CommandeSaut(niveau);
+        aucuneAction = new CommandeNulle();
     }
 
     @Override

@@ -4,21 +4,24 @@ import com.jeremyantoine.speedjumper.comportement.Comportement;
 import com.jeremyantoine.speedjumper.logique.Attaque;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
+import com.jeremyantoine.speedjumper.logique.Score;
 
 public class PersonnageJouable extends Vivant {
-    private int score;
+    private Score score;
 
     public PersonnageJouable(Position2D position, Rectangle collision, Comportement comportement, int degats,
                              int pointsDeVie) throws IllegalArgumentException {
         super(position, collision, comportement, degats, pointsDeVie);
+        score = new Score();
     }
 
     public PersonnageJouable(Position2D position, Rectangle collision, Comportement comportement, int degats)
             throws IllegalArgumentException {
         super(position, collision, comportement, degats);
+        score = new Score();
     }
 
-    public int getScore() {
+    public Score getScore() {
         return score;
     }
 
@@ -37,12 +40,11 @@ public class PersonnageJouable extends Vivant {
 
     @Override
     public int hashCode() {
-        return super.hashCode() + score;
+        return super.hashCode() + score.hashCode();
     }
 
     @Override
     public String toString() {
-        return super.toString()
-                + ", Score : " + score + "points.";
+        return super.toString() + ", " + score;
     }
 }

@@ -4,9 +4,7 @@ import com.jeremyantoine.speedjumper.logique.Rectangle;
 import com.jeremyantoine.speedjumper.monde.Carte2D;
 
 public class CollisionneurCarte {
-    private static final CollisionneurAABB collisionneur = new CollisionneurAABB();
-
-    public static boolean collisionne(Rectangle collision, Carte2D carte) {
+    public boolean collisionne(Rectangle collision, Carte2D carte) {
         if (collision == null || carte == null || carte.getLesTuiles() == null) {
             return false;
         }
@@ -23,7 +21,7 @@ public class CollisionneurCarte {
         for(int x = coinGauche; x <= coinDroite; x++) {
             for(int y = coinSuperieur; y <= coinInferieur; y++) {
                 collisionTuile = carte.getTuile(x, y).getCollision();
-                if (collisionTuile != null && collisionneur.collisionne(collision, collisionTuile))
+                if (collisionTuile != null && CollisionneurAABB.collisionne(collision, collisionTuile))
                     return true;
             }
         }

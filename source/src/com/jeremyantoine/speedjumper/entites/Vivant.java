@@ -9,7 +9,8 @@ import com.jeremyantoine.speedjumper.logique.Rectangle;
 import java.util.Objects;
 
 public abstract class Vivant extends Entite {
-    private static final int POINTS_DE_VIE_INITIAUX = 10;
+    private static final int POINTS_DE_VIE_PAR_DEFAUT = 10;
+    private final int pointsDeViesInitiaux;
     private int pointsDeVie;
     private int degats;
     private Direction direction;
@@ -18,18 +19,19 @@ public abstract class Vivant extends Entite {
             throws IllegalArgumentException {
         super(position, collision, comportement);
         if (pointsDeVie <= 0) {
-            this.pointsDeVie = POINTS_DE_VIE_INITIAUX;
+            this.pointsDeVie = POINTS_DE_VIE_PAR_DEFAUT;
         }
         else {
             this.pointsDeVie = pointsDeVie;
         }
+        pointsDeViesInitiaux = pointsDeVie;
         this.degats = degats;
         direction = Direction.DROITE;
     }
 
     public Vivant(Position2D position, Rectangle collision, Comportement comportement, int degats)
             throws IllegalArgumentException {
-        this(position, collision, comportement, degats, POINTS_DE_VIE_INITIAUX);
+        this(position, collision, comportement, degats, POINTS_DE_VIE_PAR_DEFAUT);
     }
 
     public int getPointsDeVie() {
@@ -50,6 +52,10 @@ public abstract class Vivant extends Entite {
 
     public int getDegats() {
         return degats;
+    }
+
+    public int getPointsDeViesInitiaux() {
+        return pointsDeViesInitiaux;
     }
 
     @Override

@@ -23,12 +23,4 @@ public class CollisionneurAABB {
 
         return (haut < bas) && (gauche < droite);
     }
-
-    /*
-    private void verificationCollision(Rectangle collision) throws IllegalArgumentException {
-        if (collision == null) {
-            throw new IllegalArgumentException("Lr rectangle de collision donnée en paramètre est null.");
-        }
-    }
-    */
 }
