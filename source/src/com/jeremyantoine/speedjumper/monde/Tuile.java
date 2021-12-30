@@ -3,7 +3,7 @@ package com.jeremyantoine.speedjumper.monde;
 import com.jeremyantoine.speedjumper.logique.Dimension;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 
-public class Tuile {
+public class Tuile implements Comparable<Tuile> {
     private static final Dimension DIMENSION_PAR_DEFAUT = new Dimension(32, 32);
     private static final Tuile TUILE_IGNOREE = new Tuile(null);
     private static int nombreTuiles = 0;
@@ -62,5 +62,15 @@ public class Tuile {
     @Override
     public String toString() {
         return "[" + idTuile + "]" + collision + " " + dimension.toString();
+    }
+
+    @Override
+    public int compareTo(Tuile tuile) {
+        int comp = 0;
+        if (idTuile > tuile.getIdTuile())
+            comp = +1;
+        else if (idTuile < tuile.getIdTuile())
+            comp = -1;
+        return comp;
     }
 }

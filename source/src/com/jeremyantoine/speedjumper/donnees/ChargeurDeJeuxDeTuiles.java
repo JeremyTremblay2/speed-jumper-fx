@@ -9,5 +9,5 @@ import java.text.ParseException;
 import java.util.List;
 
 public interface ChargeurDeJeuxDeTuiles {
-    List<Tuile> charge(URL chemin)  throws FileNotFoundException, ParseException, InvalidFormatException;;
+    List<Tuile> charge(String chemin)  throws FileNotFoundException, ParseException, InvalidFormatException;;
 }

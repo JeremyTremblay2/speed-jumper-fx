@@ -4,6 +4,7 @@ import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
 
 import java.io.*;
 import java.net.URL;
+import java.text.Normalizer;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -14,10 +15,10 @@ public abstract class ChargeurDeTouches {
     private static final String DELIMITEUR = ":";
     private Map<String, String> lesTouches = new HashMap<>();
 
-    public Map<String, String> charge(URL ressource) {
-        try (BufferedReader tampon = new BufferedReader(new FileReader(ressource.toString().replace("file:", "")))) {
+    public Map<String, String> charge(String ressource) {
+        try (BufferedReader tampon = new BufferedReader(new FileReader(ressource))) {
             StringBuilder accumulateurDeChaine = new StringBuilder();
-            String ligne, touche;
+            String ligne;
             while ((ligne = tampon.readLine()) != null) {
                 ligne = ligne.replaceAll(CARACTERES_IGNORES, "");
                 accumulateurDeChaine.append(ligne);

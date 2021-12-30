@@ -15,6 +15,10 @@ public abstract class Jeu implements Observateur {
         joue = true;
     }
 
+    public ManagerEtatDeJeu getManagerEtats() {
+        return managerEtats;
+    }
+
     public abstract void initialise();
 
     public void joue() {

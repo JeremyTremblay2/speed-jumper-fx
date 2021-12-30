@@ -24,6 +24,10 @@ public class CameraCarteTuiles extends Camera2D {
         return carteCourante;
     }
 
+    public Tuile getTuile(int x, int y) {
+        return vision[x][y];
+    }
+
     public void changeCarte(Carte2D carte) throws IllegalArgumentException {
         if (carte == null || carte.getDimension().getLargeur() == 0) {
             throw new IllegalArgumentException("La carte passée en paramètre de la caméra ne peut pas être nulle ou vide.");
@@ -79,11 +83,9 @@ public class CameraCarteTuiles extends Camera2D {
     private void miseAJour() throws IndexOutOfBoundsException {
         double largeurCamera = zoneVisuelle.getLargeur();
         double hauteurCamera = zoneVisuelle.getHauteur();
-        int positionCameraX = (int) position.getX();
-        int positionCameraY = (int) position.getY();
 
-        for (int x = positionCameraX; x < largeurCamera; x++) {
-            for (int y = positionCameraY; y < hauteurCamera; y++) {
+        for (int x = 0; x < largeurCamera; x++) {
+            for (int y = 0; y < hauteurCamera; y++) {
                 vision[x][y] = carteCourante.getTuile(x, y);
             }
         }
@@ -92,12 +94,10 @@ public class CameraCarteTuiles extends Camera2D {
     private void effacer() throws IndexOutOfBoundsException {
         double largeurCamera = zoneVisuelle.getLargeur();
         double hauteurCamera = zoneVisuelle.getHauteur();
-        int positionCameraX = (int) position.getX();
-        int positionCameraY = (int) position.getY();
         Tuile tuileIgnoree = Tuile.getTuileIgnoree();
 
-        for (int x = positionCameraX; x < largeurCamera; x++) {
-            for (int y = positionCameraY; y < hauteurCamera; y++) {
+        for (int x = 0; x < largeurCamera; x++) {
+            for (int y = 0; y < hauteurCamera; y++) {
                 vision[x][y] = tuileIgnoree;
             }
         }

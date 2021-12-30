@@ -16,7 +16,7 @@ public class ChargeurDeJeuxDeTuilesTextuel implements ChargeurDeJeuxDeTuiles {
     private List<Tuile> lesTuiles = new ArrayList<>();
 
     @Override
-    public List<Tuile> charge(URL chemin) throws FileNotFoundException, ParseException, InvalidFormatException {
+    public List<Tuile> charge(String chemin) throws FileNotFoundException, ParseException, InvalidFormatException {
         for (int i = 0; i < 240; i++) {
             lesTuiles.add(new Tuile(null, new Dimension(64, 64)));
         }

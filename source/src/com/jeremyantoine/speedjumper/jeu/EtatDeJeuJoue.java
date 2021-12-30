@@ -13,13 +13,14 @@ import com.jeremyantoine.speedjumper.entrees.GestionnaireActionUtilisateurJeu;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
 import com.jeremyantoine.speedjumper.logique.*;
 import com.jeremyantoine.speedjumper.monde.CameraCarteTuiles;
+import com.jeremyantoine.speedjumper.monde.Carte2D;
 import com.jeremyantoine.speedjumper.monde.Niveau;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EtatDeJeuJoue extends EtatDeJeu {
-    private static final Dimension DIMENSION_CAMERA_PAR_DEFAUT = new Dimension(32, 20);
+    private static final Dimension DIMENSION_CAMERA_PAR_DEFAUT = new Dimension(18, 18);
     private AdaptateurDeplaceur deplaceur = new AdaptateurDeplaceur(Direction.DROITE);
     private GestionnaireDeRessources gestionnaireDeRessources;
     private GestionnaireActionUtilisateur gestionnaireActions;
@@ -31,9 +32,8 @@ public class EtatDeJeuJoue extends EtatDeJeu {
     public EtatDeJeuJoue(RecuperateurDeTouches recuperateur) {
         gestionnaireDeRessources = new GestionnaireDeRessources(new AdaptateurChargeurDeCarteTiledCSV(","),
                 new ChargeurDeJeuxDeTuilesTextuel());
-        initialisation();
-        setNiveauCourant(0);
         gestionnaireActions = new GestionnaireActionUtilisateurJeu(recuperateur, niveauCourant);
+        initialisation();
     }
 
     public boolean isGameOver() {
@@ -57,6 +57,10 @@ public class EtatDeJeuJoue extends EtatDeJeu {
 
     public CameraCarteTuiles getCamera() {
         return camera;
+    }
+
+    public GestionnaireDeRessources getGestionnaireDeRessources() {
+        return gestionnaireDeRessources;
     }
 
     @Override
@@ -107,7 +111,23 @@ public class EtatDeJeuJoue extends EtatDeJeu {
     }
 
     private void initialisation() {
-        //charger ressources
+        List<Carte2D> lesCartes = new ArrayList<>();
+        Niveau niveau;
+
+        try {
+            gestionnaireDeRessources.charge();
+            lesCartes = gestionnaireDeRessources.getLesCartes();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for (Carte2D carte : lesCartes) {
+            niveau = new Niveau(carte, null, null, new Position2D(100, 400));
+            lesNiveaux.add(niveau);
+        }
+
+        niveauCourant = lesNiveaux.get(0);
+
         joueur = new PersonnageJouable(new Position2D(0, 0),
                 new Rectangle(10, 10, 20, 20),
                 new ComportementNull(),

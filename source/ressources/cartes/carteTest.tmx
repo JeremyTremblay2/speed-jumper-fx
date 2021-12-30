@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" source="../tilesets/caverne_moussue.tsx"/>
+ <layer id="1" name="Calque de Tuiles 1" width="10" height="10">
+  <data encoding="csv">
+0,0,0,73,74,0,0,0,0,0,
+0,0,0,89,90,0,0,0,0,0,
+0,0,0,105,106,0,0,0,0,0,
+0,0,73,74,0,0,0,0,0,0,
+73,73,89,90,73,74,73,74,0,0,
+89,89,105,106,89,90,73,73,74,0,
+105,105,105,105,105,106,73,74,74,0,
+105,106,90,90,74,74,74,74,90,0,
+105,106,106,106,90,90,90,90,106,0,
+0,0,105,106,106,106,106,106,0,0
+</data>
+ </layer>
+</map>

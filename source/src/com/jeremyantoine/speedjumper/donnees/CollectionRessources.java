@@ -2,6 +2,7 @@ package com.jeremyantoine.speedjumper.donnees;
 
 import com.jeremyantoine.speedjumper.logique.Dimension;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,17 +11,18 @@ import java.util.Map;
 public class CollectionRessources {
     private static List<String> lesCartes = new ArrayList<>();
     static {
-        lesCartes.add("../../../../../ressources/cartes/carteTest.csv");
+        lesCartes.add(CollectionRessources.class.getResource("/cartes/carteTest.csv").toExternalForm().replace("file:/", ""));
     }
 
     private static Map<String, Dimension> lesJeuxDeTuiles = new HashMap<>();
     static {
-        lesJeuxDeTuiles.put("../../../../../ressources/tilesets/tileset_1.txt", new Dimension(512, 512));
+        lesJeuxDeTuiles.put(CollectionRessources.class.getResource("/images/tilesets/caverne_moussue.png").toExternalForm(),
+                new Dimension(64, 64));
     }
 
     private static List<String> lesEntites = new ArrayList<>();
     static {
-        lesEntites.add("../../../../../ressources/tilesets/perso.png");
+        lesEntites.add(CollectionRessources.class.getResource("/images/perso.png").toExternalForm());
     }
 
     public static List<String> getLesCartes() {

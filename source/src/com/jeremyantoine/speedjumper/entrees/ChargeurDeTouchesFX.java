@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ChargeurDeTouchesFX extends ChargeurDeTouches {
-    public Map<KeyCode, Touche> recupereTouches(URL fichier) throws IllegalArgumentException {
+    public Map<KeyCode, Touche> recupereTouches(String fichier) throws IllegalArgumentException {
         Map<String, String> lesTouches = super.charge(fichier);
         Map<KeyCode, Touche> lesTouchesFX = new HashMap<>();
 

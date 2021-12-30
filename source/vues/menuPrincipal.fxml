@@ -9,7 +9,7 @@
       alignment="TOP_CENTER"
       xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.jeremyantoine.speedjumper.Jeu.Fenetre" id="background">
+      fx:controller="com.jeremyantoine.speedjumper.fenetres.FenetrePrincipale" id="background">
 
 
     <Label alignment="TOP_CENTER" text="SpeedJumper" textAlignment="CENTER">

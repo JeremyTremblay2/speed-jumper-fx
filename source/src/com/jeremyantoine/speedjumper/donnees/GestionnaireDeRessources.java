@@ -37,24 +37,24 @@ public class GestionnaireDeRessources {
     }
 
     public void charge() throws Exception {
-        chargeCartes();
         chargeTuiles();
+        chargeCartes();
     }
 
     private void chargeCartes() throws MalformedURLException, FileNotFoundException, ParseException,
             InvalidFormatException {
         Carte2D carte;
         for (String chemin : lesCartesChemins) {
-            carte = chargeurDeCartes.charge(new URL(chemin));
+            carte = chargeurDeCartes.charge(chemin, lesTuiles);
             lesCartes.add(carte);
         }
     }
 
     private void chargeTuiles() throws MalformedURLException, FileNotFoundException, ParseException,
             InvalidFormatException {
-        List<Tuile> tuiles = new ArrayList<>();
+        List<Tuile> tuiles;
         for (Map.Entry<String, Dimension> paire : lesJeuxDeTuiles.entrySet()) {
-            tuiles = chargeurDeTuiles.charge(new URL(paire.getKey()));
+            tuiles = chargeurDeTuiles.charge(paire.getKey());
             lesTuiles.addAll(tuiles);
         }
     }

@@ -15,7 +15,7 @@ public class RecuperateurDeTouchesFX extends RecuperateurDeTouches implements Ev
     private Scene sceneCourante;
     private ChargeurDeTouchesFX chargeur = new ChargeurDeTouchesFX();
 
-    public RecuperateurDeTouchesFX(URL fichier, Scene scene) {
+    public RecuperateurDeTouchesFX(String fichier, Scene scene) {
         sceneCourante = scene;
         dicoTouches = chargeur.recupereTouches(fichier);
     }

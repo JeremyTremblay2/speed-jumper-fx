@@ -12,16 +12,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DecoupeurFX {
-    public static List<Image> decoupe(URL cheminImage, int largeur, int hauteur) {
+    public List<Image> decoupe(String cheminImage, int largeur, int hauteur) {
+        System.out.println("l : " + largeur + ", h : " + hauteur);
         List<Image> lesImages = new ArrayList<>();
-        Image image = new Image(cheminImage.toString());
+        Image image = new Image(cheminImage);
         PixelReader lecteur = image.getPixelReader();
         WritableImage imageDecoupe;
         double largeurImage = image.getWidth() / largeur;
         double hauteurImage = image.getHeight() / hauteur;
 
-        for (int x = 0; x < largeurImage; x++){
-            for (int y = 0; y < hauteurImage; y++) {
+        System.out.println(largeurImage);
+        System.out.println(hauteurImage);
+
+        for (int y = 0; y < largeurImage; y++){
+            for (int x = 0; x < hauteurImage; x++) {
+                System.out.println("x : " + x + ", y : " + y);
                 imageDecoupe = new WritableImage(lecteur, y * largeur, x * hauteur, largeur, hauteur);
                 lesImages.add(imageDecoupe);
             }

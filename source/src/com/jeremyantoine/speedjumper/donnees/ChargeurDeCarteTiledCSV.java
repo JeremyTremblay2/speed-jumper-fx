@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ChargeurDeCarteTiledCSV {
-    public int[][] charge(URL cheminFichier, String separateur) throws FileNotFoundException,
+    public int[][] charge(String cheminFichier, String separateur) throws FileNotFoundException,
             NumberFormatException, ParseException, InvalidFormatException {
         List<Integer> donnees = new ArrayList<>();
         String ligne;
         String[] lesElements;
         int idTuile, nombreColonnes = -1, nombreLignes = 0;
 
-        Scanner fichier = new Scanner(new File(String.valueOf(cheminFichier).replaceAll("file:", "")));
+        Scanner fichier = new Scanner(new File(cheminFichier));
         while (fichier.hasNextLine()) {
             ligne = fichier.nextLine().trim();
             lesElements = ligne.split(separateur);

@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 public class GestionnaireDeRessourcesFX {
+    private DecoupeurFX decoupeur = new DecoupeurFX();
     private Map<String, Dimension> lesJeuxDeTuiles = CollectionRessources.getLesJeuxDeTuiles();
     private List<String> lesEnnemisChemins = CollectionRessources.getLesEnnemis();
 
@@ -52,7 +53,7 @@ public class GestionnaireDeRessourcesFX {
             if (chemin == null || dimension == null) {
                 throw new Exception("La dimension ou le chemin de l'image d'un jeu de tuile est null.");
             }
-            images = DecoupeurFX.decoupe(new URL(chemin), (int) dimension.getLargeur(), (int) dimension.getHauteur());
+            images = decoupeur.decoupe(chemin, (int) dimension.getLargeur(), (int) dimension.getHauteur());
             lesTuilesImagees.addAll(images);
         }
     }
