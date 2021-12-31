@@ -45,7 +45,7 @@ public class ChargeurDeCarteTiledCSV {
         int[][] lesTuiles = new int[nombreLignes][nombreColonnes];
         for (int x = 0; x < nombreLignes; x++) {
             for (int y = 0; y < nombreColonnes; y++) {
-                lesTuiles[x][y] = donnees.get(y + x * nombreLignes);
+                lesTuiles[x][y] = donnees.get(x * nombreColonnes + y);
             }
         }
         return lesTuiles;

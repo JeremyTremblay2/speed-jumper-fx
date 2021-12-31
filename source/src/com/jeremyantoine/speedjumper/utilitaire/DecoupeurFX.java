@@ -13,7 +13,6 @@ import java.util.List;
 
 public class DecoupeurFX {
     public List<Image> decoupe(String cheminImage, int largeur, int hauteur) {
-        System.out.println("l : " + largeur + ", h : " + hauteur);
         List<Image> lesImages = new ArrayList<>();
         Image image = new Image(cheminImage);
         PixelReader lecteur = image.getPixelReader();
@@ -21,13 +20,9 @@ public class DecoupeurFX {
         double largeurImage = image.getWidth() / largeur;
         double hauteurImage = image.getHeight() / hauteur;
 
-        System.out.println(largeurImage);
-        System.out.println(hauteurImage);
-
-        for (int y = 0; y < largeurImage; y++){
-            for (int x = 0; x < hauteurImage; x++) {
-                System.out.println("x : " + x + ", y : " + y);
-                imageDecoupe = new WritableImage(lecteur, y * largeur, x * hauteur, largeur, hauteur);
+        for (int y = 0; y < hauteurImage; y++){
+            for (int x = 0; x < largeurImage; x++) {
+                imageDecoupe = new WritableImage(lecteur, x * largeur, y * hauteur, largeur, hauteur);
                 lesImages.add(imageDecoupe);
             }
         }

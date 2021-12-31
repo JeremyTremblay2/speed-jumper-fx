@@ -6,13 +6,23 @@ import com.jeremyantoine.speedjumper.logique.Direction;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import jdk.jshell.spi.ExecutionControl;
 
+import java.util.Arrays;
+
 public class CameraCarteTuiles extends Camera2D {
     private Carte2D carteCourante;
     private Tuile[][] vision;
 
-    public CameraCarteTuiles(Carte2D carte, Dimension zoneVisuelle) {
+    public CameraCarteTuiles(Carte2D carte, Dimension zoneVisuelle) throws IllegalArgumentException {
         super(zoneVisuelle);
-        vision = new Tuile[(int) zoneVisuelle.getLargeur()][(int) zoneVisuelle.getHauteur()];
+        if (carte == null) {
+            throw new IllegalArgumentException("La carte donnée à la caméra est nulle.");
+        }
+        if (carte.getDimension().getLargeur() < zoneVisuelle.getLargeur()
+                || carte.getDimension().getHauteur() < zoneVisuelle.getHauteur()) {
+            throw new IllegalArgumentException("La zone visuelle de la caméra (" + zoneVisuelle + ") ne peut pas "
+                    + "être plus petite que les dimensions de la carte : " + carte.getDimension());
+        }
+        vision = new Tuile[(int) zoneVisuelle.getHauteur()][(int) zoneVisuelle.getLargeur()];
         changeCarte(carte);
     }
 
@@ -84,11 +94,58 @@ public class CameraCarteTuiles extends Camera2D {
         double largeurCamera = zoneVisuelle.getLargeur();
         double hauteurCamera = zoneVisuelle.getHauteur();
 
-        for (int x = 0; x < largeurCamera; x++) {
-            for (int y = 0; y < hauteurCamera; y++) {
+        System.out.println("l : " + vision[0].length + " h : " + vision.length);
+        System.out.println(carteCourante.getDimension());
+        //System.out.println(carteCourante);
+
+        for (int x = 0; x < hauteurCamera; x++) {
+            for (int y = 0; y < largeurCamera; y++) {
                 vision[x][y] = carteCourante.getTuile(x, y);
             }
+            if (x == 9) {
+                System.out.println(Arrays.deepToString(vision));
+            }
+            System.out.println();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CameraCarteTuiles camera = (CameraCarteTuiles) o;
+        return equals(camera);
+    }
+
+    public boolean equals(CameraCarteTuiles camera) {
+        return super.equals(camera)
+                && carteCourante.equals(camera.getCarteCourante());
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode() + 2 * carteCourante.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder chaine = new StringBuilder(super.toString());
+        chaine.append("\nCarte courante : ");
+        chaine.append(carteCourante.toString());
+        chaine.append("\nVision : \n");
+
+        double largeurCamera = zoneVisuelle.getLargeur();
+        double hauteurCamera = zoneVisuelle.getHauteur();
+
+        for (int x = 0; x < hauteurCamera; x++) {
+            for (int y = 0; y < largeurCamera; y++) {
+                chaine.append(vision[x][y].getIdTuile());
+                chaine.append(" ");
+            }
+            chaine.append("\n");
+        }
+
+        return chaine.toString();
     }
 
     private void effacer() throws IndexOutOfBoundsException {

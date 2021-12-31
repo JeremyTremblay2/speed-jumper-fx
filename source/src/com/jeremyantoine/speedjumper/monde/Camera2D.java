@@ -33,11 +33,31 @@ public abstract class Camera2D {
         return zoneVisuelle;
     }
 
-    public Dimension getMilieuEcran() {
-        return milieuEcran;
-    }
-
     public abstract void centrerSurEntite(Entite entite);
 
     public abstract void decalage(Direction direction) throws ExecutionControl.NotImplementedException;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Camera2D camera = (Camera2D) o;
+        return equals(camera);
+    }
+
+    public boolean equals(Camera2D camera) {
+        return position.equals(camera.getPosition())
+                && zoneVisuelle.equals(camera.getZoneVisuelle());
+    }
+
+    @Override
+    public int hashCode() {
+        return 7 * zoneVisuelle.hashCode() + 3 * position.hashCode();
+    }
+
+
+    @Override
+    public String toString() {
+        return "Caméra en " + position.toString() + " de dimensions " + zoneVisuelle.toString();
+    }
 }

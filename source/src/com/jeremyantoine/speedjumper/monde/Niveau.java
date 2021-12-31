@@ -88,10 +88,23 @@ public class Niveau {
 
     @Override
     public String toString() {
-        return "Niveau [" + numeroNiveau + "] : "
-                + "Carte : " + carte
-                + "ArrieresPlans : " + lesArrieresPlans
-                + "Entités : " + lesEntites
-                + "Position départ : " + pointsDepart;
+        StringBuilder chaine = new StringBuilder("Niveau [");
+        chaine.append(numeroNiveau);
+        chaine.append("] : ");
+        chaine.append("\nCarte : ");
+        chaine.append(carte.toString());
+        chaine.append("\nArrieresPlans : ");
+        for (ArrierePlan arrierePlan : lesArrieresPlans) {
+            chaine.append(arrierePlan.toString());
+            chaine.append(", ");
+        }
+        chaine.append("\nEntites : ");
+        for (Entite entite : lesEntites) {
+            chaine.append(entite.toString());
+            chaine.append(", ");
+        }
+        chaine.append("\nPosition de départ : ");
+        chaine.append(pointsDepart.toString());
+        return chaine.toString();
     }
 }

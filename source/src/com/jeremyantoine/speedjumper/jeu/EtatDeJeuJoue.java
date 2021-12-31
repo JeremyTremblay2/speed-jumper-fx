@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EtatDeJeuJoue extends EtatDeJeu {
-    private static final Dimension DIMENSION_CAMERA_PAR_DEFAUT = new Dimension(18, 18);
+    private static final Dimension DIMENSION_CAMERA_PAR_DEFAUT = new Dimension(24, 16);
     private AdaptateurDeplaceur deplaceur = new AdaptateurDeplaceur(Direction.DROITE);
     private GestionnaireDeRessources gestionnaireDeRessources;
     private GestionnaireActionUtilisateur gestionnaireActions;

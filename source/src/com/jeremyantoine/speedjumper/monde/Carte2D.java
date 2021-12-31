@@ -19,7 +19,7 @@ public class Carte2D {
         this.dimensionTuiles = dimensionTuiles;
         verificationDimensionsTuiles(tuiles);
         lesTuiles = tuiles;
-        this.dimension = new Dimension(lesTuiles.length, lesTuiles[0].length);
+        this.dimension = new Dimension(lesTuiles[0].length, lesTuiles.length);
         idCarte = nombreCarte;
         nombreCarte++;
     }
@@ -68,12 +68,14 @@ public class Carte2D {
 
         StringBuilder chaine = new StringBuilder("[");
         chaine.append(idCarte);
-        chaine.append("] : ");
+        chaine.append("] ");
         chaine.append(dimension.toString());
-        chaine.append("\n");
+        chaine.append(" : \n");
 
-        for (int x = 0; x < largeur; x++) {
-            for (int y = 0; y < hauteur; y++) {
+        System.out.println(dimension);
+
+        for (int x = 0; x < hauteur; x++) {
+            for (int y = 0; y < largeur; y++) {
                 chaine.append(lesTuiles[x][y].getIdTuile());
                 chaine.append(" ");
             }
