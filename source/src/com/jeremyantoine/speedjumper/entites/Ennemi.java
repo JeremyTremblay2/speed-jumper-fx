@@ -1,18 +1,20 @@
 package com.jeremyantoine.speedjumper.entites;
 
-import com.jeremyantoine.speedjumper.coordonnees.Position2D;
-import com.jeremyantoine.speedjumper.coordonnees.Rectangle;
-
-import java.util.Objects;
+import com.jeremyantoine.speedjumper.comportement.Comportement;
+import com.jeremyantoine.speedjumper.logique.Attaque;
+import com.jeremyantoine.speedjumper.logique.Position2D;
+import com.jeremyantoine.speedjumper.logique.Rectangle;
 
 public class Ennemi extends Vivant {
 
-    public Ennemi(Position2D position, Rectangle collision, int pointsDeVie) throws IllegalArgumentException {
-        super(position, collision, pointsDeVie);
+    public Ennemi(Position2D position, Rectangle collision, Comportement comportement, int degats, int pointsDeVie)
+            throws IllegalArgumentException {
+        super(position, collision, comportement, degats, pointsDeVie);
     }
 
-    public Ennemi(Position2D position, Rectangle collision) throws IllegalArgumentException {
-        super(position, collision);
+    public Ennemi(Position2D position, Rectangle collision, Comportement comportement, int degats)
+            throws IllegalArgumentException {
+        super(position, collision, comportement, degats);
     }
 
     @Override

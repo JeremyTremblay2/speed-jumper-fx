@@ -1,23 +1,28 @@
 package com.jeremyantoine.speedjumper.entites;
 
-import com.jeremyantoine.speedjumper.coordonnees.Position2D;
-import com.jeremyantoine.speedjumper.coordonnees.Rectangle;
+import com.jeremyantoine.speedjumper.comportement.Comportement;
+import com.jeremyantoine.speedjumper.logique.Dimension;
+import com.jeremyantoine.speedjumper.logique.Position2D;
+import com.jeremyantoine.speedjumper.logique.Rectangle;
 
-public class Entite {
+public abstract class Entite {
     private static final double VELOCITE_PAR_DEFAUT = 1;
     private static final double GRAVITE_PAR_DEFAUT = 2;
     private Position2D position;
     private Rectangle collision;
+    private Dimension dimension;
+    private Comportement comportement;
     private double gravite;
     private double velocite;
 
-    public Entite(Position2D position, Rectangle collision) throws IllegalArgumentException {
+    public Entite(Position2D position, Rectangle collision, Comportement comportement) throws IllegalArgumentException {
         if (position == null) {
             throw new IllegalArgumentException("La position passée en paramètre est nulle.");
         }
         if (collision == null) {
             throw new IllegalArgumentException("La collision passée en paramètre est nulle.");
         }
+        this.comportement = comportement;
         this.position = position;
         this.collision = collision;
         gravite = GRAVITE_PAR_DEFAUT;
@@ -36,8 +41,26 @@ public class Entite {
         return collision;
     }
 
-    private void setCollision(Rectangle collision) {
-        this.collision = collision;
+    public Dimension getDimension() {
+        return dimension;
+    }
+
+    public double getGravite() {
+        return gravite;
+    }
+
+    public double getVelocite() {
+        return velocite;
+    }
+
+    public Comportement getComportement() {
+        return comportement;
+    }
+
+    public void miseAJour(double temps) {
+        if (comportement != null) {
+            comportement.agit(this, temps);
+        }
     }
 
     @Override
@@ -49,16 +72,25 @@ public class Entite {
     }
 
     public boolean equals(Entite entite) {
-        return position.equals(entite.getPosition());
+        return position.equals(entite.getPosition())
+                && dimension.equals(entite.getDimension())
+                && collision.equals(entite.getCollision())
+                && comportement.equals(entite.getComportement());
     }
 
     @Override
     public int hashCode() {
-        return 7 * position.hashCode();
+        return 7 * position.hashCode()
+                + 7 * dimension.hashCode()
+                + 7 * collision.hashCode()
+                + 7 * comportement.hashCode();
     }
 
     @Override
     public String toString() {
-        return "Entite : " + position.toString();
+        return this.getClass() + " : " + position.toString() + " "
+                + "\nZone collision : " + collision.toString()
+                + "\n" + gravite + "g " + velocite + "v"
+                + " \nCompotement : " + comportement.toString();
     }
 }

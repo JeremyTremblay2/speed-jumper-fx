@@ -1,15 +1,28 @@
 package com.jeremyantoine.speedjumper.entites;
 
-import com.jeremyantoine.speedjumper.coordonnees.Position2D;
-import com.jeremyantoine.speedjumper.coordonnees.Rectangle;
+import com.jeremyantoine.speedjumper.comportement.Comportement;
+import com.jeremyantoine.speedjumper.logique.Attaque;
+import com.jeremyantoine.speedjumper.logique.Position2D;
+import com.jeremyantoine.speedjumper.logique.Rectangle;
+import com.jeremyantoine.speedjumper.logique.Score;
 
 public class PersonnageJouable extends Vivant {
-    public PersonnageJouable(Position2D position, Rectangle collision, int pointsDeVie) throws IllegalArgumentException {
-        super(position, collision, pointsDeVie);
+    private Score score;
+
+    public PersonnageJouable(Position2D position, Rectangle collision, Comportement comportement, int degats,
+                             int pointsDeVie) throws IllegalArgumentException {
+        super(position, collision, comportement, degats, pointsDeVie);
+        score = new Score();
     }
 
-    public PersonnageJouable(Position2D position, Rectangle collision) throws IllegalArgumentException {
-        super(position, collision);
+    public PersonnageJouable(Position2D position, Rectangle collision, Comportement comportement, int degats)
+            throws IllegalArgumentException {
+        super(position, collision, comportement, degats);
+        score = new Score();
+    }
+
+    public Score getScore() {
+        return score;
     }
 
     @Override
@@ -21,16 +34,17 @@ public class PersonnageJouable extends Vivant {
     }
 
     public boolean equals(PersonnageJouable personnageJouable) {
-        return super.equals(personnageJouable);
+        return super.equals(personnageJouable)
+                && score == personnageJouable.getScore();
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return super.hashCode() + score.hashCode();
     }
 
     @Override
     public String toString() {
-        return super.toString();
+        return super.toString() + ", " + score;
     }
 }
