@@ -5,11 +5,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <VBox stylesheets="styleMenuPrincipal.css" minHeight="1080" minWidth="1920"
       alignment="TOP_CENTER"
       xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.jeremyantoine.speedjumper.Jeu.Fenetre" id="background">
+      fx:controller="com.jeremyantoine.speedjumper.Jeu.MenuPrincipal" id="background">
 
 
     <Label alignment="TOP_CENTER" text="SpeedJumper" textAlignment="CENTER">
@@ -29,14 +31,20 @@
                 <ColumnConstraints />
                 <ColumnConstraints />
             </columnConstraints>
-            <Button text="Jouer"/>
-            <Button text="Quitter" GridPane.columnIndex="1" id="boutonFermeture"/>
+            <Button text="Jouer" fx:id="boutonJouer" onAction="#ouvrirMenuJeu"/>
+            <Button text="Quitter" GridPane.columnIndex="1" fx:id="boutonFermeture" onAction="#fermetureFenetre"/>
         </GridPane>
     </HBox>
     <Pane prefHeight="900"/>
     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
         <children>
-            <Button mnemonicParsing="false" id="optionIcone" />
+            <Button fx:id="boutonOptions" onAction="#ouvrirOptions">
+                <graphic>
+                    <ImageView fitWidth="70" preserveRatio="true">
+                        <Image url="images/logo/gear.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
         </children>
     </HBox>
 </VBox>

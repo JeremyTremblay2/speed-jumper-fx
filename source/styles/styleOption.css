@@ -13,11 +13,12 @@ Button:hover {
     -fx-text-fill: #b3b6b6;
 }
 
-
-Label{
+#titre{
     -fx-font-size: 80;
 }
 
-#option{
-
+.options{
+    -fx-font-size: 40;
 }
+
+

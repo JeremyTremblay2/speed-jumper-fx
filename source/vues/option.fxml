@@ -6,25 +6,61 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Option"
-            prefHeight="400.0" prefWidth="600.0">
 
-    <VBox alignment="CENTER" spacing="30.0">
-        <children>
-            <Label text="Option" fx:id="titre" />
-            <HBox alignment="CENTER">
-                <Button text="Niveau 1" prefHeight="50.0" prefWidth="300.0" GridPane.columnIndex="0"/>
-                <Button text="Niveau 2" prefHeight="50.0" prefWidth="300.0" GridPane.columnIndex="1"
-                        maxWidth="Infinity" onAction="#fermetureFenetre" fx:id="boutonFermeture" />
-            </HBox>
-        </children>
-        <AnchorPane>
-            <children>
-                <Button text="Parametres" alignment="BOTTOM_LEFT" />
-            </children>
-        </AnchorPane>
-    </VBox>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+<GridPane alignment="TOP_CENTER" stylesheets="styleOption.css" id="background" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jeremyantoine.speedjumper.Jeu.Options">
+    <rowConstraints>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints />
+    </rowConstraints>
 
-</AnchorPane>
+    <Label text="Option" id="titre" GridPane.rowIndex="0"/>
+
+
+    <GridPane GridPane.rowIndex="1">
+        <GridPane.margin>
+            <Insets top="100"/>
+        </GridPane.margin>
+
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" />
+            <ColumnConstraints/>
+        </columnConstraints>
+
+        <Label text="Musique" styleClass="options" GridPane.columnIndex="0"/>
+
+        <Slider  GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets left="20"/>
+            </GridPane.margin>
+        </Slider>
+    </GridPane>
+
+    <GridPane GridPane.rowIndex="2">
+        <GridPane.margin>
+            <Insets top="20"/>
+        </GridPane.margin>
+
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" />
+            <ColumnConstraints/>
+        </columnConstraints>
+
+        <Label text="Son" styleClass="options" GridPane.columnIndex="0"/>
+
+        <Slider  GridPane.columnIndex="1"/>
+    </GridPane>
+
+
+    <Button GridPane.rowIndex="3" fx:id="boutonHome" onAction="#retourAccueil">
+        <graphic>
+            <ImageView fitWidth="70" preserveRatio="true" >
+                <Image url="images/logo/home.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+</GridPane>
