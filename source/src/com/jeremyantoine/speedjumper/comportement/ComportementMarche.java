@@ -5,16 +5,22 @@ import com.jeremyantoine.speedjumper.actions.CollisionneurCarte;
 import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.entites.Vivant;
 import com.jeremyantoine.speedjumper.logique.Direction;
+import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 import com.jeremyantoine.speedjumper.monde.Niveau;
 
 public class ComportementMarche implements Comportement {
-    private AdaptateurDeplaceur deplaceur = new AdaptateurDeplaceur(Direction.GAUCHE);
-    private CollisionneurCarte collisionneur = new CollisionneurCarte();
+    private AdaptateurDeplaceur deplaceur;
     private Niveau niveau;
+    private Position2D dernierePosition = null;
 
     public ComportementMarche(Niveau niveau) {
+        if (niveau == null) {
+            throw new IllegalArgumentException("Le niveau est necessaire pour le comportement de l'ennemi et ne peut "
+                    + "pas être null.");
+        }
         this.niveau = niveau;
+        deplaceur = new AdaptateurDeplaceur(Direction.GAUCHE, niveau.getCarte());
     }
 
     @Override
@@ -23,29 +29,12 @@ public class ComportementMarche implements Comportement {
             return;
         }
 
-        double decalage = entite.getVelocite() * (temps / 1000000000);
-
-        if (vivant.getDirection() == Direction.GAUCHE) {
-            Rectangle collisionEntite = new Rectangle(entite.getCollision().getPosition().getX()
-                    + entite.getPosition().getX() - decalage,
-                    entite.getCollision().getPosition().getY() + entite.getPosition().getY(),
-                    entite.getCollision().getDimension().getLargeur(),
-                    entite.getCollision().getDimension().getHauteur());
-        }
-        else {
-            Rectangle collisionEntite = new Rectangle(entite.getCollision().getPosition().getX()
-                    + entite.getPosition().getX() + decalage,
-                    entite.getCollision().getPosition().getY() + entite.getPosition().getY(),
-                    entite.getCollision().getDimension().getLargeur(),
-                    entite.getCollision().getDimension().getHauteur());
-        }
-
-        if (!collisionneur.collisionne(entite.getCollision(), niveau.getCarte())) {
-            deplaceur.miseAJourEtatDeJeu(entite, temps);
-        }
-        else {
+        if (vivant.getPosition() == dernierePosition) {
             inverseDirection(vivant);
         }
+
+        deplaceur.miseAJourEtatDeJeu(vivant, temps);
+        dernierePosition = entite.getPosition();
     }
 
     private void inverseDirection(Vivant vivant) {

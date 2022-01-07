@@ -21,7 +21,6 @@ import java.util.List;
 
 public class EtatDeJeuJoue extends EtatDeJeu {
     private static final Dimension DIMENSION_CAMERA_PAR_DEFAUT = new Dimension(24, 16);
-    private AdaptateurDeplaceur deplaceur = new AdaptateurDeplaceur(Direction.DROITE);
     private GestionnaireDeRessources gestionnaireDeRessources;
     private GestionnaireActionUtilisateur gestionnaireActions;
     private List<Niveau> lesNiveaux = new ArrayList<>();
@@ -32,8 +31,8 @@ public class EtatDeJeuJoue extends EtatDeJeu {
     public EtatDeJeuJoue(RecuperateurDeTouches recuperateur) {
         gestionnaireDeRessources = new GestionnaireDeRessources(new AdaptateurChargeurDeCarteTiledCSV(","),
                 new ChargeurDeJeuxDeTuilesTextuel());
-        gestionnaireActions = new GestionnaireActionUtilisateurJeu(recuperateur, niveauCourant);
         initialisation();
+        gestionnaireActions = new GestionnaireActionUtilisateurJeu(recuperateur, niveauCourant);
     }
 
     public boolean isGameOver() {
@@ -130,7 +129,7 @@ public class EtatDeJeuJoue extends EtatDeJeu {
 
         joueur = new PersonnageJouable(new Position2D(0, 0),
                 new Rectangle(10, 10, 20, 20),
-                new ComportementNull(),
+                new Dimension(32, 128),
                 5);
         camera = new CameraCarteTuiles(niveauCourant.getCarte(), DIMENSION_CAMERA_PAR_DEFAUT);
     }

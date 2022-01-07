@@ -1,24 +1,25 @@
 package com.jeremyantoine.speedjumper.entites;
 
 import com.jeremyantoine.speedjumper.comportement.Comportement;
+import com.jeremyantoine.speedjumper.logique.Dimension;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fantome extends Ennemi {
+public class Fantome extends Vivant {
     private static final int NOMBRE_MAXIMUM_POSITIONS = 5000;
     private List<Position2D> positions = new ArrayList<>();
 
-    public Fantome(Position2D position, Rectangle collision, Comportement comportement, int degats, int pointsDeVie)
+    public Fantome(Position2D position, Rectangle collision, Dimension dimension, int degats, int pointsDeVie)
             throws IllegalArgumentException {
-        super(position, collision, comportement, degats, pointsDeVie);
+        super(position, collision, dimension, degats, pointsDeVie);
     }
 
-    public Fantome(Position2D position, Rectangle collision, Comportement comportement, int degats)
+    public Fantome(Position2D position, Rectangle collision, Dimension dimension, int degats)
             throws IllegalArgumentException {
-        super(position, collision, comportement, degats);
+        super(position, collision, dimension, degats);
     }
 
     public List<Position2D> getPositions() {

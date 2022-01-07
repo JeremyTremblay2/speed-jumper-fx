@@ -11,8 +11,12 @@ public class GestionnaireActionUtilisateurJeu extends GestionnaireActionUtilisat
     private Commande aucuneAction;
     private Niveau niveauCourant;
 
-    public GestionnaireActionUtilisateurJeu(RecuperateurDeTouches recuperateur, Niveau niveau) {
+    public GestionnaireActionUtilisateurJeu(RecuperateurDeTouches recuperateur, Niveau niveau)
+            throws IllegalArgumentException {
         super(recuperateur);
+        if (niveau == null) {
+            throw new IllegalArgumentException("Le niveau passé en paramètre ne peut pas être null.");
+        }
         niveauCourant = niveau;
         flecheGauche = new CommandeDeplacement(Direction.GAUCHE, niveau);
         flecheDroite = new CommandeDeplacement(Direction.DROITE, niveau);
