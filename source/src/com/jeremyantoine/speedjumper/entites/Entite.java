@@ -1,6 +1,5 @@
 package com.jeremyantoine.speedjumper.entites;
 
-import com.jeremyantoine.speedjumper.comportement.Comportement;
 import com.jeremyantoine.speedjumper.logique.Dimension;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
@@ -15,6 +14,7 @@ public abstract class Entite {
     private Dimension dimension;
     private double gravite;
     private double velocite;
+    private boolean surSol;
 
     public Entite(Position2D position, Rectangle collision, Dimension dimension) throws IllegalArgumentException {
         verificationParametre(position, "position");
@@ -25,6 +25,7 @@ public abstract class Entite {
         this.collision = collision;
         gravite = GRAVITE_PAR_DEFAUT;
         velocite = VELOCITE_PAR_DEFAUT;
+        surSol = false;
     }
 
     public Position2D getPosition() {
@@ -49,6 +50,10 @@ public abstract class Entite {
 
     public double getVelocite() {
         return velocite;
+    }
+
+    public boolean isSurSol() {
+        return surSol;
     }
 
     public void miseAJour(double temps) {

@@ -1,8 +1,6 @@
 package com.jeremyantoine.speedjumper.jeu;
 
-import com.jeremyantoine.speedjumper.actions.AdaptateurDeplaceur;
 import com.jeremyantoine.speedjumper.actions.CollisionneurAABB;
-import com.jeremyantoine.speedjumper.comportement.ComportementNull;
 import com.jeremyantoine.speedjumper.donnees.*;
 import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.entites.PersonnageJouable;
