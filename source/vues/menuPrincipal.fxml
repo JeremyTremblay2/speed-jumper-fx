@@ -11,11 +11,10 @@
       alignment="TOP_CENTER"
       xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
-<<<<<<< HEAD
       fx:controller="com.jeremyantoine.speedjumper.Jeu.MenuPrincipal" id="background">
-=======
-      fx:controller="com.jeremyantoine.speedjumper.fenetres.FenetrePrincipale" id="background">
->>>>>>> 76102aed8b0ef3b29f5b9af3a9804937433bbbae
+
+    <!--  fx:controller="com.jeremyantoine.speedjumper.fenetres.FenetrePrincipale" id="background"> -->
+
 
 
     <Label alignment="TOP_CENTER" text="SpeedJumper" textAlignment="CENTER">

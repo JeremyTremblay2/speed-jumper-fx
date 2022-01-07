@@ -19,6 +19,10 @@ public class MenuJouer {
     private Button boutonAcceuil;
 
     public void ouvertureAccueil(ActionEvent event)throws IOException {
+
+
+
+        //A modifier car peut etre pas ube window . Creer classe gerer changement de scene
         Stage stage = null;
 
         URL vueJouer = getClass().getResource("/menuPrincipal.fxml");
@@ -28,12 +32,14 @@ public class MenuJouer {
         }
 
 
+
+
+
         Parent parent = FXMLLoader.load(vueJouer);
         Scene scene = new Scene(parent);
         stage = (Stage) boutonAcceuil.getScene().getWindow();
 
         stage.setScene(scene);
-        stage.show();
     }
 
 
