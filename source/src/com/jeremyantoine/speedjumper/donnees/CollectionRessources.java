@@ -6,37 +6,44 @@ import java.net.URL;
 import java.util.*;
 
 public class CollectionRessources {
-    private static final List<String> lesCartes = new ArrayList<>();
-    static {
-        lesCartes.add(Objects.requireNonNull(CollectionRessources.class.getResource("/cartes/carteTest.csv")).getPath());
-    }
+    private static CollectionRessources instance;
 
-    private static final Map<String, Dimension> lesJeuxDeTuiles = new HashMap<>();
-    static {
+    private List<String> lesCartes;
+    private Map<String, Dimension> lesJeuxDeTuiles;
+    private List<String> lesEntites;
+    private String recuperateurDeTouches;
+
+    private CollectionRessources() {
+        lesJeuxDeTuiles = new HashMap<>();
+        lesEntites = new ArrayList<>();
+        lesCartes = new ArrayList<>();
+        recuperateurDeTouches = Objects.requireNonNull(CollectionRessources.class.getResource("/touches.txt")).getPath();
+        lesCartes.add(Objects.requireNonNull(CollectionRessources.class.getResource("/cartes/carteTest.csv")).getPath());
         lesJeuxDeTuiles.put(Objects.requireNonNull(CollectionRessources.class.getResource("/images/tilesets/caverne_moussue.png")).toExternalForm(),
                 new Dimension(64, 64));
-    }
-
-    private static final List<String> lesEntites = new ArrayList<>();
-    static {
         lesEntites.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/perso.png")).toExternalForm());
     }
 
-    private static final String recuperateurDeTouches = Objects.requireNonNull(CollectionRessources.class.getResource("/touches.txt")).getPath();
+    public static CollectionRessources getInstance() {
+        if (instance == null) {
+            instance = new CollectionRessources();
+        }
+        return instance;
+    }
 
-    public static List<String> getLesCartes() {
+    public List<String> getLesCartes() {
         return lesCartes;
     }
 
-    public static Map<String, Dimension> getLesJeuxDeTuiles() {
+    public Map<String, Dimension> getLesJeuxDeTuiles() {
         return lesJeuxDeTuiles;
     }
 
-    public static List<String> getLesEnnemis() {
+    public List<String> getLesEntites() {
         return lesEntites;
     }
 
-    public static String getRecuperateurDeTouches() {
+    public String getRecuperateurDeTouches() {
         return recuperateurDeTouches;
     }
 }

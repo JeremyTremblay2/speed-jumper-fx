@@ -6,10 +6,7 @@ import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.entites.PersonnageJouable;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouchesFX;
-import com.jeremyantoine.speedjumper.jeu.EtatDeJeu;
-import com.jeremyantoine.speedjumper.jeu.EtatDeJeuJoue;
-import com.jeremyantoine.speedjumper.jeu.Jeu;
-import com.jeremyantoine.speedjumper.jeu.JeuFX;
+import com.jeremyantoine.speedjumper.jeu.*;
 import com.jeremyantoine.speedjumper.monde.CameraCarteTuiles;
 import com.jeremyantoine.speedjumper.monde.Niveau;
 import com.jeremyantoine.speedjumper.monde.Tuile;
@@ -24,7 +21,7 @@ import javafx.stage.Stage;
 import java.util.HashMap;
 import java.util.List;
 
-public class FenetreJeu {
+public class FenetreJeu implements Observateur {
     private Stage stage;
     @FXML
     private GridPane grille;
@@ -55,7 +52,8 @@ public class FenetreJeu {
     }
 
     private void initialisation() {
-        RecuperateurDeTouches recuperateur = new RecuperateurDeTouchesFX(CollectionRessources.getRecuperateurDeTouches(),
+        CollectionRessources ressources = CollectionRessources.getInstance();
+        RecuperateurDeTouches recuperateur = new RecuperateurDeTouchesFX(ressources.getRecuperateurDeTouches(),
                 stage.getScene());
         jeu = new JeuFX(recuperateur);
         etatCourant = jeu.getManagerEtats().getEtatCourant();
@@ -68,6 +66,7 @@ public class FenetreJeu {
         List<Image> lesimages;
 
         if (etatCourant instanceof EtatDeJeuJoue etatCourant) {
+            etatCourant.attacher(this);
             niveauCourant = etatCourant.getNiveauCourant();
             camera = etatCourant.getCamera();
             lesEntites = niveauCourant.getLesEntites();
@@ -83,10 +82,6 @@ public class FenetreJeu {
         else {
             throw new IllegalStateException("Le jeu doit normalement se trouver en état de jeu au démarrage de la fenêtre");
         }
-
-
-
-        System.out.println("coucou");
     }
 
     private void initialisationGrille() {
@@ -94,13 +89,12 @@ public class FenetreJeu {
         hauteurCamera = (int) camera.getZoneVisuelle().getHauteur();
         lesTuilesDuPane = new ImageView[hauteurCamera][largeurCamera];
 
-        System.out.println(camera);
+        //System.out.println(camera);
 
         for (int x = 0; x < hauteurCamera; x++) {
             for (int y = 0; y < largeurCamera; y++) {
                 ImageView image = new ImageView();
                 image.setImage(lestuilesImagees.get(camera.getTuile(x, y)));
-                System.out.print(camera.getTuile(x, y).getIdTuile() + " ");
                 lesTuilesDuPane[x][y] = image;
                 grille.add(lesTuilesDuPane[x][y], y, x);
             }
@@ -108,6 +102,11 @@ public class FenetreJeu {
     }
 
     private void miseAJourGrille() {
+
+    }
+
+    @Override
+    public void miseAjour() {
 
     }
 }

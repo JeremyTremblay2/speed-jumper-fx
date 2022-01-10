@@ -14,10 +14,12 @@ import java.util.List;
 import java.util.Map;
 
 public class GestionnaireDeRessources {
-    private List<String> lesCartesChemins = CollectionRessources.getLesCartes();
-    private Map<String, Dimension> lesJeuxDeTuiles = CollectionRessources.getLesJeuxDeTuiles();
     private ChargeurDeCarteTiled chargeurDeCartes;
     private ChargeurDeJeuxDeTuiles chargeurDeTuiles;
+
+    private List<String> lesCartesChemins;
+    private Map<String, Dimension> lesJeuxDeTuiles;
+
     private List<Carte2D> lesCartes;
     private List<Tuile> lesTuiles;
 
@@ -26,6 +28,9 @@ public class GestionnaireDeRessources {
         this.chargeurDeTuiles = chargeurDeTuiles;
         lesCartes = new ArrayList<>();
         lesTuiles = new ArrayList<>();
+        CollectionRessources ressources = CollectionRessources.getInstance();
+        lesCartesChemins = ressources.getLesCartes();
+        lesJeuxDeTuiles = ressources.getLesJeuxDeTuiles();
     }
 
     public List<Carte2D> getLesCartes() {
@@ -41,7 +46,7 @@ public class GestionnaireDeRessources {
         chargeCartes();
     }
 
-    private void chargeCartes() throws MalformedURLException, FileNotFoundException, ParseException,
+    private void chargeCartes() throws FileNotFoundException, ParseException,
             InvalidFormatException {
         Carte2D carte;
         for (String chemin : lesCartesChemins) {
@@ -50,7 +55,7 @@ public class GestionnaireDeRessources {
         }
     }
 
-    private void chargeTuiles() throws MalformedURLException, FileNotFoundException, ParseException,
+    private void chargeTuiles() throws FileNotFoundException, ParseException,
             InvalidFormatException {
         List<Tuile> tuiles;
         for (Map.Entry<String, Dimension> paire : lesJeuxDeTuiles.entrySet()) {
