@@ -128,10 +128,13 @@ public class EtatDeJeuJoue extends EtatDeJeu {
 
         niveauCourant = lesNiveaux.get(0);
 
-        joueur = new PersonnageJouable(new Position2D(0, 0),
-                new Rectangle(10, 10, 20, 20),
+        joueur = new PersonnageJouable(new Position2D(1600, 1600),
+                new Rectangle(5, 60, 40, 40),
+                new Dimension(50, 100),
                 new ComportementNull(),
+                2.4,
                 5);
         camera = new CameraCarteTuiles(niveauCourant.getCarte(), DIMENSION_CAMERA_PAR_DEFAUT);
+        camera.centrerSurEntite(joueur);
     }
 }

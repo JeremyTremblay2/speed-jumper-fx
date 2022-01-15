@@ -1,10 +1,7 @@
 package com.jeremyantoine.speedjumper.entites;
 
 import com.jeremyantoine.speedjumper.comportement.Comportement;
-import com.jeremyantoine.speedjumper.logique.Attaque;
-import com.jeremyantoine.speedjumper.logique.Direction;
-import com.jeremyantoine.speedjumper.logique.Position2D;
-import com.jeremyantoine.speedjumper.logique.Rectangle;
+import com.jeremyantoine.speedjumper.logique.*;
 
 import java.util.Objects;
 
@@ -15,9 +12,9 @@ public abstract class Vivant extends Entite {
     private int degats;
     private Direction direction;
 
-    public Vivant(Position2D position, Rectangle collision, Comportement comportement, int degats, int pointsDeVie)
-            throws IllegalArgumentException {
-        super(position, collision, comportement);
+    public Vivant(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
+                  double velocite, int degats, int pointsDeVie) throws IllegalArgumentException {
+        super(position, collision, dimension, comportement, velocite);
         if (pointsDeVie <= 0) {
             this.pointsDeVie = POINTS_DE_VIE_PAR_DEFAUT;
         }
@@ -29,9 +26,9 @@ public abstract class Vivant extends Entite {
         direction = Direction.DROITE;
     }
 
-    public Vivant(Position2D position, Rectangle collision, Comportement comportement, int degats)
-            throws IllegalArgumentException {
-        this(position, collision, comportement, degats, POINTS_DE_VIE_PAR_DEFAUT);
+    public Vivant(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
+                  double velocite, int degats) throws IllegalArgumentException {
+        this(position, collision, dimension, comportement, velocite, degats, POINTS_DE_VIE_PAR_DEFAUT);
     }
 
     public int getPointsDeVie() {
@@ -81,8 +78,8 @@ public abstract class Vivant extends Entite {
 
     @Override
     public String toString() {
-        return super.toString() + " " + pointsDeVie
-                + "\u2764, " + degats
-                + "\u2764 degats, " + direction;
+        return super.toString() + " " + pointsDeVie + "\u2764, "
+                + degats + "\u2764 degats, "
+                + direction;
     }
 }

@@ -1,6 +1,7 @@
 package com.jeremyantoine.speedjumper.entites;
 
 import com.jeremyantoine.speedjumper.comportement.Comportement;
+import com.jeremyantoine.speedjumper.logique.Dimension;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 
@@ -11,14 +12,14 @@ public class Fantome extends Ennemi {
     private static final int NOMBRE_MAXIMUM_POSITIONS = 5000;
     private List<Position2D> positions = new ArrayList<>();
 
-    public Fantome(Position2D position, Rectangle collision, Comportement comportement, int degats, int pointsDeVie)
-            throws IllegalArgumentException {
-        super(position, collision, comportement, degats, pointsDeVie);
+    public Fantome(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
+                   double velocite, int degats, int pointsDeVie) throws IllegalArgumentException {
+        super(position, collision, dimension, comportement, velocite, degats, pointsDeVie);
     }
 
-    public Fantome(Position2D position, Rectangle collision, Comportement comportement, int degats)
-            throws IllegalArgumentException {
-        super(position, collision, comportement, degats);
+    public Fantome(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
+                   double velocite, int degats) throws IllegalArgumentException {
+        super(position, collision, dimension, comportement, velocite, degats);
     }
 
     public List<Position2D> getPositions() {
@@ -38,7 +39,12 @@ public class Fantome extends Ennemi {
 
     @Override
     public String toString() {
-        return super.toString() + " Positions : " + positions.toString();
+        StringBuilder chaine = new StringBuilder(super.toString());
+        chaine.append("\nPositions : ");
+        for (Position2D position : positions) {
+            chaine.append(position.toString());
+        }
+        return chaine.toString();
     }
 
     @Override

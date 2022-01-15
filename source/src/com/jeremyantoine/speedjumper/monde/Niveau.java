@@ -3,6 +3,7 @@ package com.jeremyantoine.speedjumper.monde;
 import com.jeremyantoine.speedjumper.comportement.ComportementNull;
 import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.entites.Fantome;
+import com.jeremyantoine.speedjumper.logique.Dimension;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 
@@ -36,7 +37,9 @@ public class Niveau {
         nombreNiveaux++;
         fantome = new Fantome(pointsDepart,
                 new Rectangle(pointsDepart.getX(), pointsDepart.getY(), 30, 60),
+                new Dimension(50, 100),
                 new ComportementNull(),
+                2.3,
                 1000);
     }
 

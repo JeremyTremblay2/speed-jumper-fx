@@ -15,18 +15,31 @@ public abstract class Entite {
     private double gravite;
     private double velocite;
 
-    public Entite(Position2D position, Rectangle collision, Comportement comportement) throws IllegalArgumentException {
+    public Entite(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
+                  double velocite) throws IllegalArgumentException {
         if (position == null) {
-            throw new IllegalArgumentException("La position passée en paramètre est nulle.");
+            throw new IllegalArgumentException("La position passée en paramètre de l'entité est nulle.");
         }
         if (collision == null) {
-            throw new IllegalArgumentException("La collision passée en paramètre est nulle.");
+            throw new IllegalArgumentException("La collision passée en paramètre de l'entité est nulle.");
         }
+        if (dimension == null || dimension.getLargeur() <= 0 || dimension.getHauteur() <= 0
+                || dimension.getLargeur() < collision.getDimension().getLargeur()
+                || dimension.getHauteur() < collision.getDimension().getHauteur()) {
+            throw new IllegalArgumentException("La dimension passée en paramètre de l'entité est nulle ou "
+                    + "inférieure à 0, ou inférieure à la collision de l'entité. Donné : " + dimension);
+        }
+        this.dimension = dimension;
         this.comportement = comportement;
         this.position = position;
         this.collision = collision;
+        if (velocite <= 0) {
+            this.velocite = VELOCITE_PAR_DEFAUT;
+        }
+        else {
+            this.velocite = velocite;
+        }
         gravite = GRAVITE_PAR_DEFAUT;
-        velocite = VELOCITE_PAR_DEFAUT;
     }
 
     public Position2D getPosition() {

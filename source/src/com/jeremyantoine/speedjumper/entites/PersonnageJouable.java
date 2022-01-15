@@ -1,23 +1,20 @@
 package com.jeremyantoine.speedjumper.entites;
 
 import com.jeremyantoine.speedjumper.comportement.Comportement;
-import com.jeremyantoine.speedjumper.logique.Attaque;
-import com.jeremyantoine.speedjumper.logique.Position2D;
-import com.jeremyantoine.speedjumper.logique.Rectangle;
-import com.jeremyantoine.speedjumper.logique.Score;
+import com.jeremyantoine.speedjumper.logique.*;
 
 public class PersonnageJouable extends Vivant {
     private Score score;
 
-    public PersonnageJouable(Position2D position, Rectangle collision, Comportement comportement, int degats,
-                             int pointsDeVie) throws IllegalArgumentException {
-        super(position, collision, comportement, degats, pointsDeVie);
+    public PersonnageJouable(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
+                             double velocite, int degats, int pointsDeVie) throws IllegalArgumentException {
+        super(position, collision, dimension, comportement, velocite, degats, pointsDeVie);
         score = new Score();
     }
 
-    public PersonnageJouable(Position2D position, Rectangle collision, Comportement comportement, int degats)
-            throws IllegalArgumentException {
-        super(position, collision, comportement, degats);
+    public PersonnageJouable(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
+                             double velocite, int degats) throws IllegalArgumentException {
+        super(position, collision, dimension, comportement, velocite, degats);
         score = new Score();
     }
 
