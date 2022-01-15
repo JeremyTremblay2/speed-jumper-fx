@@ -8,7 +8,7 @@ import com.jeremyantoine.speedjumper.logique.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fantome extends Ennemi {
+public class Fantome extends Vivant {
     private static final int NOMBRE_MAXIMUM_POSITIONS = 5000;
     private List<Position2D> positions = new ArrayList<>();
 

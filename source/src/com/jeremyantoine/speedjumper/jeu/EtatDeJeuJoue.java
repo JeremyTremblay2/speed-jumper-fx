@@ -1,6 +1,5 @@
 package com.jeremyantoine.speedjumper.jeu;
 
-import com.jeremyantoine.speedjumper.actions.AdaptateurDeplaceur;
 import com.jeremyantoine.speedjumper.actions.CollisionneurAABB;
 import com.jeremyantoine.speedjumper.comportement.ComportementNull;
 import com.jeremyantoine.speedjumper.donnees.*;
@@ -21,7 +20,6 @@ import java.util.List;
 
 public class EtatDeJeuJoue extends EtatDeJeu {
     private static final Dimension DIMENSION_CAMERA_PAR_DEFAUT = new Dimension(24, 16);
-    private AdaptateurDeplaceur deplaceur = new AdaptateurDeplaceur(Direction.DROITE);
     private GestionnaireDeRessources gestionnaireDeRessources;
     private GestionnaireActionUtilisateur gestionnaireActions;
     private List<Niveau> lesNiveaux = new ArrayList<>();
@@ -32,8 +30,8 @@ public class EtatDeJeuJoue extends EtatDeJeu {
     public EtatDeJeuJoue(RecuperateurDeTouches recuperateur) {
         gestionnaireDeRessources = new GestionnaireDeRessources(new AdaptateurChargeurDeCarteTiledCSV(","),
                 new ChargeurDeJeuxDeTuilesTextuel());
-        gestionnaireActions = new GestionnaireActionUtilisateurJeu(recuperateur, niveauCourant);
         initialisation();
+        gestionnaireActions = new GestionnaireActionUtilisateurJeu(recuperateur, niveauCourant);
     }
 
     public boolean isGameOver() {
@@ -133,7 +131,8 @@ public class EtatDeJeuJoue extends EtatDeJeu {
                 new Dimension(50, 100),
                 new ComportementNull(),
                 2.4,
-                5);
+                1000,
+                3);
         camera = new CameraCarteTuiles(niveauCourant.getCarte(), DIMENSION_CAMERA_PAR_DEFAUT);
         camera.centrerSurEntite(joueur);
     }

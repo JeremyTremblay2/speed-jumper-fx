@@ -15,7 +15,6 @@ public class PersonnageJouable extends Vivant {
     public PersonnageJouable(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
                              double velocite, int degats) throws IllegalArgumentException {
         super(position, collision, dimension, comportement, velocite, degats);
-        score = new Score();
     }
 
     public Score getScore() {

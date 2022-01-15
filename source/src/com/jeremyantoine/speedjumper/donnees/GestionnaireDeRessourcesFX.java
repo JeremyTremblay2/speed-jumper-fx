@@ -16,13 +16,17 @@ import java.util.Map;
 
 public class GestionnaireDeRessourcesFX {
     private DecoupeurFX decoupeur = new DecoupeurFX();
-    private Map<String, Dimension> lesJeuxDeTuiles = CollectionRessources.getLesJeuxDeTuiles();
-    private List<String> lesEnnemisChemins = CollectionRessources.getLesEnnemis();
+    private Map<String, Dimension> lesJeuxDeTuiles;
+    private List<String> lesEnnemisChemins;
 
     private List<Image> lesTuilesImagees;
     private List<Image> lesEnnemisImages;
 
     public GestionnaireDeRessourcesFX() {
+        CollectionRessources ressources = CollectionRessources.getInstance();
+        lesJeuxDeTuiles = ressources.getLesJeuxDeTuiles();
+        lesEnnemisChemins = ressources.getLesEntites();
+
         lesEnnemisImages = new ArrayList<>();
         lesTuilesImagees = new ArrayList<>();
     }

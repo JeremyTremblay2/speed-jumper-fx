@@ -2,13 +2,16 @@ package com.jeremyantoine.speedjumper.actions;
 
 import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.logique.Direction;
+import com.jeremyantoine.speedjumper.monde.Carte2D;
 
 public class AdaptateurDeplaceur implements Simulation {
-    private static Deplaceur deplaceur = new Deplaceur();
+    private Deplaceur deplaceur;
     private Direction direction;
+    private Carte2D carteCourante;
 
-    public AdaptateurDeplaceur(Direction direction) {
+    public AdaptateurDeplaceur(Direction direction, Carte2D carteCourante) {
         this.direction = direction;
+        this.carteCourante = carteCourante;
     }
 
     public Direction getDirection() {
@@ -17,6 +20,14 @@ public class AdaptateurDeplaceur implements Simulation {
 
     public void setDirection(Direction direction) {
         this.direction = direction;
+    }
+
+    public Carte2D getCarteCourante() {
+        return carteCourante;
+    }
+
+    public void setCarteCourante(Carte2D carteCourante) {
+        this.carteCourante = carteCourante;
     }
 
     @Override

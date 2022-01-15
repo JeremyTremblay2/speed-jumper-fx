@@ -14,14 +14,9 @@ public class Piece extends Entite {
     public Piece(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
                  double velocite, int valeur) throws IllegalArgumentException {
         super(position, collision, dimension, comportement, velocite);
-
-        if (valeur <= 0) {
-            this.valeur = VALEUR_PAR_DEFAUT;
-        }
-        else {
-            this.valeur = valeur;
-        }
+        this.valeur = valeur <= 0 ? VALEUR_PAR_DEFAUT : valeur;
     }
+
     public Piece(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
                  double velocite) throws IllegalArgumentException {
         this(position, collision, dimension, comportement, velocite, VALEUR_PAR_DEFAUT);
@@ -37,7 +32,8 @@ public class Piece extends Entite {
 
     @Override
     public String toString() {
-        return super.toString() + " $" + valeur;
+        return super.toString()
+                + "\n$" + valeur;
     }
 
     @Override

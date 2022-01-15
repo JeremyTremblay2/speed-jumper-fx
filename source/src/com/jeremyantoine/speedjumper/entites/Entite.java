@@ -5,6 +5,8 @@ import com.jeremyantoine.speedjumper.logique.Dimension;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 
+import java.util.Objects;
+
 public abstract class Entite {
     private static final double VELOCITE_PAR_DEFAUT = 1;
     private static final double GRAVITE_PAR_DEFAUT = 2;
@@ -14,32 +16,28 @@ public abstract class Entite {
     private Comportement comportement;
     private double gravite;
     private double velocite;
+    private boolean surSol;
 
     public Entite(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
                   double velocite) throws IllegalArgumentException {
-        if (position == null) {
-            throw new IllegalArgumentException("La position passée en paramètre de l'entité est nulle.");
-        }
-        if (collision == null) {
-            throw new IllegalArgumentException("La collision passée en paramètre de l'entité est nulle.");
-        }
-        if (dimension == null || dimension.getLargeur() <= 0 || dimension.getHauteur() <= 0
+        verificationParametre(position, "position");
+        verificationParametre(dimension, "dimension");
+        verificationParametre(collision, "collision");
+
+        if (dimension.getLargeur() <= 0 || dimension.getHauteur() <= 0
                 || dimension.getLargeur() < collision.getDimension().getLargeur()
                 || dimension.getHauteur() < collision.getDimension().getHauteur()) {
             throw new IllegalArgumentException("La dimension passée en paramètre de l'entité est nulle ou "
                     + "inférieure à 0, ou inférieure à la collision de l'entité. Donné : " + dimension);
         }
+
         this.dimension = dimension;
         this.comportement = comportement;
         this.position = position;
         this.collision = collision;
-        if (velocite <= 0) {
-            this.velocite = VELOCITE_PAR_DEFAUT;
-        }
-        else {
-            this.velocite = velocite;
-        }
+        this.velocite = velocite <= 0 ? VELOCITE_PAR_DEFAUT : velocite;
         gravite = GRAVITE_PAR_DEFAUT;
+        surSol = false;
     }
 
     public Position2D getPosition() {
@@ -66,14 +64,16 @@ public abstract class Entite {
         return velocite;
     }
 
+    public boolean isSurSol() {
+        return surSol;
+    }
+
     public Comportement getComportement() {
         return comportement;
     }
 
     public void miseAJour(double temps) {
-        if (comportement != null) {
-            comportement.agit(this, temps);
-        }
+        comportement.agit(this, temps);
     }
 
     @Override
@@ -93,10 +93,8 @@ public abstract class Entite {
 
     @Override
     public int hashCode() {
-        return 7 * position.hashCode()
-                + 7 * dimension.hashCode()
-                + 7 * collision.hashCode()
-                + 7 * comportement.hashCode();
+        return Objects.hash(position.hashCode(), dimension.hashCode(),
+                collision.hashCode(), comportement.hashCode());
     }
 
     @Override
@@ -104,6 +102,12 @@ public abstract class Entite {
         return this.getClass() + " : " + position.toString() + " "
                 + "\nZone collision : " + collision.toString()
                 + "\n" + gravite + "g " + velocite + "v"
-                + " \nCompotement : " + comportement.toString();
+                + "\nComportement : " + comportement;
+    }
+
+    private void verificationParametre(Object o, String nom) throws IllegalArgumentException {
+        if (o == null) {
+            throw new IllegalArgumentException("La " + nom + " passée en paramètre est nulle.");
+        }
     }
 }
