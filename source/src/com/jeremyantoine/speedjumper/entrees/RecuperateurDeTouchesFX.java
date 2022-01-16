@@ -1,5 +1,6 @@
 package com.jeremyantoine.speedjumper.entrees;
 
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -10,7 +11,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
-public class RecuperateurDeTouchesFX extends RecuperateurDeTouches implements EventHandler {
+    public class RecuperateurDeTouchesFX extends RecuperateurDeTouches implements EventHandler {
     private Map<KeyCode, Touche> dicoTouches;
     private Scene sceneCourante;
     private ChargeurDeTouchesFX chargeur = new ChargeurDeTouchesFX();
@@ -18,6 +19,7 @@ public class RecuperateurDeTouchesFX extends RecuperateurDeTouches implements Ev
     public RecuperateurDeTouchesFX(String fichier, Scene scene) {
         sceneCourante = scene;
         dicoTouches = chargeur.recupereTouches(fichier);
+
     }
 
     public Map<KeyCode, Touche> getDicoTouches() {
@@ -47,11 +49,14 @@ public class RecuperateurDeTouchesFX extends RecuperateurDeTouches implements Ev
 
     @Override
     public void handle(Event event) {
+        System.out.println("OUI2");
         sceneCourante.addEventHandler(KeyEvent.KEY_PRESSED, (cle) -> {
             KeyCode touche = cle.getCode();
             if (dicoTouches.containsKey(touche)) {
                 lesTouchesPressees.add(dicoTouches.get(touche));
             }
+
+
         });
 
         sceneCourante.addEventHandler(KeyEvent.KEY_RELEASED, (cle) -> {

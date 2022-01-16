@@ -10,7 +10,6 @@ import java.net.URL;
 
 public class Navigateur implements Observateur {
 
-
     private Scene main;
     private Parent parent;
 

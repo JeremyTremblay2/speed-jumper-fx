@@ -2,7 +2,8 @@ package com.jeremyantoine.speedjumper.donnees;
 
 import com.jeremyantoine.speedjumper.logique.Dimension;
 
-import java.net.URL;
+import java.io.File;
+import java.net.URISyntaxException;
 import java.util.*;
 
 public class CollectionRessources {
@@ -17,10 +18,32 @@ public class CollectionRessources {
                 new Dimension(64, 64));
     }
 
-    private static final List<String> lesEntites = new ArrayList<>();
+
+
+    private static final List<String> leJoueurF = new ArrayList<>();
     static {
-        lesEntites.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/perso.png")).toExternalForm());
+        File[] f = new File[0];
+        try {
+            f = new File(Objects.requireNonNull(CollectionRessources.class.getResource("/images/personnages/perso1/")).toURI()).listFiles();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        //voir ce que fais assert
+        assert f != null;
+        for (File file : f ){
+            leJoueurF.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/personnages/perso1/"+file.getName())).toExternalForm());
+
+        }
     }
+
+
+    private static final List<List<String>> leJoueur = new ArrayList<>();
+    static {
+        leJoueur.add(leJoueurF);
+    }
+
+
 
     private static final String recuperateurDeTouches = Objects.requireNonNull(CollectionRessources.class.getResource("/touches.txt")).getPath();
 
@@ -32,11 +55,17 @@ public class CollectionRessources {
         return lesJeuxDeTuiles;
     }
 
-    public static List<String> getLesEnnemis() {
+    /*public static List<String> getLesEnnemis() {
         return lesEntites;
+    }*/
+
+    public  static  List<List<String>> getLeJoueur(){
+        //A voir si c'est bon
+        return leJoueur;
     }
 
     public static String getRecuperateurDeTouches() {
         return recuperateurDeTouches;
     }
-}
+
+    }

@@ -14,39 +14,35 @@ import com.jeremyantoine.speedjumper.monde.CameraCarteTuiles;
 import com.jeremyantoine.speedjumper.monde.Niveau;
 import com.jeremyantoine.speedjumper.monde.Tuile;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class FenetreJeu {
+
+
     private Stage stage;
     @FXML
     private GridPane grille;
-    private ImageView[][] lesTuilesDuPane;
 
-    private Jeu jeu;
-    private EtatDeJeu etatCourant;
-    private Niveau niveauCourant;
-    private HashMap<Tuile, Image> lestuilesImagees;
-    private List<Entite> lesEntites;
+    private final HashMap<Tuile, Image> lestuilesImagees;
+
     private CameraCarteTuiles camera;
     private PersonnageJouable joueur;
 
-    private GestionnaireDeRessourcesFX gestionnaireDeRessources;
-
-    private int largeurCamera;
-    private int hauteurCamera;
+    private final GestionnaireDeRessourcesFX gestionnaireDeRessources;
 
 
     public FenetreJeu() {
         gestionnaireDeRessources = new GestionnaireDeRessourcesFX();
         lestuilesImagees = new HashMap<>();
+
     }
 
     public void setStage(Stage stage) {
@@ -55,10 +51,14 @@ public class FenetreJeu {
     }
 
     private void initialisation() {
+        Scene uneScene = stage.getScene();
+
         RecuperateurDeTouches recuperateur = new RecuperateurDeTouchesFX(CollectionRessources.getRecuperateurDeTouches(),
-                stage.getScene());
-        jeu = new JeuFX(recuperateur);
-        etatCourant = jeu.getManagerEtats().getEtatCourant();
+                uneScene);
+
+        Jeu jeu = new JeuFX(recuperateur);
+        System.out.println(recuperateur.getLesTouchesPressees());
+        EtatDeJeu etatCourant1 = jeu.getManagerEtats().getEtatCourant();
         try {
             gestionnaireDeRessources.charge();
         } catch (Exception e) {
@@ -67,10 +67,10 @@ public class FenetreJeu {
         List<Tuile> lestuiles;
         List<Image> lesimages;
 
-        if (etatCourant instanceof EtatDeJeuJoue etatCourant) {
-            niveauCourant = etatCourant.getNiveauCourant();
+        if (etatCourant1 instanceof EtatDeJeuJoue etatCourant) {
+            Niveau niveauCourant = etatCourant.getNiveauCourant();
             camera = etatCourant.getCamera();
-            lesEntites = niveauCourant.getLesEntites();
+            List<Entite> lesEntites = niveauCourant.getLesEntites();
             joueur = etatCourant.getJoueur();
             lestuiles = etatCourant.getGestionnaireDeRessources().getLesTuiles();
             lesimages = gestionnaireDeRessources.getLesTuilesImagees();
@@ -84,23 +84,21 @@ public class FenetreJeu {
             throw new IllegalStateException("Le jeu doit normalement se trouver en état de jeu au démarrage de la fenêtre");
         }
 
-
-
-        System.out.println("coucou");
+        initialiserPerso();
     }
 
     private void initialisationGrille() {
-        largeurCamera = (int) camera.getZoneVisuelle().getLargeur();
-        hauteurCamera = (int) camera.getZoneVisuelle().getHauteur();
-        lesTuilesDuPane = new ImageView[hauteurCamera][largeurCamera];
+        int largeurCamera = (int) camera.getZoneVisuelle().getLargeur();
+        int hauteurCamera = (int) camera.getZoneVisuelle().getHauteur();
+        ImageView[][] lesTuilesDuPane = new ImageView[hauteurCamera][largeurCamera];
 
-        System.out.println(camera);
+        //System.out.println(camera);
 
         for (int x = 0; x < hauteurCamera; x++) {
             for (int y = 0; y < largeurCamera; y++) {
                 ImageView image = new ImageView();
                 image.setImage(lestuilesImagees.get(camera.getTuile(x, y)));
-                System.out.print(camera.getTuile(x, y).getIdTuile() + " ");
+                //System.out.print(camera.getTuile(x, y).getIdTuile() + " ");
                 lesTuilesDuPane[x][y] = image;
                 grille.add(lesTuilesDuPane[x][y], y, x);
             }
@@ -108,6 +106,18 @@ public class FenetreJeu {
     }
 
     private void miseAJourGrille() {
+
+    }
+
+    private void initialiserPerso(){
+        ImageView perso = new ImageView();
+        //recuperer image de base
+        //if(choix==homme)
+        perso.setImage(gestionnaireDeRessources.getLeJoueursFImages().get(0));
+
+        grille.add(perso, (int) joueur.getPosition().getX(), (int) joueur.getPosition().getY());
+
+
 
     }
 }
