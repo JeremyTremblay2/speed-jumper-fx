@@ -1,32 +1,28 @@
 package com.jeremyantoine.speedjumper.logique;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+
 import java.util.Objects;
 
 public class Position2D {
 
-    private double x;
-    private double y;
+    private final DoubleProperty x = new SimpleDoubleProperty();
+        public void setX(double x) { this.x.set(x);}
+        public double getX(){return x.get();}
+        public DoubleProperty xProperty(){return  x;}
+
+
+    private final DoubleProperty y = new SimpleDoubleProperty();
+         public void setY(double y) { this.y.set(y);}
+         public double getY(){return y.get();}
+         public DoubleProperty yProperty(){return  y;}
 
     public Position2D(double x, double y) {
-        this.x = x;
-        this.y = y;
+        setX(x);
+        setY(y);
     }
 
-    public double getX() {
-        return x;
-    }
-
-    private void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    private void setY(double y) {
-        this.y = y;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -37,8 +33,8 @@ public class Position2D {
     }
 
     public boolean equals(Position2D position) {
-        return Double.compare(position.x, x) == 0
-                && Double.compare(position.y, y) == 0;
+        return Double.compare(position.getX(), this.getX()) == 0
+                && Double.compare(position.getY(), this.getY()) == 0;
     }
 
     @Override

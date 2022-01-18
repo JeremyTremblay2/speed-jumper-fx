@@ -1,5 +1,6 @@
 package com.jeremyantoine.speedjumper.entrees;
 
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -10,14 +11,15 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
-public class RecuperateurDeTouchesFX extends RecuperateurDeTouches implements EventHandler {
-    private Map<KeyCode, Touche> dicoTouches;
+    public class RecuperateurDeTouchesFX extends RecuperateurDeTouches {
+    private final Map<KeyCode, Touche> dicoTouches;
     private Scene sceneCourante;
-    private ChargeurDeTouchesFX chargeur = new ChargeurDeTouchesFX();
 
-    public RecuperateurDeTouchesFX(String fichier, Scene scene) {
+        public RecuperateurDeTouchesFX(String fichier, Scene scene) {
         sceneCourante = scene;
-        dicoTouches = chargeur.recupereTouches(fichier);
+            ChargeurDeTouchesFX chargeur = new ChargeurDeTouchesFX();
+            dicoTouches = chargeur.recupereTouches(fichier);
+
     }
 
     public Map<KeyCode, Touche> getDicoTouches() {
@@ -45,20 +47,21 @@ public class RecuperateurDeTouchesFX extends RecuperateurDeTouches implements Ev
         return dicoTouches.get(entree);
     }
 
-    @Override
-    public void handle(Event event) {
+    public void detection() {
+
         sceneCourante.addEventHandler(KeyEvent.KEY_PRESSED, (cle) -> {
             KeyCode touche = cle.getCode();
-            if (dicoTouches.containsKey(touche)) {
+            if (dicoTouches.containsKey(touche) && !lesTouchesPressees.contains(dicoTouches.get(touche))){
                 lesTouchesPressees.add(dicoTouches.get(touche));
+                System.out.println(lesTouchesPressees);
             }
         });
 
         sceneCourante.addEventHandler(KeyEvent.KEY_RELEASED, (cle) -> {
             KeyCode touche = cle.getCode();
-            if (dicoTouches.containsKey(touche)) {
-                lesTouchesPressees.add(dicoTouches.get(touche));
-            }
+            lesTouchesPressees.remove(dicoTouches.get(touche));
+            System.out.println(lesTouchesPressees);
+
         });
     }
 }
