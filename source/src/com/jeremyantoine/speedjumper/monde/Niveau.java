@@ -24,15 +24,16 @@ public class Niveau {
     private Fantome fantome;
     private Position2D pointsDepart;
 
-    private ObservableList<Score> lesScoresObservables = FXCollections.observableArrayList();
-        private final ListProperty<Score> lesScores = new SimpleListProperty<>(lesScoresObservables);
-        public ObservableList<Score> getLesScores() {
+    private final ObservableList<Score> lesScoresObservables = FXCollections.observableArrayList();
+
+    private final ListProperty<Score> lesScores = new SimpleListProperty<>(lesScoresObservables);
+        public final ObservableList<Score> getLesScores() {
             return lesScores.get();
         }
-        private void setLesEtudiants(ObservableList<Score> value) {
+        public final void setLesEtudiants(ObservableList<Score> value) {
             lesScores.set(value);
         }
-        public ListProperty<Score> lesScoresProperty() {
+        public final ListProperty<Score> lesScoresProperty() {
             return lesScores;
         }
 

@@ -1,5 +1,6 @@
 package com.jeremyantoine.speedjumper.controleurs;
 
+import com.jeremyantoine.speedjumper.jeu.Jeu;
 import com.jeremyantoine.speedjumper.utilitaire.Navigateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,7 +8,7 @@ import javafx.fxml.FXML;
 public class MenuPause {
     private Navigateur navigateur;
 
-    public MenuPause(Navigateur navigateur) throws IllegalArgumentException {
+    public MenuPause(Navigateur navigateur, Jeu jeu) throws IllegalArgumentException {
         if (navigateur == null) {
             throw new IllegalArgumentException("Le navigateur passé en paramètre ne peut pas être null.");
         }

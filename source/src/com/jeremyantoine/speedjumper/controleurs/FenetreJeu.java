@@ -45,11 +45,12 @@ public class FenetreJeu implements Observateur {
     private int hauteurCamera;
 
 
-    public FenetreJeu(Navigateur navigateur) {
-        if (navigateur == null) {
-            throw new IllegalArgumentException("Le navigateur passé en paramètre ne peut aps être null.");
+    public FenetreJeu(Navigateur navigateur, Jeu jeu) {
+        if (navigateur == null || jeu == null) {
+            throw new IllegalArgumentException("Le navigateur ou le jeu passé en paramètre ne peut pas être null.");
         }
         this.navigateur = navigateur;
+        this.jeu = jeu;
 
         ressources = CollectionRessources.getInstance();
         gestionnaireDeRessources = new GestionnaireDeRessourcesFX();
@@ -66,8 +67,6 @@ public class FenetreJeu implements Observateur {
     }
 
     private void initialisation() {
-        RecuperateurDeTouches recuperateur = new RecuperateurDeTouchesFX(ressources.getFichierConfigurationTouches(), scene);
-        jeu = new JeuFX(recuperateur);
         etatCourant = jeu.getManagerEtats().getEtatCourant();
         try {
             gestionnaireDeRessources.charge();

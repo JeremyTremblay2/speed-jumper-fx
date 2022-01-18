@@ -1,20 +1,49 @@
 package com.jeremyantoine.speedjumper.controleurs;
 
+import com.jeremyantoine.speedjumper.jeu.EtatDeJeuJoue;
+import com.jeremyantoine.speedjumper.jeu.Jeu;
+import com.jeremyantoine.speedjumper.logique.Score;
 import com.jeremyantoine.speedjumper.monde.Niveau;
 import com.jeremyantoine.speedjumper.utilitaire.Navigateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 
 public class MenuDebutNiveau {
     private Navigateur navigateur;
+    private Jeu jeu;
     private Niveau niveau;
 
-    public MenuDebutNiveau(Navigateur navigateur, Niveau niveau) throws IllegalArgumentException {
-        if (niveau == null || navigateur == null) {
-            throw new IllegalArgumentException("Le navigateur ou le niveau passé en paramètre ne peuvent pas être null.");
+    @FXML
+    private ListView<Score> laListeDeScores;
+
+    public MenuDebutNiveau(Navigateur navigateur, Jeu jeu) throws IllegalArgumentException {
+        if (jeu == null || navigateur == null) {
+            throw new IllegalArgumentException("Le navigateur ou le jeu passé en paramètre ne peuvent pas être null.");
         }
         this.navigateur = navigateur;
-        this.niveau = niveau;
+        this.jeu = jeu;
+    }
+
+    @FXML
+    public void initialize() {
+        laListeDeScores.itemsProperty().bind(((EtatDeJeuJoue) (jeu.getManagerEtats().getEtatCourant())).getNiveauCourant().lesScoresProperty());
+
+        laListeDeScores.setCellFactory(__ -> new ListCell<>(){
+            @Override
+            protected void updateItem(Score score, boolean present) {
+                super.updateItem(score, present);
+                if (!present) {
+                    textProperty().bind(score.pseudoProperty().concat("     ").concat(score.scoreProperty()));
+                    setStyle("-fx-background-color : green;");
+                }
+                else {
+                    textProperty().unbind();
+                    setText("");
+                }
+            }
+        });
     }
 
     @FXML
@@ -24,7 +53,7 @@ public class MenuDebutNiveau {
 
     @FXML
     public void ouvertureJeu(ActionEvent event) {
-        FenetreJeu fenetre = new FenetreJeu(navigateur);
+        FenetreJeu fenetre = new FenetreJeu(navigateur, jeu);
         navigateur.naviguerVers(fenetre.getScene());
     }
 }
