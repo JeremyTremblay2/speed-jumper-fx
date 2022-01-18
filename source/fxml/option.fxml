@@ -10,7 +10,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
-<GridPane alignment="TOP_CENTER" minHeight="1080" minWidth="1920" stylesheets="../style/styleOption.css" id="background" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jeremyantoine.speedjumper.Jeu.Options">
+<GridPane alignment="TOP_CENTER" minHeight="1080" minWidth="1920"
+          stylesheets="style/styleOption.css" id="background"
+          xmlns="http://javafx.com/javafx/11.0.2"
+          xmlns:fx="http://javafx.com/fxml/1">
     <rowConstraints>
         <RowConstraints/>
         <RowConstraints/>
@@ -19,7 +22,6 @@
     </rowConstraints>
 
     <Label text="Option" id="titre" GridPane.rowIndex="0"/>
-
 
     <GridPane GridPane.rowIndex="1">
         <GridPane.margin>
@@ -56,10 +58,10 @@
     </GridPane>
 
 
-    <Button GridPane.rowIndex="3" fx:id="boutonHome" onAction="#retourAccueil">
+    <Button GridPane.rowIndex="3" fx:id="boutonHome" onAction="#retourMenu">
         <graphic>
             <ImageView fitWidth="70" preserveRatio="true" >
-                <Image url="../images/logo/home.png"/>
+                <Image url="images/logo/home.png"/>
             </ImageView>
         </graphic>
     </Button>

@@ -7,7 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/styles" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/tests_unitaires" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/vues" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/fxml" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/java/com" />
       <excludeFolder url="file://$MODULE_DIR$/java/com/jeremyantoine" />
     </content>
