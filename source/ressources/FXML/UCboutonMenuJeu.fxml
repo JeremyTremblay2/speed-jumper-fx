@@ -12,7 +12,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
-<GridPane alignment="TOP_CENTER" stylesheets="styleChoixNiveau.css" id="background" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="com.jeremyantoine.speedjumper.Jeu.MenuJouer">
+<GridPane alignment="TOP_CENTER" stylesheets="../style/styleChoixNiveau.css" id="background" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jeremyantoine.speedjumper.controleurs.MenuJouer">
     <rowConstraints>
         <RowConstraints/>
         <RowConstraints/>
@@ -55,14 +55,14 @@
         <Button GridPane.columnIndex="0"  alignment="BOTTOM_LEFT" fx:id="boutonAcceuil" onAction="#ouvertureAccueil">
             <graphic>
                 <ImageView fitWidth="70" preserveRatio="true">
-                    <Image url="images/logo/home.png"/>
+                    <Image url="../images/logo/home.png"/>
                 </ImageView>
             </graphic>
         </Button>
         <Button GridPane.columnIndex="1"  alignment="BOTTOM_RIGHT">
             <graphic>
                 <ImageView fitWidth="70" preserveRatio="true">
-                    <Image url="images/logo/r-arrow.png"/>
+                    <Image url="../images/logo/r-arrow.png"/>
                 </ImageView>
             </graphic>
         </Button>

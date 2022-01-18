@@ -1,16 +1,12 @@
-package com.jeremyantoine.speedjumper.Jeu;
+package com.jeremyantoine.speedjumper.controleurs;
 
-import com.jeremyantoine.speedjumper.jeu.Sujet;
+import com.jeremyantoine.speedjumper.observateurs.Sujet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 
 public class MenuPrincipal extends Sujet {
     @FXML

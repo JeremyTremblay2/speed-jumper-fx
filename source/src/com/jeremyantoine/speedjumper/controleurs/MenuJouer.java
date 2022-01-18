@@ -1,4 +1,4 @@
-package com.jeremyantoine.speedjumper.Jeu;
+package com.jeremyantoine.speedjumper.controleurs;
 
 
 import javafx.event.ActionEvent;
@@ -25,7 +25,7 @@ public class MenuJouer {
         //A modifier car peut etre pas ube window . Creer classe gerer changement de scene
         Stage stage = null;
 
-        URL vueJouer = getClass().getResource("/menuPrincipal.fxml");
+        URL vueJouer = getClass().getResource("/FXML/menuPrincipal.fxml");
 
         if (vueJouer == null) {
             throw new IOException("Le fichier de la vue  n a pas été trouvé.");

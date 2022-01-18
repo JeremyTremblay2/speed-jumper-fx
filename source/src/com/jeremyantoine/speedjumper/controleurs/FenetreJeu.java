@@ -1,4 +1,4 @@
-package com.jeremyantoine.speedjumper.fenetres;
+package com.jeremyantoine.speedjumper.controleurs;
 
 import com.jeremyantoine.speedjumper.donnees.CollectionRessources;
 import com.jeremyantoine.speedjumper.donnees.GestionnaireDeRessourcesFX;
@@ -10,20 +10,22 @@ import com.jeremyantoine.speedjumper.jeu.*;
 import com.jeremyantoine.speedjumper.monde.CameraCarteTuiles;
 import com.jeremyantoine.speedjumper.monde.Niveau;
 import com.jeremyantoine.speedjumper.monde.Tuile;
-import javafx.fxml.FXML;
+import com.jeremyantoine.speedjumper.observateurs.Observateur;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
+import javafx.scene.layout.StackPane;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class FenetreJeu implements Observateur {
-    private Stage stage;
-    @FXML
+    private Scene scene;
+    private StackPane lesCouches;
     private GridPane grille;
     private ImageView[][] lesTuilesDuPane;
+    private ImageView imageJoueur;
 
     private Jeu jeu;
     private EtatDeJeu etatCourant;
@@ -33,6 +35,7 @@ public class FenetreJeu implements Observateur {
     private CameraCarteTuiles camera;
     private PersonnageJouable joueur;
 
+    private CollectionRessources ressources;
     private GestionnaireDeRessourcesFX gestionnaireDeRessources;
 
     private int largeurCamera;
@@ -40,19 +43,23 @@ public class FenetreJeu implements Observateur {
 
 
     public FenetreJeu() {
+        ressources = CollectionRessources.getInstance();
         gestionnaireDeRessources = new GestionnaireDeRessourcesFX();
         lestuilesImagees = new HashMap<>();
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
+        grille = new GridPane();
+        lesCouches = new StackPane();
+        scene = new Scene(lesCouches);
+        lesCouches.getChildren().add(grille);
+        FenetrePrincipale.getStage().setScene(scene);
         initialisation();
     }
 
+    public Scene getScene() {
+        return scene;
+    }
+
     private void initialisation() {
-        CollectionRessources ressources = CollectionRessources.getInstance();
-        RecuperateurDeTouches recuperateur = new RecuperateurDeTouchesFX(ressources.getRecuperateurDeTouches(),
-                stage.getScene());
+        RecuperateurDeTouches recuperateur = new RecuperateurDeTouchesFX(ressources.getFichierConfigurationTouches(), scene);
         jeu = new JeuFX(recuperateur);
         etatCourant = jeu.getManagerEtats().getEtatCourant();
         try {
@@ -62,6 +69,9 @@ public class FenetreJeu implements Observateur {
         }
         List<Tuile> lestuiles;
         List<Image> lesimages;
+
+        imageJoueur = new ImageView(new Image(ressources.getLesEntites().get(0)));
+        lesCouches.getChildren().add(imageJoueur);
 
         if (etatCourant instanceof EtatDeJeuJoue etatCourant) {
             etatCourant.attacher(this);
@@ -87,7 +97,7 @@ public class FenetreJeu implements Observateur {
         hauteurCamera = (int) camera.getZoneVisuelle().getHauteur();
         lesTuilesDuPane = new ImageView[hauteurCamera][largeurCamera];
 
-        //System.out.println(camera);
+        System.out.println(scene);
 
         for (int x = 0; x < hauteurCamera; x++) {
             for (int y = 0; y < largeurCamera; y++) {

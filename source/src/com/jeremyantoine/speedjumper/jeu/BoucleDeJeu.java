@@ -1,5 +1,7 @@
 package com.jeremyantoine.speedjumper.jeu;
 
+import com.jeremyantoine.speedjumper.observateurs.Sujet;
+
 public class BoucleDeJeu extends Sujet implements Runnable {
     public static final long NOMBRE_MILLISECONDES_AVANT_NOTIFICATION = 1000000000 / 60;
     private boolean enCours = true;

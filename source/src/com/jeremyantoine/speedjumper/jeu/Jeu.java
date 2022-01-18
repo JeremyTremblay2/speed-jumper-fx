@@ -1,6 +1,7 @@
 package com.jeremyantoine.speedjumper.jeu;
 
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
+import com.jeremyantoine.speedjumper.observateurs.Observateur;
 
 public abstract class Jeu implements Observateur {
     private static final int FPS_CIBLE = 60;

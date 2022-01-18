@@ -1,4 +1,4 @@
-package com.jeremyantoine.speedjumper.jeu;
+package com.jeremyantoine.speedjumper.observateurs;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.jeremyantoine.speedjumper.Jeu;
+package com.jeremyantoine.speedjumper.launcheur;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,22 +8,20 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.concurrent.ExecutionException;
 
-public class Fenetre extends Application {
+public class Launcher extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        URL vueMenu = getClass().getResource("/menuPrincipal.fxml");
+        URL vueMenu = getClass().getResource("/FXML/menuPrincipal.fxml");
         if (vueMenu == null) {
             throw new IOException("Le fichier de la vue du menu principal n a pas été trouvé.");
         }
 
         Parent parent = FXMLLoader.load(vueMenu);
         Scene scene = new Scene(parent);
-        scene.getStylesheets().getClass().getResource("../styles/styleMenuPrincipal.css");
+        scene.getStylesheets().getClass().getResource("style/styleMenuPrincipal.css");
         stage.setScene(scene);
         stage.show();
-        //new Jeu();
     }
 
     public static void main(String[] args) {

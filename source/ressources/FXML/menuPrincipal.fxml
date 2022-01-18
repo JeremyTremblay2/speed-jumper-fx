@@ -7,13 +7,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<VBox stylesheets="styleMenuPrincipal.css" minHeight="1080" minWidth="1920"
+<VBox stylesheets="../style/styleMenuPrincipal.css" minHeight="1080" minWidth="1920"
       alignment="TOP_CENTER"
       xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.jeremyantoine.speedjumper.Jeu.MenuPrincipal" id="background">
+      fx:controller="com.jeremyantoine.speedjumper.controleurs.MenuPrincipal" id="background">
 
-    <!--  fx:controller="com.jeremyantoine.speedjumper.fenetres.FenetrePrincipale" id="background"> -->
+    <!--  fx:controller="com.jeremyantoine.speedjumper.controleurs.FenetrePrincipale" id="background"> -->
 
 
 
@@ -44,7 +44,7 @@
             <Button fx:id="boutonOptions" onAction="#ouvrirOptions">
                 <graphic>
                     <ImageView fitWidth="70" preserveRatio="true">
-                        <Image url="images/logo/gear.png"/>
+                        <Image url="../images/logo/gear.png"/>
                     </ImageView>
                 </graphic>
             </Button>
