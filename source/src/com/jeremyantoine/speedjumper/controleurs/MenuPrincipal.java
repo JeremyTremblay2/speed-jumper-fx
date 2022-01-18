@@ -5,7 +5,6 @@ import com.jeremyantoine.speedjumper.donnees.NomFenetre;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouchesFX;
 import com.jeremyantoine.speedjumper.jeu.Jeu;
-import com.jeremyantoine.speedjumper.jeu.JeuFX;
 import com.jeremyantoine.speedjumper.observateurs.Sujet;
 import com.jeremyantoine.speedjumper.utilitaire.Navigateur;
 import javafx.event.ActionEvent;
@@ -21,7 +20,7 @@ public class MenuPrincipal extends Sujet {
         this.navigateur = navigateur;
         CollectionRessources ressources = CollectionRessources.getInstance();
         RecuperateurDeTouches recuperateur = new RecuperateurDeTouchesFX(ressources.getFichierConfigurationTouches(), navigateur.getSceneCourante());
-        jeu = new JeuFX(recuperateur);
+        jeu = new Jeu(recuperateur);
     }
 
     public void fermetureFenetre(ActionEvent actionEvent) {
@@ -29,12 +28,13 @@ public class MenuPrincipal extends Sujet {
     }
 
     public void ouvrirMenuJeu(ActionEvent event) {
+        System.out.println("ouverture menu jeu");
         MenuJouer menu = new MenuJouer(navigateur, jeu);
         navigateur.naviguerVers(NomFenetre.MENU_JOUER, menu);
     }
 
     public void ouvrirOptions(ActionEvent event) {
         MenuOptions menu = new MenuOptions(navigateur, jeu);
-        navigateur.naviguerVers(NomFenetre.MENU_JOUER, menu);
+        navigateur.naviguerVers(NomFenetre.MENU_OPTIONS, menu);
     }
 }

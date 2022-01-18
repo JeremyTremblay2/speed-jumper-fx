@@ -34,17 +34,17 @@ public class Score implements Comparable<Score> {
             this.pseudo.set(pseudo);
         }
 
-    public Score(int score, String pseudo) {
+    public Score(String pseudo, int score) {
         this.score.set(score);
         this.pseudo.set(pseudo);
     }
 
     public Score(int score) {
-        this(score, PSEUDO_PAR_DEFAUT);
+        this(PSEUDO_PAR_DEFAUT, score);
     }
 
     public Score() {
-        this(0, PSEUDO_PAR_DEFAUT);
+        this(PSEUDO_PAR_DEFAUT, 0);
     }
 
     public void augmenterScore(Piece piece) {

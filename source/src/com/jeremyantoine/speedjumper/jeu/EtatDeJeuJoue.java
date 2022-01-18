@@ -19,46 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EtatDeJeuJoue extends EtatDeJeu {
-    private static final Dimension DIMENSION_CAMERA_PAR_DEFAUT = new Dimension(24, 16);
-    private GestionnaireDeRessources gestionnaireDeRessources;
-    private GestionnaireActionUtilisateur gestionnaireActions;
-    private List<Niveau> lesNiveaux = new ArrayList<>();
-    private PersonnageJouable joueur;
-    private Niveau niveauCourant;
-    private CameraCarteTuiles camera;
 
-    public EtatDeJeuJoue(RecuperateurDeTouches recuperateur) {
-        gestionnaireDeRessources = new GestionnaireDeRessources(new AdaptateurChargeurDeCarteTiledCSV(","),
-                new ChargeurDeJeuxDeTuilesTextuel());
-        initialisation();
-        gestionnaireActions = new GestionnaireActionUtilisateurJeu(recuperateur, niveauCourant);
-    }
-
-    public boolean isGameOver() {
-        return joueur.getPointsDeVie() <= 0;
-    }
-
-    public Niveau getNiveauCourant() {
-        return niveauCourant;
-    }
-
-    public void setNiveauCourant(int niveau) {
-        niveauCourant = lesNiveaux.get(niveau);
-        camera.changeCarte(niveauCourant.getCarte());
-        joueur.setPointsDeVie(joueur.getPointsDeViesInitiaux());
-        joueur.setPosition(niveauCourant.getPointsDepart());
-    }
-
-    public PersonnageJouable getJoueur() {
-        return joueur;
-    }
-
-    public CameraCarteTuiles getCamera() {
-        return camera;
-    }
-
-    public GestionnaireDeRessources getGestionnaireDeRessources() {
-        return gestionnaireDeRessources;
+    public EtatDeJeuJoue(TableauJeu jeu, RecuperateurDeTouches recuperateur) throws IllegalArgumentException {
+        super(jeu, recuperateur);
     }
 
     @Override
@@ -68,7 +31,7 @@ public class EtatDeJeuJoue extends EtatDeJeu {
             action.execute(joueur, temps);
         }
 
-        if (isGameOver()) {
+        if (jeu.isGameOver()) {
             return EtatJeu.ETAT_JEU_PERDU;
         }
         return null;
@@ -106,34 +69,5 @@ public class EtatDeJeuJoue extends EtatDeJeu {
         }
 
         niveauCourant.getOmbre().ajouterPosition(joueur.getPosition());
-    }
-
-    private void initialisation() {
-        List<Carte2D> lesCartes = new ArrayList<>();
-        Niveau niveau;
-
-        try {
-            gestionnaireDeRessources.charge();
-            lesCartes = gestionnaireDeRessources.getLesCartes();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        for (Carte2D carte : lesCartes) {
-            niveau = new Niveau(carte, null, null, new ArrayList<>(), new Position2D(100, 400));
-            lesNiveaux.add(niveau);
-        }
-
-        niveauCourant = lesNiveaux.get(0);
-
-        joueur = new PersonnageJouable(new Position2D(1600, 1600),
-                new Rectangle(5, 60, 40, 40),
-                new Dimension(50, 100),
-                new ComportementNull(),
-                2.4,
-                1000,
-                3);
-        camera = new CameraCarteTuiles(niveauCourant.getCarte(), DIMENSION_CAMERA_PAR_DEFAUT);
-        camera.centrerSurEntite(joueur);
     }
 }

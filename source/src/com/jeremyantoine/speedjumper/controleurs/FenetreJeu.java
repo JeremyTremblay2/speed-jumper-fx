@@ -31,7 +31,6 @@ public class FenetreJeu implements Observateur {
     private ImageView imageJoueur;
 
     private Jeu jeu;
-    private EtatDeJeu etatCourant;
     private Niveau niveauCourant;
     private HashMap<Tuile, Image> lestuilesImagees;
     private List<Entite> lesEntites;
@@ -67,10 +66,10 @@ public class FenetreJeu implements Observateur {
     }
 
     private void initialisation() {
-        etatCourant = jeu.getManagerEtats().getEtatCourant();
         try {
             gestionnaireDeRessources.charge();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         List<Tuile> lestuiles;
@@ -79,16 +78,11 @@ public class FenetreJeu implements Observateur {
         imageJoueur = new ImageView(new Image(ressources.getLesEntites().get(0)));
         lesCouches.getChildren().add(imageJoueur);
 
-        if (!(etatCourant instanceof EtatDeJeuJoue etatCourant)) {
-            throw new IllegalStateException("Le jeu doit normalement se trouver en état de jeu au démarrage de la fenêtre");
-        }
-
-        etatCourant.attacher(this);
-        niveauCourant = etatCourant.getNiveauCourant();
-        camera = etatCourant.getCamera();
+        niveauCourant = jeu.getJeu().getNiveauCourant();
+        camera = jeu.getJeu().getCamera();
+        joueur = jeu.getJeu().getJoueur();
+        lestuiles = jeu.getJeu().getGestionnaireDeRessources().getLesTuiles();
         lesEntites = niveauCourant.getLesEntites();
-        joueur = etatCourant.getJoueur();
-        lestuiles = etatCourant.getGestionnaireDeRessources().getLesTuiles();
         lesimages = gestionnaireDeRessources.getLesTuilesImagees();
 
         for (int i = 0; i < lestuiles.size(); i++) {

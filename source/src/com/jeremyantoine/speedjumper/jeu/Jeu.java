@@ -3,24 +3,28 @@ package com.jeremyantoine.speedjumper.jeu;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
 import com.jeremyantoine.speedjumper.observateurs.Observateur;
 
-public abstract class Jeu implements Observateur {
+public class Jeu implements Observateur {
     private static final int FPS_CIBLE = 60;
     private static final double TEMPS_MISE_A_JOUR = 10000000;
     private int compteurFrame = 0;
     private long tempsOrigine = System.nanoTime();
     private boolean joue;
     private ManagerEtatDeJeu managerEtats;
+    private TableauJeu jeu;
 
     public Jeu(RecuperateurDeTouches recuperateur) {
-        managerEtats = new ManagerEtatDeJeu(recuperateur);
+        jeu = new TableauJeu(recuperateur);
+        managerEtats = new ManagerEtatDeJeu(jeu, recuperateur);
         joue = true;
     }
 
-    public ManagerEtatDeJeu getManagerEtats() {
-        return managerEtats;
+    public TableauJeu getJeu() {
+        return jeu;
     }
 
-    public abstract void initialise();
+    public void initialise() {
+
+    }
 
     public void joue() {
         float precedent = System.nanoTime();
@@ -58,5 +62,7 @@ public abstract class Jeu implements Observateur {
 
     }
 
-    public abstract void ferme();
+    public void ferme() {
+
+    }
 }

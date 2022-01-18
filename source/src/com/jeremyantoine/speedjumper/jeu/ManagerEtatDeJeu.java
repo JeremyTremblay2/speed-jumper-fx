@@ -7,8 +7,13 @@ import java.util.*;
 public class ManagerEtatDeJeu {
     private Map<EtatJeu, EtatDeJeu> lesEtats;
     private EtatDeJeu etatCourant;
+    private TableauJeu jeu;
 
-    public ManagerEtatDeJeu(RecuperateurDeTouches recuperateur) {
+    public ManagerEtatDeJeu(TableauJeu jeu, RecuperateurDeTouches recuperateur) throws IllegalArgumentException {
+        if (jeu == null) {
+                throw new IllegalArgumentException("Le tableau de jeu passé en paramètre ne peut pas être null.");
+        }
+        this.jeu = jeu;
         lesEtats = new HashMap<>();
         chargementEtats(recuperateur);
         etatCourant = lesEtats.get(EtatJeu.ETAT_JEU_JOUE);
@@ -22,6 +27,10 @@ public class ManagerEtatDeJeu {
         if (etat != null && !lesEtats.get(etat).equals(etatCourant)) {
             etatCourant = lesEtats.get(etat);
         }
+    }
+
+    public TableauJeu getJeu() {
+        return jeu;
     }
 
     public void entreeUtilisateur(float temps) {
@@ -51,6 +60,7 @@ public class ManagerEtatDeJeu {
     }
 
     private void chargementEtats(RecuperateurDeTouches recuperateur) {
-        lesEtats.put(EtatJeu.ETAT_JEU_JOUE, new EtatDeJeuJoue(recuperateur));
+        lesEtats.put(EtatJeu.ETAT_JEU_JOUE, new EtatDeJeuJoue(jeu, recuperateur));
+        lesEtats.put(EtatJeu.ETAT_MENU_PAUSE, new EtatDeJeuPause(jeu, recuperateur));
     }
 }

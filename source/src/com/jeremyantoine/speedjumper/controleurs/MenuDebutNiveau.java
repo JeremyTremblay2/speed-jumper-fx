@@ -26,9 +26,9 @@ public class MenuDebutNiveau {
         this.jeu = jeu;
     }
 
-    @FXML
     public void initialize() {
-        laListeDeScores.itemsProperty().bind(((EtatDeJeuJoue) (jeu.getManagerEtats().getEtatCourant())).getNiveauCourant().lesScoresProperty());
+        System.out.println("coucu");
+        laListeDeScores.itemsProperty().bind(jeu.getJeu().getNiveauCourant().lesScoresProperty());
 
         laListeDeScores.setCellFactory(__ -> new ListCell<>(){
             @Override
