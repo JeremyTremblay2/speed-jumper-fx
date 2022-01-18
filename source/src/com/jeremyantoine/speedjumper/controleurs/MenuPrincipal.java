@@ -1,15 +1,9 @@
 package com.jeremyantoine.speedjumper.controleurs;
 
-import com.jeremyantoine.speedjumper.donnees.CollectionRessources;
 import com.jeremyantoine.speedjumper.donnees.NomFenetre;
 import com.jeremyantoine.speedjumper.observateurs.Sujet;
 import com.jeremyantoine.speedjumper.utilitaire.Navigateur;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class MenuPrincipal extends Sujet {
     private Navigateur navigateur;

@@ -4,10 +4,10 @@ import com.jeremyantoine.speedjumper.utilitaire.Navigateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-public class MenuOptions {
+public class MenuPause {
     private Navigateur navigateur;
 
-    public MenuOptions(Navigateur navigateur) throws IllegalArgumentException {
+    public MenuPause(Navigateur navigateur) throws IllegalArgumentException {
         if (navigateur == null) {
             throw new IllegalArgumentException("Le navigateur passé en paramètre ne peut pas être null.");
         }
@@ -16,6 +16,12 @@ public class MenuOptions {
 
     @FXML
     public void retourMenu(ActionEvent event) {
+        navigateur.faireDemiTour();
+        navigateur.faireDemiTour();
+    }
+
+    @FXML
+    public void reprendreJeu(ActionEvent event) {
         navigateur.faireDemiTour();
     }
 }

@@ -7,8 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<VBox  minHeight="1080" minWidth="1920"
-      alignment="TOP_CENTER"
+<VBox alignment="TOP_CENTER"
       xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
       id="background"

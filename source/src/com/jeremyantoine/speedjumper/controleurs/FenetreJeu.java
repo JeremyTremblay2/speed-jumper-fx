@@ -11,6 +11,7 @@ import com.jeremyantoine.speedjumper.monde.CameraCarteTuiles;
 import com.jeremyantoine.speedjumper.monde.Niveau;
 import com.jeremyantoine.speedjumper.monde.Tuile;
 import com.jeremyantoine.speedjumper.observateurs.Observateur;
+import com.jeremyantoine.speedjumper.utilitaire.Navigateur;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,6 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class FenetreJeu implements Observateur {
+    private Navigateur navigateur;
+
     private Scene scene;
     private StackPane lesCouches;
     private GridPane grille;
@@ -42,7 +45,12 @@ public class FenetreJeu implements Observateur {
     private int hauteurCamera;
 
 
-    public FenetreJeu() {
+    public FenetreJeu(Navigateur navigateur) {
+        if (navigateur == null) {
+            throw new IllegalArgumentException("Le navigateur passé en paramètre ne peut aps être null.");
+        }
+        this.navigateur = navigateur;
+
         ressources = CollectionRessources.getInstance();
         gestionnaireDeRessources = new GestionnaireDeRessourcesFX();
         lestuilesImagees = new HashMap<>();
@@ -50,7 +58,6 @@ public class FenetreJeu implements Observateur {
         lesCouches = new StackPane();
         scene = new Scene(lesCouches);
         lesCouches.getChildren().add(grille);
-        FenetrePrincipale.getStage().setScene(scene);
         initialisation();
     }
 
@@ -73,23 +80,22 @@ public class FenetreJeu implements Observateur {
         imageJoueur = new ImageView(new Image(ressources.getLesEntites().get(0)));
         lesCouches.getChildren().add(imageJoueur);
 
-        if (etatCourant instanceof EtatDeJeuJoue etatCourant) {
-            etatCourant.attacher(this);
-            niveauCourant = etatCourant.getNiveauCourant();
-            camera = etatCourant.getCamera();
-            lesEntites = niveauCourant.getLesEntites();
-            joueur = etatCourant.getJoueur();
-            lestuiles = etatCourant.getGestionnaireDeRessources().getLesTuiles();
-            lesimages = gestionnaireDeRessources.getLesTuilesImagees();
-
-            for (int i = 0; i < lestuiles.size(); i++) {
-                lestuilesImagees.put(lestuiles.get(i), lesimages.get(i));
-            }
-            initialisationGrille();
-        }
-        else {
+        if (!(etatCourant instanceof EtatDeJeuJoue etatCourant)) {
             throw new IllegalStateException("Le jeu doit normalement se trouver en état de jeu au démarrage de la fenêtre");
         }
+
+        etatCourant.attacher(this);
+        niveauCourant = etatCourant.getNiveauCourant();
+        camera = etatCourant.getCamera();
+        lesEntites = niveauCourant.getLesEntites();
+        joueur = etatCourant.getJoueur();
+        lestuiles = etatCourant.getGestionnaireDeRessources().getLesTuiles();
+        lesimages = gestionnaireDeRessources.getLesTuilesImagees();
+
+        for (int i = 0; i < lestuiles.size(); i++) {
+            lestuilesImagees.put(lestuiles.get(i), lesimages.get(i));
+        }
+        initialisationGrille();
     }
 
     private void initialisationGrille() {
@@ -97,7 +103,7 @@ public class FenetreJeu implements Observateur {
         hauteurCamera = (int) camera.getZoneVisuelle().getHauteur();
         lesTuilesDuPane = new ImageView[hauteurCamera][largeurCamera];
 
-        System.out.println(scene);
+        //System.out.println(scene);
 
         for (int x = 0; x < hauteurCamera; x++) {
             for (int y = 0; y < largeurCamera; y++) {
@@ -107,10 +113,6 @@ public class FenetreJeu implements Observateur {
                 grille.add(lesTuilesDuPane[x][y], y, x);
             }
         }
-    }
-
-    private void miseAJourGrille() {
-
     }
 
     @Override

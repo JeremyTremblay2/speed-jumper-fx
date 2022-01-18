@@ -10,7 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
-<GridPane alignment="TOP_CENTER" minHeight="1080" minWidth="1920"
+<GridPane alignment="TOP_CENTER"
           stylesheets="style/styleOption.css" id="background"
           xmlns="http://javafx.com/javafx/11.0.2"
           xmlns:fx="http://javafx.com/fxml/1">
@@ -35,7 +35,7 @@
 
         <Label text="Musique" styleClass="options" GridPane.columnIndex="0"/>
 
-        <Slider  GridPane.columnIndex="1">
+        <Slider GridPane.columnIndex="1">
             <GridPane.margin>
                 <Insets left="20"/>
             </GridPane.margin>

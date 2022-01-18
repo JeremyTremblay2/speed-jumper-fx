@@ -7,6 +7,10 @@ import com.jeremyantoine.speedjumper.logique.Dimension;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 import com.jeremyantoine.speedjumper.logique.Score;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.List;
 
@@ -17,9 +21,20 @@ public class Niveau {
     private Carte2D carte;
     private List<ArrierePlan> lesArrieresPlans;
     private List<Entite> lesEntites;
-    private List<Score> lesScores;
     private Fantome fantome;
     private Position2D pointsDepart;
+
+    private ObservableList<Score> lesScoresObservables = FXCollections.observableArrayList();
+        private final ListProperty<Score> lesScores = new SimpleListProperty<>(lesScoresObservables);
+        public ObservableList<Score> getLesScores() {
+            return lesScores.get();
+        }
+        private void setLesEtudiants(ObservableList<Score> value) {
+            lesScores.set(value);
+        }
+        public ListProperty<Score> lesScoresProperty() {
+            return lesScores;
+        }
 
     public Niveau(Carte2D carte, List<ArrierePlan> arrierePlans, List<Entite> lesEntites, List<Score> lesScores,
                   Position2D pointsDepart) throws IllegalArgumentException {
@@ -34,7 +49,7 @@ public class Niveau {
 
         this.carte = carte;
         lesArrieresPlans = arrierePlans;
-        this.lesScores = lesScores;
+        lesScoresObservables.addAll(lesScores);
         this.lesEntites = lesEntites;
         this.pointsDepart = pointsDepart;
         numeroNiveau = nombreNiveaux;
