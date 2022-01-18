@@ -6,10 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane xmlns="http://javafx.com/javafx"
+<AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.jeremyantoine.speedjumper.fenetres.FenetreJeu"
-            prefHeight="400.0" prefWidth="600.0"
-            fx:id="grille">
+            fx:controller="$CONTROLLER_NAME$"
+            prefHeight="400.0" prefWidth="600.0" >
 
-</GridPane>
+</AnchorPane>
