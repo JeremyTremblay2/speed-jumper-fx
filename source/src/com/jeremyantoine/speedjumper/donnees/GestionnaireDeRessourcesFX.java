@@ -16,16 +16,13 @@ import java.util.Map;
 
 public class GestionnaireDeRessourcesFX {
     private final DecoupeurFX decoupeur = new DecoupeurFX();
-    private final Map<String, Dimension> lesJeuxDeTuiles = CollectionRessources.getLesJeuxDeTuiles();
+    private Map<String, Dimension> lesJeuxDeTuiles = CollectionRessources.getLesJeuxDeTuiles();
     //private List<String> lesEnnemisChemins = CollectionRessources.getLesEnnemis();
     private final List<List<String>> lePersosChemins = CollectionRessources.getLeJoueur();
 
     private final List<Image> lesTuilesImagees;
     private final List<Image> lesEnnemisImages;
     private List<Image> lePersosFImage;
-    private DecoupeurFX decoupeur = new DecoupeurFX();
-    private Map<String, Dimension> lesJeuxDeTuiles;
-    private List<String> lesEnnemisChemins;
 
     private static final int INDEX_PERSO_F = 0;
 
@@ -33,7 +30,7 @@ public class GestionnaireDeRessourcesFX {
     public GestionnaireDeRessourcesFX() {
         CollectionRessources ressources = CollectionRessources.getInstance();
         lesJeuxDeTuiles = ressources.getLesJeuxDeTuiles();
-        lesEnnemisChemins = ressources.getLesEntites();
+        //List<String> lesEnnemisChemins = ressources.getLesEntites();
 
         lesEnnemisImages = new ArrayList<>();
         lesTuilesImagees = new ArrayList<>();

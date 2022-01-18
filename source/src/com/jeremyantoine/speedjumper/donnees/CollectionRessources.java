@@ -10,12 +10,10 @@ public class CollectionRessources {
     private static CollectionRessources instance;
 
     private List<String> lesCartes;
-    private Map<String, Dimension> lesJeuxDeTuiles;
     private List<String> lesEntites;
-    private String recuperateurDeTouches;
+    private static String recuperateurDeTouches;
 
     private CollectionRessources() {
-        lesJeuxDeTuiles = new HashMap<>();
         lesEntites = new ArrayList<>();
         lesCartes = new ArrayList<>();
         recuperateurDeTouches = Objects.requireNonNull(CollectionRessources.class.getResource("/touches.txt")).getPath();
@@ -66,7 +64,7 @@ public class CollectionRessources {
         return lesCartes;
     }
 
-    public Map<String, Dimension> getLesJeuxDeTuiles() {
+    public static Map<String, Dimension> getLesJeuxDeTuiles() {
         return lesJeuxDeTuiles;
     }
 
@@ -79,7 +77,7 @@ public class CollectionRessources {
         return leJoueur;
     }
 
-    public String getRecuperateurDeTouches() {
+    public static String getRecuperateurDeTouches() {
         return recuperateurDeTouches;
     }
 
