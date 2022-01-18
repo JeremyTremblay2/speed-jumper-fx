@@ -1,6 +1,6 @@
 package com.jeremyantoine.speedjumper.utilitaire;
 
-import com.jeremyantoine.speedjumper.jeu.Sujet;
+import com.jeremyantoine.speedjumper.observateurs.Sujet;
 
 import java.util.*;
 

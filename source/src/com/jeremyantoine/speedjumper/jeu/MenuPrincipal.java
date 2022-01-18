@@ -1,5 +1,6 @@
 package com.jeremyantoine.speedjumper.jeu;
 
+import com.jeremyantoine.speedjumper.observateurs.Sujet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

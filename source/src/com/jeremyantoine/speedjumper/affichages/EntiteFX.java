@@ -1,8 +1,7 @@
 package com.jeremyantoine.speedjumper.affichages;
 
 import com.jeremyantoine.speedjumper.entites.Entite;
-import com.jeremyantoine.speedjumper.jeu.Observateur;
-import com.jeremyantoine.speedjumper.monde.Tuile;
+import com.jeremyantoine.speedjumper.observateurs.Observateur;
 import javafx.scene.image.Image;
 
 import java.util.List;

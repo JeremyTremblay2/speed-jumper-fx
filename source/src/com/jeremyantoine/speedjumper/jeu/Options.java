@@ -1,36 +1,64 @@
 package com.jeremyantoine.speedjumper.jeu;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
+import com.jeremyantoine.speedjumper.entites.Entite;
+import com.jeremyantoine.speedjumper.monde.ArrierePlan;
+import com.jeremyantoine.speedjumper.monde.Niveau;
 
-import java.io.IOException;
-import java.net.URL;
+import java.util.Objects;
 
 public class Options {
+    private static final int NIVEAU_MINIMUM_AUDIO = 0;
+    private static final int NIVEAU_MAXIMUM_AUDIO = 100;
+    private boolean homme;
+    private int niveauSon;
+    private int niveauMusique;
 
-    @FXML
-    private Button boutonHome;
+    public Options(boolean sexe, int niveauSon, int niveauMusique) {
+        homme = sexe;
+        niveauSon = Math.max(niveauSon, NIVEAU_MINIMUM_AUDIO);
+        niveauSon = Math.min(niveauSon, NIVEAU_MAXIMUM_AUDIO);
+        niveauMusique = Math.max(niveauMusique, NIVEAU_MINIMUM_AUDIO);
+        niveauMusique = Math.min(niveauMusique, NIVEAU_MAXIMUM_AUDIO);
+        this.niveauSon = niveauSon;
+        this.niveauMusique = niveauMusique;
+    }
 
-    public void retourAccueil(ActionEvent event)throws IOException{
-        Stage stage = null;
+    public int getNiveauSon() {
+        return niveauSon;
+    }
 
-        URL vueJouer = getClass().getResource("/menuPrincipal.fxml");
+    public int getNiveauMusique() {
+        return niveauMusique;
+    }
 
-        if (vueJouer == null) {
-            throw new IOException("Le fichier de la vue  n a pas été trouvé.");
+    public boolean isHomme() {
+        return homme;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Options options = (Options) o;
+        return equals(options);
+    }
+
+    public boolean equals(Options options) {
+        return homme == options.isHomme()
+                && niveauSon == options.getNiveauSon()
+                && niveauMusique == options.getNiveauMusique();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(homme, niveauSon, niveauMusique);
+    }
+
+    @Override
+    public String toString() {
+        if (homme) {
+            return "Sexe : Homme, " + niveauSon + "% son, " + niveauMusique + "% musique";
         }
-
-
-        Parent parent = FXMLLoader.load(vueJouer);
-        Scene scene = new Scene(parent);
-        stage = (Stage) boutonHome.getScene().getWindow();
-
-        stage.setScene(scene);
-        stage.show();
+        return "Sexe : Femme, " + niveauSon + "% son, " + niveauMusique + "% musique";
     }
 }

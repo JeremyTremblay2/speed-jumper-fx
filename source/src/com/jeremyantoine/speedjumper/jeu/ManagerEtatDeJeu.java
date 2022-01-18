@@ -18,6 +18,12 @@ public class ManagerEtatDeJeu {
         return etatCourant;
     }
 
+    public void setEtatCourant(EtatJeu etat) {
+        if (etat != null && !lesEtats.get(etat).equals(etatCourant)) {
+            etatCourant = lesEtats.get(etat);
+        }
+    }
+
     public void entreeUtilisateur(float temps) {
         EtatJeu etat = etatCourant.entreeUtilisateur(temps);
         if (etat != null && !lesEtats.get(etat).equals(etatCourant)) {

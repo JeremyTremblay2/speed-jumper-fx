@@ -1,4 +1,4 @@
-package com.jeremyantoine.speedjumper.jeu;
+package com.jeremyantoine.speedjumper.observateurs;
 
 public interface Observateur {
     void miseAjour();

@@ -1,6 +1,6 @@
 package com.jeremyantoine.speedjumper.affichages;
 
-import com.jeremyantoine.speedjumper.jeu.Observateur;
+import com.jeremyantoine.speedjumper.observateurs.Observateur;
 import com.jeremyantoine.speedjumper.monde.ArrierePlan;
 import javafx.scene.image.Image;
 

@@ -1,5 +1,6 @@
 package com.jeremyantoine.speedjumper.fenetres;
 
+import com.jeremyantoine.speedjumper.controleurs.FenetreJeu;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -12,7 +13,6 @@ public class FenetrePrincipale extends Application {
     public void start(Stage stage) throws IOException {
         FenetrePrincipale.stage = stage;
 
-        FenetreJeu controller = new FenetreJeu(stage);
         stage.show();
 
     }
@@ -24,6 +24,4 @@ public class FenetrePrincipale extends Application {
     public static  Stage getStage() {
         return stage;
     }
-
 }
-

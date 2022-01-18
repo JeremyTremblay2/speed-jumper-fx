@@ -56,7 +56,7 @@
     </GridPane>
 
 
-    <Button GridPane.rowIndex="3" fx:id="boutonHome" onAction="#retourAccueil">
+    <Button GridPane.rowIndex="3" fx:id="boutonHome" onAction="#retourMenu">
         <graphic>
             <ImageView fitWidth="70" preserveRatio="true" >
                 <Image url="images/logo/home.png"/>
