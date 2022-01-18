@@ -1,6 +1,5 @@
-package com.jeremyantoine.speedjumper.Jeu;
+package com.jeremyantoine.speedjumper.jeu;
 
-import com.jeremyantoine.speedjumper.jeu.Observateur;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

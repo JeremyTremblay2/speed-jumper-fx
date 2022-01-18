@@ -12,7 +12,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
-<GridPane alignment="TOP_CENTER" stylesheets="styleChoixNiveau.css" id="background" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="com.jeremyantoine.speedjumper.Jeu.MenuJouer">
+<GridPane alignment="TOP_CENTER" prefHeight="720" prefWidth="1280" stylesheets="styleChoixNiveau.css" id="background" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="com.jeremyantoine.speedjumper.jeu.MenuJouer">
     <rowConstraints>
         <RowConstraints/>
         <RowConstraints/>

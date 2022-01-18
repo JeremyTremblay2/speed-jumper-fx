@@ -1,11 +1,13 @@
 package com.jeremyantoine.speedjumper.fenetres;
 
+import com.jeremyantoine.speedjumper.actions.Deplaceur;
 import com.jeremyantoine.speedjumper.donnees.CollectionRessources;
 import com.jeremyantoine.speedjumper.donnees.GestionnaireDeRessourcesFX;
 import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.entites.PersonnageJouable;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouchesFX;
+import com.jeremyantoine.speedjumper.entrees.Touche;
 import com.jeremyantoine.speedjumper.jeu.EtatDeJeu;
 import com.jeremyantoine.speedjumper.jeu.EtatDeJeuJoue;
 import com.jeremyantoine.speedjumper.jeu.Jeu;
@@ -28,7 +30,7 @@ public class FenetreJeu {
 
 
     private Stage stage;
-    @FXML
+
     private GridPane grille;
 
     private final HashMap<Tuile, Image> lestuilesImagees;
@@ -42,22 +44,23 @@ public class FenetreJeu {
     public FenetreJeu() {
         gestionnaireDeRessources = new GestionnaireDeRessourcesFX();
         lestuilesImagees = new HashMap<>();
-
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
+        grille = new GridPane();
+        FenetrePrincipale.getStage().setScene(new Scene(grille));
         initialisation();
     }
 
     private void initialisation() {
-        Scene uneScene = stage.getScene();
 
-        RecuperateurDeTouches recuperateur = new RecuperateurDeTouchesFX(CollectionRessources.getRecuperateurDeTouches(),
-                uneScene);
+
+        RecuperateurDeTouchesFX recuperateur = new RecuperateurDeTouchesFX(CollectionRessources.getRecuperateurDeTouches(),
+                FenetrePrincipale.getStage().getScene());
+
+        recuperateur.detection();
 
         Jeu jeu = new JeuFX(recuperateur);
-        System.out.println(recuperateur.getLesTouchesPressees());
+
+
+
         EtatDeJeu etatCourant1 = jeu.getManagerEtats().getEtatCourant();
         try {
             gestionnaireDeRessources.charge();
@@ -83,6 +86,7 @@ public class FenetreJeu {
         else {
             throw new IllegalStateException("Le jeu doit normalement se trouver en état de jeu au démarrage de la fenêtre");
         }
+
 
         initialiserPerso();
     }
@@ -111,13 +115,12 @@ public class FenetreJeu {
 
     private void initialiserPerso(){
         ImageView perso = new ImageView();
+
         //recuperer image de base
         //if(choix==homme)
         perso.setImage(gestionnaireDeRessources.getLeJoueursFImages().get(0));
 
         grille.add(perso, (int) joueur.getPosition().getX(), (int) joueur.getPosition().getY());
-
-
 
     }
 }

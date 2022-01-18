@@ -7,3 +7,8 @@ KP_RIGHT : FLECHE_DROITE
 # Des commentaires sont possibles au milieu de la configuration
 KP_UP : FLECHE_HAUT
 KP_DOWN : FLECHE_BAS
+
+LEFT : FLECHE_GAUCHE
+RIGHT : FLECHE_DROITE
+UP : FLECHE_HAUT
+DOWN : FLECHE_BAS

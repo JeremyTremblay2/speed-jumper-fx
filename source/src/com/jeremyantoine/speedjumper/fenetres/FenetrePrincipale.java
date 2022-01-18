@@ -6,22 +6,28 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class FenetrePrincipale extends Application {
+    private static Stage stage;
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/jeu.fxml"));
-        Parent parent = loader.load();
-        FenetreJeu controller = loader.getController();
-        controller.setStage(stage);
-        Scene scene = new Scene(parent);
-        scene.getStylesheets().getClass().getResource("../styles/styleMenuPrincipal.css");
-        stage.setScene(scene);
+        FenetrePrincipale.stage = stage;
+
+        FenetreJeu controller = new FenetreJeu();
         stage.show();
+
     }
 
     public static void main(String[] args) {
         launch(args);
     }
+
+    public static  Stage getStage() {
+        return stage;
+    }
+
 }
+
