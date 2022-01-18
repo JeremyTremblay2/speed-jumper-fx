@@ -120,7 +120,7 @@ public class EtatDeJeuJoue extends EtatDeJeu {
         }
 
         for (Carte2D carte : lesCartes) {
-            niveau = new Niveau(carte, null, null, new Position2D(100, 400));
+            niveau = new Niveau(carte, null, null, new ArrayList<>(), new Position2D(100, 400));
             lesNiveaux.add(niveau);
         }
 

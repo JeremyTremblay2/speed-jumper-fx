@@ -2,6 +2,7 @@ package com.jeremyantoine.speedjumper.donnees;
 
 import com.jeremyantoine.speedjumper.logique.Dimension;
 
+import java.net.URL;
 import java.util.*;
 
 public class CollectionRessources {
@@ -9,7 +10,7 @@ public class CollectionRessources {
 
     private List<String> lesCartes;
     private Map<String, Dimension> lesJeuxDeTuiles;
-    private Map<NomFenetre, String> lesCheminsDesVues;
+    private Map<NomFenetre, URL> lesCheminsDesVues;
 
     private List<String> lesEntites;
     private String fichierConfigurationTouches;
@@ -45,6 +46,10 @@ public class CollectionRessources {
         return fichierConfigurationTouches;
     }
 
+    public Map<NomFenetre, URL> getLesCheminsDesVues() {
+        return lesCheminsDesVues;
+    }
+
     private void ajouterDonnees() {
         fichierConfigurationTouches = Objects.requireNonNull(CollectionRessources.class.getResource("/touches.txt")).getPath();
 
@@ -55,10 +60,10 @@ public class CollectionRessources {
 
         lesEntites.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/perso.png")).toExternalForm());
 
-        lesCheminsDesVues.put(NomFenetre.MENU_JOUER, Objects.requireNonNull(CollectionRessources.class.getResource("/FXML/menuJouer.fxml")).getPath());
-        lesCheminsDesVues.put(NomFenetre.MENU_PRINCIPAL, Objects.requireNonNull(CollectionRessources.class.getResource("/FXML/menuPrincipal.fxml")).getPath());
-        lesCheminsDesVues.put(NomFenetre.MENU_OPTIONS, Objects.requireNonNull(CollectionRessources.class.getResource("/FXML/option.fxml")).getPath());
-        lesCheminsDesVues.put(NomFenetre.MENU_PAUSE, Objects.requireNonNull(CollectionRessources.class.getResource("/FXML/pause.fxml")).getPath());
-        lesCheminsDesVues.put(NomFenetre.UC_BOUTON_MENU_JEU, Objects.requireNonNull(CollectionRessources.class.getResource("/FXML/UCboutonMenuJeu.fxml")).getPath());
+        lesCheminsDesVues.put(NomFenetre.MENU_JOUER, Objects.requireNonNull(CollectionRessources.class.getResource("/FXML/menuJouer.fxml")));
+        lesCheminsDesVues.put(NomFenetre.MENU_PRINCIPAL, Objects.requireNonNull(CollectionRessources.class.getResource("/FXML/menuPrincipal.fxml")));
+        lesCheminsDesVues.put(NomFenetre.MENU_OPTIONS, Objects.requireNonNull(CollectionRessources.class.getResource("/FXML/option.fxml")));
+        lesCheminsDesVues.put(NomFenetre.MENU_PAUSE, Objects.requireNonNull(CollectionRessources.class.getResource("/FXML/pause.fxml")));
+        lesCheminsDesVues.put(NomFenetre.UC_BOUTON_MENU_JEU, Objects.requireNonNull(CollectionRessources.class.getResource("/FXML/UCboutonMenuJeu.fxml")));
     }
 }
