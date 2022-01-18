@@ -3,7 +3,7 @@ package com.jeremyantoine.speedjumper.jeu;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sujet {
+public abstract class Sujet {
     private List<Observateur> lesObservateurs;
 
     public Sujet() {

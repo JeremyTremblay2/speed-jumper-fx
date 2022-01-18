@@ -1,6 +1,5 @@
 package com.jeremyantoine.speedjumper.Jeu;
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,17 +11,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 
-public class MenuJouer {
-
+public class Options {
 
     @FXML
-    private Button boutonAcceuil;
+    private Button boutonHome;
 
-    public void ouvertureAccueil(ActionEvent event)throws IOException {
-
-
-
-        //A modifier car peut etre pas ube window . Creer classe gerer changement de scene
+    public void retourAccueil(ActionEvent event)throws IOException{
         Stage stage = null;
 
         URL vueJouer = getClass().getResource("/menuPrincipal.fxml");
@@ -32,15 +26,11 @@ public class MenuJouer {
         }
 
 
-
-
-
         Parent parent = FXMLLoader.load(vueJouer);
         Scene scene = new Scene(parent);
-        stage = (Stage) boutonAcceuil.getScene().getWindow();
+        stage = (Stage) boutonHome.getScene().getWindow();
 
         stage.setScene(scene);
+        stage.show();
     }
-
-
 }

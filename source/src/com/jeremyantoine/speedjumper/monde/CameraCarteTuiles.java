@@ -56,6 +56,8 @@ public class CameraCarteTuiles extends Camera2D {
         int positionEntiteX = (int) ((entite.getPosition().getX() + entite.getDimension().getLargeur() / 2) / largeurTuile);
         int positionEntiteY = (int) ((entite.getPosition().getY() + entite.getDimension().getHauteur() / 2) / hauteurTuile);
 
+        System.out.println(positionEntiteX + "; " + positionEntiteY);
+
         double milieuEcranX = milieuEcran.getLargeur();
         double milieuEcranY = milieuEcran.getHauteur();
         double nouvellePositionX;
@@ -65,7 +67,7 @@ public class CameraCarteTuiles extends Camera2D {
             nouvellePositionX = 0;
         }
         else if (positionEntiteX > (largeurCarte - milieuEcranX)) {
-            nouvellePositionX = largeurCarte - zoneVisuelle.getLargeur();
+            nouvellePositionX = largeurCarte - zoneVisuelle.getLargeur() + 1;
         }
         else {
             nouvellePositionX = positionEntiteX - milieuEcranX;
@@ -75,7 +77,7 @@ public class CameraCarteTuiles extends Camera2D {
             nouvellePositionY = 0;
         }
         else if (positionEntiteY > (hauteurCarte - milieuEcranY)) {
-            nouvellePositionY = hauteurCarte - zoneVisuelle.getHauteur();
+            nouvellePositionY = hauteurCarte - zoneVisuelle.getHauteur() + 1;
         }
         else {
             nouvellePositionY = positionEntiteY - milieuEcranY;
@@ -87,25 +89,21 @@ public class CameraCarteTuiles extends Camera2D {
 
     @Override
     public void decalage(Direction direction) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("Le système de décalage de la cméra 2D n'est pas implémenté.");
+        throw new ExecutionControl.NotImplementedException("Le système de décalage de la caméra 2D n'est pas implémenté.");
     }
 
     private void miseAJour() throws IndexOutOfBoundsException {
         double largeurCamera = zoneVisuelle.getLargeur();
         double hauteurCamera = zoneVisuelle.getHauteur();
 
-        System.out.println("l : " + vision[0].length + " h : " + vision.length);
-        System.out.println(carteCourante.getDimension());
-        //System.out.println(carteCourante);
+        int positionX = (int) position.getX();
+        int positionY = (int) position.getY();
+        System.out.println(position);
 
         for (int x = 0; x < hauteurCamera; x++) {
             for (int y = 0; y < largeurCamera; y++) {
-                vision[x][y] = carteCourante.getTuile(x, y);
+                vision[x][y] = carteCourante.getTuile(x + positionX, y + positionY);
             }
-            if (x == 9) {
-                System.out.println(Arrays.deepToString(vision));
-            }
-            System.out.println();
         }
     }
 
