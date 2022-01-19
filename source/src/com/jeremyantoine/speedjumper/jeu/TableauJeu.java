@@ -30,7 +30,6 @@ public class TableauJeu {
     }
 
     public boolean isGameOver() {
-        System.out.println(joueur.getPointsDeVie());
         return joueur.getPointsDeVie() <= 0;
     }
 
@@ -72,11 +71,10 @@ public class TableauJeu {
         }
 
         for (Carte2D carte : lesCartes) {
-            niveau = new Niveau(carte, null, null, new ArrayList<>(), new Position2D(100, 400));
+            niveau = new Niveau(carte, null, null, new ArrayList<>(), new Position2D(100, 1200));
             lesNiveaux.add(niveau);
         }
 
-        /*lesNiveaux.add(null);
         lesNiveaux.add(null);
         lesNiveaux.add(null);
         lesNiveaux.add(null);
@@ -91,21 +89,20 @@ public class TableauJeu {
         lesNiveaux.add(null);
         lesNiveaux.add(null);
         lesNiveaux.add(null);
-        lesNiveaux.add(null);*/
+        lesNiveaux.add(null);
+        lesNiveaux.add(null);
 
         niveauCourant = lesNiveaux.get(0);
 
         options = new Options(true, 10, 10);
 
-        joueur = new PersonnageJouable(new Position2D(1600, 1600),
-                new Rectangle(5, 60, 40, 40),
-                new Dimension(50, 100),
+        joueur = new PersonnageJouable(new Position2D(350, 300),
+                new Rectangle(6, 3, 15, 33),
+                new Dimension(24, 36),
                 new ComportementNull(),
-                2.4,
-                1000,
+                0.2,
+                4,
                 3);
-
-        System.out.println(joueur);
 
         niveauCourant.ajouterScore(new Score("Jean-Claude", 10));
         niveauCourant.ajouterScore(new Score("Jean-Marie", 8));

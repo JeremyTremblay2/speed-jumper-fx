@@ -15,9 +15,8 @@ public class Position2D {
             return x.get();
         }
         public DoubleProperty xProperty() {
-            return  x;
+            return x;
         }
-
 
     private final DoubleProperty y = new SimpleDoubleProperty();
          public void setY(double y) {
@@ -27,7 +26,7 @@ public class Position2D {
              return y.get();
          }
          public DoubleProperty yProperty() {
-             return  y;
+             return y;
          }
 
     public Position2D(double x, double y) {

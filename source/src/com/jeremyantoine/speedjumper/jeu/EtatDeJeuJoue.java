@@ -47,7 +47,6 @@ public class EtatDeJeuJoue extends EtatDeJeu {
     }
 
     private void gestionEnnemis(double temps) {
-        System.out.println(joueur);
         for (Entite entite : lesEntites) {
             entite.miseAJour(temps);
         }

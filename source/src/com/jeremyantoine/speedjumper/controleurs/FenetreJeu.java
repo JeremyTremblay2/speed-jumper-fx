@@ -23,7 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FenetreJeu implements Observateur {
-    private static final Dimension DIMENSION_CAMERA_PAR_DEFAUT = new Dimension(25,18);
+    private static final Dimension DIMENSION_CAMERA_PAR_DEFAUT = new Dimension(40,28);
+    private static final float ECHELLE_CARTE = 2;
+
     private Navigateur navigateur;
     private Jeu jeu;
 
@@ -40,12 +42,11 @@ public class FenetreJeu implements Observateur {
 
     private GestionnaireDeRessourcesFX gestionnaireDeRessources;
 
+    private Dimension tailleCaneva;
     private int largeurCamera;
     private int hauteurCamera;
-
     private int largeurTuile;
     private int hauteurTuile;
-
 
     public FenetreJeu(Navigateur navigateur, Jeu jeu) {
         if (navigateur == null || jeu == null) {
@@ -57,15 +58,25 @@ public class FenetreJeu implements Observateur {
         lesTuilesGraphiques = new ArrayList<>();
         lesEntitesGraphiques = new ArrayList<>();
 
+        gestionnaireDeRessources = new GestionnaireDeRessourcesFX();
+        niveauCourant = jeu.getJeu().getNiveauCourant();
+        joueur = jeu.getJeu().getJoueur();
+        camera = new CameraCarteTuilesFX(niveauCourant.getCarte(), DIMENSION_CAMERA_PAR_DEFAUT, lesTuilesGraphiques);
+
+        largeurCamera = (int) camera.getZoneVisuelle().getLargeur();
+        hauteurCamera = (int) camera.getZoneVisuelle().getHauteur();
+        largeurTuile = (int) niveauCourant.getCarte().getDimensionTuiles().getLargeur();
+        hauteurTuile = (int) niveauCourant.getCarte().getDimensionTuiles().getHauteur();
+
+        tailleCaneva = new Dimension((DIMENSION_CAMERA_PAR_DEFAUT.getLargeur() - 2) * (largeurTuile / ECHELLE_CARTE),
+                (DIMENSION_CAMERA_PAR_DEFAUT.getHauteur() - 2) * (largeurTuile / ECHELLE_CARTE));
+
         lesCouches = new StackPane();
-        caneva = new Canvas(1000, 1000);
+        caneva = new Canvas(tailleCaneva.getLargeur(), tailleCaneva.getHauteur());
         scene = new Scene(lesCouches);
         lesCouches.getChildren().add(caneva);
         contexteGraphique = caneva.getGraphicsContext2D();
 
-        gestionnaireDeRessources = new GestionnaireDeRessourcesFX();
-        niveauCourant = jeu.getJeu().getNiveauCourant();
-        joueur = jeu.getJeu().getJoueur();
         initialisation();
     }
 
@@ -74,22 +85,27 @@ public class FenetreJeu implements Observateur {
     }
 
     public void affichage() {
-        System.out.println("dans laffichage'");
+        camera.centrerSurEntite(joueur);
+        contexteGraphique.clearRect(0, 0, tailleCaneva.getLargeur(), tailleCaneva.getHauteur());
 
-        for (int x = 0; x < hauteurCamera; x++) {
-            for (int y = 0; y < largeurCamera; y++) {
+        for (int x = 0; x < hauteurCamera - 1; x++) {
+            for (int y = 0; y < largeurCamera - 1; y++) {
                 contexteGraphique.drawImage(camera.getTuileGraphique(x, y).getImage(),
-                        y * largeurTuile,
-                        x * hauteurTuile,
-                        largeurTuile,
-                        hauteurTuile);
+                        y * (largeurTuile / ECHELLE_CARTE) - camera.getDecalageRelatif().getLargeur() / ECHELLE_CARTE,
+                        x * (hauteurTuile / ECHELLE_CARTE) - camera.getDecalageRelatif().getHauteur() / ECHELLE_CARTE,
+                        largeurTuile / ECHELLE_CARTE,
+                        hauteurTuile / ECHELLE_CARTE);
             }
         }
 
         for (EntiteFX entite : lesEntitesGraphiques) {
             contexteGraphique.drawImage(entite.getImageCourante(),
-                    entite.getEntite().getPosition().getX(),
-                    entite.getEntite().getPosition().getY(),
+                    entite.getEntite().getPosition().getX() / ECHELLE_CARTE
+                            - camera.getPosition().getX() * (largeurTuile / ECHELLE_CARTE)
+                            - camera.getDecalageRelatif().getLargeur() / ECHELLE_CARTE,
+                    entite.getEntite().getPosition().getY() / ECHELLE_CARTE
+                            - camera.getPosition().getY() * (hauteurTuile / ECHELLE_CARTE)
+                            - camera.getDecalageRelatif().getHauteur() / ECHELLE_CARTE,
                     entite.getEntite().getDimension().getLargeur(),
                     entite.getEntite().getDimension().getHauteur());
         }
@@ -122,12 +138,6 @@ public class FenetreJeu implements Observateur {
             e.printStackTrace();
         }
 
-        //Initialiase la détection des touches, le système de notification, et démarre le jeu
-        ((RecuperateurDeTouchesFX) jeu.getManagerEtats().getEtatCourant()
-                .getGestionnaireActions().getRecuperateurDeTouches()).setSceneCourante(scene);
-        jeu.getManagerEtats().setEtatCourant(EtatJeu.ETAT_JEU_JOUE);
-        jeu.getManagerEtats().getEtatCourant().attacher(this);
-
         List<Tuile> lesTuiles;
         List<Entite> lesEntites;
         List<Image> lesTuilesImagees, lesEntitesImagees, lesPersonnagesImages;
@@ -149,14 +159,11 @@ public class FenetreJeu implements Observateur {
             lesEntitesGraphiques.add(new EntiteFX(lesEntites.get(i), lesEntitesImagees));
         }
 
-        camera = new CameraCarteTuilesFX(niveauCourant.getCarte(), DIMENSION_CAMERA_PAR_DEFAUT, lesTuilesGraphiques);
-        camera.centrerSurEntite(joueur);
-
-        largeurCamera = (int) camera.getZoneVisuelle().getLargeur();
-        hauteurCamera = (int) camera.getZoneVisuelle().getHauteur();
-
-        largeurTuile = (int) niveauCourant.getCarte().getDimensionTuiles().getLargeur();
-        hauteurTuile = (int) niveauCourant.getCarte().getDimensionTuiles().getHauteur();
+        //Initialiase la détection des touches, le système de notification, et démarre le jeu
+        ((RecuperateurDeTouchesFX) jeu.getManagerEtats().getEtatCourant()
+                .getGestionnaireActions().getRecuperateurDeTouches()).setSceneCourante(scene);
+        jeu.getManagerEtats().setEtatCourant(EtatJeu.ETAT_JEU_JOUE);
+        jeu.getManagerEtats().getEtatCourant().attacher(this);
 
         affichage();
     }

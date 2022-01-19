@@ -20,6 +20,7 @@ public class CameraCarteTuilesFX extends CameraCarteTuiles {
         }
         this.lesTuilesGraphiques = lesTuilesGraphiques;
         visionGraphique = new TuileFX[(int) zoneVisuelle.getHauteur()][(int) zoneVisuelle.getLargeur()];
+        //visionGraphique = new TuileFX[(int) zoneVisuelle.getLargeur()][(int) zoneVisuelle.getHauteur()];
     }
 
     public TuileFX getTuileGraphique(int x, int y) {

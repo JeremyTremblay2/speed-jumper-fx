@@ -51,15 +51,12 @@ import java.util.Map;
             KeyCode touche = cle.getCode();
             if (dicoTouches.containsKey(touche) && !lesTouchesPressees.contains(dicoTouches.get(touche))){
                 lesTouchesPressees.add(dicoTouches.get(touche));
-                System.out.println(lesTouchesPressees);
             }
         });
 
         sceneCourante.addEventHandler(KeyEvent.KEY_RELEASED, (cle) -> {
             KeyCode touche = cle.getCode();
             lesTouchesPressees.remove(dicoTouches.get(touche));
-            System.out.println(lesTouchesPressees);
-
         });
     }
 }
