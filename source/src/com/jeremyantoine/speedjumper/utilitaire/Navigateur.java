@@ -13,10 +13,10 @@ import java.util.Map;
 import java.util.Stack;
 
 public class Navigateur {
-    private Stage stage;
+    private final Stage stage;
     private Scene sceneCourante;
-    private Stack<Scene> laPileDeScenes;
-    private Map<NomFenetre, URL> vues;
+    private final Stack<Scene> laPileDeScenes;
+    private final Map<NomFenetre, URL> vues;
 
     public Navigateur(Stage stage) throws IllegalArgumentException {
         if (stage == null) {

@@ -1,4 +1,4 @@
-package com.jeremyantoine.speedjumper.fenetres;
+package com.jeremyantoine.speedjumper.controleurs;
 
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
