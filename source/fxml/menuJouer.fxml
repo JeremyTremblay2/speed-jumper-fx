@@ -12,7 +12,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
-<GridPane alignment="TOP_CENTER" prefHeight="720" prefWidth="1280" stylesheets="styleChoixNiveau.css" id="background" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="com.jeremyantoine.speedjumper.jeu.MenuJouer">
+<GridPane alignment="TOP_CENTER" stylesheets="style/styleChoixNiveau.css" id="background"
+          prefHeight="720" prefWidth="1280"
+          xmlns="http://javafx.com/javafx/11.0.2"
+          xmlns:fx="http://javafx.com/fxml/1"
+          fx:id="grille">
     <rowConstraints>
         <RowConstraints/>
         <RowConstraints/>
@@ -30,21 +34,11 @@
         </GridPane.margin>
     </Label>
 
-    <HBox GridPane.rowIndex="1" alignment="CENTER" spacing="200">
+    <HBox fx:id="emplacementBoutons" GridPane.rowIndex="1" alignment="CENTER" spacing="200">
         <GridPane.margin>
             <Insets top="100"/>
         </GridPane.margin>
-        <Button text="Niveau 1" styleClass="niveau"/>
-
-        <Button text="Niveau 2" styleClass="niveau"/>
     </HBox>
-
-    <Button GridPane.rowIndex="2" text="Niveau 3" alignment="CENTER"  styleClass="niveau">
-        <GridPane.margin>
-            <Insets top="30"/>
-        </GridPane.margin>
-
-    </Button>
 
     <GridPane GridPane.rowIndex="3"  alignment="BOTTOM_CENTER" >
         <columnConstraints>
@@ -52,14 +46,14 @@
             <ColumnConstraints hgrow="ALWAYS" halignment="RIGHT"/>
         </columnConstraints>
 
-        <Button GridPane.columnIndex="0"  alignment="BOTTOM_LEFT" fx:id="boutonAcceuil" onAction="#ouvertureAccueil">
+        <Button GridPane.columnIndex="0" alignment="BOTTOM_LEFT" onAction="#retourMenu">
             <graphic>
                 <ImageView fitWidth="70" preserveRatio="true">
                     <Image url="images/logo/home.png"/>
                 </ImageView>
             </graphic>
         </Button>
-        <Button GridPane.columnIndex="1"  alignment="BOTTOM_RIGHT">
+        <Button GridPane.columnIndex="1"  alignment="BOTTOM_RIGHT" fx:id="boutonPageSuivante">
             <graphic>
                 <ImageView fitWidth="70" preserveRatio="true">
                     <Image url="images/logo/r-arrow.png"/>

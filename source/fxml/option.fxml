@@ -10,7 +10,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
-<GridPane alignment="TOP_CENTER" prefHeight="720" prefWidth="1280" stylesheets="styleOption.css"  id="background" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jeremyantoine.speedjumper.jeu.Options">
+<GridPane alignment="TOP_CENTER"
+          stylesheets="style/styleOption.css" id="background"
+          xmlns="http://javafx.com/javafx/11.0.2"
+          xmlns:fx="http://javafx.com/fxml/1"
+          prefHeight="720" prefWidth="1280" >
     <rowConstraints>
         <RowConstraints/>
         <RowConstraints/>
@@ -19,7 +23,6 @@
     </rowConstraints>
 
     <Label text="Option" id="titre" GridPane.rowIndex="0"/>
-
 
     <GridPane GridPane.rowIndex="1">
         <GridPane.margin>
@@ -33,7 +36,7 @@
 
         <Label text="Musique" styleClass="options" GridPane.columnIndex="0"/>
 
-        <Slider  GridPane.columnIndex="1">
+        <Slider GridPane.columnIndex="1">
             <GridPane.margin>
                 <Insets left="20"/>
             </GridPane.margin>

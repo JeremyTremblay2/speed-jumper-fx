@@ -6,7 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<GridPane alignment="TOP_CENTER" prefHeight="720" prefWidth="1280" stylesheets="styleChoixNiveau.css" id="background"
+<GridPane alignment="TOP_CENTER" prefHeight="720" prefWidth="1280" stylesheets="style/styleChoixNiveau.css" id="background"
           xmlns="http://javafx.com/javafx/11.0.2">
     <rowConstraints>
         <RowConstraints/>

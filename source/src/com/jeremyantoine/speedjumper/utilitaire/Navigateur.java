@@ -35,8 +35,8 @@ public class Navigateur {
             throw new IllegalArgumentException("La fenetre spécifiée ne possède pas de fichier FXML");
         }
 
-        chargeur.setLocation(vues.get(fenetre));
         chargeur.setController(controleur);
+        chargeur.setLocation(vues.get(fenetre));
 
         try {
             Parent racine = chargeur.load();
