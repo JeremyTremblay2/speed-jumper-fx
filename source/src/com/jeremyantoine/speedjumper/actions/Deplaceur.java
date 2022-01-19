@@ -43,7 +43,10 @@ public class Deplaceur {
                 nouvellePosition.getY() + entite.getCollision().getPosition().getY(),
                 entite.getCollision().getDimension());
 
-        if (!collisionneur.collisionne(nouvelleCollision, carteCourante)) {
+        if (!collisionneur.collisionne(nouvelleCollision, carteCourante)
+                && nouvellePosition.getX() >= 0 && nouvellePosition.getY() >= 0
+                && nouvellePosition.getX() <= carteCourante.getDimension().getHauteur() * carteCourante.getDimensionTuiles().getLargeur()
+                && nouvellePosition.getY() <= carteCourante.getDimension().getHauteur() * carteCourante.getDimensionTuiles().getHauteur()) {
             entite.setPosition(nouvellePosition);
         }
     }

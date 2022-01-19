@@ -1,7 +1,7 @@
 package com.jeremyantoine.speedjumper.utilitaire;
 
 import com.jeremyantoine.speedjumper.donnees.CollectionRessources;
-import com.jeremyantoine.speedjumper.donnees.NomFenetre;
+import com.jeremyantoine.speedjumper.controleurs.NomFenetre;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

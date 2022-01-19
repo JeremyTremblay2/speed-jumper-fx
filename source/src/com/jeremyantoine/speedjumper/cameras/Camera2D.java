@@ -1,4 +1,4 @@
-package com.jeremyantoine.speedjumper.monde;
+package com.jeremyantoine.speedjumper.cameras;
 
 import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.logique.Dimension;
@@ -8,6 +8,7 @@ import jdk.jshell.spi.ExecutionControl;
 
 public abstract class Camera2D {
     protected Position2D position;
+    protected Dimension decalage;
     protected Dimension zoneVisuelle;
     protected Dimension milieuEcran;
 

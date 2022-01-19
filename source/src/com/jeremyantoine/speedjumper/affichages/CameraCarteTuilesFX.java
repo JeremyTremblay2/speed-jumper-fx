@@ -1,7 +1,7 @@
 package com.jeremyantoine.speedjumper.affichages;
 
 import com.jeremyantoine.speedjumper.observateurs.Observateur;
-import com.jeremyantoine.speedjumper.monde.CameraCarteTuiles;
+import com.jeremyantoine.speedjumper.cameras.CameraCarteTuiles;
 
 import java.util.List;
 

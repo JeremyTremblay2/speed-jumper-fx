@@ -4,21 +4,23 @@ import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.observateurs.Observateur;
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class EntiteFX implements Observateur {
     private Entite entite;
-    private List<List<Image>> lesImages;
+    private List<Image> lesImages;
     private Image imageCourante;
     private int indexImage;
 
-    public EntiteFX(Entite entite, List<List<Image>> lesImages) {
+    public EntiteFX(Entite entite, List<Image> lesImages) {
         if (entite == null) {
             throw new IllegalArgumentException("L'entité passée en paramètre ne peut pas être nulle.");
         }
         this.entite = entite;
-        this.lesImages = lesImages;
+        this.lesImages = lesImages == null ? new ArrayList<>() : lesImages;
+        imageCourante = lesImages != null ? lesImages.get(0) : null;
     }
 
     public Image getImageCourante() {
@@ -29,11 +31,7 @@ public class EntiteFX implements Observateur {
         return entite;
     }
 
-    public int getIndexImage() {
-        return indexImage;
-    }
-
-    public List<List<Image>> getLesImages() {
+    public List<Image> getLesImages() {
         return lesImages;
     }
 

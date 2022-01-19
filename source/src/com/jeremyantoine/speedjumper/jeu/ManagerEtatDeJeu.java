@@ -24,6 +24,10 @@ public class ManagerEtatDeJeu {
         return etatJeuCourant;
     }
 
+    public EtatDeJeu getEtatCourant() {
+        return etatCourant;
+    }
+
     public void setEtatCourant(EtatJeu etat) {
         if (etat != null && !lesEtats.get(etat).equals(etatCourant)) {
             etatCourant = lesEtats.get(etat);

@@ -1,65 +1,67 @@
 package com.jeremyantoine.speedjumper.donnees;
 
 import com.jeremyantoine.speedjumper.logique.Dimension;
-import com.jeremyantoine.speedjumper.monde.Carte2D;
-import com.jeremyantoine.speedjumper.monde.Tuile;
 import com.jeremyantoine.speedjumper.utilitaire.DecoupeurFX;
-import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
 import javafx.scene.image.Image;
 
-import java.io.FileNotFoundException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class GestionnaireDeRessourcesFX {
-    private final DecoupeurFX decoupeur = new DecoupeurFX();
-    private Map<String, Dimension> lesJeuxDeTuiles = CollectionRessources.getLesJeuxDeTuiles();
-    //private List<String> lesEnnemisChemins = CollectionRessources.getLesEnnemis();
-    private final List<List<String>> lePersosChemins = CollectionRessources.getLeJoueur();
+    private DecoupeurFX decoupeur = new DecoupeurFX();
+    private CollectionRessources ressources;
 
-    private final List<Image> lesTuilesImagees;
-    private final List<Image> lesEnnemisImages;
-    private List<Image> lePersosFImage;
+    private Map<String, Dimension> lesJeuxDeTuiles;
+    private List<Image> lesTuilesImagees;
 
-    private static final int INDEX_PERSO_F = 0;
+    private List<String> lesPersonnagesChemins;
+    private List<Image> lesPersonnagesImages;
 
+    private List<String> lesEnnemisChemins;
+    private List<Image> lesEnnemisImages;
 
     public GestionnaireDeRessourcesFX() {
-        CollectionRessources ressources = CollectionRessources.getInstance();
-        lesJeuxDeTuiles = ressources.getLesJeuxDeTuiles();
-        //List<String> lesEnnemisChemins = ressources.getLesEntites();
+        ressources = CollectionRessources.getInstance();
 
-        lesEnnemisImages = new ArrayList<>();
+        lesJeuxDeTuiles = ressources.getLesJeuxDeTuiles();
         lesTuilesImagees = new ArrayList<>();
-        lePersosFImage = new ArrayList<>();
+
+        lesPersonnagesChemins = ressources.getLesJoueurs();
+        lesPersonnagesImages = new ArrayList<>();
+
+        lesEnnemisChemins = ressources.getLesEntites();
+        lesEnnemisImages = new ArrayList<>();
     }
 
     public List<Image> getLesEnnemisImages() {
         return lesEnnemisImages;
     }
 
-    public List<Image> getLeJoueursFImages(){ return lePersosFImage ;}
+    public List<Image> getLesPersonnagesImages() {
+        return lesPersonnagesImages ;
+    }
+
     public List<Image> getLesTuilesImagees() {
         return lesTuilesImagees;
     }
 
     public void charge() throws Exception {
         chargeImagesEntites();
-        chargeImagesPersoF();
+        chargeImagesPersonnages();
         decoupeTuiles();
     }
 
     private void chargeImagesEntites() {
-
+        for (String chemin : lesEnnemisChemins) {
+            lesEnnemisImages.add(new Image(chemin));
+        }
     }
 
 
-    private void chargeImagesPersoF(){
-        for (String chemin : lePersosChemins.get(INDEX_PERSO_F)) {
-            lePersosFImage.add(new Image(chemin));
+    private void chargeImagesPersonnages() {
+        for (String chemin : lesPersonnagesChemins) {
+            lesPersonnagesImages.add(new Image(chemin));
         }
     }
 

@@ -10,7 +10,6 @@ import com.jeremyantoine.speedjumper.logique.Dimension;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 import com.jeremyantoine.speedjumper.logique.Score;
-import com.jeremyantoine.speedjumper.monde.CameraCarteTuiles;
 import com.jeremyantoine.speedjumper.monde.Carte2D;
 import com.jeremyantoine.speedjumper.monde.Niveau;
 
@@ -18,12 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TableauJeu {
-    private static final Dimension DIMENSION_CAMERA_PAR_DEFAUT = new Dimension(24, 16);
     private GestionnaireDeRessources gestionnaireDeRessources;
     private List<Niveau> lesNiveaux = new ArrayList<>();
     private PersonnageJouable joueur;
     private Niveau niveauCourant;
-    private CameraCarteTuiles camera;
     private Options options;
 
     public TableauJeu(RecuperateurDeTouches recuperateur) {
@@ -33,6 +30,7 @@ public class TableauJeu {
     }
 
     public boolean isGameOver() {
+        System.out.println(joueur.getPointsDeVie());
         return joueur.getPointsDeVie() <= 0;
     }
 
@@ -42,7 +40,6 @@ public class TableauJeu {
 
     public void setNiveauCourant(int niveau) {
         niveauCourant = lesNiveaux.get(niveau);
-        camera.changeCarte(niveauCourant.getCarte());
         joueur.setPointsDeVie(joueur.getPointsDeViesInitiaux());
         joueur.setPosition(niveauCourant.getPointsDepart());
     }
@@ -51,16 +48,16 @@ public class TableauJeu {
         return joueur;
     }
 
-    public CameraCarteTuiles getCamera() {
-        return camera;
-    }
-
     public GestionnaireDeRessources getGestionnaireDeRessources() {
         return gestionnaireDeRessources;
     }
 
     public List<Niveau> getLesNiveaux() {
         return lesNiveaux;
+    }
+
+    public Options getOptions() {
+        return options;
     }
 
     private void initialisation() {
@@ -107,8 +104,8 @@ public class TableauJeu {
                 2.4,
                 1000,
                 3);
-        camera = new CameraCarteTuiles(niveauCourant.getCarte(), DIMENSION_CAMERA_PAR_DEFAUT);
-        camera.centrerSurEntite(joueur);
+
+        System.out.println(joueur);
 
         niveauCourant.ajouterScore(new Score("Jean-Claude", 10));
         niveauCourant.ajouterScore(new Score("Jean-Marie", 8));

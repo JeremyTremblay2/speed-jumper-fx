@@ -27,6 +27,7 @@ public class GestionnaireActionUtilisateurJeu extends GestionnaireActionUtilisat
     @Override
     public Commande attribuerAction() {
         lesTouches = recuperateurDeTouches.detecte();
+        System.out.println(lesTouches);
 
         if (lesTouches.contains(Touche.FLECHE_DROITE)) {
             return flecheDroite;

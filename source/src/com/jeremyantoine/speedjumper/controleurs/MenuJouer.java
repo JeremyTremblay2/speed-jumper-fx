@@ -1,16 +1,13 @@
 package com.jeremyantoine.speedjumper.controleurs;
 
 
-import com.jeremyantoine.speedjumper.donnees.NomFenetre;
 import com.jeremyantoine.speedjumper.jeu.Jeu;
 import com.jeremyantoine.speedjumper.utilitaire.Navigateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;

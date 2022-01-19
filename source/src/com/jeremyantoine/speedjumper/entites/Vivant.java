@@ -15,7 +15,7 @@ public abstract class Vivant extends Entite {
     public Vivant(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
                   double velocite, int degats, int pointsDeVie) throws IllegalArgumentException {
         super(position, collision, dimension, comportement, velocite);
-        pointsDeVie = pointsDeVie <= 0 ? POINTS_DE_VIE_PAR_DEFAUT : pointsDeVie;
+        this.pointsDeVie = pointsDeVie <= 0 ? POINTS_DE_VIE_PAR_DEFAUT : pointsDeVie;
         pointsDeViesInitiaux = pointsDeVie;
         this.degats = degats;
         direction = Direction.DROITE;

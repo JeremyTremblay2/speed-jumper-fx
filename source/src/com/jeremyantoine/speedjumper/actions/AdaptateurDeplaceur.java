@@ -12,6 +12,7 @@ public class AdaptateurDeplaceur implements Simulation {
     public AdaptateurDeplaceur(Direction direction, Carte2D carteCourante) {
         this.direction = direction;
         this.carteCourante = carteCourante;
+        deplaceur = new Deplaceur(carteCourante);
     }
 
     public Direction getDirection() {

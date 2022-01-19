@@ -1,7 +1,7 @@
 package com.jeremyantoine.speedjumper.launcheur;
 
 import com.jeremyantoine.speedjumper.controleurs.MenuPrincipal;
-import com.jeremyantoine.speedjumper.donnees.NomFenetre;
+import com.jeremyantoine.speedjumper.controleurs.NomFenetre;
 import com.jeremyantoine.speedjumper.utilitaire.Navigateur;
 import javafx.application.Application;
 import javafx.stage.Stage;
