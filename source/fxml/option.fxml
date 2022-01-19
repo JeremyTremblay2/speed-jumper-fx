@@ -10,6 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
+<?import com.jeremyantoine.speedjumper.controleurs.BoutonSwitch?>
 <GridPane alignment="TOP_CENTER"
           stylesheets="style/styleOption.css" id="background"
           xmlns="http://javafx.com/javafx/11.0.2"
@@ -18,6 +19,7 @@
         <RowConstraints/>
         <RowConstraints/>
         <RowConstraints/>
+        <RowConstraints />
         <RowConstraints />
     </rowConstraints>
 
@@ -35,7 +37,7 @@
 
         <Label text="Musique" styleClass="options" GridPane.columnIndex="0"/>
 
-        <Slider GridPane.columnIndex="1">
+        <Slider fx:id="musique" GridPane.columnIndex="1">
             <GridPane.margin>
                 <Insets left="20"/>
             </GridPane.margin>
@@ -54,11 +56,22 @@
 
         <Label text="Son" styleClass="options" GridPane.columnIndex="0"/>
 
-        <Slider  GridPane.columnIndex="1"/>
+        <Slider fx:id="son" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <GridPane GridPane.rowIndex="3">
+        <GridPane.margin>
+            <Insets top="20"/>
+        </GridPane.margin>
+
+        <VBox>
+            <Label text="Personnage masculin" styleClass="options" />
+        </VBox>
+
     </GridPane>
 
 
-    <Button GridPane.rowIndex="3" fx:id="boutonHome" onAction="#retourMenu">
+    <Button GridPane.rowIndex="4" fx:id="boutonHome" onAction="#retourMenu">
         <graphic>
             <ImageView fitWidth="70" preserveRatio="true" >
                 <Image url="images/logo/home.png"/>

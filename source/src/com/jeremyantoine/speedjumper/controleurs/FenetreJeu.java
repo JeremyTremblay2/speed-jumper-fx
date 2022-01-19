@@ -2,6 +2,7 @@ package com.jeremyantoine.speedjumper.controleurs;
 
 import com.jeremyantoine.speedjumper.donnees.CollectionRessources;
 import com.jeremyantoine.speedjumper.donnees.GestionnaireDeRessourcesFX;
+import com.jeremyantoine.speedjumper.donnees.NomFenetre;
 import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.entites.PersonnageJouable;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
@@ -110,6 +111,9 @@ public class FenetreJeu implements Observateur {
 
     @Override
     public void miseAjour() {
-
+        if (jeu.getManagerEtats().getEtatJeuCourant() == EtatJeu.ETAT_MENU_PAUSE) {
+            MenuPause menu = new MenuPause(navigateur, jeu);
+            navigateur.naviguerVers(NomFenetre.MENU_PAUSE, menu);
+        }
     }
 }
