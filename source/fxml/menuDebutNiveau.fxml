@@ -26,6 +26,7 @@
             <children>
                 <TextFlow prefHeight="200.0" prefWidth="200.0" />
                 <ListView fx:id="laListeDeScores" />
+                <Button GridPane.rowIndex="3" text="Jouer" onAction="#ouvrirJeu"/>
             </children>
             <Button GridPane.rowIndex="3" fx:id="boutonHome" onAction="#retourMenu">
                 <graphic>

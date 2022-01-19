@@ -24,6 +24,7 @@ public class TableauJeu {
     private PersonnageJouable joueur;
     private Niveau niveauCourant;
     private CameraCarteTuiles camera;
+    private Options options;
 
     public TableauJeu(RecuperateurDeTouches recuperateur) {
         gestionnaireDeRessources = new GestionnaireDeRessources(new AdaptateurChargeurDeCarteTiledCSV(","),
@@ -78,7 +79,26 @@ public class TableauJeu {
             lesNiveaux.add(niveau);
         }
 
+        /*lesNiveaux.add(null);
+        lesNiveaux.add(null);
+        lesNiveaux.add(null);
+        lesNiveaux.add(null);
+        lesNiveaux.add(null);
+        lesNiveaux.add(null);
+        lesNiveaux.add(null);
+        lesNiveaux.add(null);
+        lesNiveaux.add(null);
+        lesNiveaux.add(null);
+        lesNiveaux.add(null);
+        lesNiveaux.add(null);
+        lesNiveaux.add(null);
+        lesNiveaux.add(null);
+        lesNiveaux.add(null);
+        lesNiveaux.add(null);*/
+
         niveauCourant = lesNiveaux.get(0);
+
+        options = new Options(true, 10, 10);
 
         joueur = new PersonnageJouable(new Position2D(1600, 1600),
                 new Rectangle(5, 60, 40, 40),

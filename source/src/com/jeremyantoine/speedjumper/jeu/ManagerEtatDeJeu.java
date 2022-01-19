@@ -7,6 +7,7 @@ import java.util.*;
 public class ManagerEtatDeJeu {
     private Map<EtatJeu, EtatDeJeu> lesEtats;
     private EtatDeJeu etatCourant;
+    private EtatJeu etatJeuCourant;
     private TableauJeu jeu;
 
     public ManagerEtatDeJeu(TableauJeu jeu, RecuperateurDeTouches recuperateur) throws IllegalArgumentException {
@@ -19,13 +20,14 @@ public class ManagerEtatDeJeu {
         etatCourant = lesEtats.get(EtatJeu.ETAT_JEU_JOUE);
     }
 
-    public EtatDeJeu getEtatCourant() {
-        return etatCourant;
+    public EtatJeu getEtatJeuCourant() {
+        return etatJeuCourant;
     }
 
     public void setEtatCourant(EtatJeu etat) {
         if (etat != null && !lesEtats.get(etat).equals(etatCourant)) {
             etatCourant = lesEtats.get(etat);
+            etatJeuCourant = etat;
         }
     }
 
@@ -37,6 +39,7 @@ public class ManagerEtatDeJeu {
         EtatJeu etat = etatCourant.entreeUtilisateur(temps);
         if (etat != null && !lesEtats.get(etat).equals(etatCourant)) {
             etatCourant = lesEtats.get(etat);
+            etatJeuCourant = etat;
         }
     }
 

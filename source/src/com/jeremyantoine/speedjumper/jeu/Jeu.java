@@ -22,6 +22,10 @@ public class Jeu implements Observateur {
         return jeu;
     }
 
+    public ManagerEtatDeJeu getManagerEtats() {
+        return managerEtats;
+    }
+
     public void initialise() {
 
     }

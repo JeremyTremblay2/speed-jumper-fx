@@ -7,12 +7,14 @@ import javafx.fxml.FXML;
 
 public class MenuOptions {
     private Navigateur navigateur;
+    private Jeu jeu;
 
     public MenuOptions(Navigateur navigateur, Jeu jeu) throws IllegalArgumentException {
         if (navigateur == null || jeu == null) {
             throw new IllegalArgumentException("Le navigateur passé en paramètre ou le jeu ne peuvent pas être null.");
         }
         this.navigateur = navigateur;
+        this.jeu = jeu;
     }
 
     @FXML

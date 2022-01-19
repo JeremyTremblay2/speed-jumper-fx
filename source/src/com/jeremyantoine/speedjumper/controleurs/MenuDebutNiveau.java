@@ -1,6 +1,5 @@
 package com.jeremyantoine.speedjumper.controleurs;
 
-import com.jeremyantoine.speedjumper.jeu.EtatDeJeuJoue;
 import com.jeremyantoine.speedjumper.jeu.Jeu;
 import com.jeremyantoine.speedjumper.logique.Score;
 import com.jeremyantoine.speedjumper.monde.Niveau;
@@ -27,7 +26,6 @@ public class MenuDebutNiveau {
     }
 
     public void initialize() {
-        System.out.println("coucu");
         laListeDeScores.itemsProperty().bind(jeu.getJeu().getNiveauCourant().lesScoresProperty());
 
         laListeDeScores.setCellFactory(__ -> new ListCell<>(){
@@ -36,7 +34,7 @@ public class MenuDebutNiveau {
                 super.updateItem(score, present);
                 if (!present) {
                     textProperty().bind(score.pseudoProperty().concat("     ").concat(score.scoreProperty()));
-                    setStyle("-fx-background-color : green;");
+                    //setStyle("-fx-background-color : green;");
                 }
                 else {
                     textProperty().unbind();
@@ -52,7 +50,7 @@ public class MenuDebutNiveau {
     }
 
     @FXML
-    public void ouvertureJeu(ActionEvent event) {
+    public void ouvrirJeu(ActionEvent event) {
         FenetreJeu fenetre = new FenetreJeu(navigateur, jeu);
         navigateur.naviguerVers(fenetre.getScene());
     }
