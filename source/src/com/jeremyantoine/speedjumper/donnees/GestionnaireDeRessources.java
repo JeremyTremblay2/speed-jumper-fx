@@ -20,6 +20,7 @@ public class GestionnaireDeRessources {
     private List<String> lesCartesChemins;
     private Map<String, Dimension> lesJeuxDeTuiles;
 
+
     private List<Carte2D> lesCartes;
     private List<Tuile> lesTuiles;
 
@@ -63,7 +64,6 @@ public class GestionnaireDeRessources {
             lesTuiles.addAll(tuiles);
         }
     }
-
 
 
 }

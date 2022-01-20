@@ -16,7 +16,9 @@ import com.jeremyantoine.speedjumper.monde.Niveau;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Classe tableau de jeu permettant de les jeux
+ */
 public class TableauJeu {
     private GestionnaireDeRessources gestionnaireDeRessources;
     private List<Niveau> lesNiveaux = new ArrayList<>();
@@ -24,42 +26,78 @@ public class TableauJeu {
     private Niveau niveauCourant;
     private Options options;
 
+    /**
+     * Constructeur du tableau de jeu
+     * Creer un nouveau niveau en chargeant des tuiles
+     * @param recuperateur recuperateur de touche pour les déplacements
+     */
     public TableauJeu(RecuperateurDeTouches recuperateur) {
         gestionnaireDeRessources = new GestionnaireDeRessources(new AdaptateurChargeurDeCarteTiledCSV(","),
                 new ChargeurDeJeuxDeTuilesTextuel());
         initialisation();
     }
 
+    /**
+     * Methode pour savoir si la partie est perdue
+     * @return
+     */
     public boolean isGameOver() {
         return joueur.getPointsDeVie() <= 0;
     }
 
+    /**
+     * Retourne le niveau courant
+     * @return
+     */
     public Niveau getNiveauCourant() {
         return niveauCourant;
     }
 
+    /**
+     * set le niveau courrant
+     * @param niveau numero du niveau
+     */
     public void setNiveauCourant(int niveau) {
         niveauCourant = lesNiveaux.get(niveau);
         joueur.setPointsDeVie(joueur.getPointsDeViesInitiaux());
         joueur.setPosition(niveauCourant.getPointsDepart());
     }
 
+    /**
+     * retourne le joueur
+     * @return
+     */
     public PersonnageJouable getJoueur() {
         return joueur;
     }
 
+    /**
+     * retourle le gestionnaire de ressource
+     * @return
+     */
     public GestionnaireDeRessources getGestionnaireDeRessources() {
         return gestionnaireDeRessources;
     }
 
+    /**
+     * retourne la liste des niveaux
+     * @return
+     */
     public List<Niveau> getLesNiveaux() {
         return lesNiveaux;
     }
 
+    /**
+     * retourne les options
+     * @return
+     */
     public Options getOptions() {
         return options;
     }
 
+    /**
+     * initialise les différents niveaux avec leur carte
+     */
     private void initialisation() {
         List<Carte2D> lesCartes = new ArrayList<>();
         Niveau niveau;

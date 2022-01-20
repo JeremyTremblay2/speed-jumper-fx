@@ -15,7 +15,7 @@ public class ChargeNiveau implements ChargeurNiveau {
 
     @Override
     public List<Tuile> charge(String chemin) {
-        int cpt=1;
+        int cpt=0;
         List<Tuile> listeTuile = null;
 
         try {
@@ -28,7 +28,7 @@ public class ChargeNiveau implements ChargeurNiveau {
             Dimension dimension = new Dimension(Integer.parseInt(uneTuile[0]),Integer.parseInt(uneTuile[1]));
             while ((ligne = lecteurDeTuile.readLine()) != null) {
                 uneTuile = ligne.split(seperation);
-                
+
                 if(Integer.parseInt(uneTuile[0]) == cpt){
                     listeTuile.add(new Tuile(new Rectangle(Integer.parseInt(uneTuile[1]),Integer.parseInt(uneTuile[2]),Integer.parseInt(uneTuile[3]),Integer.parseInt(uneTuile[4])),dimension));
                 }else{

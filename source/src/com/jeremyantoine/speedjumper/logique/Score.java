@@ -81,10 +81,10 @@ public class Score implements Comparable<Score> {
      * Methode pour augmenter le score d'un joueur par rapport au temps
      * @param temps temps final de réalisation du niveau
      */
-
     public void augmenterScore(double temps) {
         score.set((int) (score.get() + temps / 1000000000));
     }
+
 
     @Override
     public boolean equals(Object o) {

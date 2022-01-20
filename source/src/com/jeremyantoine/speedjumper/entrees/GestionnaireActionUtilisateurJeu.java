@@ -3,6 +3,10 @@ package com.jeremyantoine.speedjumper.entrees;
 import com.jeremyantoine.speedjumper.logique.Direction;
 import com.jeremyantoine.speedjumper.monde.Niveau;
 
+
+/**
+ * Classe gerant les actions utilisateur pendant le jeu
+ */
 public class GestionnaireActionUtilisateurJeu extends GestionnaireActionUtilisateur {
     private Commande flecheGauche;
     private Commande flecheDroite;
@@ -11,6 +15,12 @@ public class GestionnaireActionUtilisateurJeu extends GestionnaireActionUtilisat
     private Commande aucuneAction;
     private Niveau niveauCourant;
 
+    /**
+     * constructeur de la classe
+     * @param recuperateur recuperateur de touche
+     * @param niveau niveai en cour pour les actions
+     * @throws IllegalArgumentException
+     */
     public GestionnaireActionUtilisateurJeu(RecuperateurDeTouches recuperateur, Niveau niveau)
             throws IllegalArgumentException {
         super(recuperateur);
@@ -24,6 +34,10 @@ public class GestionnaireActionUtilisateurJeu extends GestionnaireActionUtilisat
         aucuneAction = new CommandeNulle();
     }
 
+    /**
+     * attribue un action en fonction de la touche pressée
+     * @return
+     */
     @Override
     public Commande attribuerAction() {
         lesTouches = recuperateurDeTouches.detecte();

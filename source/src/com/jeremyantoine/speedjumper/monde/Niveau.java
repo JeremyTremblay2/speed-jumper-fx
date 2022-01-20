@@ -15,6 +15,9 @@ import javafx.collections.ObservableList;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe pour un niveau
+ */
 public class Niveau {
     private static final int NOMBRE_SCORE_MAXIMUM = 10;
     private static int nombreNiveaux = 0;
@@ -38,6 +41,15 @@ public class Niveau {
             return lesScores;
         }
 
+    /**
+     * Constructeur de la classe niveau
+     * @param carte carte du niveau
+     * @param arrierePlans liste des images de l'arriere plan
+     * @param lesEntites liste des entitées présente sur le niveau
+     * @param lesScores liste des scores réalisés sur le niveau
+     * @param pointsDepart coordonées du point de départ
+     * @throws IllegalArgumentException
+     */
     public Niveau(Carte2D carte, List<ArrierePlan> arrierePlans, List<Entite> lesEntites, List<Score> lesScores,
                   Position2D pointsDepart) throws IllegalArgumentException {
         if (carte == null) {
@@ -64,34 +76,66 @@ public class Niveau {
         nombreNiveaux++;
     }
 
+    /**
+     * retourne le nombre de  niveau
+     * @return
+     */
     public static int getNombreNiveaux() {
         return nombreNiveaux;
     }
 
+    /**
+     * Retourne le numero d'un niveau
+     * @return
+     */
     public int getNumeroNiveau() {
         return numeroNiveau;
     }
 
+    /**
+     * retourne la carte 2D du niveau
+     * @return
+     */
     public Carte2D getCarte() {
         return carte;
     }
 
+    /**
+     * Retourne la liste des arrières plans du niveau
+     * @return
+     */
     public List<ArrierePlan> getLesArrieresPlans() {
         return lesArrieresPlans;
     }
 
+    /**
+     * Retourne la liste des entitées du niveau
+     * @return
+     */
     public List<Entite> getLesEntites() {
         return lesEntites;
     }
 
+    /**
+     * Retourne le fantome du niceau
+     * @return
+     */
     public Fantome getOmbre() {
         return fantome;
     }
 
+    /**
+     * retourne la position du point de départ
+     * @return
+     */
     public Position2D getPointsDepart() {
         return pointsDepart;
     }
 
+    /**
+     * Ajoute un nouveau score au niveau
+     * @param score score a ajouter au niveau
+     */
     public void ajouterScore(Score score) {
         lesScores.add(score);
         if (lesScores.size() > NOMBRE_SCORE_MAXIMUM) {
@@ -99,6 +143,11 @@ public class Niveau {
         }
     }
 
+    /**
+     * Compare au niveau objet deux niveau
+     * @param o objet a comparé ici Niveau
+     * @return un boolean selon la comparaison. True si identique , false si différent
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -107,6 +156,11 @@ public class Niveau {
         return equals(niveau);
     }
 
+    /**
+     * Compare un niveau avec le niveau actuel
+     * @param niveau
+     * @return
+     */
     public boolean equals(Niveau niveau) {
         return numeroNiveau == niveau.getNumeroNiveau();
     }
@@ -117,6 +171,10 @@ public class Niveau {
     }
 
 
+    /**
+     * Affichage des données du Niveau
+     * @return
+     */
     @Override
     public String toString() {
         StringBuilder chaine = new StringBuilder("Niveau [");

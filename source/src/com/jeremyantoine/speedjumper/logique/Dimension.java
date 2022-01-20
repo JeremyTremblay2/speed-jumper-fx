@@ -2,27 +2,53 @@ package com.jeremyantoine.speedjumper.logique;
 
 import java.util.Objects;
 
+/**
+ * Classe pour une dimension
+ */
 public class Dimension {
     private double largeur;
     private double hauteur;
 
+    /**
+     * Constructeur de la classe Dimension
+     * @param largeur lageur de la dimension
+     * @param hauteur hauteur de la dimension
+     */
     public Dimension(double largeur, double hauteur) {
         this.largeur = largeur;
         this.hauteur = hauteur;
     }
 
+    /**
+     * Retourne la largeur de la dimension
+     * @return
+     */
     public double getLargeur() {
         return largeur;
     }
 
+
+    /**
+     * set la largeur de la dimension
+     * @param largeur largeur de la dimension
+     */
     private void setLargeur(double largeur) {
         this.largeur = largeur;
     }
 
+
+    /**
+     * retourne la hauteur de la dimension
+     * @return
+     */
     public double getHauteur() {
         return hauteur;
     }
 
+    /**
+     * set la hauteur de la dimension
+     * @param hauteur hauteur de la dimension
+     */
     private void setHauteur(double hauteur) {
         this.hauteur = hauteur;
     }

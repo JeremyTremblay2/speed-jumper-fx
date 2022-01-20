@@ -62,6 +62,11 @@ public class Navigateur {
         naviguerVers(scene);
     }
 
+    /**
+     * Methode pour la navigation
+     * @param fenetre fenetre vers laquelle naviguer
+     * @throws IllegalArgumentException
+     */
     public void naviguerVers(NomFenetre fenetre) throws IllegalArgumentException {
         Scene scene = null;
         if (!vues.containsKey(fenetre)) {
@@ -78,6 +83,10 @@ public class Navigateur {
         naviguerVers(scene);
     }
 
+    /**
+     * Methode pour la navigation
+     * @param scene scene vers laquelle naviguer
+     */
     public void naviguerVers(Scene scene) {
         if (scene != null) {
             laPileDeScenes.add(scene);
@@ -85,6 +94,9 @@ public class Navigateur {
         }
     }
 
+    /**
+     * Methode pour revenir a la vue précédente
+     */
     public void faireDemiTour() {
         if (laPileDeScenes.size() != 0) {
             laPileDeScenes.pop();
@@ -92,6 +104,10 @@ public class Navigateur {
         }
     }
 
+    /**
+     * Methode pour retourner la scene courante
+     * @return la scene courante
+     */
     public Scene getSceneCourante() {
         return sceneCourante;
     }

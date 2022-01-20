@@ -7,12 +7,21 @@ import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
 import com.jeremyantoine.speedjumper.monde.Niveau;
 import com.jeremyantoine.speedjumper.observateurs.Sujet;
 
+/**
+ * Classe de l'etat de jeu
+ */
 public abstract class EtatDeJeu extends Sujet {
     protected TableauJeu jeu;
     protected GestionnaireActionUtilisateur gestionnaireActions;
     protected Niveau niveauCourant;
     protected PersonnageJouable joueur;
 
+    /**
+     * Constructeur EtatDeJeu. Recupere le joueur , le niveau courant et le gestionnaire d'actions
+     * @param jeu
+     * @param recuperateur
+     * @throws IllegalArgumentException
+     */
     public EtatDeJeu(TableauJeu jeu, RecuperateurDeTouches recuperateur) throws IllegalArgumentException {
         if (jeu == null) {
             throw new IllegalArgumentException("Le tableau contenant les données du jeu donné en paramètre ne peut "
@@ -24,6 +33,10 @@ public abstract class EtatDeJeu extends Sujet {
         gestionnaireActions = new GestionnaireActionUtilisateurJeu(recuperateur, niveauCourant);
     }
 
+    /**
+     * retourne le gestionnaire d'actions
+     * @return
+     */
     public GestionnaireActionUtilisateur getGestionnaireActions() {
         return gestionnaireActions;
     }

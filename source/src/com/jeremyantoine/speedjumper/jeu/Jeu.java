@@ -3,6 +3,9 @@ package com.jeremyantoine.speedjumper.jeu;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
 import com.jeremyantoine.speedjumper.observateurs.Observateur;
 
+/**
+ * Classe gerant le jeu
+ */
 public class Jeu implements Observateur {
     private static final int FPS_CIBLE = 60;
     private static final double TEMPS_MISE_A_JOUR = 10000000;
@@ -13,16 +16,28 @@ public class Jeu implements Observateur {
     private TableauJeu jeu;
     private BoucleDeJeu boucleDeJeu;
 
+    /**
+     * Constructeur de Jeu
+     * @param recuperateur recuperateur de touche
+     */
     public Jeu(RecuperateurDeTouches recuperateur) {
         jeu = new TableauJeu(recuperateur);
         managerEtats = new ManagerEtatDeJeu(jeu, recuperateur);
         joue = true;
     }
 
+    /**
+     * retourne le jeu
+     * @return
+     */
     public TableauJeu getJeu() {
         return jeu;
     }
 
+    /**
+     * retourne le manager d'etat des jeux
+     * @return
+     */
     public ManagerEtatDeJeu getManagerEtats() {
         return managerEtats;
     }
@@ -31,6 +46,9 @@ public class Jeu implements Observateur {
         //Si des chargements particuliers ont lieux ici.
     }
 
+    /**
+     * Methode pour lancer le jeu
+     */
     public void jouer() {
         boucleDeJeu = new BoucleDeJeu();
         boucleDeJeu.attacher(this);
@@ -38,6 +56,9 @@ public class Jeu implements Observateur {
         processus.start();
     }
 
+    /**
+     * Methode lorsque le jeu est lancé
+     */
     public void joue() {
         float precedent = System.nanoTime();
         float courant, ecoule;
@@ -69,6 +90,9 @@ public class Jeu implements Observateur {
         System.out.println("Jeu fini");
     }
 
+    /**
+     *  Mise a jour du manager
+     */
     @Override
     public void miseAjour() {
         managerEtats.entreeUtilisateur(boucleDeJeu.getTempsEcoule());
@@ -76,6 +100,9 @@ public class Jeu implements Observateur {
         managerEtats.affichage();
     }
 
+    /**
+     * Methode appelé a la fermeture du jeu
+     */
     public void ferme() {
         //Eventuellement sauvegarde, etc avant de quitter.
     }

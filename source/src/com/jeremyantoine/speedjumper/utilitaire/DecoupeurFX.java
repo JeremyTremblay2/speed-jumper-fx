@@ -15,6 +15,14 @@ import java.util.List;
  * Classe permettant de découper les images
  */
 public class DecoupeurFX {
+
+    /**
+     * Methode pour découper des images fonction de la largeur et de la heuteur
+     * @param cheminImage chemin de l'image
+     * @param largeur largeur voulu
+     * @param hauteur hauteur voulu
+     * @return liste d'images découpées
+     */
     public List<Image> decoupe(String cheminImage, int largeur, int hauteur) {
         List<Image> lesImages = new ArrayList<>();
         Image image = new Image(cheminImage);
