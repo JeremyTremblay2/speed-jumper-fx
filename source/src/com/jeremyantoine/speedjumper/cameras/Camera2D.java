@@ -1,4 +1,4 @@
-package com.jeremyantoine.speedjumper.monde;
+package com.jeremyantoine.speedjumper.cameras;
 
 import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.logique.Dimension;
@@ -8,6 +8,8 @@ import jdk.jshell.spi.ExecutionControl;
 
 public abstract class Camera2D {
     protected Position2D position;
+    protected Dimension decalageRelatif;
+    protected Dimension decalageAbsolu;
     protected Dimension zoneVisuelle;
     protected Dimension milieuEcran;
 
@@ -18,6 +20,8 @@ public abstract class Camera2D {
        }
        milieuEcran = new Dimension(zoneVisuelle.getLargeur() / 2, zoneVisuelle.getHauteur() / 2);
        this.zoneVisuelle = zoneVisuelle;
+       decalageRelatif = new Dimension(0, 0);
+       decalageAbsolu = new Dimension(0, 0);
        position = new Position2D(0, 0);
     }
 
@@ -34,6 +38,14 @@ public abstract class Camera2D {
     }
 
     public abstract void centrerSurEntite(Entite entite);
+
+    public Dimension getDecalageRelatif() {
+        return decalageRelatif;
+    }
+
+    public Dimension getDecalageAbsolu() {
+        return decalageAbsolu;
+    }
 
     public abstract void decalage(Direction direction) throws ExecutionControl.NotImplementedException;
 

@@ -12,6 +12,7 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Niveau {
@@ -49,18 +50,18 @@ public class Niveau {
         }
 
         this.carte = carte;
-        lesArrieresPlans = arrierePlans;
         lesScoresObservables.addAll(lesScores);
-        this.lesEntites = lesEntites;
+        lesArrieresPlans = arrierePlans == null ? new ArrayList<>() : arrierePlans;
+        this.lesEntites = lesEntites == null ? new ArrayList<>() : lesEntites;
         this.pointsDepart = pointsDepart;
-        numeroNiveau = nombreNiveaux;
-        nombreNiveaux++;
         fantome = new Fantome(pointsDepart,
                 new Rectangle(pointsDepart.getX(), pointsDepart.getY(), 30, 60),
                 new Dimension(50, 100),
                 new ComportementNull(),
                 2.3,
                 1000);
+        numeroNiveau = nombreNiveaux;
+        nombreNiveaux++;
     }
 
     public static int getNombreNiveaux() {

@@ -18,8 +18,11 @@ public class CollisionneurCarte {
 
         Rectangle collisionTuile;
 
-        for(int x = coinGauche; x <= coinDroite; x++) {
-            for(int y = coinSuperieur; y <= coinInferieur; y++) {
+        double largeurCarte = carte.getDimension().getLargeur();
+        double hauteurCarte = carte.getDimension().getHauteur();
+
+        for(int x = coinSuperieur; x <= coinInferieur && x < largeurCarte; x++) {
+            for(int y = coinGauche; y <= coinDroite && y < hauteurCarte; y++) {
                 collisionTuile = carte.getTuile(x, y).getCollision();
                 if (collisionTuile != null && CollisionneurAABB.collisionne(collision, collisionTuile))
                     return true;

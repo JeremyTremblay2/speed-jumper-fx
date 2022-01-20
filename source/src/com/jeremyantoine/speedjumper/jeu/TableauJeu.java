@@ -10,7 +10,6 @@ import com.jeremyantoine.speedjumper.logique.Dimension;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 import com.jeremyantoine.speedjumper.logique.Score;
-import com.jeremyantoine.speedjumper.monde.CameraCarteTuiles;
 import com.jeremyantoine.speedjumper.monde.Carte2D;
 import com.jeremyantoine.speedjumper.monde.Niveau;
 
@@ -19,12 +18,10 @@ import java.util.List;
 
 
 public class TableauJeu {
-    private static final Dimension DIMENSION_CAMERA_PAR_DEFAUT = new Dimension(24, 16);
     private GestionnaireDeRessources gestionnaireDeRessources;
     private List<Niveau> lesNiveaux = new ArrayList<>();
     private PersonnageJouable joueur;
     private Niveau niveauCourant;
-    private CameraCarteTuiles camera;
     private Options options;
 
     public TableauJeu(RecuperateurDeTouches recuperateur) {
@@ -43,7 +40,6 @@ public class TableauJeu {
 
     public void setNiveauCourant(int niveau) {
         niveauCourant = lesNiveaux.get(niveau);
-        camera.changeCarte(niveauCourant.getCarte());
         joueur.setPointsDeVie(joueur.getPointsDeViesInitiaux());
         joueur.setPosition(niveauCourant.getPointsDepart());
     }
@@ -52,16 +48,16 @@ public class TableauJeu {
         return joueur;
     }
 
-    public CameraCarteTuiles getCamera() {
-        return camera;
-    }
-
     public GestionnaireDeRessources getGestionnaireDeRessources() {
         return gestionnaireDeRessources;
     }
 
     public List<Niveau> getLesNiveaux() {
         return lesNiveaux;
+    }
+
+    public Options getOptions() {
+        return options;
     }
 
     private void initialisation() {
@@ -76,11 +72,10 @@ public class TableauJeu {
         }
 
         for (Carte2D carte : lesCartes) {
-            niveau = new Niveau(carte, null, null, new ArrayList<>(), new Position2D(100, 400));
+            niveau = new Niveau(carte, null, null, new ArrayList<>(), new Position2D(100, 1200));
             lesNiveaux.add(niveau);
         }
 
-        /*lesNiveaux.add(null);
         lesNiveaux.add(null);
         lesNiveaux.add(null);
         lesNiveaux.add(null);
@@ -95,21 +90,20 @@ public class TableauJeu {
         lesNiveaux.add(null);
         lesNiveaux.add(null);
         lesNiveaux.add(null);
-        lesNiveaux.add(null);*/
+        lesNiveaux.add(null);
+        lesNiveaux.add(null);
 
         niveauCourant = lesNiveaux.get(0);
 
         options = new Options(true, 10, 10);
 
-        joueur = new PersonnageJouable(new Position2D(1600, 1600),
-                new Rectangle(5, 60, 40, 40),
-                new Dimension(50, 100),
+        joueur = new PersonnageJouable(new Position2D(350, 300),
+                new Rectangle(6, 3, 15, 33),
+                new Dimension(24, 36),
                 new ComportementNull(),
-                2.4,
-                1000,
+                0.2,
+                4,
                 3);
-        camera = new CameraCarteTuiles(niveauCourant.getCarte(), DIMENSION_CAMERA_PAR_DEFAUT);
-        camera.centrerSurEntite(joueur);
 
         niveauCourant.ajouterScore(new Score("Jean-Claude", 10));
         niveauCourant.ajouterScore(new Score("Jean-Marie", 8));

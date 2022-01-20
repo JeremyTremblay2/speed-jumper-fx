@@ -10,7 +10,10 @@ public class ArrierePlanFX implements Observateur {
     private ArrierePlan arrierePlan;
     private Image image;
 
-    public ArrierePlanFX(ArrierePlan arrierePlan, Image image) {
+    public ArrierePlanFX(ArrierePlan arrierePlan, Image image) throws IllegalArgumentException {
+        if (arrierePlan == null) {
+            throw new IllegalArgumentException("La tuile donnée en paramètre ne peut pas être nulle.");
+        }
         this.arrierePlan = arrierePlan;
         this.image = image;
     }
@@ -48,7 +51,6 @@ public class ArrierePlanFX implements Observateur {
 
     @Override
     public String toString() {
-        return "Version graphique de ArrierePlan : " + arrierePlan.toString()
-                + "\nImage courante " + image;
+        return "Version graphique de ArrierePlan : " + arrierePlan.toString();
     }
 }

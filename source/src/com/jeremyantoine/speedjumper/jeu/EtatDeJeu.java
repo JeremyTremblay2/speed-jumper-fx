@@ -13,7 +13,6 @@ public abstract class EtatDeJeu extends Sujet {
     protected Niveau niveauCourant;
     protected PersonnageJouable joueur;
 
-
     public EtatDeJeu(TableauJeu jeu, RecuperateurDeTouches recuperateur) throws IllegalArgumentException {
         if (jeu == null) {
             throw new IllegalArgumentException("Le tableau contenant les données du jeu donné en paramètre ne peut "
@@ -23,6 +22,10 @@ public abstract class EtatDeJeu extends Sujet {
         joueur = jeu.getJoueur();
         niveauCourant = jeu.getNiveauCourant();
         gestionnaireActions = new GestionnaireActionUtilisateurJeu(recuperateur, niveauCourant);
+    }
+
+    public GestionnaireActionUtilisateur getGestionnaireActions() {
+        return gestionnaireActions;
     }
 
     public abstract EtatJeu entreeUtilisateur(float temps);

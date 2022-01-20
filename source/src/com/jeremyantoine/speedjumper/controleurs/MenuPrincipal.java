@@ -1,9 +1,9 @@
 package com.jeremyantoine.speedjumper.controleurs;
 
 import com.jeremyantoine.speedjumper.donnees.CollectionRessources;
-import com.jeremyantoine.speedjumper.donnees.NomFenetre;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouchesFX;
+import com.jeremyantoine.speedjumper.jeu.EtatJeu;
 import com.jeremyantoine.speedjumper.jeu.Jeu;
 import com.jeremyantoine.speedjumper.observateurs.Sujet;
 import com.jeremyantoine.speedjumper.utilitaire.Navigateur;
@@ -21,6 +21,9 @@ public class MenuPrincipal extends Sujet {
         CollectionRessources ressources = CollectionRessources.getInstance();
         RecuperateurDeTouches recuperateur = new RecuperateurDeTouchesFX(ressources.getFichierConfigurationTouches(), navigateur.getSceneCourante());
         jeu = new Jeu(recuperateur);
+        jeu.initialise();
+        jeu.jouer();
+        jeu.getManagerEtats().setEtatCourant(EtatJeu.ETAT_MENU_PAUSE);
     }
 
     public void fermetureFenetre(ActionEvent actionEvent) {

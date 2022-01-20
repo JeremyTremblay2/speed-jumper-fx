@@ -6,9 +6,7 @@ import com.jeremyantoine.speedjumper.monde.Tuile;
 import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
 
 import java.io.FileNotFoundException;
-import java.net.URL;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdaptateurChargeurDeCarteTiledCSV implements ChargeurDeCarteTiled {

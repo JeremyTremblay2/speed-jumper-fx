@@ -10,7 +10,10 @@ public class TuileFX implements Observateur {
     private Tuile tuile;
     private Image image;
 
-    public TuileFX(Tuile tuile, Image image) {
+    public TuileFX(Tuile tuile, Image image) throws IllegalArgumentException {
+        if (tuile == null) {
+            throw new IllegalArgumentException("La tuile donnée en paramètre ne peut pas être nulle.");
+        }
         this.tuile = tuile;
         this.image = image;
     }

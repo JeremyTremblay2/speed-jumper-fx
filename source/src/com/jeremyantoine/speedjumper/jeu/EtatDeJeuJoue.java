@@ -1,27 +1,19 @@
 package com.jeremyantoine.speedjumper.jeu;
 
 import com.jeremyantoine.speedjumper.actions.CollisionneurAABB;
-import com.jeremyantoine.speedjumper.comportement.ComportementNull;
-import com.jeremyantoine.speedjumper.donnees.*;
 import com.jeremyantoine.speedjumper.entites.Entite;
-import com.jeremyantoine.speedjumper.entites.PersonnageJouable;
 import com.jeremyantoine.speedjumper.entites.Vivant;
 import com.jeremyantoine.speedjumper.entrees.Commande;
-import com.jeremyantoine.speedjumper.entrees.GestionnaireActionUtilisateur;
-import com.jeremyantoine.speedjumper.entrees.GestionnaireActionUtilisateurJeu;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
-import com.jeremyantoine.speedjumper.logique.*;
-import com.jeremyantoine.speedjumper.monde.CameraCarteTuiles;
-import com.jeremyantoine.speedjumper.monde.Carte2D;
-import com.jeremyantoine.speedjumper.monde.Niveau;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EtatDeJeuJoue extends EtatDeJeu {
+    private List<Entite> lesEntites;
 
     public EtatDeJeuJoue(TableauJeu jeu, RecuperateurDeTouches recuperateur) throws IllegalArgumentException {
         super(jeu, recuperateur);
+        lesEntites = niveauCourant.getLesEntites();
     }
 
     @Override
@@ -50,12 +42,11 @@ public class EtatDeJeuJoue extends EtatDeJeu {
 
     @Override
     public void affichage() {
-        //Ne fait rien ici.
+        //Ne fait rien ici hormis notifier qu'il faut mettre à jour tout l'affichage.
+        notifier();
     }
 
     private void gestionEnnemis(double temps) {
-        List<Entite> lesEntites = niveauCourant.getLesEntites();
-
         for (Entite entite : lesEntites) {
             entite.miseAJour(temps);
         }

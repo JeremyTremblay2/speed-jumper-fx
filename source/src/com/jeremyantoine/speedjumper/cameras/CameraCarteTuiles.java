@@ -1,16 +1,21 @@
-package com.jeremyantoine.speedjumper.monde;
+package com.jeremyantoine.speedjumper.cameras;
 
 import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.logique.Dimension;
 import com.jeremyantoine.speedjumper.logique.Direction;
 import com.jeremyantoine.speedjumper.logique.Position2D;
+import com.jeremyantoine.speedjumper.monde.Carte2D;
+import com.jeremyantoine.speedjumper.monde.Tuile;
 import jdk.jshell.spi.ExecutionControl;
-
-import java.util.Arrays;
 
 public class CameraCarteTuiles extends Camera2D {
     private Carte2D carteCourante;
-    private Tuile[][] vision;
+    protected Tuile[][] vision;
+
+    private double largeurCarte;
+    private double hauteurCarte;
+    private double largeurTuile;
+    private double hauteurTuile;
 
     public CameraCarteTuiles(Carte2D carte, Dimension zoneVisuelle) throws IllegalArgumentException {
         super(zoneVisuelle);
@@ -20,7 +25,7 @@ public class CameraCarteTuiles extends Camera2D {
         if (carte.getDimension().getLargeur() < zoneVisuelle.getLargeur()
                 || carte.getDimension().getHauteur() < zoneVisuelle.getHauteur()) {
             throw new IllegalArgumentException("La zone visuelle de la caméra (" + zoneVisuelle + ") ne peut pas "
-                    + "être plus petite que les dimensions de la carte : " + carte.getDimension());
+                    + "être plus grande que les dimensions de la carte : " + carte.getDimension());
         }
         vision = new Tuile[(int) zoneVisuelle.getHauteur()][(int) zoneVisuelle.getLargeur()];
         changeCarte(carte);
@@ -43,20 +48,21 @@ public class CameraCarteTuiles extends Camera2D {
             throw new IllegalArgumentException("La carte passée en paramètre de la caméra ne peut pas être nulle ou vide.");
         }
         carteCourante = carte;
+
+        largeurCarte = carteCourante.getDimension().getLargeur();
+        hauteurCarte = carteCourante.getDimension().getHauteur();
+        largeurTuile = carteCourante.getDimensionTuiles().getLargeur();
+        hauteurTuile = carteCourante.getDimensionTuiles().getHauteur();
         miseAJour();
     }
 
     @Override
     public void centrerSurEntite(Entite entite) {
-        double largeurCarte = carteCourante.getDimension().getLargeur();
-        double hauteurCarte = carteCourante.getDimension().getHauteur();
-        double largeurTuile = carteCourante.getDimensionTuiles().getLargeur();
-        double hauteurTuile = carteCourante.getDimensionTuiles().getHauteur();
-
         int positionEntiteX = (int) ((entite.getPosition().getX() + entite.getDimension().getLargeur() / 2) / largeurTuile);
         int positionEntiteY = (int) ((entite.getPosition().getY() + entite.getDimension().getHauteur() / 2) / hauteurTuile);
 
-        System.out.println(positionEntiteX + "; " + positionEntiteY);
+        double decalageX = (int) ((entite.getPosition().getX() + entite.getDimension().getLargeur() / 2) % largeurTuile);
+        double decalageY = (int) ((entite.getPosition().getY() + entite.getDimension().getHauteur() / 2) % hauteurTuile);
 
         double milieuEcranX = milieuEcran.getLargeur();
         double milieuEcranY = milieuEcran.getHauteur();
@@ -65,9 +71,11 @@ public class CameraCarteTuiles extends Camera2D {
 
         if (positionEntiteX < milieuEcran.getLargeur()) {
             nouvellePositionX = 0;
+            decalageX = 0;
         }
         else if (positionEntiteX > (largeurCarte - milieuEcranX)) {
-            nouvellePositionX = largeurCarte - zoneVisuelle.getLargeur() + 1;
+            nouvellePositionX = largeurCarte - zoneVisuelle.getLargeur();
+            decalageX = largeurTuile;
         }
         else {
             nouvellePositionX = positionEntiteX - milieuEcranX;
@@ -75,36 +83,24 @@ public class CameraCarteTuiles extends Camera2D {
 
         if (positionEntiteY < milieuEcranY) {
             nouvellePositionY = 0;
+            decalageY = 0;
         }
         else if (positionEntiteY > (hauteurCarte - milieuEcranY)) {
-            nouvellePositionY = hauteurCarte - zoneVisuelle.getHauteur() + 1;
+            nouvellePositionY = hauteurCarte - zoneVisuelle.getHauteur();
+            decalageY = hauteurTuile;
         }
         else {
             nouvellePositionY = positionEntiteY - milieuEcranY;
         }
         position = new Position2D(nouvellePositionX, nouvellePositionY);
-
+        decalageRelatif = new Dimension(decalageX, decalageY);
+        System.out.println(decalageRelatif);
         miseAJour();
     }
 
     @Override
     public void decalage(Direction direction) throws ExecutionControl.NotImplementedException {
         throw new ExecutionControl.NotImplementedException("Le système de décalage de la caméra 2D n'est pas implémenté.");
-    }
-
-    private void miseAJour() throws IndexOutOfBoundsException {
-        double largeurCamera = zoneVisuelle.getLargeur();
-        double hauteurCamera = zoneVisuelle.getHauteur();
-
-        int positionX = (int) position.getX();
-        int positionY = (int) position.getY();
-        System.out.println(position);
-
-        for (int x = 0; x < hauteurCamera; x++) {
-            for (int y = 0; y < largeurCamera; y++) {
-                vision[x][y] = carteCourante.getTuile(x + positionX, y + positionY);
-            }
-        }
     }
 
     @Override
@@ -144,6 +140,20 @@ public class CameraCarteTuiles extends Camera2D {
         }
 
         return chaine.toString();
+    }
+
+    private void miseAJour() throws IndexOutOfBoundsException {
+        double largeurCamera = zoneVisuelle.getLargeur();
+        double hauteurCamera = zoneVisuelle.getHauteur();
+
+        int positionX = (int) position.getX();
+        int positionY = (int) position.getY();
+
+        for (int x = 0; x < hauteurCamera; x++) {
+            for (int y = 0; y < largeurCamera; y++) {
+                vision[x][y] = carteCourante.getTuile(x + positionY, y + positionX);
+            }
+        }
     }
 
     private void effacer() throws IndexOutOfBoundsException {

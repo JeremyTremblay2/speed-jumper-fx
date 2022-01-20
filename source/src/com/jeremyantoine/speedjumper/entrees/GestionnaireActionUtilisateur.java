@@ -10,6 +10,10 @@ public abstract class GestionnaireActionUtilisateur {
         recuperateurDeTouches = recuperateur;
     }
 
+    public RecuperateurDeTouches getRecuperateurDeTouches() {
+        return recuperateurDeTouches;
+    }
+
     public abstract Commande attribuerAction();
 }
 

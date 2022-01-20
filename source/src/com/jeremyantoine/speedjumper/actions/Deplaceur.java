@@ -24,18 +24,17 @@ public class Deplaceur {
         }
 
         Position2D nouvellePosition = entite.getPosition();
+        double increment = entite.getVelocite() * (temps / 1000000000);
 
         switch (direction) {
-            case DROITE -> nouvellePosition = new Position2D(entite.getPosition().getX() +
-                    entite.getVelocite() * (temps / 1000000000),
+            case DROITE -> nouvellePosition = new Position2D(entite.getPosition().getX() + increment,
                     entite.getPosition().getY());
-            case GAUCHE -> new Position2D(entite.getPosition().getX() -
-                    entite.getVelocite() * (temps / 1000000000),
+            case GAUCHE -> nouvellePosition = new Position2D(entite.getPosition().getX() - increment,
                     entite.getPosition().getY());
-            case HAUT -> new Position2D(entite.getPosition().getX(),
-                    entite.getPosition().getY() - entite.getVelocite() * (temps / 1000000000));
-            case BAS -> new Position2D(entite.getPosition().getX(),
-                    entite.getPosition().getY() + entite.getVelocite() * (temps / 1000000000));
+            case HAUT -> nouvellePosition = new Position2D(entite.getPosition().getX(),
+                    entite.getPosition().getY() - increment);
+            case BAS -> nouvellePosition = new Position2D(entite.getPosition().getX(),
+                    entite.getPosition().getY() + increment);
         }
 
         Rectangle nouvelleCollision = new Rectangle(nouvellePosition.getX()
@@ -43,7 +42,10 @@ public class Deplaceur {
                 nouvellePosition.getY() + entite.getCollision().getPosition().getY(),
                 entite.getCollision().getDimension());
 
-        if (!collisionneur.collisionne(nouvelleCollision, carteCourante)) {
+        if (nouvellePosition.getX() >= 0 && nouvellePosition.getY() >= 0
+                && nouvellePosition.getX() <= carteCourante.getDimension().getLargeur() * carteCourante.getDimensionTuiles().getLargeur()
+                && nouvellePosition.getY() <= carteCourante.getDimension().getHauteur() * carteCourante.getDimensionTuiles().getHauteur()
+                && !collisionneur.collisionne(nouvelleCollision, carteCourante)) {
             entite.setPosition(nouvellePosition);
         }
     }
