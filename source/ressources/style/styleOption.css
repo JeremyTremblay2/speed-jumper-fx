@@ -1,0 +1,24 @@
+Button {
+    -fx-font-size: 40;
+    -fx-border-width: 0;
+    -fx-background-color: transparent;
+
+}
+
+#background{
+    -fx-background-image: url("/images/fonds/bg-menu.png");
+}
+
+Button:hover {
+    -fx-text-fill: #b3b6b6;
+}
+
+#titre{
+    -fx-font-size: 80;
+}
+
+.options{
+    -fx-font-size: 40;
+}
+
+

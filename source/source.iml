@@ -7,12 +7,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/styles" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/tests_unitaires" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/vues" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/fxml" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/java/com" />
       <excludeFolder url="file://$MODULE_DIR$/java/com/jeremyantoine" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="openjdk-17" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="lib1" level="project" />
     <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>

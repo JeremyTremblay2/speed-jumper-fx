@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<GridPane alignment="TOP_CENTER"
+          stylesheets="style/styleChoixNiveau.css" id="background"
+          xmlns="http://javafx.com/javafx/11.0.2"
+          xmlns:fx="http://javafx.com/fxml/1"
+          prefHeight="720" prefWidth="1280">
+
+    <rowConstraints>
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="ALWAYS" />
+    </rowConstraints>
+
+    <Label GridPane.rowIndex="0" text=" SpeedJumper" id="titre" alignment="CENTER">
+        <GridPane.margin>
+            <Insets top="100" />
+        </GridPane.margin>
+    </Label>
+
+    <VBox GridPane.rowIndex="1" fx:id="conteneur" alignment="CENTER">
+        <GridPane.margin>
+            <Insets top="50" />
+        </GridPane.margin>
+    </VBox>
+
+    <GridPane GridPane.rowIndex="2">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" halignment="LEFT"/>
+            <ColumnConstraints hgrow="ALWAYS" halignment="RIGHT"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS" />
+        </rowConstraints>
+
+        <FlowPane GridPane.columnIndex="0"  alignment="BOTTOM_LEFT">
+
+            <Button fx:id="boutonPagePrecedente"  onAction="#pagePrecedente">
+                <graphic>
+                    <ImageView fitWidth="70" preserveRatio="true" rotate="180">
+                        <Image url="images/logo/r-arrow.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <Button  onAction="#retourMenu">
+                <graphic>
+                    <ImageView fitWidth="70" preserveRatio="true">
+                        <Image url="images/logo/home.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </FlowPane>
+
+        <Button fx:id="boutonPageSuivante" GridPane.columnIndex="1" alignment="BOTTOM_RIGHT" onAction="#pageSuivante">
+        <graphic>
+            <ImageView fitWidth="70" preserveRatio="true">
+                <Image url="images/logo/r-arrow.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    </GridPane>
+
+</GridPane>
+

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<VBox alignment="TOP_CENTER"
+      xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      id="background"
+      stylesheets="style/styleMenuPrincipal.css"
+      prefHeight="720" prefWidth="1280">
+
+    <Label alignment="TOP_CENTER" text=" Speed Jumper " textAlignment="CENTER">
+        <font>
+            <Font size="38.0"/>
+        </font>
+        <VBox.margin>
+            <Insets top="200.0"/>
+        </VBox.margin>
+    </Label>
+
+    <VBox fillWidth="false" prefHeight="259.0" prefWidth="400.0" style="-fx-alignment: center;">
+        <VBox.margin>
+            <Insets top="140.0"/>
+
+        </VBox.margin>
+        <Button text="Jouer" fx:id="boutonJouer" styleClass="choix" onAction="#ouvrirMenuJeu">
+
+        </Button>
+
+        <Button text="Quitter" GridPane.columnIndex="1" styleClass="choix" fx:id="boutonFermeture" onAction="#fermetureFenetre"/>
+
+    </VBox>
+    <Pane prefHeight="900"/>
+    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+        <children>
+            <Button fx:id="boutonOptions" onAction="#ouvrirOptions">
+                <graphic>
+                    <ImageView fitWidth="70" preserveRatio="true">
+                        <Image url="images/logo/gear.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </children>
+    </HBox>
+</VBox>

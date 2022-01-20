@@ -1,0 +1,35 @@
+Button {
+    -fx-font-size: 40;
+    -fx-border-width: 0;
+    -fx-background-color: transparent;
+
+}
+
+#background{
+    -fx-background-image: url("/images/fonds/bg-menu.png");
+}
+
+Button:hover {
+    -fx-text-fill: #b3b6b6;
+}
+
+.niveau{
+    -fx-effect: dropshadow( one-pass-box,black,10,2,0,0);
+    -fx-text-fill: #525151;
+}
+
+.niveau:hover {
+    -fx-text-fill: #737373;
+
+}
+
+Label{
+    -fx-font-size: 80;
+    -fx-border-color: #949494;
+    -fx-border-width: 5;
+    -fx-text-fill: #525151;
+
+    -fx-effect: dropshadow( one-pass-box,black,10,2,0,0);
+}
+
+

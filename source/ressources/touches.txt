@@ -1,0 +1,23 @@
+# Ajoutez vos touches ici pour qu'elles puissent être reconnues dans le jeu
+# La configuration doit se faire du type KeyCode : Touche
+# Veuillez à vous assurer que les noms des touches entrées correspondent exactement à ceux des énumérations.
+
+KP_LEFT : FLECHE_GAUCHE      # Vous pouvez ajouter des commentaires après la définition de la touche.
+KP_RIGHT : FLECHE_DROITE
+# Des commentaires sont possibles au milieu de la configuration
+KP_UP : FLECHE_HAUT
+KP_DOWN : FLECHE_BAS
+
+LEFT : FLECHE_GAUCHE
+RIGHT : FLECHE_DROITE
+UP : FLECHE_HAUT
+DOWN : FLECHE_BAS
+
+#Si vous avez un clavier en QWERTY, vous pouvez décommenter les lignes suivantes pour configurer vos touches aux déplacements :)
+#D : FLECHE_GAUCHE
+#A : FLECHE_DROITE
+#Et le saut ci-dessous :
+#W : ESPACE
+
+SPACE : ESPACE
+ESCAPE : ECHAP

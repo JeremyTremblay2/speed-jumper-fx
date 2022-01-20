@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+<?import com.jeremyantoine.speedjumper.controleurs.BoutonSwitch?>
+<GridPane alignment="TOP_CENTER"
+          stylesheets="style/styleOption.css" id="background"
+          xmlns="http://javafx.com/javafx/11.0.2"
+          xmlns:fx="http://javafx.com/fxml/1"
+          prefHeight="720" prefWidth="1280" >
+    <rowConstraints>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints />
+        <RowConstraints />
+    </rowConstraints>
+
+    <Label text="Option" id="titre" GridPane.rowIndex="0"/>
+
+    <GridPane GridPane.rowIndex="1">
+        <GridPane.margin>
+            <Insets top="100"/>
+        </GridPane.margin>
+
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" />
+            <ColumnConstraints/>
+        </columnConstraints>
+
+        <Label text="Musique" styleClass="options" GridPane.columnIndex="0"/>
+
+        <Slider fx:id="musique" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets left="20"/>
+            </GridPane.margin>
+        </Slider>
+    </GridPane>
+
+    <GridPane GridPane.rowIndex="2">
+        <GridPane.margin>
+            <Insets top="20"/>
+        </GridPane.margin>
+
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" />
+            <ColumnConstraints/>
+        </columnConstraints>
+
+        <Label text="Son" styleClass="options" GridPane.columnIndex="0"/>
+
+        <Slider fx:id="son" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <GridPane GridPane.rowIndex="3">
+        <GridPane.margin>
+            <Insets top="20"/>
+        </GridPane.margin>
+
+        <VBox>
+            <Label text="Personnage masculin" styleClass="options" />
+        </VBox>
+
+    </GridPane>
+
+
+    <Button GridPane.rowIndex="4" fx:id="boutonHome" onAction="#retourMenu">
+        <graphic>
+            <ImageView fitWidth="70" preserveRatio="true" >
+                <Image url="images/logo/home.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+</GridPane>

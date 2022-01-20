@@ -1,36 +1,69 @@
 package com.jeremyantoine.speedjumper.entites;
 
-import com.jeremyantoine.speedjumper.coordonnees.Position;
+import com.jeremyantoine.speedjumper.comportement.Comportement;
+import com.jeremyantoine.speedjumper.logique.Dimension;
+import com.jeremyantoine.speedjumper.logique.Position2D;
+import com.jeremyantoine.speedjumper.logique.Rectangle;
 
 import java.util.Objects;
 
+/**
+ * Classe permettant de gerer les pieces
+ */
 public class Piece extends Entite {
-
-    private int valeur;
     private static final int VALEUR_PAR_DEFAUT = 5;
+    private int valeur;
 
-    public Piece(Position position, int valeur) throws IllegalArgumentException {
-        super(position);
-
-        if (valeur <= 0) {
-            this.valeur = VALEUR_PAR_DEFAUT;
-        }
-        else {
-            this.valeur = valeur;
-        }
+    /**
+     * Constructeur d'une piece
+     * @param position position 2D de la piece
+     * @param collision rectangle de collision de la piece
+     * @param dimension dimension de la piece
+     * @param comportement comportement de la piece
+     * @param velocite velocite de la piece
+     * @param valeur sa valeur
+     * @throws IllegalArgumentException
+     */
+    public Piece(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
+                 double velocite, int valeur) throws IllegalArgumentException {
+        super(position, collision, dimension, comportement, velocite);
+        this.valeur = valeur <= 0 ? VALEUR_PAR_DEFAUT : valeur;
     }
 
+    /**
+     * Autre constructeur de la piece
+     * @param position position 2D de la piece
+     * @param collision rectangle de collision de la piece
+     * @param dimension dimension de la piece
+     * @param comportement comportement de la piece
+     * @param velocite sa valeur
+     * @throws IllegalArgumentException
+     */
+    public Piece(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
+                 double velocite) throws IllegalArgumentException {
+        this(position, collision, dimension, comportement, velocite, VALEUR_PAR_DEFAUT);
+    }
+
+    /**
+     * retourne la valeur de la piece
+     * @return
+     */
     public int getValeur() {
         return valeur;
     }
 
+    /**
+     * set la valeur de la piece
+     * @param valeur
+     */
     private void setValeur(int valeur) {
         this.valeur = valeur;
     }
 
     @Override
     public String toString() {
-        return super.toString() + " $" + valeur;
+        return super.toString()
+                + "\n$" + valeur;
     }
 
     @Override
