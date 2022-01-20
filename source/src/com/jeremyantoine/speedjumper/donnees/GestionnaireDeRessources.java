@@ -1,11 +1,13 @@
 package com.jeremyantoine.speedjumper.donnees;
 
 import com.jeremyantoine.speedjumper.logique.Dimension;
+import com.jeremyantoine.speedjumper.logique.Score;
 import com.jeremyantoine.speedjumper.monde.Carte2D;
+import com.jeremyantoine.speedjumper.monde.Niveau;
 import com.jeremyantoine.speedjumper.monde.Tuile;
 import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
 
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;

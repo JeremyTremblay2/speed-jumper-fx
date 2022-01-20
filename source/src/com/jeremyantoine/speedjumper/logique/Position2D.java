@@ -21,15 +21,7 @@ public class Position2D {
     /**
      * Property de la coordonées Y
      */
-        public void setX(double x) {
-            this.x.set(x);
-        }
-        public double getX() {
-            return x.get();
-        }
-        public DoubleProperty xProperty() {
-            return x;
-        }
+
 
     private final DoubleProperty y = new SimpleDoubleProperty();
          public void setY(double y) {
