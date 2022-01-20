@@ -101,7 +101,7 @@ public class TableauJeu {
                 new Rectangle(6, 3, 15, 33),
                 new Dimension(24, 36),
                 new ComportementNull(),
-                0.2,
+                10,
                 4,
                 3);
 

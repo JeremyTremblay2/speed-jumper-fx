@@ -1,5 +1,6 @@
 package com.jeremyantoine.speedjumper.jeu;
 
+import com.jeremyantoine.speedjumper.actions.Chuteur;
 import com.jeremyantoine.speedjumper.actions.CollisionneurAABB;
 import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.entites.Vivant;
@@ -10,10 +11,12 @@ import java.util.List;
 
 public class EtatDeJeuJoue extends EtatDeJeu {
     private List<Entite> lesEntites;
+    private Chuteur chuteur;
 
     public EtatDeJeuJoue(TableauJeu jeu, RecuperateurDeTouches recuperateur) throws IllegalArgumentException {
         super(jeu, recuperateur);
         lesEntites = niveauCourant.getLesEntites();
+        chuteur = new Chuteur(niveauCourant.getCarte());
     }
 
     @Override
@@ -32,12 +35,6 @@ public class EtatDeJeuJoue extends EtatDeJeu {
     @Override
     public void miseAJour(float temps) {
         gestionEnnemis(temps);
-
-
-
-//        if (lesTouches.contains(Touche.ECHAP)) {
-//            return EtatJeu.ETAT_MENU_PAUSE;
-//        }
     }
 
     @Override
@@ -48,8 +45,13 @@ public class EtatDeJeuJoue extends EtatDeJeu {
 
     private void gestionEnnemis(double temps) {
         for (Entite entite : lesEntites) {
+            chuteur.miseAJourEtatDeJeu(entite, temps);
+            new Thread(chuteur).start();
             entite.miseAJour(temps);
         }
+
+        chuteur.miseAJourEtatDeJeu(joueur, temps);
+        new Thread(chuteur).start();
 
         for (Entite entite : lesEntites) {
             if (entite instanceof Vivant) {
