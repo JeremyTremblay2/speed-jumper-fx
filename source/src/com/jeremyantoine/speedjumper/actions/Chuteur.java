@@ -66,7 +66,7 @@ public class Chuteur implements Simulation, Runnable {
             position += velocite * DELTA;
 
             collisionFuture = new Rectangle(entite.getPosition().getX() + entite.getCollision().getPosition().getX(),
-                    entite.getPosition().getY() + entite.getCollision().getPosition().getY() + (position - positionPrecedente),
+                    entite.getPosition().getY() + entite.getCollision().getPosition().getY() + 2 * (position - positionPrecedente),
                     entite.getCollision().getDimension());
 
             if (collisionneur.collisionne(collisionFuture, carteCourante)) {

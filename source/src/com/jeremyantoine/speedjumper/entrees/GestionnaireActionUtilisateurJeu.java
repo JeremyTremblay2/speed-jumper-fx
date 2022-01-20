@@ -7,12 +7,15 @@ import com.jeremyantoine.speedjumper.monde.Niveau;
 /**
  * Classe gerant les actions utilisateur pendant le jeu
  */
+import java.util.List;
+
 public class GestionnaireActionUtilisateurJeu extends GestionnaireActionUtilisateur {
     private final Commande flecheGauche;
     private final Commande flecheDroite;
     private final Commande espace;
     private Commande echap;
     private final Commande aucuneAction;
+    private Niveau niveauCourant;
 
     /**
      * constructeur de la classe
@@ -26,6 +29,7 @@ public class GestionnaireActionUtilisateurJeu extends GestionnaireActionUtilisat
         if (niveau == null) {
             throw new IllegalArgumentException("Le niveau passé en paramètre ne peut pas être null.");
         }
+        niveauCourant = niveau;
         flecheGauche = new CommandeDeplacement(Direction.GAUCHE, niveau);
         flecheDroite = new CommandeDeplacement(Direction.DROITE, niveau);
         espace = new CommandeSaut(niveau);
@@ -37,21 +41,22 @@ public class GestionnaireActionUtilisateurJeu extends GestionnaireActionUtilisat
      * @return
      */
     @Override
-    public Commande attribuerAction() {
+    public List<Commande> attribuerAction() {
         lesTouches = recuperateurDeTouches.detecte();
+        lesCommandes.clear();
 
+        if (lesTouches.contains(Touche.ESPACE)) {
+            lesCommandes.add(espace);
+        }
         if (lesTouches.contains(Touche.FLECHE_DROITE)) {
-            return flecheDroite;
+            lesCommandes.add(flecheDroite);
         }
         if (lesTouches.contains(Touche.FLECHE_GAUCHE)) {
-            return flecheGauche;
-        }
-        if (lesTouches.contains(Touche.ESPACE)) {
-            return espace;
+            lesCommandes.add(flecheGauche);
         }
         if (lesTouches.contains(Touche.ECHAP)) {
-            return echap;
+            pause = true;
         }
-        return aucuneAction;
+        return lesCommandes;
     }
 }

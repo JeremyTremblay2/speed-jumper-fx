@@ -3,13 +3,14 @@ package com.jeremyantoine.speedjumper.entrees;
 import com.jeremyantoine.speedjumper.logique.Direction;
 import com.jeremyantoine.speedjumper.monde.Niveau;
 
+import java.util.List;
+
 public class GestionnaireActionUtilisateurDebug extends GestionnaireActionUtilisateur {
     private final Commande flecheGauche;
     private final Commande flecheDroite;
     private final Commande flecheBas;
     private final Commande flecheHaut;
     private final Commande espace;
-    private Commande echap;
     private Commande aucuneAction;
     private Niveau niveauCourant;
 
@@ -29,27 +30,28 @@ public class GestionnaireActionUtilisateurDebug extends GestionnaireActionUtilis
     }
 
     @Override
-    public Commande attribuerAction() {
+    public List<Commande> attribuerAction() {
         lesTouches = recuperateurDeTouches.detecte();
+        lesCommandes.clear();
 
         if (lesTouches.contains(Touche.ESPACE)) {
-            return espace;
+            lesCommandes.add(espace);
         }
         if (lesTouches.contains(Touche.FLECHE_DROITE)) {
-            return flecheDroite;
+            lesCommandes.add(flecheDroite);
         }
         if (lesTouches.contains(Touche.FLECHE_GAUCHE)) {
-            return flecheGauche;
+            lesCommandes.add(flecheGauche);
         }
         if (lesTouches.contains(Touche.FLECHE_HAUT)) {
-            return flecheHaut;
+            lesCommandes.add(flecheHaut);
         }
         if (lesTouches.contains(Touche.FLECHE_BAS)) {
-            return flecheBas;
+            lesCommandes.add(flecheBas);
         }
         if (lesTouches.contains(Touche.ECHAP)) {
-            return echap;
+            pause = true;
         }
-        return aucuneAction;
+        return lesCommandes;
     }
 }

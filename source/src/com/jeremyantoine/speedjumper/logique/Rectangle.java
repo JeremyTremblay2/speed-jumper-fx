@@ -6,8 +6,6 @@ import java.util.Objects;
  * Classe rectangle permettant de créer une zone notemment pour le systeme de collision
  */
 public class Rectangle {
-
-
     private Position2D position;
     private Dimension dimension;
 

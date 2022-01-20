@@ -103,7 +103,6 @@ public class GestionnaireDeRessources {
             carte = chargeurDeCartes.charge(chemin, lesTuiles);
             lesCartes.add(carte);
         }
-        System.out.println(lesCartes.get(0));
         return lesCartes;
     }
 

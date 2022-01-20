@@ -35,7 +35,7 @@ public class ChargeurScoreTextuel implements ChargeurScore {
                     lesScores.add(scores);
                     scores = new ArrayList<>();
                 }
-                else {
+                else if (score.length == 2) {
                     scores.add(new Score(score[0], Integer.parseInt(score[1].trim())));
                 }
             }

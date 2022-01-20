@@ -42,13 +42,13 @@ public class CollisionneurCarte {
         double largeurCarte = carte.getDimension().getLargeur();
         double hauteurCarte = carte.getDimension().getHauteur();
 
-        /*if (coinInferieur >= hauteurCarte || coinInferieur < 0
+        if (coinInferieur >= hauteurCarte || coinInferieur < 0
                 || coinSuperieur >= hauteurCarte || coinSuperieur < 0
                 || coinDroite >= largeurCarte || coinDroite < 0
                 || coinGauche >= largeurCarte || coinGauche < 0) {
             System.out.println("COLLISION EXTERIEUR MAP");
             return true;
-        }*/
+        }
 
         for(int x = coinGauche; x <= coinDroite; x++) {
             for(int y = coinSuperieur; y <= coinInferieur; y++) {
@@ -58,13 +58,13 @@ public class CollisionneurCarte {
                             collisionTuileRelative.getPosition().getY() + y * hauteurTuile,
                             collisionTuileRelative.getDimension());
                     if (collisionneur.collisionne(collision, collisionTuileAbsolue)) {
-                        System.out.println("COLLISION PAR FRICTION");
+                        //System.out.println("COLLISION PAR FRICTION");
                         return true;
                     }
                 }
             }
         }
-        System.out.println("PAS DE COLLISION");
+        //System.out.println("PAS DE COLLISION");
         return false;
     }
 }

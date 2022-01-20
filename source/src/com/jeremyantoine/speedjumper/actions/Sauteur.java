@@ -11,8 +11,8 @@ import com.jeremyantoine.speedjumper.monde.Carte2D;
  */
 public class Sauteur implements Simulation, Runnable {
     private static final float DELTA = 1f / BoucleDeJeu.FPS_CIBLE;
-    private static final float HAUTEUR_MAXIMALE_SAUT = 200;
-    private static final float HAUTEUR_SAUT = 100;
+    private static final float HAUTEUR_MAXIMALE_SAUT = 600;
+    private static final float HAUTEUR_SAUT = 500;
     private static final float DUREE_SAUT = 0.44f;
     private final CollisionneurCarte collisionneur;
     private final Carte2D carteCourante;
@@ -49,14 +49,15 @@ public class Sauteur implements Simulation, Runnable {
         if (entite.isChute() || !entite.isSurSol()) {
             return;
         }
+
+        entite.setChute(false);
+        entite.setSurSol(false);
+
         float gravite = (2 * HAUTEUR_MAXIMALE_SAUT) / (DUREE_SAUT * DUREE_SAUT);
         float velociteSaut = (float)Math.sqrt(2 * gravite * HAUTEUR_SAUT);
 
         float velocite = -velociteSaut;
         float position = 0, positionPrecedente = 0;
-
-        entite.setChute(false);
-        entite.setSurSol(false);
 
         Rectangle collisionFuture;
 
