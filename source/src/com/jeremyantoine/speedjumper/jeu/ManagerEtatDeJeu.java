@@ -69,5 +69,7 @@ public class ManagerEtatDeJeu {
     private void chargementEtats(RecuperateurDeTouches recuperateur) {
         lesEtats.put(EtatJeu.ETAT_JEU_JOUE, new EtatDeJeuJoue(jeu, recuperateur));
         lesEtats.put(EtatJeu.ETAT_MENU_PAUSE, new EtatDeJeuPause(jeu, recuperateur));
+        lesEtats.put(EtatJeu.ETAT_JEU_PERDU, new EtatDeJeuPerdu(jeu, recuperateur));
+        lesEtats.put(EtatJeu.ETAT_JEU_VICTOIRE, new EtatDeJeuVictoire(jeu, recuperateur));
     }
 }

@@ -1,11 +1,7 @@
 package com.jeremyantoine.speedjumper.donnees;
 
-import com.jeremyantoine.speedjumper.entites.Ennemi;
-import com.jeremyantoine.speedjumper.entites.Entite;
-import com.jeremyantoine.speedjumper.logique.Dimension;
 import com.jeremyantoine.speedjumper.logique.Score;
 import com.jeremyantoine.speedjumper.monde.Carte2D;
-import com.jeremyantoine.speedjumper.monde.Niveau;
 import com.jeremyantoine.speedjumper.monde.Tuile;
 import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
 
@@ -13,7 +9,6 @@ import java.io.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class GestionnaireDeRessources {
     private CollectionRessources ressources;
@@ -75,7 +70,6 @@ public class GestionnaireDeRessources {
             carte = chargeurDeCartes.charge(chemin, lesTuiles);
             lesCartes.add(carte);
         }
-        System.out.println(lesCartes.get(0));
         return lesCartes;
     }
 

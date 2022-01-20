@@ -26,23 +26,56 @@ public class ChargeurEnnemisStub implements ChargeurEnnemis {
     @Override
     public List<List<Entite>> charge(String chemin) {
         List<Entite> niveau = new ArrayList<>();
-        niveau.add(new Ennemi(
-                        new Position2D(500, 1000),
-                        new Rectangle(new Position2D(20, 50), new Dimension(60, 60)),
-                        new Dimension(100, 100),
-                        new ComportementMarche(lesNiveau.get(0)),
-                        5.5,
-                        1,
-                        3));
-        niveau.add(new Ennemi(
-                        new Position2D(800, 400),
-                        new Rectangle(new Position2D(20, 50), new Dimension(60, 60)),
-                        new Dimension(100, 100),
-                        new ComportementMarche(lesNiveau.get(0)),
-                        5.5,
-                        1,
-                        3));
+        lesEnnemis.add(niveau);
 
+        niveau = new ArrayList<>();
+        niveau.add(new Ennemi(
+                new Position2D(384, 1152),
+                new Rectangle(new Position2D(20, 50), new Dimension(60, 60)),
+                new Dimension(100, 100),
+                new ComportementMarche(lesNiveau.get(0)),
+                5.5,
+                1,
+                3));
+        lesEnnemis.add(niveau);
+
+        niveau = new ArrayList<>();
+        niveau.add(new Ennemi(
+                new Position2D(896, 6208),
+                new Rectangle(new Position2D(20, 50), new Dimension(60, 60)),
+                new Dimension(100, 100),
+                new ComportementMarche(lesNiveau.get(0)),
+                5.5,
+                1,
+                3));
+        niveau.add(new Ennemi(
+                new Position2D(1152, 3648),
+                new Rectangle(new Position2D(20, 50), new Dimension(60, 60)),
+                new Dimension(100, 100),
+                new ComportementMarche(lesNiveau.get(0)),
+                5.5,
+                1,
+                3));
+
+        lesEnnemis.add(niveau);
+
+        niveau = new ArrayList<>();
+        niveau.add(new Ennemi(
+                new Position2D(2752, 512),
+                new Rectangle(new Position2D(20, 50), new Dimension(60, 60)),
+                new Dimension(100, 100),
+                new ComportementMarche(lesNiveau.get(0)),
+                5.5,
+                1,
+                3));
+        niveau.add(new Ennemi(
+                new Position2D(2112, 1472),
+                new Rectangle(new Position2D(20, 50), new Dimension(60, 60)),
+                new Dimension(100, 100),
+                new ComportementMarche(lesNiveau.get(0)),
+                5.5,
+                1,
+                3));
         lesEnnemis.add(niveau);
         return lesEnnemis;
     }

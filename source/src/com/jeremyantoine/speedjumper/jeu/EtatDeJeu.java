@@ -22,7 +22,7 @@ public abstract class EtatDeJeu extends Sujet {
         this.jeu = jeu;
         joueur = jeu.getJoueur();
         niveauCourant = jeu.getNiveauCourant();
-        gestionnaireActions = new GestionnaireActionUtilisateurDebug(recuperateur, niveauCourant);
+        gestionnaireActions = new GestionnaireActionUtilisateurJeu(recuperateur, niveauCourant);
     }
 
     public GestionnaireActionUtilisateur getGestionnaireActions() {

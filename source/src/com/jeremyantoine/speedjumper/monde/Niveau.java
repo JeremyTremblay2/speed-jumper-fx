@@ -18,12 +18,13 @@ import java.util.List;
 public class Niveau {
     private static final int NOMBRE_SCORE_MAXIMUM = 10;
     private static int nombreNiveaux = 0;
-    private final int numeroNiveau;
-    private final Carte2D carte;
-    private final List<ArrierePlan> lesArrieresPlans;
-    private final List<Entite> lesEntites;
-    private final Fantome fantome;
-    private final Position2D pointsDepart;
+    private int numeroNiveau;
+    private Carte2D carte;
+    private List<ArrierePlan> lesArrieresPlans;
+    private List<Entite> lesEntites;
+    private Fantome fantome;
+    private Position2D pointsDepart;
+    private Position2D pointArrivee;
 
     private final ObservableList<Score> lesScoresObservables = FXCollections.observableArrayList();
 
@@ -39,14 +40,14 @@ public class Niveau {
         }
 
     public Niveau(Carte2D carte, List<ArrierePlan> arrierePlans, List<Entite> lesEntites, List<Score> lesScores,
-                  Position2D pointsDepart) throws IllegalArgumentException {
+                  Position2D pointsDepart, Position2D pointsArrivee) throws IllegalArgumentException {
         if (carte == null) {
             throw new IllegalArgumentException("La carte est requise lors de la création d'un niveau "
                     + "et ne peut être nulle.");
         }
-        if (pointsDepart == null) {
-            throw new IllegalArgumentException("La position de départ est requise lors de la création d'un niveau "
-                    + "et ne peut être nulle.");
+        if (pointsDepart == null || pointsArrivee == null) {
+            throw new IllegalArgumentException("La position de départ et d'arrivée est requise lors de la création d'un "
+                    + "niveau et ne peut être nulle.");
         }
 
         this.carte = carte;
@@ -55,6 +56,7 @@ public class Niveau {
         lesArrieresPlans = arrierePlans == null ? new ArrayList<>() : arrierePlans;
         this.lesEntites = lesEntites == null ? new ArrayList<>() : lesEntites;
         this.pointsDepart = pointsDepart;
+        this.pointArrivee = pointsArrivee;
         fantome = new Fantome(pointsDepart,
                 new Rectangle(pointsDepart.getX(), pointsDepart.getY(), 30, 60),
                 new Dimension(50, 100),
@@ -91,6 +93,14 @@ public class Niveau {
 
     public Position2D getPointsDepart() {
         return pointsDepart;
+    }
+
+    public Fantome getFantome() {
+        return fantome;
+    }
+
+    public Position2D getPointArrivee() {
+        return pointArrivee;
     }
 
     public void ajouterScore(Score score) {

@@ -8,7 +8,8 @@ import com.jeremyantoine.speedjumper.logique.Rectangle;
 import com.jeremyantoine.speedjumper.monde.Carte2D;
 
 public class Deplaceur {
-    private static final float VELOCITE_DANS_LES_AIRS = 2f;
+    private static final float VELOCITE_DANS_LES_AIRS = 1.4f;
+    private static final double NOMBRE_PIXEL_VERIFICATION_VIDE = 4;
     private CollisionneurCarte collisionneur;
     private Carte2D carteCourante;
     private final double decalagePixelParMouvement;
@@ -66,10 +67,24 @@ public class Deplaceur {
                 && nouvellePosition.getY() <= carteCourante.getDimension().getHauteur() * carteCourante.getDimensionTuiles().getHauteur()) {
             if (!collisionneur.collisionne(nouvelleCollision, carteCourante)) {
                 entite.setPosition(nouvellePosition);
+                detectionVide(entite);
             }
             else if (!collisionneur.collisionne(nouvelleCollisionSuperieure, carteCourante)) {
                 entite.setPosition(nouvellePositionSuperieure);
+                detectionVide(entite);
             }
+        }
+    }
+
+    private void detectionVide(Entite entite) {
+        Position2D positionBas = new Position2D(entite.getPosition().getX() + entite.getCollision().getPosition().getX(),
+                entite.getPosition().getY() + entite.getCollision().getPosition().getY() + NOMBRE_PIXEL_VERIFICATION_VIDE);
+
+        Rectangle nouvelleCollision = new Rectangle(positionBas, entite.getCollision().getDimension());
+
+        if (!collisionneur.collisionne(nouvelleCollision, carteCourante)) {
+            entite.setSurSol(false);
+            entite.setChute(true);
         }
     }
 }

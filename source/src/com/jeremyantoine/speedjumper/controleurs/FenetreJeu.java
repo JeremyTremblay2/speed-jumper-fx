@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FenetreJeu implements Observateur {
-    private static final Dimension DIMENSION_CAMERA_PAR_DEFAUT = new Dimension(40,28);
+    private static final Dimension DIMENSION_CAMERA_PAR_DEFAUT = new Dimension(30,22);
     private static final float ECHELLE_CARTE = 2;
 
     private Navigateur navigateur;

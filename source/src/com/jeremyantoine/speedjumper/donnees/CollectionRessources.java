@@ -2,6 +2,7 @@ package com.jeremyantoine.speedjumper.donnees;
 
 import com.jeremyantoine.speedjumper.controleurs.NomFenetre;
 import com.jeremyantoine.speedjumper.logique.Dimension;
+import com.jeremyantoine.speedjumper.logique.Position2D;
 
 import java.net.URL;
 import java.util.*;
@@ -17,6 +18,8 @@ public class CollectionRessources {
     private List<String> lesEntites;
     private List<String> lesEntitesChemins;
     private List<String> lesJeuxDeTuilesCollisions;
+    private List<Position2D> lesPointsDepart;
+    private List<Position2D> lesPointsArrivee;
 
     private String fichierConfigurationTouches;
     private String fichierScores;
@@ -30,6 +33,8 @@ public class CollectionRessources {
         lesCheminsDesStyles = new HashMap<>();
         lesEntitesChemins = new ArrayList<>();
         lesJeuxDeTuilesCollisions = new ArrayList<>();
+        lesPointsDepart = new ArrayList<>();
+        lesPointsArrivee = new ArrayList<>();
         ajouterDonnees();
     }
 
@@ -80,11 +85,22 @@ public class CollectionRessources {
         return lesJeuxDeTuilesCollisions;
     }
 
+    public List<Position2D> getLesPointsDepart() {
+        return lesPointsDepart;
+    }
+
+    public List<Position2D> getLesPointsArrivee() {
+        return lesPointsArrivee;
+    }
+
     private void ajouterDonnees() {
         fichierConfigurationTouches = Objects.requireNonNull(CollectionRessources.class.getResource("/touches.txt")).getPath();
         fichierScores = Objects.requireNonNull(CollectionRessources.class.getResource("/scores.txt")).getPath();
 
-        lesCartes.add(Objects.requireNonNull(CollectionRessources.class.getResource("/cartes/carteTest.csv")).getPath());
+        lesCartes.add(Objects.requireNonNull(CollectionRessources.class.getResource("/cartes/carte1.csv")).getPath());
+        lesCartes.add(Objects.requireNonNull(CollectionRessources.class.getResource("/cartes/carte2.csv")).getPath());
+        lesCartes.add(Objects.requireNonNull(CollectionRessources.class.getResource("/cartes/carte3.csv")).getPath());
+        lesCartes.add(Objects.requireNonNull(CollectionRessources.class.getResource("/cartes/carte4.csv")).getPath());
 
         lesJeuxDeTuiles.put(Objects.requireNonNull(CollectionRessources.class.getResource("/images/tilesets/caverne_moussue.png")).toExternalForm(),
                 new Dimension(64, 64));
@@ -106,6 +122,16 @@ public class CollectionRessources {
         lesJoueurs.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/personnages/femme.png")).toExternalForm());
 
         lesEntites.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/ennemis/slime.png")).toExternalForm());
+
+        lesPointsArrivee.add(new Position2D(512, 320));
+        lesPointsArrivee.add(new Position2D(128, 1792));
+        lesPointsArrivee.add(new Position2D(128, 448));
+        lesPointsArrivee.add(new Position2D(6336, 320));
+
+        lesPointsDepart.add(new Position2D(128, 1664));
+        lesPointsDepart.add(new Position2D(64, 64));
+        lesPointsDepart.add(new Position2D(128, 5760));
+        lesPointsDepart.add(new Position2D(256, 1344));
 
         lesEntitesChemins.add(null);
     }

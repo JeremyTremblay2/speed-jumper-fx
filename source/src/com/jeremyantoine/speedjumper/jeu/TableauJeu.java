@@ -72,14 +72,21 @@ public class TableauJeu {
             e.printStackTrace();
         }
 
+        CollectionRessources ressources = CollectionRessources.getInstance();
+        List<Position2D> lesPointsDepart = ressources.getLesPointsDepart();
+        List<Position2D> lesPointsArrivee = ressources.getLesPointsArrivee();
+
         for (int i = 0; i < lesCartes.size(); i++) {
             niveau = new Niveau(lesCartes.get(i),
                     null,
                     null,
                     lesScores.get(i) == null ? null : lesScores.get(i),
-                    new Position2D(200, 1400));
+                    lesPointsDepart.get(i),
+                    lesPointsArrivee.get(i));
             lesNiveaux.add(niveau);
         }
+
+        System.out.println(lesCartes.size());
 
         ChargeurEnnemis chargeurEnnemis = new ChargeurEnnemisStub(lesNiveaux);
         List<List<Entite>> lesEnnemis = chargeurEnnemis.charge(null);
