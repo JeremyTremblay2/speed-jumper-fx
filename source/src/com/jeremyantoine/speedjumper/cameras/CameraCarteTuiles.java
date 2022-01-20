@@ -8,6 +8,8 @@ import com.jeremyantoine.speedjumper.monde.Carte2D;
 import com.jeremyantoine.speedjumper.monde.Tuile;
 import jdk.jshell.spi.ExecutionControl;
 
+import java.util.Arrays;
+
 public class CameraCarteTuiles extends Camera2D {
     private Carte2D carteCourante;
     protected Tuile[][] vision;
@@ -95,6 +97,7 @@ public class CameraCarteTuiles extends Camera2D {
         position = new Position2D(nouvellePositionX, nouvellePositionY);
         decalageRelatif = new Dimension(decalageX, decalageY);
         miseAJour();
+        System.out.println(Arrays.deepToString(vision));
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.jeremyantoine.speedjumper.donnees;
 
 import com.jeremyantoine.speedjumper.logique.Dimension;
+import com.jeremyantoine.speedjumper.logique.Position2D;
+import com.jeremyantoine.speedjumper.logique.Rectangle;
 import com.jeremyantoine.speedjumper.monde.Tuile;
 import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
 
@@ -13,12 +15,17 @@ public class ChargeurDeJeuxDeTuilesTextuel implements ChargeurDeJeuxDeTuiles {
     private static final String CARACTERES_IGNORES ="#.*";
     private static final String DELIMITEUR_ID = ":";
     private static final String DELIMITEUR_COORDONNEES = " ";
-    private List<Tuile> lesTuiles = new ArrayList<>();
+    private List<Tuile> lesTuiles;
+
+    public ChargeurDeJeuxDeTuilesTextuel() {
+        lesTuiles = new ArrayList<>();
+    }
 
     @Override
     public List<Tuile> charge(String chemin) throws FileNotFoundException, ParseException, InvalidFormatException {
-        for (int i = 0; i < 240; i++) {
-            lesTuiles.add(new Tuile(null, new Dimension(64, 64)));
+        lesTuiles.add(new Tuile(null, new Dimension(64, 64)));
+        for (int i = 0; i < 239; i++) {
+            lesTuiles.add(new Tuile(new Rectangle(new Position2D(0, 0), new Dimension(64, 64)), new Dimension(64, 64)));
         }
 
         /*

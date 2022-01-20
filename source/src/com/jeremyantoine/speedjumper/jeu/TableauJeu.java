@@ -1,9 +1,8 @@
 package com.jeremyantoine.speedjumper.jeu;
 
 import com.jeremyantoine.speedjumper.comportement.ComportementNull;
-import com.jeremyantoine.speedjumper.donnees.AdaptateurChargeurDeCarteTiledCSV;
-import com.jeremyantoine.speedjumper.donnees.ChargeurDeJeuxDeTuilesTextuel;
-import com.jeremyantoine.speedjumper.donnees.GestionnaireDeRessources;
+import com.jeremyantoine.speedjumper.donnees.*;
+import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.entites.PersonnageJouable;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
 import com.jeremyantoine.speedjumper.logique.Dimension;
@@ -61,18 +60,27 @@ public class TableauJeu {
 
     private void initialisation() {
         List<Carte2D> lesCartes = new ArrayList<>();
+        List<List<Score>> lesScores = new ArrayList<>();
         Niveau niveau;
 
         try {
             gestionnaireDeRessources.charge();
             lesCartes = gestionnaireDeRessources.getLesCartes();
+            lesScores = gestionnaireDeRessources.getLesScores();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        for (Carte2D carte : lesCartes) {
-            niveau = new Niveau(carte, null, null, new ArrayList<>(), new Position2D(100, 1200));
+        for (int i = 0; i < lesCartes.size(); i++) {
+            niveau = new Niveau(lesCartes.get(i), null, null, null, new Position2D(100, 1200));
             lesNiveaux.add(niveau);
+        }
+
+        ChargeurEnnemis chargeurEnnemis = new ChargeurEnnemisStub(lesNiveaux);
+
+        List<List<Entite>> lesEnnemis = chargeurEnnemis.charge(null);
+        for (int i = 0; i < lesNiveaux.size(); i++) {
+            lesNiveaux.get(i).ajouterEntites(lesEnnemis.get(i));
         }
 
         lesNiveaux.add(null);
@@ -103,12 +111,5 @@ public class TableauJeu {
                 10,
                 4,
                 3);
-
-        niveauCourant.ajouterScore(new Score("Jean-Claude", 10));
-        niveauCourant.ajouterScore(new Score("Jean-Marie", 8));
-        niveauCourant.ajouterScore(new Score("Truc", 17));
-        niveauCourant.ajouterScore(new Score("Bidule", 10));
-        niveauCourant.ajouterScore(new Score("Jérémy", 1));
-        niveauCourant.ajouterScore(new Score("Antoine", 22));
     }
 }

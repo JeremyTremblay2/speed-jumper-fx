@@ -15,6 +15,7 @@ public class CollectionRessources {
     private Map<NomFenetre, String> lesCheminsDesStyles;
     private List<String> lesJoueurs;
     private List<String> lesEntites;
+    private List<String> lesEntitesChemins;
 
     private String fichierConfigurationTouches;
 
@@ -25,6 +26,7 @@ public class CollectionRessources {
         lesCartes = new ArrayList<>();
         lesCheminsDesVues = new HashMap<>();
         lesCheminsDesStyles = new HashMap<>();
+        lesEntitesChemins = new ArrayList<>();
         ajouterDonnees();
     }
 
@@ -63,6 +65,10 @@ public class CollectionRessources {
         return lesJoueurs;
     }
 
+    public List<String> getLesEntitesChemins() {
+        return lesEntitesChemins;
+    }
+
     private void ajouterDonnees() {
         fichierConfigurationTouches = Objects.requireNonNull(CollectionRessources.class.getResource("/touches.txt")).getPath();
 
@@ -86,5 +92,7 @@ public class CollectionRessources {
         lesJoueurs.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/personnages/femme.png")).toExternalForm());
 
         lesEntites.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/ennemis/slime.png")).toExternalForm());
+
+        lesEntitesChemins.add(null);
     }
 }
