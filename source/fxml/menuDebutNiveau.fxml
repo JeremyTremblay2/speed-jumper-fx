@@ -32,6 +32,7 @@
                     <Insets top="140.0"/>
                 </VBox.margin>
                 <children>
+                    <Text text="Les scores ! " />
                     <TextFlow prefHeight="200.0" prefWidth="200.0" />
                     <ListView fx:id="laListeDeScores" />
                     <Button  text="Jouer"  styleClass="choix" onAction="#ouvrirJeu"/>
