@@ -9,14 +9,13 @@ import java.util.Objects;
 
 public abstract class Entite {
     private static final double VELOCITE_PAR_DEFAUT = 1;
-    private static final double GRAVITE_PAR_DEFAUT = 2;
     private Position2D position;
     private Rectangle collision;
     private Dimension dimension;
     private Comportement comportement;
-    private double gravite;
     private double velocite;
     private boolean surSol;
+    private boolean chute;
 
     public Entite(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
                   double velocite) throws IllegalArgumentException {
@@ -36,8 +35,8 @@ public abstract class Entite {
         this.position = position;
         this.collision = collision;
         this.velocite = velocite <= 0 ? VELOCITE_PAR_DEFAUT : velocite;
-        gravite = GRAVITE_PAR_DEFAUT;
         surSol = false;
+        chute = true;
     }
 
     public Position2D getPosition() {
@@ -56,16 +55,24 @@ public abstract class Entite {
         return dimension;
     }
 
-    public double getGravite() {
-        return gravite;
-    }
-
     public double getVelocite() {
         return velocite;
     }
 
     public boolean isSurSol() {
         return surSol;
+    }
+
+    public boolean isChute() {
+        return chute;
+    }
+
+    public void setSurSol(boolean surSol) {
+        this.surSol = surSol;
+    }
+
+    public void setChute(boolean chute) {
+        this.chute = chute;
     }
 
     public Comportement getComportement() {
@@ -101,7 +108,9 @@ public abstract class Entite {
     public String toString() {
         return this.getClass() + " : " + position.toString() + " "
                 + "\nZone collision : " + collision.toString()
-                + "\n" + gravite + "g " + velocite + "v"
+                + "\n" + velocite + "v"
+                + "\n" + "Se trouve sur sol : " + surSol
+                + "\n" + "Est en train de chuter : " + chute
                 + "\nComportement : " + comportement;
     }
 

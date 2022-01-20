@@ -7,10 +7,11 @@ public class Jeu implements Observateur {
     private static final int FPS_CIBLE = 60;
     private static final double TEMPS_MISE_A_JOUR = 10000000;
     private int compteurFrame = 0;
-    private long tempsOrigine = System.nanoTime(), temps = 0;
+    private long tempsOrigine = System.nanoTime();
     private boolean joue;
     private ManagerEtatDeJeu managerEtats;
     private TableauJeu jeu;
+    private BoucleDeJeu boucleDeJeu;
 
     public Jeu(RecuperateurDeTouches recuperateur) {
         jeu = new TableauJeu(recuperateur);
@@ -31,7 +32,7 @@ public class Jeu implements Observateur {
     }
 
     public void jouer() {
-        BoucleDeJeu boucleDeJeu = new BoucleDeJeu();
+        boucleDeJeu = new BoucleDeJeu();
         boucleDeJeu.attacher(this);
         Thread processus = new Thread(boucleDeJeu, "Speed Jumper Thread");
         processus.start();
@@ -70,9 +71,8 @@ public class Jeu implements Observateur {
 
     @Override
     public void miseAjour() {
-        temps += BoucleDeJeu.NOMBRE_MILLISECONDES_AVANT_NOTIFICATION;
-        managerEtats.entreeUtilisateur(temps);
-        managerEtats.miseAJour(temps);
+        managerEtats.entreeUtilisateur(boucleDeJeu.getTempsEcoule());
+        managerEtats.miseAJour(boucleDeJeu.getTempsEcoule());
         managerEtats.affichage();
     }
 

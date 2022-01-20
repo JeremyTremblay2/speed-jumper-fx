@@ -4,8 +4,11 @@ import com.jeremyantoine.speedjumper.observateurs.Sujet;
 import javafx.application.Platform;
 
 public class BoucleDeJeu extends Sujet implements Runnable {
-    public static final long NOMBRE_MILLISECONDES_AVANT_NOTIFICATION = 1000000000 / 60;
+    private static final long SECONDE_EN_NANOSECONDE = 1000000000;
+    public static final long FPS_CIBLE = 60;
+    public static final long NOMBRE_NANOSECONDES_AVANT_NOTIFICATION =  SECONDE_EN_NANOSECONDE / FPS_CIBLE;
     private boolean enCours;
+    private long tempsEcoule;
 
     public BoucleDeJeu() {
         enCours = true;
@@ -15,13 +18,19 @@ public class BoucleDeJeu extends Sujet implements Runnable {
         this.enCours = enCours;
     }
 
+    public long getTempsEcoule() {
+        return tempsEcoule;
+    }
+
     @Override
     public void run() {
-        long tempsCourant;
+        long tempsCourant, ecoule;
         long tempsDerniereIteration = System.nanoTime();
         while (enCours) {
             tempsCourant = System.nanoTime();
-            if (tempsCourant - tempsDerniereIteration >= NOMBRE_MILLISECONDES_AVANT_NOTIFICATION) {
+            ecoule = tempsCourant - tempsDerniereIteration;
+            if (ecoule >= NOMBRE_NANOSECONDES_AVANT_NOTIFICATION) {
+                tempsEcoule = ecoule;
                 Platform.runLater(this::notifier);
                 tempsDerniereIteration = tempsCourant;
             }
