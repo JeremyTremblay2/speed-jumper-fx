@@ -24,6 +24,9 @@ public class GestionnaireDeRessourcesFX {
     private List<String> lesEnnemisChemins;
     private List<Image> lesEnnemisImages;
 
+    private List<String> lesArrierePlansChemins;
+    private List<Image> lesArrieresPlans;
+
     public GestionnaireDeRessourcesFX() {
         ressources = CollectionRessources.getInstance();
 
@@ -35,6 +38,9 @@ public class GestionnaireDeRessourcesFX {
 
         lesEnnemisChemins = ressources.getLesEntites();
         lesEnnemisImages = new ArrayList<>();
+
+        lesArrierePlansChemins = ressources.getLesArrieresPlans();
+        lesArrieresPlans = new ArrayList<>();
     }
 
     public List<Image> getLesEnnemisImages() {
@@ -49,10 +55,15 @@ public class GestionnaireDeRessourcesFX {
         return lesTuilesImagees;
     }
 
+    public List<Image> getLesArrieresPlans() {
+        return lesArrieresPlans;
+    }
+
     public void charge() throws Exception {
         chargeImagesEntites();
         chargeImagesPersonnages();
         decoupeTuiles();
+        chargeArrierePlan();
     }
 
     private void chargeImagesEntites() {
@@ -60,7 +71,6 @@ public class GestionnaireDeRessourcesFX {
             lesEnnemisImages.add(new Image(chemin));
         }
     }
-
 
     private void chargeImagesPersonnages() {
         for (String chemin : lesPersonnagesChemins) {
@@ -79,6 +89,12 @@ public class GestionnaireDeRessourcesFX {
             }
             images = decoupeur.decoupe(chemin, (int) dimension.getLargeur(), (int) dimension.getHauteur());
             lesTuilesImagees.addAll(images);
+        }
+    }
+
+    private void chargeArrierePlan() {
+        for (String chemin : lesArrierePlansChemins) {
+            lesArrieresPlans.add(new Image(chemin));
         }
     }
 }

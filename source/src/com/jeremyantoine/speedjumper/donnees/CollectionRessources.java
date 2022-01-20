@@ -18,6 +18,7 @@ public class CollectionRessources {
     private List<String> lesEntites;
     private List<String> lesEntitesChemins;
     private List<String> lesJeuxDeTuilesCollisions;
+    private List<String> lesArrieresPlans;
     private List<Position2D> lesPointsDepart;
     private List<Position2D> lesPointsArrivee;
 
@@ -33,6 +34,7 @@ public class CollectionRessources {
         lesCheminsDesStyles = new HashMap<>();
         lesEntitesChemins = new ArrayList<>();
         lesJeuxDeTuilesCollisions = new ArrayList<>();
+        lesArrieresPlans = new ArrayList<>();
         lesPointsDepart = new ArrayList<>();
         lesPointsArrivee = new ArrayList<>();
         ajouterDonnees();
@@ -85,6 +87,10 @@ public class CollectionRessources {
         return lesJeuxDeTuilesCollisions;
     }
 
+    public List<String> getLesArrieresPlans() {
+        return lesArrieresPlans;
+    }
+
     public List<Position2D> getLesPointsDepart() {
         return lesPointsDepart;
     }
@@ -121,7 +127,9 @@ public class CollectionRessources {
 
         lesJoueurs.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/personnages/femme.png")).toExternalForm());
 
-        lesEntites.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/ennemis/slime.png")).toExternalForm());
+        lesEntites.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/personnages/slime.png")).toExternalForm());
+
+        lesArrieresPlans.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/fonds/background.jpg")).toExternalForm());
 
         lesPointsArrivee.add(new Position2D(512, 320));
         lesPointsArrivee.add(new Position2D(128, 1792));

@@ -27,6 +27,7 @@ public class MenuPrincipal extends Sujet {
     }
 
     public void fermetureFenetre(ActionEvent actionEvent) {
+        jeu.ferme();
         navigateur.getStage().close();
     }
 

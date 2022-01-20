@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 
 public class MenuJouer {
     private static final Pattern NOMBRE_ENTIER = Pattern.compile("[^0-9]+([0-9]+)$");
-    private static final int NOMBRE_NIVEAU_PAR_PAGE = 4;
+    private static final int NOMBRE_NIVEAU_PAR_PAGE = 3;
     private static final int NOMBRE_NIVEAU_PAR_LIGNE = 2;
     private Navigateur navigateur;
     private Jeu jeu;

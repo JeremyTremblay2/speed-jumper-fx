@@ -1,5 +1,6 @@
 package com.jeremyantoine.speedjumper.controleurs;
 
+import com.jeremyantoine.speedjumper.affichages.ArrierePlanFX;
 import com.jeremyantoine.speedjumper.affichages.EntiteFX;
 import com.jeremyantoine.speedjumper.affichages.TuileFX;
 import com.jeremyantoine.speedjumper.cameras.CameraCarteTuilesFX;
@@ -9,6 +10,7 @@ import com.jeremyantoine.speedjumper.entites.PersonnageJouable;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouchesFX;
 import com.jeremyantoine.speedjumper.jeu.*;
 import com.jeremyantoine.speedjumper.logique.Dimension;
+import com.jeremyantoine.speedjumper.monde.ArrierePlan;
 import com.jeremyantoine.speedjumper.monde.Niveau;
 import com.jeremyantoine.speedjumper.monde.Tuile;
 import com.jeremyantoine.speedjumper.observateurs.Observateur;
@@ -21,6 +23,7 @@ import javafx.scene.layout.StackPane;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class FenetreJeu implements Observateur {
     private static final Dimension DIMENSION_CAMERA_PAR_DEFAUT = new Dimension(30,22);
@@ -37,6 +40,7 @@ public class FenetreJeu implements Observateur {
     private Niveau niveauCourant;
     private List<TuileFX> lesTuilesGraphiques;
     private List<EntiteFX> lesEntitesGraphiques;
+    private List<ArrierePlanFX> lesArrierePlansGraphiques;
     private CameraCarteTuilesFX camera;
     private PersonnageJouable joueur;
 
@@ -57,6 +61,7 @@ public class FenetreJeu implements Observateur {
 
         lesTuilesGraphiques = new ArrayList<>();
         lesEntitesGraphiques = new ArrayList<>();
+        lesArrierePlansGraphiques = new ArrayList<>();
 
         gestionnaireDeRessources = new GestionnaireDeRessourcesFX();
         niveauCourant = jeu.getJeu().getNiveauCourant();
@@ -88,6 +93,8 @@ public class FenetreJeu implements Observateur {
         camera.centrerSurEntite(joueur);
         contexteGraphique.clearRect(0, 0, tailleCaneva.getLargeur(), tailleCaneva.getHauteur());
 
+        contexteGraphique.drawImage(lesArrierePlansGraphiques.get(0).getImage(), 0, 0);
+
         for (int x = 0; x < hauteurCamera - 1; x++) {
             for (int y = 0; y < largeurCamera - 1; y++) {
                 contexteGraphique.drawImage(camera.getTuileGraphique(x, y).getImage(),
@@ -114,6 +121,7 @@ public class FenetreJeu implements Observateur {
     @Override
     public void miseAjour() {
         if (jeu.getManagerEtats().getEtatJeuCourant() == EtatJeu.ETAT_MENU_PAUSE) {
+            System.out.println("navigation");
             MenuPause menu = new MenuPause(navigateur, jeu);
             navigateur.naviguerVers(NomFenetre.MENU_PAUSE, menu);
         }
@@ -141,13 +149,14 @@ public class FenetreJeu implements Observateur {
 
         List<Tuile> lesTuiles;
         List<Entite> lesEntites;
-        List<Image> lesTuilesImagees, lesEntitesImagees, lesPersonnagesImages;
+        List<Image> lesTuilesImagees, lesEntitesImagees, lesPersonnagesImages, lesArrieresPlans;
 
         lesTuiles = jeu.getJeu().getGestionnaireDeRessources().getLesTuiles();
         lesTuilesImagees = gestionnaireDeRessources.getLesTuilesImagees();
 
         lesEntites = niveauCourant.getLesEntites();
         lesEntitesImagees = gestionnaireDeRessources.getLesEnnemisImages();
+        lesArrieresPlans = gestionnaireDeRessources.getLesArrieresPlans();
 
         lesPersonnagesImages = gestionnaireDeRessources.getLesPersonnagesImages();
         lesEntitesGraphiques.add(new EntiteFX(joueur, lesPersonnagesImages));
@@ -160,10 +169,17 @@ public class FenetreJeu implements Observateur {
             lesEntitesGraphiques.add(new EntiteFX(lesEntites.get(i), lesEntitesImagees));
         }
 
+        ArrierePlan arrierePlan = new ArrierePlan(0, 0, new Dimension(1920, 1080));
+
+        for (Image lesArrieresPlan : lesArrieresPlans) {
+            lesArrierePlansGraphiques.add(new ArrierePlanFX(arrierePlan, lesArrieresPlan));
+        }
+
         //Initialiase la détection des touches, le système de notification, et démarre le jeu
         ((RecuperateurDeTouchesFX) jeu.getManagerEtats().getEtatCourant()
                 .getGestionnaireActions().getRecuperateurDeTouches()).setSceneCourante(scene);
         jeu.getManagerEtats().setEtatCourant(EtatJeu.ETAT_JEU_JOUE);
+        jeu.getManagerEtats().attacher(this);
         jeu.getManagerEtats().getEtatCourant().attacher(this);
 
         affichage();

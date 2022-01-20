@@ -37,7 +37,7 @@ public class Sauteur implements Simulation, Runnable {
             return;
         }
 
-        entite.setChute(false);
+        entite.setChute(true);
         entite.setSurSol(false);
 
         float gravite = (2 * HAUTEUR_MAXIMALE_SAUT) / (DUREE_SAUT * DUREE_SAUT);

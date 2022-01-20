@@ -12,6 +12,7 @@ public class Jeu implements Observateur {
     private ManagerEtatDeJeu managerEtats;
     private TableauJeu jeu;
     private BoucleDeJeu boucleDeJeu;
+    private Thread processus;
 
     public Jeu(RecuperateurDeTouches recuperateur) {
         jeu = new TableauJeu(recuperateur);
@@ -34,7 +35,7 @@ public class Jeu implements Observateur {
     public void jouer() {
         boucleDeJeu = new BoucleDeJeu();
         boucleDeJeu.attacher(this);
-        Thread processus = new Thread(boucleDeJeu, "Speed Jumper Thread");
+        processus = new Thread(boucleDeJeu, "Speed Jumper Thread");
         processus.start();
     }
 
@@ -78,5 +79,11 @@ public class Jeu implements Observateur {
 
     public void ferme() {
         //Eventuellement sauvegarde, etc avant de quitter.
+        boucleDeJeu.setEnCours(false);
+        try {
+            processus.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

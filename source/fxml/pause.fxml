@@ -27,8 +27,8 @@
                     <GridPane.margin>
                         <Insets top="100"/>
                     </GridPane.margin>
-                    <Button  text="CONTINUER" onAction="#continuer"/>
-                    <Button  text="QUITTER" onAction="#quitter"/>
+                    <Button text="CONTINUER" onAction="#reprendreJeu"/>
+                    <Button text="QUITTER" onAction="#retourMenu"/>
                 </HBox>
 
             </children>
