@@ -25,7 +25,7 @@ public class TableauJeu {
 
     public TableauJeu(RecuperateurDeTouches recuperateur) {
         gestionnaireDeRessources = new GestionnaireDeRessources(new AdaptateurChargeurDeCarteTiledCSV(","),
-                new ChargeurDeJeuxDeTuilesTextuel());
+                new ChargeurDeJeuxDeTuilesTextuel(), new ChargeurScoreTextuel());
         initialisation();
     }
 
@@ -71,14 +71,18 @@ public class TableauJeu {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println(lesScores);
 
         for (int i = 0; i < lesCartes.size(); i++) {
-            niveau = new Niveau(lesCartes.get(i), null, null, null, new Position2D(100, 1200));
+            niveau = new Niveau(lesCartes.get(i),
+                    null,
+                    null,
+                    lesScores.get(i) == null ? null : lesScores.get(i),
+                    new Position2D(200, 1200));
             lesNiveaux.add(niveau);
         }
 
         ChargeurEnnemis chargeurEnnemis = new ChargeurEnnemisStub(lesNiveaux);
-
         List<List<Entite>> lesEnnemis = chargeurEnnemis.charge(null);
         for (int i = 0; i < lesNiveaux.size(); i++) {
             lesNiveaux.get(i).ajouterEntites(lesEnnemis.get(i));
@@ -105,8 +109,8 @@ public class TableauJeu {
 
         options = new Options(true, 10, 10);
 
-        joueur = new PersonnageJouable(new Position2D(350, 300),
-                new Rectangle(6, 3, 15, 33),
+        joueur = new PersonnageJouable(new Position2D(0, 0),
+                new Rectangle(7, 7, 10, 27),
                 new Dimension(24, 36),
                 new ComportementNull(),
                 10,

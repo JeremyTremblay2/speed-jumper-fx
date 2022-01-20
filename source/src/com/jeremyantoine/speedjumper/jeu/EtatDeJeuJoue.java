@@ -12,11 +12,13 @@ import java.util.List;
 public class EtatDeJeuJoue extends EtatDeJeu {
     private List<Entite> lesEntites;
     private Chuteur chuteur;
+    private CollisionneurAABB collisionneur;
 
     public EtatDeJeuJoue(TableauJeu jeu, RecuperateurDeTouches recuperateur) throws IllegalArgumentException {
         super(jeu, recuperateur);
         lesEntites = niveauCourant.getLesEntites();
         chuteur = new Chuteur(niveauCourant.getCarte());
+        collisionneur = new CollisionneurAABB();
     }
 
     @Override
@@ -45,9 +47,9 @@ public class EtatDeJeuJoue extends EtatDeJeu {
 
     private void gestionEnnemis(double temps) {
         for (Entite entite : lesEntites) {
-            chuteur.miseAJourEtatDeJeu(entite, temps);
-            new Thread(chuteur).start();
-            entite.miseAJour(temps);
+            //chuteur.miseAJourEtatDeJeu(entite, temps);
+            //new Thread(chuteur).start();
+            //entite.miseAJour(temps);
         }
 
         chuteur.miseAJourEtatDeJeu(joueur, temps);
@@ -55,7 +57,7 @@ public class EtatDeJeuJoue extends EtatDeJeu {
 
         for (Entite entite : lesEntites) {
             if (entite instanceof Vivant) {
-                if (CollisionneurAABB.collisionne(joueur.getCollision(), entite.getCollision())) {
+                if (collisionneur.collisionne(joueur.getCollision(), entite.getCollision())) {
                     joueur.setPointsDeVie(joueur.getPointsDeVie() - ((Vivant) entite).getDegats());
                 }
             }

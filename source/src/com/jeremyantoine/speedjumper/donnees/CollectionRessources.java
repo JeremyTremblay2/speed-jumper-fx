@@ -18,6 +18,7 @@ public class CollectionRessources {
     private List<String> lesEntitesChemins;
 
     private String fichierConfigurationTouches;
+    private String fichierScores;
 
     private CollectionRessources() {
         lesJeuxDeTuiles = new HashMap<>();
@@ -69,8 +70,13 @@ public class CollectionRessources {
         return lesEntitesChemins;
     }
 
+    public String getFichierScores() {
+        return fichierScores;
+    }
+
     private void ajouterDonnees() {
         fichierConfigurationTouches = Objects.requireNonNull(CollectionRessources.class.getResource("/touches.txt")).getPath();
+        fichierScores = Objects.requireNonNull(CollectionRessources.class.getResource("/scores.txt")).getPath();
 
         lesCartes.add(Objects.requireNonNull(CollectionRessources.class.getResource("/cartes/carteTest.csv")).getPath());
 

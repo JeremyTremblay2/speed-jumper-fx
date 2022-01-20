@@ -55,7 +55,6 @@ public class ChargeurDeJeuxDeTuilesTextuel implements ChargeurDeJeuxDeTuiles {
         if (nombreJetons % 2 != 0) {
             throw new InvalidFormatException("Il manque des données dans le jeu de tuiles du fichier " + chemin);
         }
-        System.out.println(chaine);
 
         while (delimiteur.hasMoreTokens()) {
             //lesTouches.put(delimiteur.nextToken().trim(), delimiteur.nextToken().trim());

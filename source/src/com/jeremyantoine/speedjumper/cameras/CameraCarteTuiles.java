@@ -97,7 +97,6 @@ public class CameraCarteTuiles extends Camera2D {
         position = new Position2D(nouvellePositionX, nouvellePositionY);
         decalageRelatif = new Dimension(decalageX, decalageY);
         miseAJour();
-        System.out.println(Arrays.deepToString(vision));
     }
 
     @Override

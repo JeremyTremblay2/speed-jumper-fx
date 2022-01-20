@@ -19,21 +19,25 @@ public class GestionnaireDeRessources {
     private CollectionRessources ressources;
     private ChargeurDeCarteTiled chargeurDeCartes;
     private ChargeurDeJeuxDeTuiles chargeurDeTuiles;
+    private ChargeurScore chargeurScore;
 
     private List<String> lesCartesChemins;
     private Map<String, Dimension> lesJeuxDeTuiles;
+    private String cheminScores;
 
     private List<Carte2D> lesCartes;
     private List<Tuile> lesTuiles;
     private List<List<Score>> lesScores;
 
-    public GestionnaireDeRessources(ChargeurDeCarteTiled chargeurDeCartes, ChargeurDeJeuxDeTuiles chargeurDeTuiles) throws IllegalArgumentException {
-        if (chargeurDeCartes == null || chargeurDeTuiles == null) {
+    public GestionnaireDeRessources(ChargeurDeCarteTiled chargeurDeCartes, ChargeurDeJeuxDeTuiles chargeurDeTuiles,
+                                    ChargeurScore chargeurScore) throws IllegalArgumentException {
+        if (chargeurDeCartes == null || chargeurDeTuiles == null || chargeurScore == null) {
             throw new IllegalArgumentException("Les chargeurs fournis en paramètre du gestionnaire de ressources ne "
                     + "peuvent pas être null.");
         }
         this.chargeurDeCartes = chargeurDeCartes;
         this.chargeurDeTuiles = chargeurDeTuiles;
+        this.chargeurScore = chargeurScore;
 
         lesCartes = new ArrayList<>();
         lesTuiles = new ArrayList<>();
@@ -42,6 +46,7 @@ public class GestionnaireDeRessources {
         ressources = CollectionRessources.getInstance();
         lesCartesChemins = ressources.getLesCartes();
         lesJeuxDeTuiles = ressources.getLesJeuxDeTuiles();
+        cheminScores = ressources.getFichierScores();
     }
 
     public List<Carte2D> getLesCartes() {
@@ -83,10 +88,6 @@ public class GestionnaireDeRessources {
     }
 
     private List<List<Score>> chargeScores() {
-        List<Score> lesScores = new ArrayList<>();
-        return null;
+        return chargeurScore.charge(cheminScores);
     }
-
-
-
 }

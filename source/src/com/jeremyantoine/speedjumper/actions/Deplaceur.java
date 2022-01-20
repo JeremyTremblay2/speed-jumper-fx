@@ -27,7 +27,6 @@ public class Deplaceur {
         }
 
         Position2D nouvellePosition = entite.getPosition();
-        System.out.println(temps);
         double increment = entite.getVelocite() * (temps / BoucleDeJeu.NOMBRE_NANOSECONDES_AVANT_NOTIFICATION);
 
         switch (direction) {

@@ -83,7 +83,6 @@ public class MenuJouer {
             String nombre = matcher.group(1);
             int numeroNiveau = Integer.parseInt(nombre);
             if (jeu.getJeu().getLesNiveaux().size() >= numeroNiveau) {
-                System.out.println(numeroNiveau);
                 jeu.getJeu().setNiveauCourant(numeroNiveau - 1);
                 MenuDebutNiveau fenetre = new MenuDebutNiveau(navigateur, jeu);
                 navigateur.naviguerVers(NomFenetre.MENU_DEBUT_NIVEAU, fenetre);
@@ -95,7 +94,6 @@ public class MenuJouer {
     public void pageSuivante(ActionEvent event) {
         pageCourante++;
         initialize();
-        System.out.println("Changement de page incoming");
     }
 
     @FXML

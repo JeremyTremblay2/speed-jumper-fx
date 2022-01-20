@@ -31,7 +31,6 @@ public class MenuPrincipal extends Sujet {
     }
 
     public void ouvrirMenuJeu(ActionEvent event) {
-        System.out.println("ouverture menu jeu");
         MenuJouer menu = new MenuJouer(navigateur, jeu);
         navigateur.naviguerVers(NomFenetre.MENU_JOUER, menu);
     }
