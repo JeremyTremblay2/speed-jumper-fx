@@ -10,12 +10,10 @@ import com.jeremyantoine.speedjumper.monde.Niveau;
 import java.util.List;
 
 public class GestionnaireActionUtilisateurJeu extends GestionnaireActionUtilisateur {
-    private final Commande flecheGauche;
-    private final Commande flecheDroite;
-    private final Commande espace;
-    private Commande echap;
-    private final Commande aucuneAction;
-    private Niveau niveauCourant;
+    private Commande flecheGauche;
+    private Commande flecheDroite;
+    private Commande espace;
+    private Commande aucuneAction;
 
     /**
      * constructeur de la classe
@@ -25,7 +23,7 @@ public class GestionnaireActionUtilisateurJeu extends GestionnaireActionUtilisat
      */
     public GestionnaireActionUtilisateurJeu(RecuperateurDeTouches recuperateur, Niveau niveau)
             throws IllegalArgumentException {
-        super(recuperateur);
+        super(recuperateur, niveau);
         if (niveau == null) {
             throw new IllegalArgumentException("Le niveau passé en paramètre ne peut pas être null.");
         }
@@ -34,6 +32,14 @@ public class GestionnaireActionUtilisateurJeu extends GestionnaireActionUtilisat
         flecheDroite = new CommandeDeplacement(Direction.DROITE, niveau);
         espace = new CommandeSaut(niveau);
         aucuneAction = new CommandeNulle();
+    }
+
+    @Override
+    public void setNiveauCourant(Niveau niveauCourant) {
+        super.setNiveauCourant(niveauCourant);
+        flecheGauche = new CommandeDeplacement(Direction.GAUCHE, niveauCourant);
+        flecheDroite = new CommandeDeplacement(Direction.DROITE, niveauCourant);
+        espace = new CommandeSaut(niveauCourant);
     }
 
     /**

@@ -31,26 +31,26 @@ public class FenetreJeu implements Observateur {
     private static final Dimension DIMENSION_CAMERA_PAR_DEFAUT = new Dimension(30,22);
     private static final float ECHELLE_CARTE = 2;
 
-    private final Navigateur navigateur;
-    private final Jeu jeu;
+    private Navigateur navigateur;
+    private Jeu jeu;
 
-    private final Scene scene;
-    private final GraphicsContext contexteGraphique;
+    private Scene scene;
+    private GraphicsContext contexteGraphique;
 
-    private final Niveau niveauCourant;
-    private final List<TuileFX> lesTuilesGraphiques;
-    private final List<EntiteFX> lesEntitesGraphiques;
-    private final CameraCarteTuilesFX camera;
-    private final PersonnageJouable joueur;
+    private Niveau niveauCourant;
+    private List<TuileFX> lesTuilesGraphiques;
+    private List<EntiteFX> lesEntitesGraphiques;
+    private CameraCarteTuilesFX camera;
+    private PersonnageJouable joueur;
     private List<ArrierePlanFX> lesArrierePlansGraphiques;
 
-    private final GestionnaireDeRessourcesFX gestionnaireDeRessources;
+    private GestionnaireDeRessourcesFX gestionnaireDeRessources;
 
-    private final Dimension tailleCaneva;
-    private final int largeurCamera;
-    private final int hauteurCamera;
-    private final int largeurTuile;
-    private final int hauteurTuile;
+    private Dimension tailleCaneva;
+    private int largeurCamera;
+    private int hauteurCamera;
+    private int largeurTuile;
+    private int hauteurTuile;
 
     /**
      * Constructeur de la fenetre
@@ -125,8 +125,8 @@ public class FenetreJeu implements Observateur {
                     entite.getEntite().getPosition().getY() / ECHELLE_CARTE
                             - camera.getPosition().getY() * (hauteurTuile / ECHELLE_CARTE)
                             - camera.getDecalageRelatif().getHauteur() / ECHELLE_CARTE,
-                    entite.getEntite().getDimension().getLargeur() / ECHELLE_CARTE,
-                    entite.getEntite().getDimension().getHauteur() / ECHELLE_CARTE);
+                    20,
+                    40);
         }
     }
 

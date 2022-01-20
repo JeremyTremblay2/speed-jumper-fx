@@ -8,9 +8,9 @@ import com.jeremyantoine.speedjumper.logique.Position2D;
  */
 public class ArrierePlan {
     private final int zindex;
-    private final float vitesseDefilement;
+    private float vitesseDefilement;
     private Position2D position;
-    private final Dimension dimension;
+    private Dimension dimension;
 
     /**
      * Constructeur de l'arrierePlan

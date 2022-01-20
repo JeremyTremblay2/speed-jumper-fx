@@ -34,6 +34,11 @@ public abstract class EtatDeJeu extends Sujet {
         gestionnaireActions = new GestionnaireActionUtilisateurJeu(recuperateur, niveauCourant);
     }
 
+    public void raffraichirNiveauCourant() {
+        niveauCourant = jeu.getNiveauCourant();
+        gestionnaireActions.setNiveauCourant(niveauCourant);
+    }
+
     /**
      * retourne le gestionnaire d'actions
      * @return

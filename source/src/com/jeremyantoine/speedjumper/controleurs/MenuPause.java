@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
  * controleur de la vue Pause
  */
 public class MenuPause {
-    private final Navigateur navigateur;
+    private Navigateur navigateur;
 
     /**
      * contructeur

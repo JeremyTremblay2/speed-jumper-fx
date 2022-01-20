@@ -19,8 +19,8 @@ import java.util.List;
  * Classe tableau de jeu permettant de les jeux
  */
 public class TableauJeu {
-    private final GestionnaireDeRessources gestionnaireDeRessources;
-    private final List<Niveau> lesNiveaux = new ArrayList<>();
+    private GestionnaireDeRessources gestionnaireDeRessources;
+    private List<Niveau> lesNiveaux = new ArrayList<>();
     private PersonnageJouable joueur;
     private Niveau niveauCourant;
     private Options options;

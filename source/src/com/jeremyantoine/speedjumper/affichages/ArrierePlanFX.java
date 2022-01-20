@@ -10,8 +10,8 @@ import java.util.Objects;
  * Classe permettant de gerer l'affichage de l'arriere plan
  */
 public class ArrierePlanFX implements Observateur {
-    private final ArrierePlan arrierePlan;
-    private final Image image;
+    private ArrierePlan arrierePlan;
+    private Image image;
 
     /**
      * Constructeur de la classe

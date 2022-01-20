@@ -47,6 +47,7 @@ public class CollisionneurCarte {
                 || coinDroite >= largeurCarte || coinDroite < 0
                 || coinGauche >= largeurCarte || coinGauche < 0) {
             System.out.println("COLLISION EXTERIEUR MAP");
+            System.out.println(carte.getDimension());
             return true;
         }
 

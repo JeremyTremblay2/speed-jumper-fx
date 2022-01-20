@@ -19,9 +19,9 @@ import java.util.List;
  * Classe EtatDeJeuJoue  gerant les actions lors du jeu
  */
 public class EtatDeJeuJoue extends EtatDeJeu {
-    private final List<Entite> lesEntites;
-    private final Chuteur chuteur;
-    private final CollisionneurAABB collisionneur;
+    private List<Entite> lesEntites;
+    private Chuteur chuteur;
+    private CollisionneurAABB collisionneur;
     private CollisionneurPointRectangle collisionneurPointRectangle;
     private Rectangle collisionJoueur;
 
@@ -64,11 +64,13 @@ public class EtatDeJeuJoue extends EtatDeJeu {
 
         System.out.println(collisionJoueur);
 
+        /*
+        Implémenter le système de détection de fin de niveau.
         if (collisionneurPointRectangle.collisionne(niveauCourant.getPointArrivee(), joueur.getCollision())) {
             System.out.println("fini");
             return EtatJeu.ETAT_JEU_VICTOIRE;
         }
-
+         */
         return null;
     }
 
@@ -94,8 +96,15 @@ public class EtatDeJeuJoue extends EtatDeJeu {
      */
     @Override
     public void affichage() {
-
+        //Ne fait rien ici hormis notifier qu'il faut mettre à jour tout l'affichage.
         notifier();
+    }
+
+    @Override
+    public void raffraichirNiveauCourant() {
+        super.raffraichirNiveauCourant();
+        lesEntites = niveauCourant.getLesEntites();
+        chuteur = new Chuteur(niveauCourant.getCarte());
     }
 
 

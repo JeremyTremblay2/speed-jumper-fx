@@ -10,8 +10,8 @@ import java.util.Objects;
  * Classe permettant l'affichage d'une tuile
  */
 public class TuileFX implements Observateur {
-    private final Tuile tuile;
-    private final Image image;
+    private Tuile tuile;
+    private Image image;
 
     /**
      * constructeur de la classe

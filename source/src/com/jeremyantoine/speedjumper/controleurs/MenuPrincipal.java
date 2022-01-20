@@ -13,8 +13,8 @@ import javafx.event.ActionEvent;
  * controleur de la fenetre MenuPrincipal
  */
 public class MenuPrincipal extends Sujet {
-    private final Navigateur navigateur;
-    private final Jeu jeu;
+    private Navigateur navigateur;
+    private Jeu jeu;
 
     /**
      * Constructeur de la fenetre

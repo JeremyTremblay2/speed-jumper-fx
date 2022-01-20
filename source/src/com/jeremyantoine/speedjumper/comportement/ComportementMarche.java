@@ -11,7 +11,7 @@ import com.jeremyantoine.speedjumper.monde.Niveau;
  * classe gerant le comportement marche
  */
 public class ComportementMarche implements Comportement {
-    private final AdaptateurDeplaceur deplaceur;
+    private AdaptateurDeplaceur deplaceur;
     private Position2D dernierePosition = null;
 
     /**

@@ -11,7 +11,7 @@ import java.util.Map;
  * Classe permettant de gerer les actions en rapport avec la recuperation des touches
  */
 public class RecuperateurDeTouchesFX extends RecuperateurDeTouches {
-    private final Map<KeyCode, Touche> dicoTouches;
+    private Map<KeyCode, Touche> dicoTouches;
     private Scene sceneCourante;
 
     /**

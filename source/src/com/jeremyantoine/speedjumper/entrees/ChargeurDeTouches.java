@@ -16,7 +16,7 @@ import java.util.StringTokenizer;
 public abstract class ChargeurDeTouches {
     private static final String CARACTERES_IGNORES ="#.*";
     private static final String DELIMITEUR = ":";
-    private final Map<String, String> lesTouches = new HashMap<>();
+    private Map<String, String> lesTouches = new HashMap<>();
 
     /**
      * Permet d'ouvrir le fichier et de le lire

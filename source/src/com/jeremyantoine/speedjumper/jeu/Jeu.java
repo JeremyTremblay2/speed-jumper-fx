@@ -9,11 +9,9 @@ import com.jeremyantoine.speedjumper.observateurs.Observateur;
 public class Jeu implements Observateur {
     private static final int FPS_CIBLE = 60;
     private static final double TEMPS_MISE_A_JOUR = 10000000;
-    private final int compteurFrame = 0;
-    private final long tempsOrigine = System.nanoTime();
-    private final boolean joue;
-    private final ManagerEtatDeJeu managerEtats;
-    private final TableauJeu jeu;
+    private boolean joue;
+    private ManagerEtatDeJeu managerEtats;
+    private TableauJeu jeu;
     private BoucleDeJeu boucleDeJeu;
     private Thread processus;
 

@@ -12,8 +12,8 @@ public class Tuile implements Comparable<Tuile> {
     private static final Tuile TUILE_IGNOREE = new Tuile(null);
     private static int nombreTuiles = 0;
     private final int idTuile;
-    private final Dimension dimension;
-    private final Rectangle collision;
+    private Dimension dimension;
+    private Rectangle collision;
 
     /**
      * Constructeur de la Tuile

@@ -13,9 +13,8 @@ import javafx.scene.control.ListView;
  * Controleur pour la vue du debut niveau
  */
 public class MenuDebutNiveau {
-    private final Navigateur navigateur;
-    private final Jeu jeu;
-    private Niveau niveau;
+    private Navigateur navigateur;
+    private Jeu jeu;
 
     @FXML
     private ListView<Score> laListeDeScores;
@@ -27,7 +26,6 @@ public class MenuDebutNiveau {
         this.navigateur = navigateur;
         this.jeu = jeu;
     }
-
 
     public void initialize() {
         laListeDeScores.itemsProperty().bind(jeu.getJeu().getNiveauCourant().lesScoresProperty());

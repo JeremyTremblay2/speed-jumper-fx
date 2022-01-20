@@ -7,9 +7,9 @@ import java.util.Objects;
  */
 public class Attaque {
     private static final float DUREE_PAR_DEFAUT = 0.5f;
-    private final Rectangle collision;
-    private final float duree;
-    private final int degats;
+    private Rectangle collision;
+    private float duree;
+    private int degats;
 
     /**
      * Constructeur de la classe Attaque.

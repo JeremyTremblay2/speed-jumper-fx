@@ -12,9 +12,9 @@ import java.util.Objects;
  * classe gerant l'affichage des entités
  */
 public class EntiteFX implements Observateur {
-    private final Entite entite;
-    private final List<Image> lesImages;
-    private final Image imageCourante;
+    private Entite entite;
+    private List<Image> lesImages;
+    private Image imageCourante;
     private int indexImage;
 
     /**

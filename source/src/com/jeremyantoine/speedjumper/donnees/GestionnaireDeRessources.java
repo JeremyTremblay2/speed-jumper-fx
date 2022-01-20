@@ -14,13 +14,13 @@ import java.util.List;
  * Classe permettant de gerer les ressources non visuel
  */
 public class GestionnaireDeRessources {
-    private final ChargeurDeCarteTiled chargeurDeCartes;
-    private final ChargeurDeJeuxDeTuiles chargeurDeTuiles;
-    private final ChargeurScore chargeurScore;
+    private ChargeurDeCarteTiled chargeurDeCartes;
+    private ChargeurDeJeuxDeTuiles chargeurDeTuiles;
+    private ChargeurScore chargeurScore;
 
-    private final List<String> lesCartesChemins;
-    private final List<String> lesJeuxDeTuiles;
-    private final String cheminScores;
+    private List<String> lesCartesChemins;
+    private List<String> lesJeuxDeTuiles;
+    private String cheminScores;
 
     private List<Carte2D> lesCartes;
     private List<Tuile> lesTuiles;

@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
  * Controleur de la vue option
  */
 public class MenuOptions {
-    private final Navigateur navigateur;
+    private Navigateur navigateur;
 
     /**
      * controleur de la vue

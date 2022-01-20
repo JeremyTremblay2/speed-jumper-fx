@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ChargeurDeJeuxDeTuilesTextuel implements ChargeurDeJeuxDeTuiles {
     private static final String DELIMITEUR = " ";
-    private final List<Tuile> lesTuiles;
+    private List<Tuile> lesTuiles;
 
     /**
      * constructeurt de la classe

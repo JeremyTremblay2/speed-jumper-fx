@@ -14,10 +14,10 @@ import javafx.scene.shape.Rectangle;
  * Controleur pour un contenu personnalisé switch bouton
  */
 public class BoutonSwitch extends StackPane {
-    private final Rectangle arrierePlan = new Rectangle(30, 10, Color.RED);
-    private final Button bouton = new Button();
-    private final String buttonStyleOff = "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 0.2, 0.0, 0.0, 2); -fx-background-color: WHITE;";
-    private final String buttonStyleOn = "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0.1,0.1), 0.2, 0.0, 0.0, 2); -fx-background-color: #02893e;";
+    private Rectangle arrierePlan = new Rectangle(30, 10, Color.RED);
+    private Button bouton = new Button();
+    private String buttonStyleOff = "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 0.2, 0.0, 0.0, 2); -fx-background-color: WHITE;";
+    private String buttonStyleOn = "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0.1,0.1), 0.2, 0.0, 0.0, 2); -fx-background-color: #02893e;";
     private boolean etat;
 
     /**

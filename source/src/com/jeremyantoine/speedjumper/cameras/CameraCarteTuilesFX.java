@@ -11,8 +11,8 @@ import java.util.List;
  * classe permettant de gerer l'affichage de la camera
  */
 public class CameraCarteTuilesFX extends CameraCarteTuiles {
-    private final List<TuileFX> lesTuilesGraphiques;
-    private final TuileFX[][] visionGraphique;
+    private List<TuileFX> lesTuilesGraphiques;
+    private TuileFX[][] visionGraphique;
 
     /**
      * Constructeur de la camera

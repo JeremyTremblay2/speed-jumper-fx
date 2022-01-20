@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class AdaptateurChargeurDeCarteTiledCSV implements ChargeurDeCarteTiled {
     private static final ChargeurDeCarteTiledCSV chargeur = new ChargeurDeCarteTiledCSV();
-    private final String separateur;
+    private String separateur;
 
     /**
      * constructeur de la classe

@@ -8,9 +8,9 @@ import java.util.Objects;
 public class Options {
     private static final int NIVEAU_MINIMUM_AUDIO = 0;
     private static final int NIVEAU_MAXIMUM_AUDIO = 100;
-    private final boolean homme;
-    private final int niveauSon;
-    private final int niveauMusique;
+    private boolean homme;
+    private int niveauSon;
+    private int niveauMusique;
 
     /**
      * Constructeur de la classe options.

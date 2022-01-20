@@ -13,8 +13,8 @@ import com.jeremyantoine.speedjumper.monde.Carte2D;
 public class Deplaceur {
     private static final float VELOCITE_DANS_LES_AIRS = 1.4f;
     private static final double NOMBRE_PIXEL_VERIFICATION_VIDE = 4;
-    private final CollisionneurCarte collisionneur;
-    private final Carte2D carteCourante;
+    private CollisionneurCarte collisionneur;
+    private Carte2D carteCourante;
     private final double decalagePixelParMouvement;
 
     /**

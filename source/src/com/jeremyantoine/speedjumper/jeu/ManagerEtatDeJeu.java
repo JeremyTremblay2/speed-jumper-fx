@@ -10,10 +10,10 @@ import java.util.*;
  * Cette classe gere les différents etats du jeu
  */
 public class ManagerEtatDeJeu extends Sujet {
-    private final Map<EtatJeu, EtatDeJeu> lesEtats;
+    private Map<EtatJeu, EtatDeJeu> lesEtats;
     private EtatDeJeu etatCourant;
     private EtatJeu etatJeuCourant;
-    private final TableauJeu jeu;
+    private TableauJeu jeu;
 
     /**
      * Constructeur du managerEtatDeJeu

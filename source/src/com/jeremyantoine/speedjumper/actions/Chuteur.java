@@ -14,8 +14,8 @@ public class Chuteur implements Simulation, Runnable {
     private static final float HAUTEUR_MAXIMALE_CHUTE = 200;
     private static final float HAUTEUR_CHUTE = 100;
     private static final float DUREE_CHUTE = 5.44f;
-    private final Carte2D carteCourante;
-    private final CollisionneurCarte collisionneur;
+    private Carte2D carteCourante;
+    private CollisionneurCarte collisionneur;
     private Entite entite;
 
     /**

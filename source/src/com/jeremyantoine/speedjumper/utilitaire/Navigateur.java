@@ -16,10 +16,10 @@ import java.util.Stack;
  * Classe permettant la navigation entre les vues
  */
 public class Navigateur {
-    private final Stage stage;
+    private Stage stage;
     private Scene sceneCourante;
-    private final Stack<Scene> laPileDeScenes;
-    private final Map<NomFenetre, URL> vues;
+    private Stack<Scene> laPileDeScenes;
+    private Map<NomFenetre, URL> vues;
 
     /**
      * Constructeur du Navigateur

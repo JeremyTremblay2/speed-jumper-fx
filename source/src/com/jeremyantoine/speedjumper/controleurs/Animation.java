@@ -10,7 +10,7 @@ import java.util.List;
 public class Animation {
 
     private List<Image> images;
-    private final int[] etats;
+    private int[] etats;
     private int imageCourrante;
     private int nbImages;
 

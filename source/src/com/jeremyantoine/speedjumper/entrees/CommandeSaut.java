@@ -8,7 +8,7 @@ import com.jeremyantoine.speedjumper.monde.Niveau;
  * Classe permettant de gérer le saut
  */
 public class CommandeSaut implements Commande {
-    private final Sauteur sauteur;
+    private Sauteur sauteur;
 
     /**
      * Constructeur de la classe

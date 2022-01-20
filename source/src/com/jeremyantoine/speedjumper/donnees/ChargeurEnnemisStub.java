@@ -15,8 +15,8 @@ import java.util.List;
  * Classe pour charger des enemis
  */
 public class ChargeurEnnemisStub implements ChargeurEnnemis {
-    private final List<List<Entite>> lesEnnemis;
-    private final List<Niveau> lesNiveau;
+    private List<List<Entite>> lesEnnemis;
+    private List<Niveau> lesNiveau;
 
     /**
      * constructeur de la classe

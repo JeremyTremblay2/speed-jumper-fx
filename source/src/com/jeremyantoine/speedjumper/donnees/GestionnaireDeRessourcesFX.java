@@ -15,16 +15,16 @@ import java.util.Map;
  * Classe permettant de gerer les ressources visuel
  */
 public class GestionnaireDeRessourcesFX {
-    private final DecoupeurFX decoupeur = new DecoupeurFX();
+    private DecoupeurFX decoupeur = new DecoupeurFX();
 
-    private final Map<String, Dimension> lesJeuxDeTuiles;
-    private final List<Image> lesTuilesImagees;
+    private Map<String, Dimension> lesJeuxDeTuiles;
+    private List<Image> lesTuilesImagees;
 
-    private final List<String> lesPersonnagesChemins;
-    private final List<Image> lesPersonnagesImages;
+    private List<String> lesPersonnagesChemins;
+    private List<Image> lesPersonnagesImages;
 
-    private final List<String> lesEnnemisChemins;
-    private final List<Image> lesEnnemisImages;
+    private List<String> lesEnnemisChemins;
+    private List<Image> lesEnnemisImages;
 
     /**
      * Constructeur de la classe

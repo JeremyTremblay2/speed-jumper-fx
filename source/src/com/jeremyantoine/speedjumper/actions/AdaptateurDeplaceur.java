@@ -8,7 +8,7 @@ import com.jeremyantoine.speedjumper.monde.Carte2D;
  * Classe permettant d'adapter le deplacement
  */
 public class AdaptateurDeplaceur implements Simulation {
-    private final Deplaceur deplaceur;
+    private Deplaceur deplaceur;
     private Direction direction;
     private Carte2D carteCourante;
 

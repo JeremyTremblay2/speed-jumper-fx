@@ -1,6 +1,7 @@
 package com.jeremyantoine.speedjumper.controleurs;
 
 
+import com.jeremyantoine.speedjumper.jeu.EtatJeu;
 import com.jeremyantoine.speedjumper.jeu.Jeu;
 import com.jeremyantoine.speedjumper.utilitaire.Navigateur;
 import javafx.event.ActionEvent;
@@ -22,9 +23,9 @@ public class MenuJouer {
     private static final Pattern NOMBRE_ENTIER = Pattern.compile("[^0-9]+([0-9]+)$");
     private static final int NOMBRE_NIVEAU_PAR_PAGE = 3;
     private static final int NOMBRE_NIVEAU_PAR_LIGNE = 2;
-    private final Navigateur navigateur;
-    private final Jeu jeu;
-    private final int nombreNiveaux;
+    private Navigateur navigateur;
+    private Jeu jeu;
+    private int nombreNiveaux;
     private int pageCourante = 0;
 
     @FXML
@@ -101,6 +102,7 @@ public class MenuJouer {
             int numeroNiveau = Integer.parseInt(nombre);
             if (jeu.getJeu().getLesNiveaux().size() >= numeroNiveau) {
                 jeu.getJeu().setNiveauCourant(numeroNiveau - 1);
+                jeu.getManagerEtats().getLesEtats().get(EtatJeu.ETAT_JEU_JOUE).raffraichirNiveauCourant();
                 MenuDebutNiveau fenetre = new MenuDebutNiveau(navigateur, jeu);
                 navigateur.naviguerVers(NomFenetre.MENU_DEBUT_NIVEAU, fenetre);
             }

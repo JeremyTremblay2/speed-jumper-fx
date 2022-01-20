@@ -9,7 +9,7 @@ import com.jeremyantoine.speedjumper.monde.Niveau;
  * Classe permettant de gerer l'action se deplacer
  */
 public class CommandeDeplacement implements Commande {
-    private final AdaptateurDeplaceur deplaceur;
+    private AdaptateurDeplaceur deplaceur;
 
     /**
      * Constructeur de la classe
