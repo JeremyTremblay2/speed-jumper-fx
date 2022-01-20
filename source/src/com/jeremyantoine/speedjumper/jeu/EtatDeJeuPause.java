@@ -2,9 +2,18 @@ package com.jeremyantoine.speedjumper.jeu;
 
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
 
+/**
+ * Classe de l'etat de jeu en pause
+ */
 public class EtatDeJeuPause extends EtatDeJeu {
     private boolean enPause;
 
+    /**
+     * Constructeur de EtatDeJeuPause
+     * @param jeu
+     * @param recuperateur
+     * @throws IllegalArgumentException
+     */
     public EtatDeJeuPause(TableauJeu jeu, RecuperateurDeTouches recuperateur) throws IllegalArgumentException {
         super(jeu, recuperateur);
         enPause = true;

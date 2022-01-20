@@ -8,8 +8,9 @@ import com.jeremyantoine.speedjumper.monde.Carte2D;
 import com.jeremyantoine.speedjumper.monde.Tuile;
 import jdk.jshell.spi.ExecutionControl;
 
-import java.util.Arrays;
-
+/**
+ * Classe gerant la partie logique de la camera
+ */
 public class CameraCarteTuiles extends Camera2D {
     private Carte2D carteCourante;
     protected Tuile[][] vision;
@@ -19,6 +20,12 @@ public class CameraCarteTuiles extends Camera2D {
     private double largeurTuile;
     private double hauteurTuile;
 
+    /**
+     * Constructeur de la cameraCartesTuiles
+     * @param carte carte ou doit etre afficher la camera
+     * @param zoneVisuelle dimension de la zone visible
+     * @throws IllegalArgumentException
+     */
     public CameraCarteTuiles(Carte2D carte, Dimension zoneVisuelle) throws IllegalArgumentException {
         super(zoneVisuelle);
         if (carte == null) {
@@ -33,18 +40,37 @@ public class CameraCarteTuiles extends Camera2D {
         changeCarte(carte);
     }
 
+    /**
+     * retourne le tableau de tuile visible
+     * @return
+     */
     public Tuile[][] getVision() {
         return vision;
     }
 
+    /**
+     * retourne la carte courante
+     * @return
+     */
     public Carte2D getCarteCourante() {
         return carteCourante;
     }
 
+    /**
+     * retourne la tuile pour certains coordonnés
+     * @param x coordonnés X
+     * @param y coordonnés Y
+     * @return
+     */
     public Tuile getTuile(int x, int y) {
         return vision[x][y];
     }
 
+    /**
+     * Methode permettant de changer la carte actuelle
+     * @param carte
+     * @throws IllegalArgumentException
+     */
     public void changeCarte(Carte2D carte) throws IllegalArgumentException {
         if (carte == null || carte.getDimension().getLargeur() == 0) {
             throw new IllegalArgumentException("La carte passée en paramètre de la caméra ne peut pas être nulle ou vide.");
@@ -58,6 +84,10 @@ public class CameraCarteTuiles extends Camera2D {
         miseAJour();
     }
 
+    /**
+     * Methode permettant de gerer le centrage de la camera sur l'entite
+     * @param entite
+     */
     @Override
     public void centrerSurEntite(Entite entite) {
         int positionEntiteX = (int) ((entite.getPosition().getX() + entite.getDimension().getLargeur() / 2) / largeurTuile);
@@ -99,6 +129,11 @@ public class CameraCarteTuiles extends Camera2D {
         miseAJour();
     }
 
+    /**
+     * methode permettant de decaler la camera
+     * @param direction
+     * @throws ExecutionControl.NotImplementedException
+     */
     @Override
     public void decalage(Direction direction) throws ExecutionControl.NotImplementedException {
         throw new ExecutionControl.NotImplementedException("Le système de décalage de la caméra 2D n'est pas implémenté.");
@@ -143,6 +178,10 @@ public class CameraCarteTuiles extends Camera2D {
         return chaine.toString();
     }
 
+    /**
+     * Methode permettant de mettre a jour l'affichage de la camera
+     * @throws IndexOutOfBoundsException
+     */
     private void miseAJour() throws IndexOutOfBoundsException {
         double largeurCamera = zoneVisuelle.getLargeur();
         double hauteurCamera = zoneVisuelle.getHauteur();
@@ -157,6 +196,10 @@ public class CameraCarteTuiles extends Camera2D {
         }
     }
 
+    /**
+     * Methode permettant de supprimer le visuel de la camera
+     * @throws IndexOutOfBoundsException
+     */
     private void effacer() throws IndexOutOfBoundsException {
         double largeurCamera = zoneVisuelle.getLargeur();
         double hauteurCamera = zoneVisuelle.getHauteur();

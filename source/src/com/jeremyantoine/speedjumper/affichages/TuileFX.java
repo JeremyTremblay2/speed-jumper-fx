@@ -6,10 +6,19 @@ import javafx.scene.image.Image;
 
 import java.util.Objects;
 
+/**
+ * Classe permettant l'affichage d'une tuile
+ */
 public class TuileFX implements Observateur {
     private Tuile tuile;
     private Image image;
 
+    /**
+     * constructeur de la classe
+     * @param tuile
+     * @param image
+     * @throws IllegalArgumentException
+     */
     public TuileFX(Tuile tuile, Image image) throws IllegalArgumentException {
         if (tuile == null) {
             throw new IllegalArgumentException("La tuile donnée en paramètre ne peut pas être nulle.");
@@ -18,14 +27,25 @@ public class TuileFX implements Observateur {
         this.image = image;
     }
 
+    /**
+     * retourne la tuile
+     * @return
+     */
     public Tuile getTuile() {
         return tuile;
     }
 
+    /**
+     * retourne l'image de la tuile
+     * @return
+     */
     public Image getImage() {
         return image;
     }
 
+    /**
+     * mise a jour de la tuile
+     */
     @Override
     public void miseAjour() {
 

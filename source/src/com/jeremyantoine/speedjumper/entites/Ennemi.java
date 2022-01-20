@@ -1,18 +1,41 @@
 package com.jeremyantoine.speedjumper.entites;
 
 import com.jeremyantoine.speedjumper.comportement.Comportement;
-import com.jeremyantoine.speedjumper.logique.Attaque;
 import com.jeremyantoine.speedjumper.logique.Dimension;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 
+/**
+ * Classe permettant de gerer les enemis
+ */
 public class Ennemi extends Vivant {
 
+    /**
+     * Constructeur de la classe ennemi
+     * @param position position de l'ennemi
+     * @param collision collision de l'ennemi
+     * @param dimension dcollision de l'ennemi
+     * @param comportement comportement de l'ennemi
+     * @param velocite velocite de l'ennemi
+     * @param degats degat de l'ennemi
+     * @param pointsDeVie points de vie de l'ennemi
+     * @throws IllegalArgumentException
+     */
     public Ennemi(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
                   double velocite, int degats, int pointsDeVie) throws IllegalArgumentException {
         super(position, collision, dimension, comportement, velocite, degats, pointsDeVie);
     }
 
+    /**
+     * Autre constructeur de la classe
+     * @param position position de l'ennemi
+     * @param collision collision de l'ennemi
+     * @param dimension collision de l'ennemi
+     * @param comportement comportement de l'ennemi
+     * @param velocite velocite de l'ennemi
+     * @param degats degat de l'ennemi
+     * @throws IllegalArgumentException
+     */
     public Ennemi(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
                   double velocite, int degats) throws IllegalArgumentException {
         super(position, collision, dimension, comportement, velocite, degats);

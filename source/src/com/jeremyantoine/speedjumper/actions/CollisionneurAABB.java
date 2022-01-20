@@ -3,6 +3,9 @@ package com.jeremyantoine.speedjumper.actions;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 
+/**
+ * Classe permettant de verifier logiquement la collision entre deux rectangle de collision
+ */
 public class CollisionneurAABB {
 
     public boolean collisionne(Rectangle collision1, Rectangle collision2) {

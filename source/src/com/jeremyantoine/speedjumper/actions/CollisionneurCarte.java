@@ -3,13 +3,25 @@ package com.jeremyantoine.speedjumper.actions;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 import com.jeremyantoine.speedjumper.monde.Carte2D;
 
+/**
+ * classe permettant de gerer la collision de la carte
+ */
 public class CollisionneurCarte {
-    private CollisionneurAABB collisionneur;
+    private final CollisionneurAABB collisionneur;
 
+    /**
+     * constructeur de la classe
+     */
     public CollisionneurCarte() {
         collisionneur = new CollisionneurAABB();
     }
 
+    /**
+     * methode permettant de verifier la collision
+     * @param collision
+     * @param carte
+     * @return
+     */
     public boolean collisionne(Rectangle collision, Carte2D carte) {
         if (collision == null || carte == null || carte.getLesTuiles() == null) {
             return false;
@@ -18,7 +30,7 @@ public class CollisionneurCarte {
         double largeurTuile = carte.getDimensionTuiles().getLargeur();
         double hauteurTuile = carte.getDimensionTuiles().getHauteur();
 
-        int coinGauche = (int) (collision.getPosition().getX() / largeurTuile);;
+        int coinGauche = (int) (collision.getPosition().getX() / largeurTuile);
         int coinSuperieur = (int) (collision.getPosition().getY() / hauteurTuile);
         int coinDroite = (int) ((collision.getPosition().getX() + collision.getDimension().getLargeur())
                 / carte.getDimensionTuiles().getLargeur());
@@ -41,7 +53,7 @@ public class CollisionneurCarte {
 
         for(int x = coinGauche; x <= coinDroite; x++) {
             for(int y = coinSuperieur; y <= coinInferieur; y++) {
-                collisionTuileRelative = carte.getTuile(y, x).getCollision();
+                collisionTuileRelative = carte.getTuile(x, y).getCollision();
                 if (collisionTuileRelative != null) {
                     collisionTuileAbsolue = new Rectangle(collisionTuileRelative.getPosition().getX() + x * largeurTuile,
                             collisionTuileRelative.getPosition().getY() + y * hauteurTuile,

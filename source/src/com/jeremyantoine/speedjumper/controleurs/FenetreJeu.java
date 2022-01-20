@@ -23,8 +23,10 @@ import javafx.scene.layout.StackPane;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+/**
+ * Controleur pour la fenetre de jeu
+ */
 public class FenetreJeu implements Observateur {
     private static final Dimension DIMENSION_CAMERA_PAR_DEFAUT = new Dimension(30,22);
     private static final float ECHELLE_CARTE = 2;
@@ -33,16 +35,14 @@ public class FenetreJeu implements Observateur {
     private Jeu jeu;
 
     private Scene scene;
-    private Canvas caneva;
-    private StackPane lesCouches;
     private GraphicsContext contexteGraphique;
 
     private Niveau niveauCourant;
     private List<TuileFX> lesTuilesGraphiques;
     private List<EntiteFX> lesEntitesGraphiques;
-    private List<ArrierePlanFX> lesArrierePlansGraphiques;
     private CameraCarteTuilesFX camera;
     private PersonnageJouable joueur;
+    private List<ArrierePlanFX> lesArrierePlansGraphiques;
 
     private GestionnaireDeRessourcesFX gestionnaireDeRessources;
 
@@ -52,6 +52,10 @@ public class FenetreJeu implements Observateur {
     private int largeurTuile;
     private int hauteurTuile;
 
+    /**
+     * Constructeur de la fenetre
+     * @param jeu
+     */
     public FenetreJeu(Navigateur navigateur, Jeu jeu) {
         if (navigateur == null || jeu == null) {
             throw new IllegalArgumentException("Le navigateur ou le jeu passé en paramètre ne peut pas être null.");
@@ -62,6 +66,7 @@ public class FenetreJeu implements Observateur {
         lesTuilesGraphiques = new ArrayList<>();
         lesEntitesGraphiques = new ArrayList<>();
         lesArrierePlansGraphiques = new ArrayList<>();
+
 
         gestionnaireDeRessources = new GestionnaireDeRessourcesFX();
         niveauCourant = jeu.getJeu().getNiveauCourant();
@@ -76,8 +81,8 @@ public class FenetreJeu implements Observateur {
         tailleCaneva = new Dimension((DIMENSION_CAMERA_PAR_DEFAUT.getLargeur() - 2) * (largeurTuile / ECHELLE_CARTE),
                 (DIMENSION_CAMERA_PAR_DEFAUT.getHauteur() - 2) * (largeurTuile / ECHELLE_CARTE));
 
-        lesCouches = new StackPane();
-        caneva = new Canvas(tailleCaneva.getLargeur(), tailleCaneva.getHauteur());
+        StackPane lesCouches = new StackPane();
+        Canvas caneva = new Canvas(tailleCaneva.getLargeur(), tailleCaneva.getHauteur());
         scene = new Scene(lesCouches);
         lesCouches.getChildren().add(caneva);
         contexteGraphique = caneva.getGraphicsContext2D();
@@ -85,10 +90,17 @@ public class FenetreJeu implements Observateur {
         initialisation();
     }
 
+    /**
+     * retourne la scene actuelle
+     * @return
+     */
     public Scene getScene() {
         return scene;
     }
 
+    /**
+     * Methode qui gere l'affichage
+     */
     public void affichage() {
         camera.centrerSurEntite(joueur);
         contexteGraphique.clearRect(0, 0, tailleCaneva.getLargeur(), tailleCaneva.getHauteur());
@@ -118,6 +130,9 @@ public class FenetreJeu implements Observateur {
         }
     }
 
+    /**
+     * Methode qui met a jour l'affichage
+     */
     @Override
     public void miseAjour() {
         if (jeu.getManagerEtats().getEtatJeuCourant() == EtatJeu.ETAT_MENU_PAUSE) {
@@ -138,6 +153,9 @@ public class FenetreJeu implements Observateur {
         }
     }
 
+    /**
+     * Initialiosation des données
+     */
     private void initialisation() {
         try {
             gestionnaireDeRessources.charge();

@@ -1,11 +1,10 @@
 package com.jeremyantoine.speedjumper.jeu;
 
-import com.jeremyantoine.speedjumper.entites.Entite;
-import com.jeremyantoine.speedjumper.monde.ArrierePlan;
-import com.jeremyantoine.speedjumper.monde.Niveau;
-
 import java.util.Objects;
 
+/**
+ * Classe option pour les niveaux audios et le sexe du personnage
+ */
 public class Options {
     private static final int NIVEAU_MINIMUM_AUDIO = 0;
     private static final int NIVEAU_MAXIMUM_AUDIO = 100;
@@ -13,6 +12,12 @@ public class Options {
     private int niveauSon;
     private int niveauMusique;
 
+    /**
+     * Constructeur de la classe options.
+     * @param sexe valeur du bouton switch pour le choix du sexe du personnage
+     * @param niveauSon Niveau du son/effets sonores
+     * @param niveauMusique Niveau
+     */
     public Options(boolean sexe, int niveauSon, int niveauMusique) {
         homme = sexe;
         niveauSon = Math.max(niveauSon, NIVEAU_MINIMUM_AUDIO);
@@ -23,14 +28,26 @@ public class Options {
         this.niveauMusique = niveauMusique;
     }
 
+    /**
+     * Retourne le niveau de son
+     * @return
+     */
     public int getNiveauSon() {
         return niveauSon;
     }
 
+    /**
+     * retourne le niveau de la musique
+     * @return
+     */
     public int getNiveauMusique() {
         return niveauMusique;
     }
 
+    /**
+     * retourne si le choix est homme
+     * @return
+     */
     public boolean isHomme() {
         return homme;
     }

@@ -8,10 +8,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe permettant de charger les scores sauvegarde
+ */
 public class ChargeurScoreTextuel implements ChargeurScore {
     private static final String SEPARATEUR = ":";
     private static final String DEBUT_NUMERO_NIVEAU = "#";
 
+    /**
+     * methode permettant de charger les scores
+     * @param chemin fichier ou sont sauvegarder les scores
+     * @return
+     */
     @Override
     public List<List<Score>> charge(String chemin) {
         List<List<Score>> lesScores = new ArrayList<>();

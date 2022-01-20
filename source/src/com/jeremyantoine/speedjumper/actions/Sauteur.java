@@ -17,6 +17,11 @@ public class Sauteur implements Simulation, Runnable {
     private double temps;
     private Entite entite;
 
+    /**
+     * Constructeur de la classe
+     * @param carteCourante
+     * @throws IllegalArgumentException
+     */
     public Sauteur(Carte2D carteCourante) throws IllegalArgumentException {
         if (carteCourante == null) {
             throw new IllegalArgumentException("La carte passée en paramètre ne peut pas être null.");
@@ -25,12 +30,20 @@ public class Sauteur implements Simulation, Runnable {
         collisionneur = new CollisionneurCarte();
     }
 
+    /**
+     * methode mettant a jour l'etat de jeu
+     * @param entite entite effectuant l'action
+     * @param temps le temps ou elle le fait
+     */
     @Override
     public void miseAJourEtatDeJeu(Entite entite, double temps) {
         this.entite = entite;
         this.temps = temps;
     }
 
+    /**
+     * lancemement de l'action
+     */
     @Override
     public void run() {
         if (entite.isChute() || !entite.isSurSol()) {

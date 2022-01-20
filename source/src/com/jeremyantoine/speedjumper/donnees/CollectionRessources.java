@@ -7,6 +7,9 @@ import com.jeremyantoine.speedjumper.logique.Position2D;
 import java.net.URL;
 import java.util.*;
 
+/**
+ * Classe permettant de gerer les différentes collection de ressources
+ */
 public class CollectionRessources {
     private static CollectionRessources instance;
 
@@ -25,6 +28,9 @@ public class CollectionRessources {
     private String fichierConfigurationTouches;
     private String fichierScores;
 
+    /**
+     * constructeur de la classe initialisant les différents listes
+     */
     private CollectionRessources() {
         lesJeuxDeTuiles = new HashMap<>();
         lesEntites = new ArrayList<>();
@@ -40,6 +46,10 @@ public class CollectionRessources {
         ajouterDonnees();
     }
 
+    /**
+     * methode retourant l'instance d'une collection de ressources
+     * @return
+     */
     public static CollectionRessources getInstance() {
         if (instance == null) {
             instance = new CollectionRessources();
@@ -47,42 +57,82 @@ public class CollectionRessources {
         return instance;
     }
 
+    /**
+     * retoune la liste des cartes
+     * @return
+     */
     public List<String> getLesCartes() {
         return lesCartes;
     }
 
+    /**
+     * retourne la map des jeux de tuiles
+     * @return
+     */
     public Map<String, Dimension> getLesJeuxDeTuiles() {
         return lesJeuxDeTuiles;
     }
 
+    /**
+     * retourne la liste des entites
+     * @return
+     */
     public List<String> getLesEntites() {
         return lesEntites;
     }
 
+    /**
+     * retounr le fichuier de config des touches
+     * @return
+     */
     public String getFichierConfigurationTouches() {
         return fichierConfigurationTouches;
     }
 
+    /**
+     * retourne la map des urls des vues
+     * @return
+     */
     public Map<NomFenetre, URL> getLesCheminsDesVues() {
         return lesCheminsDesVues;
     }
 
+    /**
+     * retourne les differents styles des vues
+     * @return
+     */
     public Map<NomFenetre, String> getLesCheminsDesStyles() {
         return lesCheminsDesStyles;
     }
 
+    /**
+     * retourne la liste des joueurs
+     * @return
+     */
     public List<String> getLesJoueurs() {
         return lesJoueurs;
     }
 
+    /**
+     * retournes les chemins des entitess
+     * @return
+     */
     public List<String> getLesEntitesChemins() {
         return lesEntitesChemins;
     }
 
+    /**
+     * retourne le chemin du fichier de score
+     * @return
+     */
     public String getFichierScores() {
         return fichierScores;
     }
 
+    /**
+     * retourne la liste des collision des tuiles
+     * @return
+     */
     public List<String> getLesJeuxDeTuilesCollisions() {
         return lesJeuxDeTuilesCollisions;
     }
@@ -91,6 +141,9 @@ public class CollectionRessources {
         return lesArrieresPlans;
     }
 
+    /**
+     * methode permettant d'ajouter les données dans les lites
+     */
     public List<Position2D> getLesPointsDepart() {
         return lesPointsDepart;
     }

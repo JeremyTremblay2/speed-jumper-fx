@@ -5,8 +5,10 @@ import com.jeremyantoine.speedjumper.jeu.BoucleDeJeu;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 import com.jeremyantoine.speedjumper.monde.Carte2D;
-import com.jeremyantoine.speedjumper.monde.Niveau;
 
+/**
+ * Classe permettant de  faire l'action de chuter
+ */
 public class Chuteur implements Simulation, Runnable {
     private static final float DELTA = 1f / BoucleDeJeu.FPS_CIBLE;
     private static final float HAUTEUR_MAXIMALE_CHUTE = 200;
@@ -15,8 +17,12 @@ public class Chuteur implements Simulation, Runnable {
     private Carte2D carteCourante;
     private CollisionneurCarte collisionneur;
     private Entite entite;
-    private double temps;
 
+    /**
+     * Constructeur de la classe
+     * @param carteCourante carte courrante
+     * @throws IllegalArgumentException
+     */
     public Chuteur(Carte2D carteCourante) throws IllegalArgumentException {
         if (carteCourante == null) {
             throw new IllegalArgumentException("Impossible d'instancier un chuteur car la carte passée en paramètre "
@@ -26,12 +32,19 @@ public class Chuteur implements Simulation, Runnable {
         collisionneur = new CollisionneurCarte();
     }
 
+    /**
+     * Methode mettant a jour l'etat de jeu
+     * @param entite entite chuttant
+     * @param temps temps
+     */
     @Override
     public void miseAJourEtatDeJeu(Entite entite, double temps) {
         this.entite = entite;
-        this.temps = temps;
     }
 
+    /**
+     * Methode lançant l'action
+     */
     @Override
     public void run() {
         if (!entite.isChute() || entite.isSurSol()) {

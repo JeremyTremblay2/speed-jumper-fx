@@ -5,13 +5,15 @@ import com.jeremyantoine.speedjumper.monde.Carte2D;
 import com.jeremyantoine.speedjumper.monde.Tuile;
 import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
 
-import java.io.*;
+import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe permettant de gerer les ressources non visuel
+ */
 public class GestionnaireDeRessources {
-    private CollectionRessources ressources;
     private ChargeurDeCarteTiled chargeurDeCartes;
     private ChargeurDeJeuxDeTuiles chargeurDeTuiles;
     private ChargeurScore chargeurScore;
@@ -24,6 +26,12 @@ public class GestionnaireDeRessources {
     private List<Tuile> lesTuiles;
     private List<List<Score>> lesScores;
 
+    /**
+     * constructeur de la classe
+     * @param chargeurDeCartes chargeur de la carte
+     * @param chargeurDeTuiles chargeur des tuiles
+     * @param chargeurScore chargeur du score
+     */
     public GestionnaireDeRessources(ChargeurDeCarteTiled chargeurDeCartes, ChargeurDeJeuxDeTuiles chargeurDeTuiles,
                                     ChargeurScore chargeurScore) throws IllegalArgumentException {
         if (chargeurDeCartes == null || chargeurDeTuiles == null || chargeurScore == null) {
@@ -38,30 +46,55 @@ public class GestionnaireDeRessources {
         lesTuiles = new ArrayList<>();
         lesScores = new ArrayList<>();
 
-        ressources = CollectionRessources.getInstance();
+        CollectionRessources ressources = CollectionRessources.getInstance();
         lesCartesChemins = ressources.getLesCartes();
         lesJeuxDeTuiles = ressources.getLesJeuxDeTuilesCollisions();
         cheminScores = ressources.getFichierScores();
     }
 
+    /**
+     * retourne la liste des cartes
+     * @return
+     */
     public List<Carte2D> getLesCartes() {
         return lesCartes;
     }
 
+    /**
+     * retourne la liste des tuiles
+     * @return
+     */
     public List<Tuile> getLesTuiles() {
         return lesTuiles;
     }
 
+    /**
+     * retourne la liste des scores
+     * @return
+     */
     public List<List<Score>> getLesScores() {
         return lesScores;
     }
 
+    /**
+     * charge les différents données
+     * @throws FileNotFoundException
+     * @throws ParseException
+     * @throws InvalidFormatException
+     */
     public void charge() throws FileNotFoundException, ParseException, InvalidFormatException {
         lesTuiles = chargeTuiles();
         lesCartes = chargeCartes();
         lesScores = chargeScores();
     }
 
+    /**
+     * charge les cartes et les retourne dans une liste
+     * @return
+     * @throws FileNotFoundException
+     * @throws ParseException
+     * @throws InvalidFormatException
+     */
     private List<Carte2D> chargeCartes() throws FileNotFoundException, ParseException,
             InvalidFormatException {
         Carte2D carte;
@@ -73,6 +106,13 @@ public class GestionnaireDeRessources {
         return lesCartes;
     }
 
+    /**
+     * charge les tuiles et les retournes dans une liste de tuile
+     * @return
+     * @throws FileNotFoundException
+     * @throws ParseException
+     * @throws InvalidFormatException
+     */
     private List<Tuile> chargeTuiles() throws FileNotFoundException, ParseException,
             InvalidFormatException {
         List<Tuile> tuiles;
@@ -83,6 +123,10 @@ public class GestionnaireDeRessources {
         return lesTuiles;
     }
 
+    /**
+     * charge les score et les retournes dans une liste
+     * @return
+     */
     private List<List<Score>> chargeScores() {
         return chargeurScore.charge(cheminScores);
     }

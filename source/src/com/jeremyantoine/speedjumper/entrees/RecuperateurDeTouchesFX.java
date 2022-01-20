@@ -7,10 +7,18 @@ import javafx.scene.input.KeyEvent;
 import java.util.List;
 import java.util.Map;
 
-    public class RecuperateurDeTouchesFX extends RecuperateurDeTouches {
-    private final Map<KeyCode, Touche> dicoTouches;
+/**
+ * Classe permettant de gerer les actions en rapport avec la recuperation des touches
+ */
+public class RecuperateurDeTouchesFX extends RecuperateurDeTouches {
+    private Map<KeyCode, Touche> dicoTouches;
     private Scene sceneCourante;
 
+    /**
+     * Constructeur de la classe. Charge le dictionnaire de touche disponible
+     * @param fichier fichier ou sont stocké les touches
+     * @param scene scene courrante
+     */
     public RecuperateurDeTouchesFX(String fichier, Scene scene) {
         sceneCourante = scene;
         ChargeurDeTouchesFX chargeur = new ChargeurDeTouchesFX();
@@ -20,32 +28,61 @@ import java.util.Map;
         }
     }
 
+    /**
+     * retourne la map de touche
+     * @return
+     */
     public Map<KeyCode, Touche> getDicoTouches() {
         return dicoTouches;
     }
 
+    /**
+     * retourne la scene courante
+     * @return
+     */
     public Scene getSceneCourante() {
         return sceneCourante;
     }
 
+    /**
+     * set la scene courante et relance la détection des touches sur cette scene
+     * @param sceneCourante
+     */
     public void setSceneCourante(Scene sceneCourante) {
         this.sceneCourante = sceneCourante;
         detection();
     }
 
+    /**
+     * ajouter des touches dans le dictionnaire de touche
+     * @param toucheFX la touche a ajouté ( son code )
+     * @param touche equivalence dans l'enumeration
+     */
     public void ajouteToucheFX(KeyCode toucheFX, Touche touche) {
         dicoTouches.put(toucheFX, touche);
     }
 
+    /**
+     * Methode qui renvois la liste des touches detectés
+     * @return
+     */
     @Override
     public List<Touche> detecte() {
         return super.getLesTouchesPressees();
     }
 
+    /**
+     *
+     * @param entree
+     * @return
+     */
     private Touche compareEntree(KeyCode entree) {
         return dicoTouches.get(entree);
     }
 
+    /**
+     * Attache des events pour pouvoir recuperer les touches préssées pendant le jeu
+     */
     public void detection() {
         sceneCourante.addEventHandler(KeyEvent.KEY_PRESSED, (cle) -> {
             KeyCode touche = cle.getCode();

@@ -11,10 +11,18 @@ import com.jeremyantoine.speedjumper.monde.Niveau;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe pour charger des enemis
+ */
 public class ChargeurEnnemisStub implements ChargeurEnnemis {
     private List<List<Entite>> lesEnnemis;
     private List<Niveau> lesNiveau;
 
+    /**
+     * constructeur de la classe
+     * @param lesNiveau niveau ou seront les enemis
+     * @throws IllegalArgumentException
+     */
     public ChargeurEnnemisStub(List<Niveau> lesNiveau) throws IllegalArgumentException {
         if (lesNiveau == null) {
             throw new IllegalArgumentException("Les niveaux passés en paramètre ne peuvent pas être null.");
@@ -23,6 +31,11 @@ public class ChargeurEnnemisStub implements ChargeurEnnemis {
         lesEnnemis = new ArrayList<>();
     }
 
+    /**
+     * charge les enemis
+     * @param chemin
+     * @return
+     */
     @Override
     public List<List<Entite>> charge(String chemin) {
         List<Entite> niveau = new ArrayList<>();

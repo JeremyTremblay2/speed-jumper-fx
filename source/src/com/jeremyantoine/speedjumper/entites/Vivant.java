@@ -5,6 +5,9 @@ import com.jeremyantoine.speedjumper.logique.*;
 
 import java.util.Objects;
 
+/**
+ * Classe abstraite pour les entite vivante
+ */
 public abstract class Vivant extends Entite {
     private static final int POINTS_DE_VIE_PAR_DEFAUT = 10;
     private final int pointsDeViesInitiaux;
@@ -12,6 +15,17 @@ public abstract class Vivant extends Entite {
     private int degats;
     private Direction direction;
 
+    /**
+     * Constructeur de cette classe. Initialise les parametre necessaire
+     * @param position position 2D de l'entite vivante
+     * @param collision collision de cette entite
+     * @param dimension dimension de cette entite
+     * @param comportement comportement de l'entite
+     * @param velocite vitesse de l'entite
+     * @param degats degat  de l'entite
+     * @param pointsDeVie nombre de point de vie de l'entite
+     * @throws IllegalArgumentException
+     */
     public Vivant(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
                   double velocite, int degats, int pointsDeVie) throws IllegalArgumentException {
         super(position, collision, dimension, comportement, velocite);
@@ -21,31 +35,65 @@ public abstract class Vivant extends Entite {
         direction = Direction.DROITE;
     }
 
+    /**
+     * Autre constructeur de la classe
+     * @param position position 2D de l'entite vivante
+     * @param collision collision de cette entite
+     * @param dimension dimension de cette entite
+     * @param comportement comportement de l'entite
+     * @param velocite vitesse de l'entite
+     * @param degats degat  de l'entite
+     * @throws IllegalArgumentException
+     */
     public Vivant(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
                   double velocite, int degats) throws IllegalArgumentException {
         this(position, collision, dimension, comportement, velocite, degats, POINTS_DE_VIE_PAR_DEFAUT);
     }
 
+    /**
+     * retourne les points de vie
+     * @return
+     */
     public int getPointsDeVie() {
         return pointsDeVie;
     }
 
+    /**
+     * set les points de vies
+     * @param pointsDeVie nouveau nombre de pv
+     */
     public void setPointsDeVie(int pointsDeVie) {
         this.pointsDeVie = pointsDeVie;
     }
 
+    /**
+     * retourne la direction
+     * @return
+     */
     public Direction getDirection() {
         return direction;
     }
 
+    /**
+     * modifie la direction
+     * @param direction nouvelle direction
+     */
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
 
+    /**
+     * retourne le nombre de degat
+     * @return
+     */
     public int getDegats() {
         return degats;
     }
 
+    /**
+     * retourne le nombre de points de vie initial
+     * @return
+     */
     public int getPointsDeViesInitiaux() {
         return pointsDeViesInitiaux;
     }

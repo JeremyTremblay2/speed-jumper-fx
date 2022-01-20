@@ -7,12 +7,17 @@ import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.entites.Vivant;
 import com.jeremyantoine.speedjumper.entrees.Commande;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
+import com.jeremyantoine.speedjumper.logique.Dimension;
+import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Classe EtatDeJeuJoue  gerant les actions lors du jeu
+ */
 public class EtatDeJeuJoue extends EtatDeJeu {
     private List<Entite> lesEntites;
     private Chuteur chuteur;
@@ -20,6 +25,12 @@ public class EtatDeJeuJoue extends EtatDeJeu {
     private CollisionneurPointRectangle collisionneurPointRectangle;
     private Rectangle collisionJoueur;
 
+    /**
+     * Constructeur EtatDeJeuJoue. Recupere les entites du niveau et initialiser le chuteur
+     * @param jeu le jeu
+     * @param recuperateur le recuperateur de touche
+     * @throws IllegalArgumentException
+     */
     public EtatDeJeuJoue(TableauJeu jeu, RecuperateurDeTouches recuperateur) throws IllegalArgumentException {
         super(jeu, recuperateur);
         lesEntites = niveauCourant.getLesEntites();
@@ -28,6 +39,11 @@ public class EtatDeJeuJoue extends EtatDeJeu {
         collisionneurPointRectangle = new CollisionneurPointRectangle();
     }
 
+    /**
+     * Methode qui gere les entrée utilisateur lors du temps
+     * @param temps
+     * @return
+     */
     @Override
     public EtatJeu entreeUtilisateur(float temps) {
         List<Commande> actions = gestionnaireActions.attribuerAction();
@@ -46,7 +62,7 @@ public class EtatDeJeuJoue extends EtatDeJeu {
             return EtatJeu.ETAT_MENU_PAUSE;
         }
 
-        System.out.println("toto");
+        System.out.println(collisionJoueur);
 
         /*
         Implémenter le système de détection de fin de niveau.
@@ -58,9 +74,12 @@ public class EtatDeJeuJoue extends EtatDeJeu {
         return null;
     }
 
+    /**
+     * mise a jour de la gestion des enemis
+     * @param temps
+     */
     @Override
     public void miseAJour(float temps) {
-
         gestionEnnemis(temps);
 
         chuteur.miseAJourEtatDeJeu(joueur, temps);
@@ -72,6 +91,9 @@ public class EtatDeJeuJoue extends EtatDeJeu {
         }
     }
 
+    /**
+     * Ne fait rien ici hormis notifier qu'il faut mettre à jour tout l'affichage.
+     */
     @Override
     public void affichage() {
         //Ne fait rien ici hormis notifier qu'il faut mettre à jour tout l'affichage.
@@ -85,6 +107,11 @@ public class EtatDeJeuJoue extends EtatDeJeu {
         chuteur = new Chuteur(niveauCourant.getCarte());
     }
 
+
+    /**
+     * Methode permettant de gérant les énemis sur un niveau ( action, déplacement .. )
+     * @param temps
+     */
     private void gestionEnnemis(double temps) {
         for (Entite entite : lesEntites) {
             chuteur.miseAJourEtatDeJeu(entite, temps);

@@ -1,27 +1,35 @@
 package com.jeremyantoine.speedjumper.donnees;
 
 import com.jeremyantoine.speedjumper.logique.Dimension;
-import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 import com.jeremyantoine.speedjumper.monde.Tuile;
-import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
-import java.text.ParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
+
+/**
+ * classe permettant de charger les tuiles depuis un fichier
+ */
 public class ChargeurDeJeuxDeTuilesTextuel implements ChargeurDeJeuxDeTuiles {
     private static final String DELIMITEUR = " ";
     private List<Tuile> lesTuiles;
 
+    /**
+     * constructeurt de la classe
+     */
     public ChargeurDeJeuxDeTuilesTextuel() {
         lesTuiles = new ArrayList<>();
     }
 
+    /**
+     * Methode permettant de charger depuis un chemin la liste de tuiles
+     * @param chemin chemin de l'image
+     * @return la liste de tuile
+     */
     @Override
     public List<Tuile> charge(String chemin) {
         int nombreTuile = 0, indexTuile;

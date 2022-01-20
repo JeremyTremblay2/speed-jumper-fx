@@ -4,6 +4,10 @@ import com.jeremyantoine.speedjumper.observateurs.Sujet;
 
 import java.util.*;
 
+/**
+ * Liste Observable
+ * @param <E>
+ */
 public class ListeObservable<E> extends Sujet implements List<E> {
     private List<E> liste;
 

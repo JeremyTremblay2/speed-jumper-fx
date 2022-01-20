@@ -11,9 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Classe permettant de gerer les ressources visuel
+ */
 public class GestionnaireDeRessourcesFX {
     private DecoupeurFX decoupeur = new DecoupeurFX();
-    private CollectionRessources ressources;
 
     private Map<String, Dimension> lesJeuxDeTuiles;
     private List<Image> lesTuilesImagees;
@@ -24,11 +26,14 @@ public class GestionnaireDeRessourcesFX {
     private List<String> lesEnnemisChemins;
     private List<Image> lesEnnemisImages;
 
+    /**
+     * Constructeur de la classe
+     */
     private List<String> lesArrierePlansChemins;
     private List<Image> lesArrieresPlans;
 
     public GestionnaireDeRessourcesFX() {
-        ressources = CollectionRessources.getInstance();
+        CollectionRessources ressources = CollectionRessources.getInstance();
 
         lesJeuxDeTuiles = ressources.getLesJeuxDeTuiles();
         lesTuilesImagees = new ArrayList<>();
@@ -43,14 +48,26 @@ public class GestionnaireDeRessourcesFX {
         lesArrieresPlans = new ArrayList<>();
     }
 
+    /**
+     * retourne la liste d'images des ennemis
+     * @return
+     */
     public List<Image> getLesEnnemisImages() {
         return lesEnnemisImages;
     }
 
+    /**
+     * retourne la liste d'images des personnages
+     * @return
+     */
     public List<Image> getLesPersonnagesImages() {
         return lesPersonnagesImages ;
     }
 
+    /**
+     * retourne la liste d'images des tuiles
+     * @return
+     */
     public List<Image> getLesTuilesImagees() {
         return lesTuilesImagees;
     }
@@ -59,6 +76,10 @@ public class GestionnaireDeRessourcesFX {
         return lesArrieresPlans;
     }
 
+    /**
+     * Methode appelant les différents chargements
+     * @throws Exception
+     */
     public void charge() throws Exception {
         chargeImagesEntites();
         chargeImagesPersonnages();
@@ -66,18 +87,28 @@ public class GestionnaireDeRessourcesFX {
         chargeArrierePlan();
     }
 
+    /**
+     * charge les images des enemis dans la liste
+     */
     private void chargeImagesEntites() {
         for (String chemin : lesEnnemisChemins) {
             lesEnnemisImages.add(new Image(chemin));
         }
     }
 
+    /**
+     * charges les images pour le joueur dans la liste
+     */
     private void chargeImagesPersonnages() {
         for (String chemin : lesPersonnagesChemins) {
             lesPersonnagesImages.add(new Image(chemin));
         }
     }
 
+    /**
+     * charge et decoupe les images pour les tuiles dans la liste
+     * @throws Exception
+     */
     private void decoupeTuiles() throws Exception {
         List<Image> images;
 

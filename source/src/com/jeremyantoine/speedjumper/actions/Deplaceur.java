@@ -7,6 +7,9 @@ import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 import com.jeremyantoine.speedjumper.monde.Carte2D;
 
+/**
+ * Classe permettant de gerer l'action deplacement
+ */
 public class Deplaceur {
     private static final float VELOCITE_DANS_LES_AIRS = 1.4f;
     private static final double NOMBRE_PIXEL_VERIFICATION_VIDE = 4;
@@ -14,12 +17,24 @@ public class Deplaceur {
     private Carte2D carteCourante;
     private final double decalagePixelParMouvement;
 
+    /**
+     * Constructeur de la clase
+     * @param carte carte ou a lieu l'action
+     * @throws IllegalArgumentException
+     */
     public Deplaceur(Carte2D carte) throws IllegalArgumentException {
         carteCourante = carte;
         collisionneur = new CollisionneurCarte();
         decalagePixelParMouvement = carte.getDimensionTuiles().getLargeur() * 0.1;
     }
 
+    /**
+     * methode permettant le deplacement d'une entite dans une certaine direction
+     * @param entite entite faisant l'action
+     * @param temps
+     * @param direction direction dans laquelle deplacée l'entité
+     * @throws IllegalArgumentException
+     */
     public void deplace(Entite entite, double temps, Direction direction) throws IllegalArgumentException {
         if (entite == null) {
             throw new IllegalArgumentException("L'entité fournie en paramètre du déplaceur est nulle.");
