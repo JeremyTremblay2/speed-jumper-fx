@@ -12,21 +12,26 @@ public class GestionnaireActionUtilisateurDebug extends GestionnaireActionUtilis
     private Commande flecheHaut;
     private Commande espace;
     private Commande aucuneAction;
-    private Niveau niveauCourant;
 
     public GestionnaireActionUtilisateurDebug(RecuperateurDeTouches recuperateur, Niveau niveau)
             throws IllegalArgumentException {
-        super(recuperateur);
-        if (niveau == null) {
-            throw new IllegalArgumentException("Le niveau passé en paramètre ne peut pas être null.");
-        }
-        niveauCourant = niveau;
+        super(recuperateur, niveau);
         flecheGauche = new CommandeDeplacement(Direction.GAUCHE, niveau);
         flecheDroite = new CommandeDeplacement(Direction.DROITE, niveau);
         flecheBas = new CommandeDeplacement(Direction.BAS, niveau);
         flecheHaut = new CommandeDeplacement(Direction.HAUT, niveau);
         espace = new CommandeSaut(niveau);
         aucuneAction = new CommandeNulle();
+    }
+
+    @Override
+    public void setNiveauCourant(Niveau niveauCourant) {
+        super.setNiveauCourant(niveauCourant);
+        flecheGauche = new CommandeDeplacement(Direction.GAUCHE, niveauCourant);
+        flecheDroite = new CommandeDeplacement(Direction.DROITE, niveauCourant);
+        flecheBas = new CommandeDeplacement(Direction.BAS, niveauCourant);
+        flecheHaut = new CommandeDeplacement(Direction.HAUT, niveauCourant);
+        espace = new CommandeSaut(niveauCourant);
     }
 
     @Override

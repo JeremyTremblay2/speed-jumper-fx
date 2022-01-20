@@ -9,9 +9,9 @@ import com.jeremyantoine.speedjumper.monde.Carte2D;
 
 public class Sauteur implements Simulation, Runnable {
     private static final float DELTA = 1f / BoucleDeJeu.FPS_CIBLE;
-    private static final float HAUTEUR_MAXIMALE_SAUT = 600;
-    private static final float HAUTEUR_SAUT = 500;
-    private static final float DUREE_SAUT = 0.44f;
+    private static final float HAUTEUR_MAXIMALE_SAUT = 900;
+    private static final float HAUTEUR_SAUT = 700;
+    private static final float DUREE_SAUT = 0.64f;
     private CollisionneurCarte collisionneur;
     private Carte2D carteCourante;
     private double temps;

@@ -12,7 +12,6 @@ import javafx.scene.control.ListView;
 public class MenuDebutNiveau {
     private Navigateur navigateur;
     private Jeu jeu;
-    private Niveau niveau;
 
     @FXML
     private ListView<Score> laListeDeScores;
@@ -51,6 +50,7 @@ public class MenuDebutNiveau {
 
     @FXML
     public void ouvrirJeu(ActionEvent event) {
+        System.out.println(jeu.getJeu().getNiveauCourant());
         FenetreJeu fenetre = new FenetreJeu(navigateur, jeu);
         navigateur.naviguerVers(fenetre.getScene());
     }

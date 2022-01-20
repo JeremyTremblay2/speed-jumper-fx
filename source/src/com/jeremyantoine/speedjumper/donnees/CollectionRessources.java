@@ -137,8 +137,8 @@ public class CollectionRessources {
         lesPointsArrivee.add(new Position2D(6336, 320));
 
         lesPointsDepart.add(new Position2D(128, 1664));
-        lesPointsDepart.add(new Position2D(64, 64));
-        lesPointsDepart.add(new Position2D(128, 5760));
+        lesPointsDepart.add(new Position2D(128, 128));
+        lesPointsDepart.add(new Position2D(196, 5660));
         lesPointsDepart.add(new Position2D(256, 1344));
 
         lesEntitesChemins.add(null);

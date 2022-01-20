@@ -1,6 +1,7 @@
 package com.jeremyantoine.speedjumper.controleurs;
 
 
+import com.jeremyantoine.speedjumper.jeu.EtatJeu;
 import com.jeremyantoine.speedjumper.jeu.Jeu;
 import com.jeremyantoine.speedjumper.utilitaire.Navigateur;
 import javafx.event.ActionEvent;
@@ -84,6 +85,7 @@ public class MenuJouer {
             int numeroNiveau = Integer.parseInt(nombre);
             if (jeu.getJeu().getLesNiveaux().size() >= numeroNiveau) {
                 jeu.getJeu().setNiveauCourant(numeroNiveau - 1);
+                jeu.getManagerEtats().getLesEtats().get(EtatJeu.ETAT_JEU_JOUE).raffraichirNiveauCourant();
                 MenuDebutNiveau fenetre = new MenuDebutNiveau(navigateur, jeu);
                 navigateur.naviguerVers(NomFenetre.MENU_DEBUT_NIVEAU, fenetre);
             }

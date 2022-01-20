@@ -7,8 +7,6 @@ import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.entites.Vivant;
 import com.jeremyantoine.speedjumper.entrees.Commande;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
-import com.jeremyantoine.speedjumper.logique.Dimension;
-import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 
 import java.util.ArrayList;
@@ -48,18 +46,21 @@ public class EtatDeJeuJoue extends EtatDeJeu {
             return EtatJeu.ETAT_MENU_PAUSE;
         }
 
-        System.out.println(collisionJoueur);
+        System.out.println("toto");
 
+        /*
+        Implémenter le système de détection de fin de niveau.
         if (collisionneurPointRectangle.collisionne(niveauCourant.getPointArrivee(), joueur.getCollision())) {
             System.out.println("fini");
             return EtatJeu.ETAT_JEU_VICTOIRE;
         }
-
+         */
         return null;
     }
 
     @Override
     public void miseAJour(float temps) {
+
         gestionEnnemis(temps);
 
         chuteur.miseAJourEtatDeJeu(joueur, temps);
@@ -75,6 +76,13 @@ public class EtatDeJeuJoue extends EtatDeJeu {
     public void affichage() {
         //Ne fait rien ici hormis notifier qu'il faut mettre à jour tout l'affichage.
         notifier();
+    }
+
+    @Override
+    public void raffraichirNiveauCourant() {
+        super.raffraichirNiveauCourant();
+        lesEntites = niveauCourant.getLesEntites();
+        chuteur = new Chuteur(niveauCourant.getCarte());
     }
 
     private void gestionEnnemis(double temps) {

@@ -2,7 +2,6 @@ package com.jeremyantoine.speedjumper.jeu;
 
 import com.jeremyantoine.speedjumper.entites.PersonnageJouable;
 import com.jeremyantoine.speedjumper.entrees.GestionnaireActionUtilisateur;
-import com.jeremyantoine.speedjumper.entrees.GestionnaireActionUtilisateurDebug;
 import com.jeremyantoine.speedjumper.entrees.GestionnaireActionUtilisateurJeu;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
 import com.jeremyantoine.speedjumper.monde.Niveau;
@@ -23,6 +22,11 @@ public abstract class EtatDeJeu extends Sujet {
         joueur = jeu.getJoueur();
         niveauCourant = jeu.getNiveauCourant();
         gestionnaireActions = new GestionnaireActionUtilisateurJeu(recuperateur, niveauCourant);
+    }
+
+    public void raffraichirNiveauCourant() {
+        niveauCourant = jeu.getNiveauCourant();
+        gestionnaireActions.setNiveauCourant(niveauCourant);
     }
 
     public GestionnaireActionUtilisateur getGestionnaireActions() {

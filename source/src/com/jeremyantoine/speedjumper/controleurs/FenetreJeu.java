@@ -113,8 +113,8 @@ public class FenetreJeu implements Observateur {
                     entite.getEntite().getPosition().getY() / ECHELLE_CARTE
                             - camera.getPosition().getY() * (hauteurTuile / ECHELLE_CARTE)
                             - camera.getDecalageRelatif().getHauteur() / ECHELLE_CARTE,
-                    entite.getEntite().getDimension().getLargeur() / ECHELLE_CARTE,
-                    entite.getEntite().getDimension().getHauteur() / ECHELLE_CARTE);
+                    20,
+                    40);
         }
     }
 
