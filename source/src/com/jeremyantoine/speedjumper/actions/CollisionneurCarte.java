@@ -52,7 +52,7 @@ public class CollisionneurCarte {
 
         for(int x = coinGauche; x <= coinDroite; x++) {
             for(int y = coinSuperieur; y <= coinInferieur; y++) {
-                collisionTuileRelative = carte.getTuile(x, y).getCollision();
+                collisionTuileRelative = carte.getTuile(y, x).getCollision();
                 if (collisionTuileRelative != null) {
                     collisionTuileAbsolue = new Rectangle(collisionTuileRelative.getPosition().getX() + x * largeurTuile,
                             collisionTuileRelative.getPosition().getY() + y * hauteurTuile,
