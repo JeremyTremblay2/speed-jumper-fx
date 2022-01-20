@@ -39,6 +39,7 @@ public class MenuPrincipal extends Sujet {
      * @param actionEvent
      */
     public void fermetureFenetre(ActionEvent actionEvent) {
+        jeu.ferme();
         navigateur.getStage().close();
     }
 

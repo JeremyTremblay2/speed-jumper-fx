@@ -52,15 +52,19 @@ public class EtatDeJeuJoue extends EtatDeJeu {
         }
 
         if (jeu.isGameOver()) {
-            System.out.println("perdu");
+            //System.out.println("perdu");
             return EtatJeu.ETAT_JEU_PERDU;
         }
 
         if (gestionnaireActions.isPause()) {
+            //System.out.println("pause");
+            gestionnaireActions.setPause(false);
             return EtatJeu.ETAT_MENU_PAUSE;
         }
 
-        if (collisionneurPointRectangle.collisionne(niveauCourant.getPointArrivee(), collisionJoueur)) {
+        System.out.println(collisionJoueur);
+
+        if (collisionneurPointRectangle.collisionne(niveauCourant.getPointArrivee(), joueur.getCollision())) {
             System.out.println("fini");
             return EtatJeu.ETAT_JEU_VICTOIRE;
         }
@@ -79,12 +83,7 @@ public class EtatDeJeuJoue extends EtatDeJeu {
         chuteur.miseAJourEtatDeJeu(joueur, temps);
         new Thread(chuteur).start();
 
-        collisionJoueur = new Rectangle(joueur.getPosition(),
-                new Dimension(joueur.getPosition().getX() + joueur.getCollision().getPosition().getX(),
-                        joueur.getPosition().getY() + joueur.getCollision().getPosition().getY()));
-
         double positionPersonnageY = joueur.getPosition().getY() / niveauCourant.getCarte().getDimensionTuiles().getHauteur();
-        System.out.println(positionPersonnageY);
         if (positionPersonnageY >= niveauCourant.getCarte().getDimension().getHauteur() - 1) {
             joueur.setPointsDeVie(0);
         }
@@ -124,7 +123,5 @@ public class EtatDeJeuJoue extends EtatDeJeu {
             }
         }
         lesEntites.removeAll(entiteASupprimer);
-
-        niveauCourant.getOmbre().ajouterPosition(joueur.getPosition());
     }
 }

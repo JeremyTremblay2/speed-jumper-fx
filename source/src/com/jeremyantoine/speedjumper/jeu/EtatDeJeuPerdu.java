@@ -14,11 +14,9 @@ public class EtatDeJeuPerdu extends EtatDeJeu {
 
     @Override
     public void miseAJour(float temps) {
-
     }
 
     @Override
     public void affichage() {
-
     }
 }

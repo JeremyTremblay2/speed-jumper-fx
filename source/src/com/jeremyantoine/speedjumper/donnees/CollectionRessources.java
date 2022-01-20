@@ -13,14 +13,15 @@ import java.util.*;
 public class CollectionRessources {
     private static CollectionRessources instance;
 
-    private final List<String> lesCartes;
-    private final Map<String, Dimension> lesJeuxDeTuiles;
-    private final Map<NomFenetre, URL> lesCheminsDesVues;
-    private final Map<NomFenetre, String> lesCheminsDesStyles;
-    private final List<String> lesJoueurs;
-    private final List<String> lesEntites;
-    private final List<String> lesEntitesChemins;
-    private final List<String> lesJeuxDeTuilesCollisions;
+    private List<String> lesCartes;
+    private Map<String, Dimension> lesJeuxDeTuiles;
+    private Map<NomFenetre, URL> lesCheminsDesVues;
+    private Map<NomFenetre, String> lesCheminsDesStyles;
+    private List<String> lesJoueurs;
+    private List<String> lesEntites;
+    private List<String> lesEntitesChemins;
+    private List<String> lesJeuxDeTuilesCollisions;
+    private List<String> lesArrieresPlans;
     private List<Position2D> lesPointsDepart;
     private List<Position2D> lesPointsArrivee;
 
@@ -39,6 +40,7 @@ public class CollectionRessources {
         lesCheminsDesStyles = new HashMap<>();
         lesEntitesChemins = new ArrayList<>();
         lesJeuxDeTuilesCollisions = new ArrayList<>();
+        lesArrieresPlans = new ArrayList<>();
         lesPointsDepart = new ArrayList<>();
         lesPointsArrivee = new ArrayList<>();
         ajouterDonnees();
@@ -135,6 +137,10 @@ public class CollectionRessources {
         return lesJeuxDeTuilesCollisions;
     }
 
+    public List<String> getLesArrieresPlans() {
+        return lesArrieresPlans;
+    }
+
     /**
      * methode permettant d'ajouter les données dans les lites
      */
@@ -174,7 +180,9 @@ public class CollectionRessources {
 
         lesJoueurs.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/personnages/femme.png")).toExternalForm());
 
-        lesEntites.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/ennemis/slime.png")).toExternalForm());
+        lesEntites.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/personnages/slime.png")).toExternalForm());
+
+        lesArrieresPlans.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/fonds/background.jpg")).toExternalForm());
 
         lesPointsArrivee.add(new Position2D(512, 320));
         lesPointsArrivee.add(new Position2D(128, 1792));

@@ -15,6 +15,7 @@ public class Jeu implements Observateur {
     private final ManagerEtatDeJeu managerEtats;
     private final TableauJeu jeu;
     private BoucleDeJeu boucleDeJeu;
+    private Thread processus;
 
     /**
      * Constructeur de Jeu
@@ -52,7 +53,7 @@ public class Jeu implements Observateur {
     public void jouer() {
         boucleDeJeu = new BoucleDeJeu();
         boucleDeJeu.attacher(this);
-        Thread processus = new Thread(boucleDeJeu, "Speed Jumper Thread");
+        processus = new Thread(boucleDeJeu, "Speed Jumper Thread");
         processus.start();
     }
 
@@ -105,5 +106,11 @@ public class Jeu implements Observateur {
      */
     public void ferme() {
         //Eventuellement sauvegarde, etc avant de quitter.
+        boucleDeJeu.setEnCours(false);
+        try {
+            processus.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

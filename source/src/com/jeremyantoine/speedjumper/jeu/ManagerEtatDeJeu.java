@@ -1,13 +1,15 @@
 package com.jeremyantoine.speedjumper.jeu;
 
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
+import com.jeremyantoine.speedjumper.observateurs.Observateur;
+import com.jeremyantoine.speedjumper.observateurs.Sujet;
 
 import java.util.*;
 
 /**
  * Cette classe gere les différents etats du jeu
  */
-public class ManagerEtatDeJeu {
+public class ManagerEtatDeJeu extends Sujet {
     private final Map<EtatJeu, EtatDeJeu> lesEtats;
     private EtatDeJeu etatCourant;
     private EtatJeu etatJeuCourant;
@@ -68,11 +70,16 @@ public class ManagerEtatDeJeu {
      * gere les entrees utilisateurs et modifiant l'etat courant et l'etatJeuCourant
      * @param temps
      */
+    public Map<EtatJeu, EtatDeJeu> getLesEtats() {
+        return lesEtats;
+    }
+
     public void entreeUtilisateur(float temps) {
         EtatJeu etat = etatCourant.entreeUtilisateur(temps);
-        if (etat != null && lesEtats.get(etat) != null && lesEtats.get(etat).equals(etatCourant)) {
+        if (etat != null && lesEtats.get(etat) != null) {
             etatCourant = lesEtats.get(etat);
             etatJeuCourant = etat;
+            notifier();
         }
     }
 

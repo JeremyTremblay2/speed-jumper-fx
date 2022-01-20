@@ -1,11 +1,7 @@
 package com.jeremyantoine.speedjumper.monde;
 
-import com.jeremyantoine.speedjumper.comportement.ComportementNull;
 import com.jeremyantoine.speedjumper.entites.Entite;
-import com.jeremyantoine.speedjumper.entites.Fantome;
-import com.jeremyantoine.speedjumper.logique.Dimension;
 import com.jeremyantoine.speedjumper.logique.Position2D;
-import com.jeremyantoine.speedjumper.logique.Rectangle;
 import com.jeremyantoine.speedjumper.logique.Score;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -25,7 +21,6 @@ public class Niveau {
     private Carte2D carte;
     private List<ArrierePlan> lesArrieresPlans;
     private List<Entite> lesEntites;
-    private Fantome fantome;
     private Position2D pointsDepart;
     private Position2D pointArrivee;
 
@@ -69,12 +64,6 @@ public class Niveau {
         this.lesEntites = lesEntites == null ? new ArrayList<>() : lesEntites;
         this.pointsDepart = pointsDepart;
         this.pointArrivee = pointsArrivee;
-        fantome = new Fantome(pointsDepart,
-                new Rectangle(pointsDepart.getX(), pointsDepart.getY(), 30, 60),
-                new Dimension(50, 100),
-                new ComportementNull(),
-                2.3,
-                1000);
         numeroNiveau = nombreNiveaux;
         nombreNiveaux++;
     }
@@ -119,13 +108,6 @@ public class Niveau {
         return lesEntites;
     }
 
-    /**
-     * Retourne le fantome du niceau
-     * @return
-     */
-    public Fantome getOmbre() {
-        return fantome;
-    }
 
     /**
      * retourne la position du point de départ
@@ -133,10 +115,6 @@ public class Niveau {
      */
     public Position2D getPointsDepart() {
         return pointsDepart;
-    }
-
-    public Fantome getFantome() {
-        return fantome;
     }
 
     public Position2D getPointArrivee() {
@@ -197,8 +175,6 @@ public class Niveau {
         chaine.append("] : ");
         chaine.append("\nCarte : ");
         chaine.append(carte.toString());
-        chaine.append("\nFantome : ");
-        chaine.append(fantome.toString());
         chaine.append("\nArrieresPlans : ");
         for (ArrierePlan arrierePlan : lesArrieresPlans) {
             chaine.append(arrierePlan.toString());

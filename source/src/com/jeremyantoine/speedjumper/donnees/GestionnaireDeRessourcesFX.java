@@ -1,7 +1,10 @@
 package com.jeremyantoine.speedjumper.donnees;
 
 import com.jeremyantoine.speedjumper.logique.Dimension;
+import com.jeremyantoine.speedjumper.monde.Carte2D;
+import com.jeremyantoine.speedjumper.monde.Tuile;
 import com.jeremyantoine.speedjumper.utilitaire.DecoupeurFX;
+import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
@@ -26,6 +29,9 @@ public class GestionnaireDeRessourcesFX {
     /**
      * Constructeur de la classe
      */
+    private List<String> lesArrierePlansChemins;
+    private List<Image> lesArrieresPlans;
+
     public GestionnaireDeRessourcesFX() {
         CollectionRessources ressources = CollectionRessources.getInstance();
 
@@ -37,6 +43,9 @@ public class GestionnaireDeRessourcesFX {
 
         lesEnnemisChemins = ressources.getLesEntites();
         lesEnnemisImages = new ArrayList<>();
+
+        lesArrierePlansChemins = ressources.getLesArrieresPlans();
+        lesArrieresPlans = new ArrayList<>();
     }
 
     /**
@@ -63,6 +72,10 @@ public class GestionnaireDeRessourcesFX {
         return lesTuilesImagees;
     }
 
+    public List<Image> getLesArrieresPlans() {
+        return lesArrieresPlans;
+    }
+
     /**
      * Methode appelant les différents chargements
      * @throws Exception
@@ -71,6 +84,7 @@ public class GestionnaireDeRessourcesFX {
         chargeImagesEntites();
         chargeImagesPersonnages();
         decoupeTuiles();
+        chargeArrierePlan();
     }
 
     /**
@@ -106,6 +120,12 @@ public class GestionnaireDeRessourcesFX {
             }
             images = decoupeur.decoupe(chemin, (int) dimension.getLargeur(), (int) dimension.getHauteur());
             lesTuilesImagees.addAll(images);
+        }
+    }
+
+    private void chargeArrierePlan() {
+        for (String chemin : lesArrierePlansChemins) {
+            lesArrieresPlans.add(new Image(chemin));
         }
     }
 }
