@@ -1,7 +1,10 @@
 package com.jeremyantoine.speedjumper.donnees;
 
 import com.jeremyantoine.speedjumper.logique.Dimension;
+import com.jeremyantoine.speedjumper.monde.Carte2D;
+import com.jeremyantoine.speedjumper.monde.Tuile;
 import com.jeremyantoine.speedjumper.utilitaire.DecoupeurFX;
+import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;

@@ -11,6 +11,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe permettant de découper les images
+ */
 public class DecoupeurFX {
     public List<Image> decoupe(String cheminImage, int largeur, int hauteur) {
         List<Image> lesImages = new ArrayList<>();

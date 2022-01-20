@@ -5,10 +5,11 @@ import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.logique.Dimension;
 import com.jeremyantoine.speedjumper.logique.Score;
 import com.jeremyantoine.speedjumper.monde.Carte2D;
+import com.jeremyantoine.speedjumper.monde.Niveau;
 import com.jeremyantoine.speedjumper.monde.Tuile;
 import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
 
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,4 +86,39 @@ public class GestionnaireDeRessources {
         List<Score> lesScores = new ArrayList<>();
         return null;
     }
+
+    private void lecture(List<Niveau> lesNiveau){
+        int numNiv=0;
+
+        try {
+            FileReader lecteur = new FileReader(String.valueOf((CollectionRessources.class.getResource("/scores/scores.yml"))));
+            BufferedReader lecteurDeScore = new BufferedReader(lecteur);
+            String ligne;
+            String seperation = ":";
+            while ((ligne = lecteurDeScore.readLine()) != null) {
+
+                String[] unScore = ligne.split(seperation);
+                if(unScore[0] == "niveau"){
+                    numNiv = Integer.parseInt(unScore[1]);
+                }else{
+                    lesNiveau.get(numNiv-1).ajouterScore(new Score(unScore[0],Integer.parseInt(unScore[1])));
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void ecriture(List<Niveau> lesNiveau) throws IOException {
+        FileWriter writer = new FileWriter(String.valueOf((CollectionRessources.class.getResource("/scores/scores.yml"))));
+        BufferedWriter buffer = new BufferedWriter(writer);
+        for(Niveau niv : lesNiveau){
+            buffer.write("niveau:"+niv.getNumeroNiveau());
+            for(Score score : niv.lesScoresProperty()){
+                buffer.write(score.getPseudo()+":"+score.getScore());
+            }
+        }
+        buffer.close();
+    }
+
 }

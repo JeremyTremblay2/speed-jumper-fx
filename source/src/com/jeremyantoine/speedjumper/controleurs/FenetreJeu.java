@@ -133,6 +133,7 @@ public class FenetreJeu implements Observateur {
     private void initialisation() {
         try {
             gestionnaireDeRessources.charge();
+
         }
         catch (Exception e) {
             e.printStackTrace();
