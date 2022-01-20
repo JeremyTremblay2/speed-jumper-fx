@@ -8,6 +8,7 @@ import com.jeremyantoine.speedjumper.logique.Rectangle;
 import com.jeremyantoine.speedjumper.monde.Carte2D;
 
 public class Deplaceur {
+    private static final float VELOCITE_DANS_LES_AIRS = 2f;
     private CollisionneurCarte collisionneur;
     private Carte2D carteCourante;
     private final double decalagePixelParMouvement;
@@ -15,7 +16,7 @@ public class Deplaceur {
     public Deplaceur(Carte2D carte) throws IllegalArgumentException {
         carteCourante = carte;
         collisionneur = new CollisionneurCarte();
-        decalagePixelParMouvement = carte.getDimensionTuiles().getLargeur() * 0.2;
+        decalagePixelParMouvement = carte.getDimensionTuiles().getLargeur() * 0.1;
     }
 
     public void deplace(Entite entite, double temps, Direction direction) throws IllegalArgumentException {
@@ -27,7 +28,14 @@ public class Deplaceur {
         }
 
         Position2D nouvellePosition = entite.getPosition();
-        double increment = entite.getVelocite() * (temps / BoucleDeJeu.NOMBRE_NANOSECONDES_AVANT_NOTIFICATION);
+        double increment;
+
+        if (entite.isSurSol()) {
+            increment = entite.getVelocite() * (temps / BoucleDeJeu.NOMBRE_NANOSECONDES_AVANT_NOTIFICATION);
+        }
+        else {
+            increment = entite.getVelocite() * (temps / BoucleDeJeu.NOMBRE_NANOSECONDES_AVANT_NOTIFICATION) / VELOCITE_DANS_LES_AIRS;
+        }
 
         switch (direction) {
             case DROITE -> nouvellePosition = new Position2D(entite.getPosition().getX() + increment,
@@ -45,12 +53,12 @@ public class Deplaceur {
                 nouvellePosition.getY() + entite.getCollision().getPosition().getY(),
                 entite.getCollision().getDimension());
 
-        Position2D nouvellePositionSuperieure = new Position2D(nouvellePosition.getX() + decalagePixelParMouvement,
-                nouvellePosition.getY());
+        Position2D nouvellePositionSuperieure = new Position2D(nouvellePosition.getX(),
+                nouvellePosition.getY() + decalagePixelParMouvement);
 
-        Rectangle nouvelleCollisionSuperieure = new Rectangle(nouvellePosition.getX()
+        Rectangle nouvelleCollisionSuperieure = new Rectangle(nouvellePositionSuperieure.getX()
                 + entite.getCollision().getPosition().getX(),
-                nouvellePosition.getY() + entite.getCollision().getPosition().getY() + decalagePixelParMouvement,
+                nouvellePositionSuperieure.getY() + entite.getCollision().getPosition().getY(),
                 entite.getCollision().getDimension());
 
         if (nouvellePosition.getX() >= 0 && nouvellePosition.getY() >= 0

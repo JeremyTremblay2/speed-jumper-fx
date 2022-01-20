@@ -71,14 +71,13 @@ public class TableauJeu {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(lesScores);
 
         for (int i = 0; i < lesCartes.size(); i++) {
             niveau = new Niveau(lesCartes.get(i),
                     null,
                     null,
                     lesScores.get(i) == null ? null : lesScores.get(i),
-                    new Position2D(200, 1200));
+                    new Position2D(200, 1400));
             lesNiveaux.add(niveau);
         }
 
@@ -88,30 +87,13 @@ public class TableauJeu {
             lesNiveaux.get(i).ajouterEntites(lesEnnemis.get(i));
         }
 
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-
         niveauCourant = lesNiveaux.get(0);
 
         options = new Options(true, 10, 10);
 
         joueur = new PersonnageJouable(new Position2D(0, 0),
-                new Rectangle(7, 7, 10, 27),
-                new Dimension(24, 36),
+                new Rectangle(22, 12, 41, 112),
+                new Dimension(85, 128),
                 new ComportementNull(),
                 10,
                 4,

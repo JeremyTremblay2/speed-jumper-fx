@@ -41,7 +41,7 @@ public class ManagerEtatDeJeu {
 
     public void entreeUtilisateur(float temps) {
         EtatJeu etat = etatCourant.entreeUtilisateur(temps);
-        if (etat != null && !lesEtats.get(etat).equals(etatCourant)) {
+        if (etat != null && lesEtats.get(etat) != null && lesEtats.get(etat).equals(etatCourant)) {
             etatCourant = lesEtats.get(etat);
             etatJeuCourant = etat;
         }

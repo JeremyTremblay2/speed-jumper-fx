@@ -30,17 +30,17 @@ public class CollisionneurCarte {
         double largeurCarte = carte.getDimension().getLargeur();
         double hauteurCarte = carte.getDimension().getHauteur();
 
-        if (coinInferieur >= hauteurCarte || coinInferieur < 0
+        /*if (coinInferieur >= hauteurCarte || coinInferieur < 0
                 || coinSuperieur >= hauteurCarte || coinSuperieur < 0
                 || coinDroite >= largeurCarte || coinDroite < 0
                 || coinGauche >= largeurCarte || coinGauche < 0) {
             System.out.println("COLLISION EXTERIEUR MAP");
             return true;
-        }
+        }*/
 
         for(int x = coinGauche; x <= coinDroite; x++) {
             for(int y = coinSuperieur; y <= coinInferieur; y++) {
-                collisionTuileRelative = carte.getTuile(x, y).getCollision();
+                collisionTuileRelative = carte.getTuile(y, x).getCollision();
                 if (collisionTuileRelative != null) {
                     collisionTuileAbsolue = new Rectangle(collisionTuileRelative.getPosition().getX() + x * largeurTuile,
                             collisionTuileRelative.getPosition().getY() + y * hauteurTuile,

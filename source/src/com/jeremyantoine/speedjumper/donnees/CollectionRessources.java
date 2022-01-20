@@ -16,6 +16,7 @@ public class CollectionRessources {
     private List<String> lesJoueurs;
     private List<String> lesEntites;
     private List<String> lesEntitesChemins;
+    private List<String> lesJeuxDeTuilesCollisions;
 
     private String fichierConfigurationTouches;
     private String fichierScores;
@@ -28,6 +29,7 @@ public class CollectionRessources {
         lesCheminsDesVues = new HashMap<>();
         lesCheminsDesStyles = new HashMap<>();
         lesEntitesChemins = new ArrayList<>();
+        lesJeuxDeTuilesCollisions = new ArrayList<>();
         ajouterDonnees();
     }
 
@@ -74,6 +76,10 @@ public class CollectionRessources {
         return fichierScores;
     }
 
+    public List<String> getLesJeuxDeTuilesCollisions() {
+        return lesJeuxDeTuilesCollisions;
+    }
+
     private void ajouterDonnees() {
         fichierConfigurationTouches = Objects.requireNonNull(CollectionRessources.class.getResource("/touches.txt")).getPath();
         fichierScores = Objects.requireNonNull(CollectionRessources.class.getResource("/scores.txt")).getPath();
@@ -82,6 +88,8 @@ public class CollectionRessources {
 
         lesJeuxDeTuiles.put(Objects.requireNonNull(CollectionRessources.class.getResource("/images/tilesets/caverne_moussue.png")).toExternalForm(),
                 new Dimension(64, 64));
+
+        lesJeuxDeTuilesCollisions.add(Objects.requireNonNull(CollectionRessources.class.getResource("/tilesets/caverne_moussue.txt")).getPath());
 
         lesEntites.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/perso.png")).toExternalForm());
 

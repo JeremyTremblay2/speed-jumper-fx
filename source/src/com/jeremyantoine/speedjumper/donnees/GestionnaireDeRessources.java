@@ -22,7 +22,7 @@ public class GestionnaireDeRessources {
     private ChargeurScore chargeurScore;
 
     private List<String> lesCartesChemins;
-    private Map<String, Dimension> lesJeuxDeTuiles;
+    private List<String> lesJeuxDeTuiles;
     private String cheminScores;
 
     private List<Carte2D> lesCartes;
@@ -45,7 +45,7 @@ public class GestionnaireDeRessources {
 
         ressources = CollectionRessources.getInstance();
         lesCartesChemins = ressources.getLesCartes();
-        lesJeuxDeTuiles = ressources.getLesJeuxDeTuiles();
+        lesJeuxDeTuiles = ressources.getLesJeuxDeTuilesCollisions();
         cheminScores = ressources.getFichierScores();
     }
 
@@ -70,18 +70,20 @@ public class GestionnaireDeRessources {
     private List<Carte2D> chargeCartes() throws FileNotFoundException, ParseException,
             InvalidFormatException {
         Carte2D carte;
+        System.out.println(lesTuiles);
         for (String chemin : lesCartesChemins) {
             carte = chargeurDeCartes.charge(chemin, lesTuiles);
             lesCartes.add(carte);
         }
+        System.out.println(lesCartes.get(0));
         return lesCartes;
     }
 
     private List<Tuile> chargeTuiles() throws FileNotFoundException, ParseException,
             InvalidFormatException {
         List<Tuile> tuiles;
-        for (Map.Entry<String, Dimension> paire : lesJeuxDeTuiles.entrySet()) {
-            tuiles = chargeurDeTuiles.charge(paire.getKey());
+        for (String chemin : lesJeuxDeTuiles) {
+            tuiles = chargeurDeTuiles.charge(chemin);
             lesTuiles.addAll(tuiles);
         }
         return lesTuiles;

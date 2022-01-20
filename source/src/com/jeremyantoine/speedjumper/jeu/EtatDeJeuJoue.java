@@ -47,9 +47,9 @@ public class EtatDeJeuJoue extends EtatDeJeu {
 
     private void gestionEnnemis(double temps) {
         for (Entite entite : lesEntites) {
-            //chuteur.miseAJourEtatDeJeu(entite, temps);
-            //new Thread(chuteur).start();
-            //entite.miseAJour(temps);
+            chuteur.miseAJourEtatDeJeu(entite, temps);
+            new Thread(chuteur).start();
+            entite.miseAJour(temps);
         }
 
         chuteur.miseAJourEtatDeJeu(joueur, temps);

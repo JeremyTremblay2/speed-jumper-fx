@@ -11,7 +11,7 @@ public class Chuteur implements Simulation, Runnable {
     private static final float DELTA = 1f / BoucleDeJeu.FPS_CIBLE;
     private static final float HAUTEUR_MAXIMALE_CHUTE = 200;
     private static final float HAUTEUR_CHUTE = 100;
-    private static final float DUREE_CHUTE = 3.44f;
+    private static final float DUREE_CHUTE = 5.44f;
     private Carte2D carteCourante;
     private CollisionneurCarte collisionneur;
     private Entite entite;
@@ -59,6 +59,7 @@ public class Chuteur implements Simulation, Runnable {
             if (collisionneur.collisionne(collisionFuture, carteCourante)) {
                 entite.setChute(false);
                 entite.setSurSol(true);
+                return;
             }
             else {
                 entite.setPosition(new Position2D(entite.getPosition().getX(), entite.getPosition().getY()
@@ -66,6 +67,5 @@ public class Chuteur implements Simulation, Runnable {
             }
             positionPrecedente = position;
         }
-
     }
 }

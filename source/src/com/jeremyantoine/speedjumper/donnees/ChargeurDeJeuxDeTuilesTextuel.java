@@ -6,15 +6,16 @@ import com.jeremyantoine.speedjumper.logique.Rectangle;
 import com.jeremyantoine.speedjumper.monde.Tuile;
 import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.*;
 
 public class ChargeurDeJeuxDeTuilesTextuel implements ChargeurDeJeuxDeTuiles {
-    private static final String CARACTERES_IGNORES ="#.*";
-    private static final String DELIMITEUR_ID = ":";
-    private static final String DELIMITEUR_COORDONNEES = " ";
+    private static final String DELIMITEUR = " ";
     private List<Tuile> lesTuiles;
 
     public ChargeurDeJeuxDeTuilesTextuel() {
@@ -22,43 +23,37 @@ public class ChargeurDeJeuxDeTuilesTextuel implements ChargeurDeJeuxDeTuiles {
     }
 
     @Override
-    public List<Tuile> charge(String chemin) throws FileNotFoundException, ParseException, InvalidFormatException {
-        lesTuiles.add(new Tuile(null, new Dimension(64, 64)));
-        for (int i = 0; i < 239; i++) {
-            lesTuiles.add(new Tuile(new Rectangle(new Position2D(0, 0), new Dimension(64, 64)), new Dimension(64, 64)));
-        }
+    public List<Tuile> charge(String chemin) {
+        int nombreTuile = 0, indexTuile;
 
-        /*
-        try (BufferedReader tampon = new BufferedReader(new FileReader(chemin.toString().replace("file:", "")))) {
-            StringBuilder accumulateurDeChaine = new StringBuilder();
+        try (BufferedReader lecteur = new BufferedReader(new FileReader(chemin))) {
             String ligne;
-            while ((ligne = tampon.readLine()) != null) {
-                ligne = ligne.replaceAll(CARACTERES_IGNORES, "");
-                ligne = ligne.replaceAll(DELIMITEUR_COORDONNEES + DELIMITEUR_COORDONNEES, DELIMITEUR_COORDONNEES);
-                accumulateurDeChaine.append(ligne);
-                accumulateurDeChaine.append("\n");
+            ligne = lecteur.readLine();
+            String[] uneTuile = ligne.split(DELIMITEUR);
+            Dimension dimension = new Dimension(Float.parseFloat(uneTuile[0].trim()),
+                    Float.parseFloat(uneTuile[1].trim()));
+
+            while ((ligne = lecteur.readLine()) != null) {
+                uneTuile = ligne.split(DELIMITEUR);
+                indexTuile = Integer.parseInt(uneTuile[0].trim());
+
+                while (nombreTuile < indexTuile) {
+                    lesTuiles.add(new Tuile(null, dimension));
+                    nombreTuile++;
+                }
+
+                lesTuiles.add(new Tuile(
+                        new Rectangle(Float.parseFloat(uneTuile[1].trim()),
+                                Float.parseFloat(uneTuile[2].trim()),
+                                Float.parseFloat(uneTuile[3].trim()),
+                                Float.parseFloat(uneTuile[4].trim())),
+                                dimension));
+                nombreTuile++;
             }
-            String chaine = accumulateurDeChaine.toString().trim();
-            ajouterTuiles(chaine, chemin.toString());
         }
-        catch (IOException e) {
+        catch (IOException e){
             e.printStackTrace();
         }
-        */
         return lesTuiles;
     }
-
-    /*
-    private void ajouterTuiles(String chaine, String chemin) throws InvalidFormatException {
-        StringTokenizer delimiteur = new StringTokenizer(chaine, DELIMITEUR_ID);
-        int nombreJetons = delimiteur.countTokens();
-        if (nombreJetons % 2 != 0) {
-            throw new InvalidFormatException("Il manque des données dans le jeu de tuiles du fichier " + chemin);
-        }
-
-        while (delimiteur.hasMoreTokens()) {
-            //lesTouches.put(delimiteur.nextToken().trim(), delimiteur.nextToken().trim());
-        }
-    }
-    */
 }
