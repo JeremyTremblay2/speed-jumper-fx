@@ -13,8 +13,9 @@ import java.util.List;
  * Classe EtatDeJeuJoue  gerant les actions lors du jeu
  */
 public class EtatDeJeuJoue extends EtatDeJeu {
-    private List<Entite> lesEntites;
-    private Chuteur chuteur;
+    private final List<Entite> lesEntites;
+    private final Chuteur chuteur;
+    private final CollisionneurAABB collisionneur;
 
     /**
      * Constructeur EtatDeJeuJoue. Recupere les entites du niveau et initialiser le chuteur
@@ -26,6 +27,7 @@ public class EtatDeJeuJoue extends EtatDeJeu {
         super(jeu, recuperateur);
         lesEntites = niveauCourant.getLesEntites();
         chuteur = new Chuteur(niveauCourant.getCarte());
+        collisionneur = new CollisionneurAABB();
     }
 
     /**
@@ -81,7 +83,7 @@ public class EtatDeJeuJoue extends EtatDeJeu {
 
         for (Entite entite : lesEntites) {
             if (entite instanceof Vivant) {
-                if (CollisionneurAABB.collisionne(joueur.getCollision(), entite.getCollision())) {
+                if (collisionneur.collisionne(joueur.getCollision(), entite.getCollision())) {
                     joueur.setPointsDeVie(joueur.getPointsDeVie() - ((Vivant) entite).getDegats());
                 }
             }

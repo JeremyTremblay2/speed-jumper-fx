@@ -9,7 +9,7 @@ import java.util.*;
  * @param <E>
  */
 public class ListeObservable<E> extends Sujet implements List<E> {
-    private List<E> liste;
+    private final List<E> liste;
 
     public ListeObservable(List<E> liste) {
         this.liste = liste;

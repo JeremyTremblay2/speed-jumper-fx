@@ -7,13 +7,11 @@ import com.jeremyantoine.speedjumper.jeu.Options;
  * Classe abstraite pour jouer un son
  */
 public abstract class Jukebox {
-    private Options options;
 
     public Jukebox(Options options) throws IllegalArgumentException {
         if (options == null) {
             throw new IllegalArgumentException("Les options ne peuvent pas être nulle pour jouer du son");
         }
-        this.options = options;
     }
 
     /**

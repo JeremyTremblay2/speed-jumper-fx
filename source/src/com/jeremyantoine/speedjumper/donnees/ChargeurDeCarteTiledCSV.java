@@ -4,13 +4,25 @@ import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Classe permettant de charger depuis un fichier CSV des tuiles
+ */
 public class ChargeurDeCarteTiledCSV {
+    /**
+     * Methode permettant de charger les tuiles
+     * @param cheminFichier
+     * @param separateur
+     * @return
+     * @throws FileNotFoundException
+     * @throws NumberFormatException
+     * @throws ParseException
+     * @throws InvalidFormatException
+     */
     public int[][] charge(String cheminFichier, String separateur) throws FileNotFoundException,
             NumberFormatException, ParseException, InvalidFormatException {
         List<Integer> donnees = new ArrayList<>();
@@ -40,6 +52,14 @@ public class ChargeurDeCarteTiledCSV {
         return remplissageTableau(donnees, nombreLignes, nombreColonnes);
     }
 
+    /**
+     * methode permettant de remplir le tableau des tuiles chargées
+     * @param donnees
+     * @param nombreLignes
+     * @param nombreColonnes
+     * @return
+     * @throws IndexOutOfBoundsException
+     */
     private int[][] remplissageTableau(List<Integer> donnees, int nombreLignes, int nombreColonnes)
             throws IndexOutOfBoundsException {
         int[][] lesTuiles = new int[nombreLignes][nombreColonnes];

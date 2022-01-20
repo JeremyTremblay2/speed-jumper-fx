@@ -2,9 +2,9 @@ package com.jeremyantoine.speedjumper.entrees;
 
 import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
 
-import java.io.*;
-import java.net.URL;
-import java.text.Normalizer;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -16,7 +16,7 @@ import java.util.StringTokenizer;
 public abstract class ChargeurDeTouches {
     private static final String CARACTERES_IGNORES ="#.*";
     private static final String DELIMITEUR = ":";
-    private Map<String, String> lesTouches = new HashMap<>();
+    private final Map<String, String> lesTouches = new HashMap<>();
 
     /**
      * Permet d'ouvrir le fichier et de le lire

@@ -8,10 +8,10 @@ import java.util.*;
  * Cette classe gere les différents etats du jeu
  */
 public class ManagerEtatDeJeu {
-    private Map<EtatJeu, EtatDeJeu> lesEtats;
+    private final Map<EtatJeu, EtatDeJeu> lesEtats;
     private EtatDeJeu etatCourant;
     private EtatJeu etatJeuCourant;
-    private TableauJeu jeu;
+    private final TableauJeu jeu;
 
     /**
      * Constructeur du managerEtatDeJeu
@@ -70,7 +70,7 @@ public class ManagerEtatDeJeu {
      */
     public void entreeUtilisateur(float temps) {
         EtatJeu etat = etatCourant.entreeUtilisateur(temps);
-        if (etat != null && !lesEtats.get(etat).equals(etatCourant)) {
+        if (etat != null && lesEtats.get(etat) != null && lesEtats.get(etat).equals(etatCourant)) {
             etatCourant = lesEtats.get(etat);
             etatJeuCourant = etat;
         }

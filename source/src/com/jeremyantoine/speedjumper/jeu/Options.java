@@ -1,9 +1,5 @@
 package com.jeremyantoine.speedjumper.jeu;
 
-import com.jeremyantoine.speedjumper.entites.Entite;
-import com.jeremyantoine.speedjumper.monde.ArrierePlan;
-import com.jeremyantoine.speedjumper.monde.Niveau;
-
 import java.util.Objects;
 
 /**
@@ -12,9 +8,9 @@ import java.util.Objects;
 public class Options {
     private static final int NIVEAU_MINIMUM_AUDIO = 0;
     private static final int NIVEAU_MAXIMUM_AUDIO = 100;
-    private boolean homme;
-    private int niveauSon;
-    private int niveauMusique;
+    private final boolean homme;
+    private final int niveauSon;
+    private final int niveauMusique;
 
     /**
      * Constructeur de la classe options.

@@ -4,6 +4,9 @@ import com.jeremyantoine.speedjumper.logique.Direction;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.monde.ArrierePlan;
 
+/**
+ * classe permettant d'animer le fond  et de le faire bouger
+ */
 public class DeplaceurArrierePlan {
     public void deplace(ArrierePlan arrierePlan, float temps, Direction direction) {
         float vitesse = arrierePlan.getVitesseDefilement();

@@ -12,7 +12,7 @@ public abstract class Vivant extends Entite {
     private static final int POINTS_DE_VIE_PAR_DEFAUT = 10;
     private final int pointsDeViesInitiaux;
     private int pointsDeVie;
-    private int degats;
+    private final int degats;
     private Direction direction;
 
     /**

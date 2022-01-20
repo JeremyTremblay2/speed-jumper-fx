@@ -2,8 +2,6 @@ package com.jeremyantoine.speedjumper.donnees;
 
 import com.jeremyantoine.speedjumper.logique.Dimension;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
-import com.jeremyantoine.speedjumper.logique.Score;
-import com.jeremyantoine.speedjumper.monde.Niveau;
 import com.jeremyantoine.speedjumper.monde.Tuile;
 
 import java.io.BufferedReader;

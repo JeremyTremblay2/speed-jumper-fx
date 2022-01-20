@@ -8,12 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * classe gerant l'affichage des entités
+ */
 public class EntiteFX implements Observateur {
-    private Entite entite;
-    private List<Image> lesImages;
-    private Image imageCourante;
+    private final Entite entite;
+    private final List<Image> lesImages;
+    private final Image imageCourante;
     private int indexImage;
 
+    /**
+     * Constructeur de EntiteFX
+     * @param entite
+     * @param lesImages
+     */
     public EntiteFX(Entite entite, List<Image> lesImages) {
         if (entite == null) {
             throw new IllegalArgumentException("L'entité passée en paramètre ne peut pas être nulle.");
@@ -23,18 +31,33 @@ public class EntiteFX implements Observateur {
         imageCourante = lesImages != null ? lesImages.get(0) : null;
     }
 
+    /**
+     * retourne l'image courrante
+     * @return
+     */
     public Image getImageCourante() {
         return imageCourante;
     }
 
+    /**
+     * retourne l'entite
+     * @return
+     */
     public Entite getEntite() {
         return entite;
     }
 
+    /**
+     * retourne la liste d'images de lentite
+     * @return
+     */
     public List<Image> getLesImages() {
         return lesImages;
     }
 
+    /**
+     * Met a jour l'affichage de l'entite
+     */
     @Override
     public void miseAjour() {
 

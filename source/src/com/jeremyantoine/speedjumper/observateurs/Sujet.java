@@ -9,7 +9,7 @@ import java.util.List;
  * Cette classe sera celle observée.
  */
 public abstract class Sujet {
-    private List<Observateur> lesObservateurs;
+    private final List<Observateur> lesObservateurs;
 
     /**
      * Constructeur du sujet.

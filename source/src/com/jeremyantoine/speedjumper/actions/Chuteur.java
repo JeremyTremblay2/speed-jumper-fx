@@ -5,14 +5,24 @@ import com.jeremyantoine.speedjumper.jeu.BoucleDeJeu;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 import com.jeremyantoine.speedjumper.monde.Carte2D;
-import com.jeremyantoine.speedjumper.monde.Niveau;
 
+/**
+ * Classe permettant de  faire l'action de chuter
+ */
 public class Chuteur implements Simulation, Runnable {
-    private Carte2D carteCourante;
-    private CollisionneurCarte collisionneur;
+    private static final float DELTA = 1f / BoucleDeJeu.FPS_CIBLE;
+    private static final float HAUTEUR_MAXIMALE_CHUTE = 200;
+    private static final float HAUTEUR_CHUTE = 100;
+    private static final float DUREE_CHUTE = 5.44f;
+    private final Carte2D carteCourante;
+    private final CollisionneurCarte collisionneur;
     private Entite entite;
-    private double temps;
 
+    /**
+     * Constructeur de la classe
+     * @param carteCourante carte courrante
+     * @throws IllegalArgumentException
+     */
     public Chuteur(Carte2D carteCourante) throws IllegalArgumentException {
         if (carteCourante == null) {
             throw new IllegalArgumentException("Impossible d'instancier un chuteur car la carte passée en paramètre "
@@ -22,63 +32,38 @@ public class Chuteur implements Simulation, Runnable {
         collisionneur = new CollisionneurCarte();
     }
 
+    /**
+     * Methode mettant a jour l'etat de jeu
+     * @param entite entite chuttant
+     * @param temps temps
+     */
     @Override
     public void miseAJourEtatDeJeu(Entite entite, double temps) {
         this.entite = entite;
-        this.temps = temps;
     }
 
-
-        /*if (entite.isChute()) {
-            tempsTotal += temps;
-            double positionY = Math.sin(((tempsTotal / 60f) / BoucleDeJeu.NOMBRE_MILLISECONDES_AVANT_NOTIFICATION) * 3);
-            Position2D positionFuture = new Position2D(entite.getPosition().getX(), positionY);
-            Rectangle collisionFuture = new Rectangle(positionFuture.getX() + entite.getCollision().getPosition().getX(),
-                    positionFuture.getY() + entite.getCollision().getPosition().getY(),
-                    entite.getCollision().getDimension());
-            System.out.println(positionY);
-
-            if (!collisionneur.collisionne(collisionFuture, niveauCourant.getCarte())) {
-                entite.setPosition(positionFuture);
-            }
-        }
-
-        tempsTotal += temps;
-        double positionY = Math.sin(((tempsTotal / 60f) / BoucleDeJeu.NOMBRE_MILLISECONDES_AVANT_NOTIFICATION) * 3);
-        Position2D positionFuture = new Position2D(entite.getPosition().getX(), positionY);
-        Rectangle collisionFuture = new Rectangle(positionFuture.getX() + entite.getCollision().getPosition().getX(),
-                positionFuture.getY() + entite.getCollision().getPosition().getY(),
-                entite.getCollision().getDimension());
-        System.out.println(positionY);
-
-        if (!collisionneur.collisionne(collisionFuture, niveauCourant.getCarte())) {
-            entite.setPosition(positionFuture);
-        }
-
-        //new Position2D(entite.getPosition().getX(), entite.getPosition().getY() + entite.getVelocite() * (temps / 1000000000));*/
-
+    /**
+     * Methode lançant l'action
+     */
     @Override
     public void run() {
         if (!entite.isChute() || entite.isSurSol()) {
             return;
         }
 
-        float gravity = (2 * 2500) / (0.44f * 0.44f);
-        float jumpVelocity = (float)Math.sqrt(2 * gravity * 600);
-
-        float velocity = jumpVelocity;
+        float gravite = (2 * HAUTEUR_MAXIMALE_CHUTE) / (DUREE_CHUTE * DUREE_CHUTE);
+        float velocite = (float)Math.sqrt(2 * gravite * HAUTEUR_CHUTE);
         float position = 0, positionPrecedente = 0;
-
         Rectangle collisionFuture;
 
-        while (velocity > 0 || !entite.isSurSol()) {
+        while (velocite > 0 || !entite.isSurSol()) {
             try {
                 Thread.sleep(20);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            velocity += gravity * (1 / 60f);
-            position += velocity * (1/60f);
+            velocite += gravite * DELTA;
+            position += velocite * DELTA;
 
             collisionFuture = new Rectangle(entite.getPosition().getX() + entite.getCollision().getPosition().getX(),
                     entite.getPosition().getY() + entite.getCollision().getPosition().getY() + (position - positionPrecedente),
@@ -87,6 +72,7 @@ public class Chuteur implements Simulation, Runnable {
             if (collisionneur.collisionne(collisionFuture, carteCourante)) {
                 entite.setChute(false);
                 entite.setSurSol(true);
+                return;
             }
             else {
                 entite.setPosition(new Position2D(entite.getPosition().getX(), entite.getPosition().getY()
@@ -94,6 +80,5 @@ public class Chuteur implements Simulation, Runnable {
             }
             positionPrecedente = position;
         }
-
     }
 }

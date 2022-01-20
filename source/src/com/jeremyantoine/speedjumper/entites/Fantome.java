@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Fantome extends Vivant {
     private static final int NOMBRE_MAXIMUM_POSITIONS = 5000;
-    private List<Position2D> positions = new ArrayList<>();
+    private final List<Position2D> positions = new ArrayList<>();
 
     /**
      *

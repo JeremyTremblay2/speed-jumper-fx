@@ -112,8 +112,6 @@ public class Carte2D {
         chaine.append(dimension);
         chaine.append(" : \n");
 
-        System.out.println(dimension);
-
         for (int x = 0; x < hauteur; x++) {
             for (int y = 0; y < largeur; y++) {
                 chaine.append(lesTuiles[x][y].getIdTuile());

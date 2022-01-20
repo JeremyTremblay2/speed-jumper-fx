@@ -8,8 +8,7 @@ import com.jeremyantoine.speedjumper.monde.Niveau;
  * Classe permettant de gérer le saut
  */
 public class CommandeSaut implements Commande {
-    private Niveau niveau;
-    private Sauteur sauteur;
+    private final Sauteur sauteur;
 
     /**
      * Constructeur de la classe
@@ -17,7 +16,6 @@ public class CommandeSaut implements Commande {
      * @throws IllegalArgumentException
      */
     public CommandeSaut(Niveau niveau) throws IllegalArgumentException {
-        this.niveau = niveau;
         sauteur = new Sauteur(niveau.getCarte());
     }
 

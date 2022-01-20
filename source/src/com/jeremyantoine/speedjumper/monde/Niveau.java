@@ -62,6 +62,7 @@ public class Niveau {
         }
 
         this.carte = carte;
+        lesScores = lesScores == null ? new ArrayList<>() : lesScores;
         lesScoresObservables.addAll(lesScores);
         lesArrieresPlans = arrierePlans == null ? new ArrayList<>() : arrierePlans;
         this.lesEntites = lesEntites == null ? new ArrayList<>() : lesEntites;
@@ -141,6 +142,10 @@ public class Niveau {
         if (lesScores.size() > NOMBRE_SCORE_MAXIMUM) {
             lesScores.remove(NOMBRE_SCORE_MAXIMUM);
         }
+    }
+
+    public void ajouterEntites(List<Entite> lesEntites) {
+            this.lesEntites.addAll(lesEntites);
     }
 
     /**

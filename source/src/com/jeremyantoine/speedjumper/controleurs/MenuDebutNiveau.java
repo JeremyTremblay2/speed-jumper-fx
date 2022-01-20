@@ -9,9 +9,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 
+/**
+ * Controleur pour la vue du debut niveau
+ */
 public class MenuDebutNiveau {
-    private Navigateur navigateur;
-    private Jeu jeu;
+    private final Navigateur navigateur;
+    private final Jeu jeu;
     private Niveau niveau;
 
     @FXML
@@ -24,6 +27,7 @@ public class MenuDebutNiveau {
         this.navigateur = navigateur;
         this.jeu = jeu;
     }
+
 
     public void initialize() {
         laListeDeScores.itemsProperty().bind(jeu.getJeu().getNiveauCourant().lesScoresProperty());
@@ -44,11 +48,19 @@ public class MenuDebutNiveau {
         });
     }
 
+    /**
+     * Methode pour revnir a la vue d'avant
+     * @param event
+     */
     @FXML
     public void retourMenu(ActionEvent event) {
         navigateur.faireDemiTour();
     }
 
+    /**
+     * methode pour le jeu
+     * @param event
+     */
     @FXML
     public void ouvrirJeu(ActionEvent event) {
         FenetreJeu fenetre = new FenetreJeu(navigateur, jeu);

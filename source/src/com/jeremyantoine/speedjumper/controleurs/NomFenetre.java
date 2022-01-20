@@ -1,5 +1,8 @@
 package com.jeremyantoine.speedjumper.controleurs;
 
+/**
+ * Enumeration des fenetres
+ */
 public enum NomFenetre {
     MENU_PRINCIPAL,
     MENU_JOUER,

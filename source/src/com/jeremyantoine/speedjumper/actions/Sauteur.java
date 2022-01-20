@@ -6,17 +6,23 @@ import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;
 import com.jeremyantoine.speedjumper.monde.Carte2D;
 
-
+/**
+ * Classe pour l'action sauter
+ */
 public class Sauteur implements Simulation, Runnable {
     private static final float DELTA = 1f / BoucleDeJeu.FPS_CIBLE;
     private static final float HAUTEUR_MAXIMALE_SAUT = 200;
     private static final float HAUTEUR_SAUT = 100;
     private static final float DUREE_SAUT = 0.44f;
-    private CollisionneurCarte collisionneur;
-    private Carte2D carteCourante;
-    private double temps;
+    private final CollisionneurCarte collisionneur;
+    private final Carte2D carteCourante;
     private Entite entite;
 
+    /**
+     * Constructeur de la classe
+     * @param carteCourante
+     * @throws IllegalArgumentException
+     */
     public Sauteur(Carte2D carteCourante) throws IllegalArgumentException {
         if (carteCourante == null) {
             throw new IllegalArgumentException("La carte passée en paramètre ne peut pas être null.");
@@ -25,12 +31,19 @@ public class Sauteur implements Simulation, Runnable {
         collisionneur = new CollisionneurCarte();
     }
 
+    /**
+     * methode mettant a jour l'etat de jeu
+     * @param entite entite effectuant l'action
+     * @param temps le temps ou elle le fait
+     */
     @Override
     public void miseAJourEtatDeJeu(Entite entite, double temps) {
         this.entite = entite;
-        this.temps = temps;
     }
 
+    /**
+     * lancemement de l'action
+     */
     @Override
     public void run() {
         if (entite.isChute() || !entite.isSurSol()) {

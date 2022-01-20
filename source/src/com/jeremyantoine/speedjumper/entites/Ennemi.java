@@ -1,7 +1,6 @@
 package com.jeremyantoine.speedjumper.entites;
 
 import com.jeremyantoine.speedjumper.comportement.Comportement;
-import com.jeremyantoine.speedjumper.logique.Attaque;
 import com.jeremyantoine.speedjumper.logique.Dimension;
 import com.jeremyantoine.speedjumper.logique.Position2D;
 import com.jeremyantoine.speedjumper.logique.Rectangle;

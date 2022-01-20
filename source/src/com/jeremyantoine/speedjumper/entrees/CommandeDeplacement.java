@@ -1,21 +1,15 @@
 package com.jeremyantoine.speedjumper.entrees;
 
 import com.jeremyantoine.speedjumper.actions.AdaptateurDeplaceur;
-import com.jeremyantoine.speedjumper.actions.CollisionneurCarte;
-import com.jeremyantoine.speedjumper.actions.Deplaceur;
 import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.logique.Direction;
-import com.jeremyantoine.speedjumper.logique.Position2D;
-import com.jeremyantoine.speedjumper.logique.Rectangle;
 import com.jeremyantoine.speedjumper.monde.Niveau;
 
 /**
  * Classe permettant de gerer l'action se deplacer
  */
 public class CommandeDeplacement implements Commande {
-    private AdaptateurDeplaceur deplaceur;
-    private Direction direction;
-    private Niveau niveau;
+    private final AdaptateurDeplaceur deplaceur;
 
     /**
      * Constructeur de la classe
@@ -26,8 +20,6 @@ public class CommandeDeplacement implements Commande {
         if (niveau == null) {
             throw new IllegalArgumentException("Le niveau passé en paramètre ne peut pas être null.");
         }
-        this.direction = direction;
-        this.niveau = niveau;
         deplaceur = new AdaptateurDeplaceur(direction, niveau.getCarte());
     }
 

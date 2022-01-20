@@ -10,17 +10,26 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * Controleur pour un contenu personnalisé switch bouton
+ */
 public class BoutonSwitch extends StackPane {
     private final Rectangle arrierePlan = new Rectangle(30, 10, Color.RED);
     private final Button bouton = new Button();
-    private String buttonStyleOff = "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 0.2, 0.0, 0.0, 2); -fx-background-color: WHITE;";
-    private String buttonStyleOn = "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0.1,0.1), 0.2, 0.0, 0.0, 2); -fx-background-color: #02893e;";
+    private final String buttonStyleOff = "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 0.2, 0.0, 0.0, 2); -fx-background-color: WHITE;";
+    private final String buttonStyleOn = "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0.1,0.1), 0.2, 0.0, 0.0, 2); -fx-background-color: #02893e;";
     private boolean etat;
 
+    /**
+     * constructeur
+     */
     public BoutonSwitch() {
 
     }
 
+    /**
+     * initialisation du bouton
+     */
     public void initialize() {
         getChildren().addAll(arrierePlan, bouton);
         setMinSize(30, 15);
@@ -39,6 +48,10 @@ public class BoutonSwitch extends StackPane {
         bouton.setStyle(buttonStyleOff);
     }
 
+    /**
+     * methode permettant de changer en fonction du click
+     * @param event
+     */
     @FXML
     public void bougerBouton(Event event) {
         EventHandler<Event> click = e -> {

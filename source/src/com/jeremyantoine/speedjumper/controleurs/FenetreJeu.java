@@ -22,32 +22,37 @@ import javafx.scene.layout.StackPane;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controleur pour la fenetre de jeu
+ */
 public class FenetreJeu implements Observateur {
     private static final Dimension DIMENSION_CAMERA_PAR_DEFAUT = new Dimension(40,28);
     private static final float ECHELLE_CARTE = 2;
 
-    private Navigateur navigateur;
-    private Jeu jeu;
+    private final Navigateur navigateur;
+    private final Jeu jeu;
 
-    private Scene scene;
-    private Canvas caneva;
-    private StackPane lesCouches;
-    private GraphicsContext contexteGraphique;
+    private final Scene scene;
+    private final GraphicsContext contexteGraphique;
 
-    private Niveau niveauCourant;
-    private List<TuileFX> lesTuilesGraphiques;
-    private List<EntiteFX> lesEntitesGraphiques;
-    private CameraCarteTuilesFX camera;
-    private PersonnageJouable joueur;
+    private final Niveau niveauCourant;
+    private final List<TuileFX> lesTuilesGraphiques;
+    private final List<EntiteFX> lesEntitesGraphiques;
+    private final CameraCarteTuilesFX camera;
+    private final PersonnageJouable joueur;
 
-    private GestionnaireDeRessourcesFX gestionnaireDeRessources;
+    private final GestionnaireDeRessourcesFX gestionnaireDeRessources;
 
-    private Dimension tailleCaneva;
-    private int largeurCamera;
-    private int hauteurCamera;
-    private int largeurTuile;
-    private int hauteurTuile;
+    private final Dimension tailleCaneva;
+    private final int largeurCamera;
+    private final int hauteurCamera;
+    private final int largeurTuile;
+    private final int hauteurTuile;
 
+    /**
+     * Constructeur de la fenetre
+     * @param jeu
+     */
     public FenetreJeu(Navigateur navigateur, Jeu jeu) {
         if (navigateur == null || jeu == null) {
             throw new IllegalArgumentException("Le navigateur ou le jeu passé en paramètre ne peut pas être null.");
@@ -71,8 +76,8 @@ public class FenetreJeu implements Observateur {
         tailleCaneva = new Dimension((DIMENSION_CAMERA_PAR_DEFAUT.getLargeur() - 2) * (largeurTuile / ECHELLE_CARTE),
                 (DIMENSION_CAMERA_PAR_DEFAUT.getHauteur() - 2) * (largeurTuile / ECHELLE_CARTE));
 
-        lesCouches = new StackPane();
-        caneva = new Canvas(tailleCaneva.getLargeur(), tailleCaneva.getHauteur());
+        StackPane lesCouches = new StackPane();
+        Canvas caneva = new Canvas(tailleCaneva.getLargeur(), tailleCaneva.getHauteur());
         scene = new Scene(lesCouches);
         lesCouches.getChildren().add(caneva);
         contexteGraphique = caneva.getGraphicsContext2D();
@@ -80,10 +85,17 @@ public class FenetreJeu implements Observateur {
         initialisation();
     }
 
+    /**
+     * retourne la scene actuelle
+     * @return
+     */
     public Scene getScene() {
         return scene;
     }
 
+    /**
+     * Methode qui gere l'affichage
+     */
     public void affichage() {
         camera.centrerSurEntite(joueur);
         contexteGraphique.clearRect(0, 0, tailleCaneva.getLargeur(), tailleCaneva.getHauteur());
@@ -106,11 +118,14 @@ public class FenetreJeu implements Observateur {
                     entite.getEntite().getPosition().getY() / ECHELLE_CARTE
                             - camera.getPosition().getY() * (hauteurTuile / ECHELLE_CARTE)
                             - camera.getDecalageRelatif().getHauteur() / ECHELLE_CARTE,
-                    entite.getEntite().getDimension().getLargeur(),
-                    entite.getEntite().getDimension().getHauteur());
+                    entite.getEntite().getDimension().getLargeur() / ECHELLE_CARTE,
+                    entite.getEntite().getDimension().getHauteur() / ECHELLE_CARTE);
         }
     }
 
+    /**
+     * Methode qui met a jour l'affichage
+     */
     @Override
     public void miseAjour() {
         if (jeu.getManagerEtats().getEtatJeuCourant() == EtatJeu.ETAT_MENU_PAUSE) {
@@ -130,6 +145,9 @@ public class FenetreJeu implements Observateur {
         }
     }
 
+    /**
+     * Initialiosation des données
+     */
     private void initialisation() {
         try {
             gestionnaireDeRessources.charge();

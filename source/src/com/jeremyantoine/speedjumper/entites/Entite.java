@@ -13,10 +13,10 @@ import java.util.Objects;
 public abstract class Entite {
     private static final double VELOCITE_PAR_DEFAUT = 1;
     private Position2D position;
-    private Rectangle collision;
-    private Dimension dimension;
-    private Comportement comportement;
-    private double velocite;
+    private final Rectangle collision;
+    private final Dimension dimension;
+    private final Comportement comportement;
+    private final double velocite;
     private boolean surSol;
     private boolean chute;
 

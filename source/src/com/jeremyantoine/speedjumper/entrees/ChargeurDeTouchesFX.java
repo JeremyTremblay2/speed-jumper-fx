@@ -2,7 +2,6 @@ package com.jeremyantoine.speedjumper.entrees;
 
 import javafx.scene.input.KeyCode;
 
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 

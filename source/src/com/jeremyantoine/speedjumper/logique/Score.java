@@ -1,7 +1,6 @@
 package com.jeremyantoine.speedjumper.logique;
 
 import com.jeremyantoine.speedjumper.entites.Piece;
-import com.jeremyantoine.speedjumper.monde.Tuile;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;

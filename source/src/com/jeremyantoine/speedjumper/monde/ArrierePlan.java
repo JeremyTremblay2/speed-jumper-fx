@@ -7,10 +7,10 @@ import com.jeremyantoine.speedjumper.logique.Position2D;
  * Classe pour gerer l'arriere plan
  */
 public class ArrierePlan {
-    private int zindex = 1;
-    private float vitesseDefilement;
+    private final int zindex;
+    private final float vitesseDefilement;
     private Position2D position;
-    private Dimension dimension;
+    private final Dimension dimension;
 
     /**
      * Constructeur de l'arrierePlan

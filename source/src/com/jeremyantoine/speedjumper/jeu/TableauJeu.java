@@ -1,9 +1,8 @@
 package com.jeremyantoine.speedjumper.jeu;
 
 import com.jeremyantoine.speedjumper.comportement.ComportementNull;
-import com.jeremyantoine.speedjumper.donnees.AdaptateurChargeurDeCarteTiledCSV;
-import com.jeremyantoine.speedjumper.donnees.ChargeurDeJeuxDeTuilesTextuel;
-import com.jeremyantoine.speedjumper.donnees.GestionnaireDeRessources;
+import com.jeremyantoine.speedjumper.donnees.*;
+import com.jeremyantoine.speedjumper.entites.Entite;
 import com.jeremyantoine.speedjumper.entites.PersonnageJouable;
 import com.jeremyantoine.speedjumper.entrees.RecuperateurDeTouches;
 import com.jeremyantoine.speedjumper.logique.Dimension;
@@ -20,8 +19,8 @@ import java.util.List;
  * Classe tableau de jeu permettant de les jeux
  */
 public class TableauJeu {
-    private GestionnaireDeRessources gestionnaireDeRessources;
-    private List<Niveau> lesNiveaux = new ArrayList<>();
+    private final GestionnaireDeRessources gestionnaireDeRessources;
+    private final List<Niveau> lesNiveaux = new ArrayList<>();
     private PersonnageJouable joueur;
     private Niveau niveauCourant;
     private Options options;
@@ -33,7 +32,7 @@ public class TableauJeu {
      */
     public TableauJeu(RecuperateurDeTouches recuperateur) {
         gestionnaireDeRessources = new GestionnaireDeRessources(new AdaptateurChargeurDeCarteTiledCSV(","),
-                new ChargeurDeJeuxDeTuilesTextuel());
+                new ChargeurDeJeuxDeTuilesTextuel(), new ChargeurScoreTextuel());
         initialisation();
     }
 
@@ -100,54 +99,42 @@ public class TableauJeu {
      */
     private void initialisation() {
         List<Carte2D> lesCartes = new ArrayList<>();
+        List<List<Score>> lesScores = new ArrayList<>();
         Niveau niveau;
 
         try {
             gestionnaireDeRessources.charge();
             lesCartes = gestionnaireDeRessources.getLesCartes();
+            lesScores = gestionnaireDeRessources.getLesScores();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        for (Carte2D carte : lesCartes) {
-            niveau = new Niveau(carte, null, null, new ArrayList<>(), new Position2D(100, 1200));
+        for (int i = 0; i < lesCartes.size(); i++) {
+            niveau = new Niveau(lesCartes.get(i),
+                    null,
+                    null,
+                    lesScores.get(i) == null ? null : lesScores.get(i),
+                    new Position2D(200, 1400));
             lesNiveaux.add(niveau);
         }
 
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
-        lesNiveaux.add(null);
+        ChargeurEnnemis chargeurEnnemis = new ChargeurEnnemisStub(lesNiveaux);
+        List<List<Entite>> lesEnnemis = chargeurEnnemis.charge(null);
+        for (int i = 0; i < lesNiveaux.size(); i++) {
+            lesNiveaux.get(i).ajouterEntites(lesEnnemis.get(i));
+        }
 
         niveauCourant = lesNiveaux.get(0);
 
         options = new Options(true, 10, 10);
 
-        joueur = new PersonnageJouable(new Position2D(350, 300),
-                new Rectangle(6, 3, 15, 33),
-                new Dimension(24, 36),
+        joueur = new PersonnageJouable(new Position2D(0, 0),
+                new Rectangle(22, 12, 41, 112),
+                new Dimension(85, 128),
                 new ComportementNull(),
                 10,
                 4,
                 3);
-
-        niveauCourant.ajouterScore(new Score("Jean-Claude", 10));
-        niveauCourant.ajouterScore(new Score("Jean-Marie", 8));
-        niveauCourant.ajouterScore(new Score("Truc", 17));
-        niveauCourant.ajouterScore(new Score("Bidule", 10));
-        niveauCourant.ajouterScore(new Score("Jérémy", 1));
-        niveauCourant.ajouterScore(new Score("Antoine", 22));
     }
 }
