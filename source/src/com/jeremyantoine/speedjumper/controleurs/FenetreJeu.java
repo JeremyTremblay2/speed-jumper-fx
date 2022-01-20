@@ -136,7 +136,6 @@ public class FenetreJeu implements Observateur {
     @Override
     public void miseAjour() {
         if (jeu.getManagerEtats().getEtatJeuCourant() == EtatJeu.ETAT_MENU_PAUSE) {
-            System.out.println("navigation");
             MenuPause menu = new MenuPause(navigateur, jeu);
             navigateur.naviguerVers(NomFenetre.MENU_PAUSE, menu);
         }

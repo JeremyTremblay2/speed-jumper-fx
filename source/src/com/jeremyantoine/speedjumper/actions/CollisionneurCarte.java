@@ -46,26 +46,22 @@ public class CollisionneurCarte {
                 || coinSuperieur >= hauteurCarte || coinSuperieur < 0
                 || coinDroite >= largeurCarte || coinDroite < 0
                 || coinGauche >= largeurCarte || coinGauche < 0) {
-            System.out.println("COLLISION EXTERIEUR MAP");
-            System.out.println(carte.getDimension());
             return true;
         }
 
         for(int x = coinGauche; x <= coinDroite; x++) {
             for(int y = coinSuperieur; y <= coinInferieur; y++) {
-                collisionTuileRelative = carte.getTuile(x, y).getCollision();
+                collisionTuileRelative = carte.getTuile(y, x).getCollision();
                 if (collisionTuileRelative != null) {
                     collisionTuileAbsolue = new Rectangle(collisionTuileRelative.getPosition().getX() + x * largeurTuile,
                             collisionTuileRelative.getPosition().getY() + y * hauteurTuile,
                             collisionTuileRelative.getDimension());
                     if (collisionneur.collisionne(collision, collisionTuileAbsolue)) {
-                        //System.out.println("COLLISION PAR FRICTION");
                         return true;
                     }
                 }
             }
         }
-        //System.out.println("PAS DE COLLISION");
         return false;
     }
 }

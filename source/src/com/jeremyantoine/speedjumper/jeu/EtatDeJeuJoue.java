@@ -52,22 +52,17 @@ public class EtatDeJeuJoue extends EtatDeJeu {
         }
 
         if (jeu.isGameOver()) {
-            //System.out.println("perdu");
             return EtatJeu.ETAT_JEU_PERDU;
         }
 
         if (gestionnaireActions.isPause()) {
-            //System.out.println("pause");
             gestionnaireActions.setPause(false);
             return EtatJeu.ETAT_MENU_PAUSE;
         }
 
-        System.out.println(collisionJoueur);
-
         /*
         Implémenter le système de détection de fin de niveau.
         if (collisionneurPointRectangle.collisionne(niveauCourant.getPointArrivee(), joueur.getCollision())) {
-            System.out.println("fini");
             return EtatJeu.ETAT_JEU_VICTOIRE;
         }
          */

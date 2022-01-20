@@ -98,7 +98,6 @@ public class GestionnaireDeRessources {
     private List<Carte2D> chargeCartes() throws FileNotFoundException, ParseException,
             InvalidFormatException {
         Carte2D carte;
-        System.out.println(lesTuiles);
         for (String chemin : lesCartesChemins) {
             carte = chargeurDeCartes.charge(chemin, lesTuiles);
             lesCartes.add(carte);

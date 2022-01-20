@@ -86,7 +86,6 @@ public class Jeu implements Observateur {
 
             temps += ecoule;
         }
-        System.out.println("Jeu fini");
     }
 
     /**

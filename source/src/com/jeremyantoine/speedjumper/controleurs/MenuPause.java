@@ -30,7 +30,6 @@ public class MenuPause {
      */
     @FXML
     public void retourMenu(ActionEvent event) {
-        System.out.println("j'y suis");
         navigateur.faireDemiTour();
         navigateur.faireDemiTour();
     }
@@ -41,7 +40,6 @@ public class MenuPause {
      */
     @FXML
     public void reprendreJeu(ActionEvent event) {
-        System.out.println("j'y suis presque");
         navigateur.faireDemiTour();
     }
 }

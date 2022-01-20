@@ -124,8 +124,6 @@ public class TableauJeu {
             lesNiveaux.add(niveau);
         }
 
-        System.out.println(lesCartes.size());
-
         ChargeurEnnemis chargeurEnnemis = new ChargeurEnnemisStub(lesNiveaux);
         List<List<Entite>> lesEnnemis = chargeurEnnemis.charge(null);
         for (int i = 0; i < lesNiveaux.size(); i++) {
