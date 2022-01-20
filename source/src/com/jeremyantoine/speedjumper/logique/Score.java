@@ -9,9 +9,16 @@ import javafx.beans.property.StringProperty;
 
 import java.util.Objects;
 
+/**
+ * Classe du score d'un joueur
+ */
 public class Score implements Comparable<Score> {
+
     private static final String PSEUDO_PAR_DEFAUT = "Joueur";
 
+    /**
+     * Propriete du score
+     */
     private final IntegerProperty score = new SimpleIntegerProperty();
         public final Integer getScore() {
             return score.get();
@@ -23,6 +30,9 @@ public class Score implements Comparable<Score> {
             this.score.set(score);
         }
 
+    /**
+     * Propriete du pseudo
+     */
     private final StringProperty pseudo = new SimpleStringProperty();
         public String getPseudo() {
             return pseudo.get();
@@ -34,22 +44,43 @@ public class Score implements Comparable<Score> {
             this.pseudo.set(pseudo);
         }
 
+    /**
+     * Constructeur du Score
+     * @param pseudo pseudo de la personne ayant le score
+     * @param score score du joueur
+     */
     public Score(String pseudo, int score) {
         this.score.set(score);
         this.pseudo.set(pseudo);
     }
 
+    /**
+     * Autre constructeur du Score si le pseudo n'est pas donné
+     * @param score Score du joueur
+     */
     public Score(int score) {
         this(PSEUDO_PAR_DEFAUT, score);
     }
 
+    /**
+     * Autre constructeur du Score si no le pseudo ni le score n'est renseigné
+     */
     public Score() {
         this(PSEUDO_PAR_DEFAUT, 0);
     }
 
+    /**
+     * Methode pour augmenter le score d'un joueur par rapport aux pièces
+     * @param piece valeur du score a rajouter
+     */
     public void augmenterScore(Piece piece) {
         score.set(score.get() + piece.getValeur());
     }
+
+    /**
+     * Methode pour augmenter le score d'un joueur par rapport au temps
+     * @param temps temps final de réalisation du niveau
+     */
 
     public void augmenterScore(double temps) {
         score.set((int) (score.get() + temps / 1000000000));

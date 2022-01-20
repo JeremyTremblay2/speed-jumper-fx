@@ -14,13 +14,8 @@ Button:hover {
 }
 
 .niveau{
-            -fx-background-color:
-                #786d6d,
-                linear-gradient(#b3b3b3 50%, c2bcbc 100%);
-            -fx-background-radius: 8,7,6;
-            -fx-background-insets: 0,1,2;
-            -fx-text-fill: black;
-            -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-effect: dropshadow( one-pass-box,black,10,2,0,0);
+    -fx-text-fill: #525151;
 }
 
 .niveau:hover {
@@ -30,6 +25,11 @@ Button:hover {
 
 Label{
     -fx-font-size: 80;
+    -fx-border-color: #949494;
+    -fx-border-width: 5;
+    -fx-text-fill: #525151;
+
+    -fx-effect: dropshadow( one-pass-box,black,10,2,0,0);
 }
 
 

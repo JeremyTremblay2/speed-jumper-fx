@@ -30,7 +30,7 @@
             <Insets top="100"/>
         </GridPane.margin>
         <Label text="Niveau 1" style="-fx-font-size: 50"/>
-        <!-- TABLEAU SCORE ICI -->
+
     </HBox>
 
 

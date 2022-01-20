@@ -1,13 +1,15 @@
 package com.jeremyantoine.speedjumper.donnees;
 
 import com.jeremyantoine.speedjumper.logique.Dimension;
+import com.jeremyantoine.speedjumper.logique.Score;
 import com.jeremyantoine.speedjumper.monde.Carte2D;
+import com.jeremyantoine.speedjumper.monde.Niveau;
 import com.jeremyantoine.speedjumper.monde.Tuile;
 import com.jeremyantoine.speedjumper.utilitaire.DecoupeurFX;
 import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
 import javafx.scene.image.Image;
 
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class GestionnaireDeRessourcesFX {
     private final List<Image> lesTuilesImagees;
     private final List<Image> lesEnnemisImages;
     private List<Image> lePersosFImage;
+
 
     private static final int INDEX_PERSO_F = 0;
 
@@ -76,4 +79,6 @@ public class GestionnaireDeRessourcesFX {
             lesTuilesImagees.addAll(images);
         }
     }
+
+
 }

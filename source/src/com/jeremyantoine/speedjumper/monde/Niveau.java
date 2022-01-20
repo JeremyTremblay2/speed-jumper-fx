@@ -18,11 +18,11 @@ public class Niveau {
     private static final int NOMBRE_SCORE_MAXIMUM = 10;
     private static int nombreNiveaux = 0;
     private final int numeroNiveau;
-    private Carte2D carte;
-    private List<ArrierePlan> lesArrieresPlans;
-    private List<Entite> lesEntites;
-    private Fantome fantome;
-    private Position2D pointsDepart;
+    private final Carte2D carte;
+    private final List<ArrierePlan> lesArrieresPlans;
+    private final List<Entite> lesEntites;
+    private final Fantome fantome;
+    private final Position2D pointsDepart;
 
     private final ObservableList<Score> lesScoresObservables = FXCollections.observableArrayList();
 

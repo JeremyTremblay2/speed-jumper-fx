@@ -55,6 +55,7 @@ public class MenuJouer {
 
         for (int i = 0; (i + pageCourante * NOMBRE_NIVEAU_PAR_PAGE) < nombreNiveaux && i < NOMBRE_NIVEAU_PAR_PAGE; i++) {
             bouton = new Button("Niveau " + (i + 1 + pageCourante * NOMBRE_NIVEAU_PAR_PAGE));
+
             bouton.getStyleClass().add("niveau");
             bouton.setAlignment(Pos.CENTER);
             bouton.setOnAction(this::ouvertureMenuDebutNiveau);

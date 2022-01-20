@@ -17,6 +17,7 @@ import com.jeremyantoine.speedjumper.monde.Niveau;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class TableauJeu {
     private static final Dimension DIMENSION_CAMERA_PAR_DEFAUT = new Dimension(24, 16);
     private GestionnaireDeRessources gestionnaireDeRessources;
